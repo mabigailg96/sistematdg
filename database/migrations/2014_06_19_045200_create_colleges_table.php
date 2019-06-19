@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTdgsTable extends Migration
+class CreateCollegesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateTdgsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tdgs', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('colleges', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('codigo')->unique;
+            $table->string('nombre')->unique;
             $table->timestamps();
+            
         });
     }
 
@@ -26,6 +29,6 @@ class CreateTdgsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tdgs');
+        Schema::dropIfExists('colleges');
     }
 }

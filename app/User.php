@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'nombre', 'username','college_id','email', 'password',
     ];
 
     /**
@@ -27,6 +27,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function colleges(){
+        return $this->belongsTo(College::class);
+    }
 
     /**
      * The attributes that should be cast to native types.
