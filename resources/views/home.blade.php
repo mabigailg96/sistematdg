@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Bienvenido al sistema.</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,10 +14,13 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Ha ingresado al sistema de gestión de trabajos de graduación.
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="text-center">
+    <img src="css/home.png" class="img-fluid" alt="Responsive image">
 </div>
 @endsection
