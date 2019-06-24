@@ -25,7 +25,7 @@
     </div>
 </div>
 <div class="text-center">
-    <img src="css/home.png" class="img-fluid" alt="Responsive image">
+    <img src="img/home.png" class="img-fluid" alt="Responsive image">
 </div>
 <br>
 <br>
