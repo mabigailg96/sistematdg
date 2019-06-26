@@ -15,6 +15,7 @@ class UserTableSeeder extends Seeder
         //
         
        
+        
 
         User::create([
             'nombre'=> 'Admin',
