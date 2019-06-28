@@ -18,3 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/ingresar/acuerdos', 'AgreementController@index')->name('agreement.ingresar');
+Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.guardar');

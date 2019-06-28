@@ -48,6 +48,16 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'localp' => [
+           'driver' => 'local',
+           'root' => public_path().'/perfiles',
+        ],
+
+       'localac' => [
+           'driver' => 'local',
+           'root' => public_path().'/acuerdos',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

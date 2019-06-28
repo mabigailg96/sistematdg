@@ -35,9 +35,16 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+
+
+                      <li class="nav-item navegacion-item">
+                        <a class="nav-link" href="{{ url('/ingresar/acuerdos') }}"> Ingresar acuerdos</a>
+                      </li>
+
 
                     </ul>
 
@@ -54,6 +61,7 @@
                                 </li>-->
                             @endif
                         @else
+
                             <li class="nav-item dropdown ">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle navegacion-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->nombre }} <span class="caret"></span>
