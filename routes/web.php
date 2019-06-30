@@ -18,5 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Rutas para acuerdos
 Route::get('/ingresar/acuerdos', 'AgreementController@index')->name('agreement.ingresar');
 Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.guardar');
+
+//Rutas para trabajos de graduacion
+Route::get('/ingresar/tdg', 'TdgController@index')->name('tdg.ingresar');
+Route::post('/guardar/tdg', 'TdgController@store')->name('tdg.guardar');
