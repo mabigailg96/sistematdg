@@ -1,13 +1,13 @@
 $(document).ready(function(){
   //alert($.urlParam("nombre"));
   //alert($(".help-block").html());
-  if($.urlParam("yes") == 1){
+  if($.urlParam("save") == 1){
     Swal.fire(
       'Acuerdo:',
       "Registrado con éxito!",
       'success'
     );
-  } else if($.urlParam("yes") == 0 || $(".help-block").html() != undefined) {
+  } else if($.urlParam("save") == 0 || $(".help-block").html() != undefined) {
     Swal.fire({
       position: 'top-end',
       type: 'error',

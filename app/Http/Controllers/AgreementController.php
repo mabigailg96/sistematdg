@@ -44,10 +44,10 @@ class AgreementController extends Controller
             'url'=>$nombre,
         ]);
 
-        return redirect()->route('agreement.ingresar', $agreement->id.'&yes=1')->with('info','Acuerdo guardado con éxito');
+        return redirect()->route('agreement.ingresar', $agreement->id.'&save=1')->with('info','Acuerdo guardado con éxito');
       }
       else {
-          return redirect()->route('agreement.ingresar', '/?yes=0&nombre='.$request->nombre)
+          return redirect()->route('agreement.ingresar', '/?save=0&nombre='.$request->nombre)
           ->with('error','El nombre del acuerdo ya existe. Por favor cambie el nombre del archivo');
       }
   }
