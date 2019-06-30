@@ -15,8 +15,8 @@ class CreateAgreementsTable extends Migration
     {
         Schema::create('agreements', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre')->unique;
-            $table->string('url')->unique();
+            $table->string('nombre',100)->unique()->nonullable();
+            $table->string('url')->unique()->nonullable();
             $table->timestamps();
         });
     }

@@ -13,10 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) 
+        {
             $table->increments('id');
-            $table->string('nombre');
-            $table->string('username')->unique();
+            $table->string('nombre',50)->unique()->nonullable();
+            $table->string('username',20)->unique()->nonullable();
             $table->integer('college_id')->unsigned()->nullable();
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade')->nullable();
             $table->string('email')->unique();

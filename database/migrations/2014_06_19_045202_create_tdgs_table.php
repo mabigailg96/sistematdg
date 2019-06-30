@@ -15,12 +15,11 @@ class CreateTdgsTable extends Migration
     {
         Schema::create('tdgs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre')->unique();
-            $table->string('codigo')->unique();
-            $table->string('perfil')->unique();
-            $table->integer('escuela_id')->unsigned();
-            $table->foreign('escuela_id')->references('id')->on('colleges')->onDelete('cascade');
-      
+            $table->string('nombre',500)->nonullable();
+            $table->string('codigo',10)->unique()->nonullable();
+            $table->string('perfil')->unique()->nonullable();
+            $table->integer('escuela_id')->unsigned()->nonullable();
+            $table->foreign('escuela_id')->references('id')->on('colleges')->onDelete('cascade')->nonullable();
             $table->timestamps();
         });
     }
