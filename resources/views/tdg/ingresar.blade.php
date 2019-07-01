@@ -12,7 +12,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-					Ingresar el perfil de trabajo del graduación.
+					Ingresar el perfil de trabajo de graduación.
 				</div>
 
                 <div class="card-body">
