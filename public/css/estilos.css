@@ -10,3 +10,11 @@
   color: #000000 !important;
   font-weight: bold;
 }
+
+.textarea{
+  resize: none;
+}
+
+.textlabel{
+  text-align: end;
+}

@@ -10,7 +10,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Panel Administrativo</div>
+                <div class="card-header">
+                    Ingresar acuerdo.
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -22,11 +24,10 @@
                     <form class="form-horizontal" method="POST" action="{{ route('agreement.guardar') }}" enctype="multipart/form-data">
                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                            <label for="nombre" class="col-md-4 control-label">Nombre</label>
-
+                        <div class="row form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
+                            <label for="nombre" class="textlabel col-md-2 control-label offset-2">Nombre</label>
                             <div class="col-md-6">
-                                <input id="nombre" type="nombre" class="form-control" name="nombre" value="{{ old('nombre') }}" required autofocus>
+                            <input id="nombre" type="nombre" class="form-control" name="nombre" required autofocus>
 
                                 @if ($errors->has('nombre'))
                                     <span class="help-block">
@@ -38,8 +39,8 @@
 
 
 
-                        <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                            <label for="url" class="col-md-4 control-label">Archivo Acuerdo</label>
+                        <div class="row form-group{{ $errors->has('url') ? ' has-error' : '' }}">
+                            <label for="url" class="textlabel col-md-3 control-label offset-1">Archivo Acuerdo</label>
 
                             <div class="urlinput col-md-6">
                                 <input id="url" type="file" name="url">
@@ -55,8 +56,8 @@
 
 
 
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                        <div class="row form-group">
+                            <div class="col-md-2 offset-4">
                                 <button type="submit" class="btn btn-primary btn-login">
                                     Guardar Acuerdo
                                 </button>
