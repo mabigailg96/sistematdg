@@ -12,11 +12,15 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         Role::create([
-            'name'=> 'Admin',
-            'slug'=> 'admin',
-            'special'=>'all-access'
+            'name'=> 'Coordinador General',
+            'slug'=> 'coorgen',
         ]);
+
+        Role::create([
+            'name'=> 'Coordinador de Escuela',
+            'slug'=> 'cooresc',
+        ]);
+
     }
 }

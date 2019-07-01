@@ -20,8 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Rutas para acuerdos
-Route::get('/ingresar/acuerdos', 'AgreementController@index')->name('agreement.ingresar');
-Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.guardar');
+Route::get('/ingresar/acuerdos', 'AgreementController@index')->name('agreement.ingresar')->middleware('permission:agreement.ingresar');
+Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.guardar')->middleware('permission:agreement.guardar');
 
 //Rutas para trabajos de graduacion
 Route::get('/ingresar/tdg', 'TdgController@index')->name('tdg.ingresar');

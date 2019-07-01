@@ -40,15 +40,17 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-
+                   
                       <li class="nav-item navegacion-item">
                         <a class="nav-link" href="{{ url('/ingresar/acuerdos') }}"> Ingresar acuerdos</a>
                       </li>
+                   
 
+                    
                       <li class="nav-item navegacion-item">
                         <a class="nav-link" href="{{ url('/ingresar/tdg') }}"> Ingresar perfil</a>
                       </li>
-
+                    
 
                     </ul>
 
