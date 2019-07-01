@@ -2,11 +2,15 @@
   background-color: #eba593 !important;
 }
 
-.btn-color {
+.btn-color{
   border-color: #000000 !important;
 }
 
 .navbar-brand, .btn-color, .navegacion-item {
+  color: #000000 !important;
+  font-weight: bold;
+}
+.nav-link{
   color: #000000 !important;
   font-weight: bold;
 }

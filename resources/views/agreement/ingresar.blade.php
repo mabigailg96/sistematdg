@@ -40,7 +40,7 @@
 
 
                         <div class="row form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                            <label for="url" class="textlabel col-md-3 control-label offset-1">Archivo Acuerdo</label>
+                            <label for="url" class="textlabel col-md-3 control-label offset-1">Archivo acuerdo</label>
 
                             <div class="urlinput col-md-6">
                                 <input id="url" type="file" name="url">
@@ -58,7 +58,7 @@
 
                         <div class="row form-group">
                             <div class="col-md-2 offset-4">
-                                <button type="submit" class="btn btn-primary btn-login">
+                                <button type="submit" class="btn btn-primary btn-color">
                                     Guardar Acuerdo
                                 </button>
                             </div>

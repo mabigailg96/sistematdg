@@ -19,10 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::middleware(['auth'])->group(function(){
 //Rutas para acuerdos
-Route::get('/ingresar/acuerdos', 'AgreementController@index')->name('agreement.ingresar')->middleware('permission:agreement.ingresar');
-Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.guardar')->middleware('permission:agreement.guardar');
+Route::get('/ingresar/acuerdos', 'AgreementController@index')->name('agreement.ingresar')->middleware('can:agreement.ingresar');
+Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.guardar')->middleware('can:agreement.guardar');
 
 //Rutas para trabajos de graduacion
-Route::get('/ingresar/tdg', 'TdgController@index')->name('tdg.ingresar');
-Route::post('/guardar/tdg', 'TdgController@store')->name('tdg.guardar');
+Route::get('/ingresar/tdg', 'TdgController@index')->name('tdg.ingresar')->middleware('can:tdg.ingresar');
+Route::post('/guardar/tdg', 'TdgController@store')->name('tdg.guardar')->middleware('can:tdg.guardar');
+
+});

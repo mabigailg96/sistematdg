@@ -40,17 +40,17 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-                   
+                    @can('agreement.ingresar')
                       <li class="nav-item navegacion-item">
                         <a class="nav-link" href="{{ url('/ingresar/acuerdos') }}"> Ingresar acuerdos</a>
                       </li>
-                   
+                   @endcan
 
-                    
+                    @can('tdg.ingresar')
                       <li class="nav-item navegacion-item">
                         <a class="nav-link" href="{{ url('/ingresar/tdg') }}"> Ingresar perfil</a>
                       </li>
-                    
+                    @endcan
 
                     </ul>
 

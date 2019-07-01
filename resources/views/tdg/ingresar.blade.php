@@ -28,7 +28,7 @@
                         <div class="row form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
                             <label for="nombre" class="textlabel col-md-2 offset-2 control-label">Nombre</label>
                             <div class="col-md-6">
-								<textarea id="nombre" class="textarea form-control" rows="10" cols="50" required autofocus></textarea>
+								<textarea id="nombre" type="nombre" class="textarea form-control" name="nombre" value="{{old('nombre')}}" rows="10" cols="50" required autofocus></textarea>
                                 @if ($errors->has('nombre'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('nombre') }}</strong>
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="row form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
-							<label for="perfil" class="textlabel col-md-3 offset-1 control-label">Archivo Acuerdo</label>
+							<label for="perfil" class="textlabel col-md-3 offset-1 control-label">Archivo perfil</label>
                             <div class="urlinput col-md-6">
                                 <input id="perfil" type="file" name="perfil">
 
@@ -56,7 +56,7 @@
 
                         <div class="row form-group">
                             <div class="col-md-2 offset-4">
-                                <button type="submit" class="btn btn-primary btn-login">
+                                <button type="submit" class="btn btn-primary btn-color">
                                     Guardar Perfil
                                 </button>
                             </div>
