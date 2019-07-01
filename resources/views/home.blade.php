@@ -18,16 +18,19 @@
                         </div>
                     @endif
 
-                    Ha ingresado al sistema de gestión de trabajos de graduación.
+                    <center> Ha ingresado al sistema de gestión de trabajos de graduación.</center>
+                    <img src="img/home.png" class="img-thumbnail" alt="Responsive image">
+                    
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="text-center">
-    <img src="img/home.png" class="img-fluid" alt="Responsive image">
+   
 </div>
 <br>
 <br>
-<center><button type="button" class="btn btn-info" id="btn-prueba">Prueba Sweet Alert 2</button></center>
+
 @endsection
