@@ -6,7 +6,7 @@
   border-color: #000000 !important;
 }
 
-.navbar-brand, .btn-color, .navegacion-item {
+.navbar-brand, .btn-color, .navegacion-item,.cerrar-sesion-color  {
   color: #000000 !important;
   font-weight: bold;
 }
