@@ -59,7 +59,7 @@
                         <div class="row form-group">
                             <div class="col-md-2 offset-4">
                                 <button type="submit" class="btn btn-primary btn-color">
-                                    Guardar Acuerdo
+                                    Guardar acuerdo
                                 </button>
                             </div>
                         </div>
