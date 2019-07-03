@@ -42,10 +42,10 @@ return [
     'ip'                   => ':attribute debe ser una dirección IP válida.',
     'json'                 => 'El campo :attribute debe tener una cadena JSON válida.',
     'max'                  => [
-        'numeric' => ':attribute no debe ser mayor a :max.',
-        'file'    => ':attribute no debe ser mayor que :max kilobytes.',
-        'string'  => ':attribute no debe ser mayor que :max caracteres.',
-        'array'   => ':attribute no debe tener más de :max elementos.',
+        'numeric' => 'El :attribute no debe ser mayor a :max.',
+        'file'    => 'El :attribute no debe ser mayor que :max kilobytes.',
+        'string'  => 'El :attribute no debe ser mayor que :max caracteres.',
+        'array'   => 'El :attribute no debe tener más de :max elementos.',
     ],
     'mimes'                => ':attribute debe ser un archivo con formato: :values.',
     'min'                  => [
@@ -77,6 +77,7 @@ return [
     'unique'               => 'El :attribute ya ha sido registrado.',
     'url'                  => 'El formato :attribute es inválido.',
     'captcha'              => 'El código captcha ingresado no es correcto',
+    'uploaded'             => 'La carga del :attribute fallo.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

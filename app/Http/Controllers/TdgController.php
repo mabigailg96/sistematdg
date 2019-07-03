@@ -9,6 +9,7 @@ use \DB;
 class TdgController extends Controller
 {
     //
+
     public function index(){
         return view('tdg.ingresar');
     }
