@@ -40,7 +40,7 @@
                         <div class="row form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
 							<label for="perfil" class="textlabel col-md-3 offset-1 control-label">Archivo perfil</label>
                             <div class="urlinput col-md-6">
-                                <input id="perfil" type="file" name="perfil">
+                                <input id="perfil" type="file" name="perfil" required autofocus>
 
                                 @if ($errors->has('perfil'))
                                     <span class="help-block">
@@ -49,6 +49,39 @@
                                 @endif
                             </div>
 						</div>
+
+                        <div class="row form-row{{ $errors->has('ciclo') ? ' has-error' : '' }}">
+                                <label class="textlabel col-md-3 offset-1 control-label" for="ciclo">Ciclo</label>
+                                <div class="urlinput col-md-6">
+                                <select id="ciclo" value="{{old('ciclo')}}"  class="form-control"  required autofocus>
+                                    <option selected>Seleccione un ciclo...</option >
+                                    <option>I</option>
+                                    <option>II</option>
+                                </select>
+                                @if ($errors->has('ciclo'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('ciclo') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+ 
+                        <div class="row form-row{{ $errors->has('anio') ? ' has-error' : '' }}" style="margin-top:10px">
+                            <label class="textlabel col-md-3 offset-1 control-label" for="anio">Año</label>
+                            <div class="urlinput col-md-6">
+                            <select id="año"  value="{{old('año')}}" class="form-control">
+                                <option selected>Seleccione el año del ciclo...</option>
+                                <option>2019</option>
+                                <option>2020</option>
+                            </select>
+                            @if ($errors->has('anio'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('anio') }}</strong>
+                                    </span>
+                                @endif
+                        </div>
+                    </div>
+
 						
                         <div class="form-group{{ $errors->has('college_id') ? ' has-error' : '' }}">
                             <input type="hidden" name="college_id" value="{{auth()->user()->college_id}}">

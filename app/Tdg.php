@@ -15,6 +15,6 @@ class Tdg extends Model
         return $this->belongsToMany(Agreement::class);
     }
     protected $fillable = [
-        'nombre', 'codigo','perfil','escuela_id',
+        'nombre', 'codigo','perfil','ciclo','anio','escuela_id',
     ];
 }
