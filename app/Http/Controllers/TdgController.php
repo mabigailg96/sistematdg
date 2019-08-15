@@ -15,7 +15,7 @@ class TdgController extends Controller
     }
 
     public function store(Request $request){
-        $data = $request->validate([
+        $perfil = $request->validate([
             'nombre'=>'required|unique:tdgs',
             'perfil'=>'required|unique:tdgs',
             ]);
@@ -23,36 +23,36 @@ class TdgController extends Controller
 
 
             //Rescatar escuela del usuario
-            $escuela = $request->Input('college_id');
-            $num = (int) $escuela;
+            $escuela_request = $request->Input('college_id');
+            $escuela_id = (int) $escuela_request;
             
-
-            //Rescatar todos los tdg para extraer el ultimo id
-            $tdgs = Tdg::all();
-            
-            $lastid=0;
-
-            //$ultimoid['id']=$tdgs->where('id','=',$tdgs->id)->orderby('created_at','DESC')->take(1)->get();
-            $lastRecord = DB::table('tdgs')->where('escuela_id','=',$num)->orderBy('id', 'DESC')->first();
+            //Rescatando el ultimo tdgs ingresado en la base de datos.
+            $lastTdg = DB::table('tdgs')->where('escuela_id','=',$escuela_id)->orderBy('id', 'DESC')->first();
             //psi19001
-            if($lastRecord==null){
-                $auxnum=0;
+            if($lastTdg==null){
+                $lastCorrelativo=0;
             }else{
-                $auxnum =(int) substr($lastRecord->codigo, strlen($lastRecord->codigo)-3, strlen($lastRecord->codigo));
+                //Partiendo el codigo del TDG para solo extraer el correlativo.
+                $lastCorrelativo =(int) substr($lastTdg->codigo, strlen($lastTdg->codigo)-3, strlen($lastTdg->codigo));
             }
           
 
             //Hacer codigo de TDG
-            $idescuela = DB::table('colleges')->find($num);
+
+            //Obteniendo la escuela.
+            $escuela = DB::table('colleges')->find($escuela_id);
             $correlativo = '';
-            if($auxnum<=9){
+
+            //Verificando el ultimo id, para completar el correlativo.
+            if($lastCorrelativo<=9){
                 $correlativo = '00';
             }
-            if($auxnum>9 && $auxnum<=99){
+            if($lastCorrelativo>9 && $lastCorrelativo<=99){
                 $correlativo = '0';
             }
 
-            $codigo = 'P'.$idescuela->nombre.date("y").$correlativo.($auxnum+1);
+            //Nuevo codigo TDG
+            $codigo = 'P'.$escuela->nombre.date("y").$correlativo.($lastCorrelativo+1);
 
             
              
@@ -60,31 +60,37 @@ class TdgController extends Controller
         $file = $request->file('perfil');
         
         //obtenemos el nombre del archivo
-        $nombre = $file->getClientOriginalName();
+        $nombre_archivo = $file->getClientOriginalName();
 
-        $nombreexiste = Tdg::all();
-        $nom=0;
-            if($nombreexiste){
-                foreach( $nombreexiste as $existe ) {
-                    if($existe->perfil==$nombre)
-                        $nom=1;  
+        //Obtenemos todos los TDG para verificar que el nombre del archivo no exista.
+        $existeTDG = Tdg::all();
+
+
+        $existe=0;
+            if($existeTDG){
+                //Verificando que el nombre del archivo no exista.
+                foreach( $existeTDG as $oldTdg ) {
+                    if($oldTdg->perfil==$nombre_archivo)
+                        $existe=1;  
                 }}
-        if($nom==0){
-        \Storage::disk('localp')->put($nombre,  \File::get($file));
+
+        //Si no se encuentra ya ese archivo registrado se guarda el perfil.
+        if($existe==0){
+        \Storage::disk('localp')->put($nombre_archivo,  \File::get($file));
         
-           
+        //Guardarmos el TDG.
       $tdg=Tdg::create([
-          'nombre'=>$data['nombre'],
-          'escuela_id'=>$num,
+          'nombre'=>$perfil['nombre'],
+          'escuela_id'=>$escuela_id,
           'codigo'=>$codigo,
-          'perfil'=>$nombre,
+          'perfil'=>$nombre_archivo,
       ]);
      
       return redirect()->route('tdg.ingresar', $tdg->id.'&save=1')
       ->with('info','Trabajo de graduación guardado con éxito');
       }
       else {
-      return redirect()->route('tdg.ingresar', '/?&save=0&nombre='.$data['nombre'])
+      return redirect()->route('tdg.ingresar', '/?&save=0&nombre='.$perfil['nombre'])
       ->with('info','El nombre del perfil ya existe. Por favor cambie el nombre del archivo'); 
       }
     }
