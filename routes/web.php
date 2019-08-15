@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function(){
 //Rutas para acuerdos
-Route::get('/ingresar/acuerdos', 'AgreementController@index')->name('agreement.ingresar')->middleware('can:agreement.ingresar');
+Route::get('/ingresar/acuerdos', 'AgreementController@create')->name('agreement.ingresar')->middleware('can:agreement.ingresar');
 Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.guardar')->middleware('can:agreement.guardar');
 
 //Rutas para trabajos de graduacion

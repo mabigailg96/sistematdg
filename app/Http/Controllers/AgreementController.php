@@ -7,7 +7,7 @@ use App\Agreement;
 
 class AgreementController extends Controller
 {
-  public function index()
+  public function create()
   {
     return view('agreement.ingresar');
   }
