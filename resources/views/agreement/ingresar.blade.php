@@ -37,6 +37,12 @@
                             </div>
                         </div>
 
+                        <div class="row form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
+                            <label for="fecha" class="textlabel col-md-3 control-label offset-1">Fecha de acuerdo</label>
+                            <div class="col-md-6">
+                                <input type="date" name="fecha" id="fecha" class="form-control" required>
+                            </div>
+                        </div>
 
 
                         <div class="row form-group{{ $errors->has('url') ? ' has-error' : '' }}">

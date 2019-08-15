@@ -17,6 +17,7 @@ class CreateAgreementsTable extends Migration
             $table->increments('id');
             $table->string('nombre',100)->unique()->nonullable();
             $table->string('url')->unique()->nonullable();
+            $table->date('fecha')->nonullable();
             $table->timestamps();
         });
     }

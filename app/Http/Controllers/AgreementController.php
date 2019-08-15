@@ -17,6 +17,7 @@ class AgreementController extends Controller
       $data = $request->validate([
           'nombre'=>'required|unique:agreements',
           'url'=>'required|unique:agreements',
+          'fecha'=>'required',
           ]);
 
       $file = $request->file('url');
@@ -43,6 +44,7 @@ class AgreementController extends Controller
         $agreement=Agreement::create([
             'nombre'=>$data['nombre'],
             'url'=>$nombrearchivo,
+            'fecha'=>$data['fecha'],
         ]);
 
         return redirect()->route('agreement.ingresar', $agreement->id.'&save=1')->with('info','Acuerdo guardado con éxito');
