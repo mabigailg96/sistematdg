@@ -22,26 +22,27 @@ class AgreementController extends Controller
       $file = $request->file('url');
 
       //obtenemos el nombre del archivo
-      $nombre = $file->getClientOriginalName();
+      $nombrearchivo = $file->getClientOriginalName();
 
-      $nombreexiste=Agreement::all();
+      $compnombre=Agreement::all();
+      //metodo que comprueba si el nombre del acuerdo
       $nom=0;
-      if($nombreexiste)
+      if($compnombre)
       {
-          foreach($nombreexiste as $existe)
+          foreach($compnombre as $existe)
           {
-              if($existe->url==$nombre)
+              if($existe->url==$nombrearchivo)
               $nom=1;
           }
       }
 
       if($nom==0)
       {
-          \Storage::disk('localac')->put($nombre,  \File::get($file));
+          \Storage::disk('localac')->put($nombrearchivo,  \File::get($file));
           $data = $request->all();
         $agreement=Agreement::create([
             'nombre'=>$data['nombre'],
-            'url'=>$nombre,
+            'url'=>$nombrearchivo,
         ]);
 
         return redirect()->route('agreement.ingresar', $agreement->id.'&save=1')->with('info','Acuerdo guardado con éxito');
