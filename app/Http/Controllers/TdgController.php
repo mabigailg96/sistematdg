@@ -10,7 +10,7 @@ class TdgController extends Controller
 {
     //
 
-    public function index(){
+    public function create(){
         return view('tdg.ingresar');
     }
 
