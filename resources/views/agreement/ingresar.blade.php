@@ -41,6 +41,11 @@
                             <label for="fecha" class="textlabel col-md-3 control-label offset-1">Fecha de acuerdo</label>
                             <div class="col-md-6">
                                 <input type="date" name="fecha" id="fecha" class="form-control" required>
+                                @if ($errors->has('fecha'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('fecha') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

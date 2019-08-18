@@ -22,3 +22,7 @@
 .textlabel{
   text-align: end;
 }
+
+.oculto {
+  display: none;
+}

@@ -11,7 +11,7 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //**************Trabajos de graduacion**********************
+        
 
         //Permiso para mostrar la pantalla de formulario del ingreso de un perfil
         Permission::create([
@@ -26,7 +26,7 @@ class PermissionsTableSeeder extends Seeder
             'description' => 'Ingresar nuevos perfiles al sistema',
         ]);
 
-        //***************Acuerdos de Junta Directiva
+       
         ////Permiso para mostrar la pantalla de formulario del ingreso de un acuerdo
         Permission::create([
             'name' => 'Ingresar Acuerdo (formulario)',
@@ -39,6 +39,22 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'agreement.guardar',
             'description' => 'Ingresar nuevos acuerdos al sistema',
         ]);
+
+
+        //Permiso para mostrar la pantalla de formulario del ingreso de un ciclo
+        Permission::create([
+            'name' => 'Ingresar ciclo (formulario)',
+            'slug' => 'semester.ingresar',
+            'description' => 'Formulario de ingreso de inicio de ciclo',
+        ]);
+        //Permiso que permite mandar a llamar el controller para el ingreso de un ciclo
+        Permission::create([
+            'name' => 'Ingresar ciclo(llamando al controller)',
+            'slug' => 'semester.guardar',
+            'description' => 'Ingresar el ciclo al sistema',
+        ]);
+
+        
 
     }
 }

@@ -51,6 +51,11 @@
                         <a class="nav-link" href="{{ url('/ingresar/tdg') }}"> Ingresar perfil</a>
                       </li>
                     @endcan
+                    @can('semester.ingresar')
+                    <li class="nav-item navegacion-item">
+                      <a class="nav-link" href="{{ url('/ingresar/ciclo') }}"> Ingresar ciclo</a>
+                    </li>
+                  @endcan
 
                     </ul>
 

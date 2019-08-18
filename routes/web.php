@@ -18,6 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingresar');
+Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guardar');
 
 Route::middleware(['auth'])->group(function(){
 //Rutas para acuerdos
@@ -27,5 +29,9 @@ Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.g
 //Rutas para trabajos de graduacion
 Route::get('/ingresar/tdg', 'TdgController@create')->name('tdg.ingresar')->middleware('can:tdg.ingresar');
 Route::post('/guardar/tdg', 'TdgController@store')->name('tdg.guardar')->middleware('can:tdg.guardar');
+
+//Ruta para la creacion del ciclo
+Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingresar')->middleware('can:semester.ingresar');
+Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guardar')->middleware('can:semester.ingresar');
 
 });

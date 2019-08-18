@@ -89,7 +89,7 @@ class TdgController extends Controller
           'perfil'=>$nombre_archivo,
         ]);
      
-        return redirect()->route('tdg.ingresar', $tdg->id.'&save=1')
+        return redirect()->route('tdg.ingresar', '/?'.$tdg->id.'&save=1')
             ->with('info','Trabajo de graduación guardado con éxito');
         }
         else {

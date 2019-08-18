@@ -36,7 +36,7 @@ return [
     'exists'               => ':attribute es inválido.',
     'filled'               => 'El campo :attribute es obligatorio.',
     'image'                => ':attribute debe ser una imagen.',
-    'in'                   => ':attribute es inválido.',
+    'in'                   => 'El campo :attribute es obligatorio.',
     'in_array'             => 'El campo :attribute no existe en :other.',
     'integer'              => ':attribute debe ser un número entero.',
     'ip'                   => ':attribute debe ser una dirección IP válida.',
