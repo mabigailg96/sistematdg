@@ -26,3 +26,9 @@
 .oculto {
   display: none;
 }
+
+form label.required:after
+{
+    color: red;
+    content: " *";
+}

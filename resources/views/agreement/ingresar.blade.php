@@ -22,12 +22,12 @@
                     @endif
 
                     <form class="form-horizontal" method="POST" action="{{ route('agreement.guardar') }}" enctype="multipart/form-data">
-                       {{ csrf_field() }}
+                        @csrf
 
                         <div class="row form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                            <label for="nombre" class="textlabel col-md-2 control-label offset-2">Nombre</label>
+                            <label for="nombre" class="textlabel col-md-2 control-label offset-2 required">Nombre</label>
                             <div class="col-md-6">
-                            <input id="nombre" type="nombre" class="form-control" name="nombre" required autofocus>
+                            <input id="nombre" name="nombre" type="text" class="form-control required" value="{{old('nombre')}}" required autofocus>
 
                                 @if ($errors->has('nombre'))
                                     <span class="help-block">
@@ -38,9 +38,9 @@
                         </div>
 
                         <div class="row form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
-                            <label for="fecha" class="textlabel col-md-3 control-label offset-1">Fecha de acuerdo</label>
+                            <label for="fecha" class="textlabel col-md-3 control-label offset-1 required">Fecha de acuerdo</label>
                             <div class="col-md-6">
-                                <input type="date" name="fecha" id="fecha" class="form-control" required>
+                                <input type="date" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" required>
                                 @if ($errors->has('fecha'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('fecha') }}</strong>
@@ -51,7 +51,7 @@
 
 
                         <div class="row form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                            <label for="url" class="textlabel col-md-3 control-label offset-1">Archivo acuerdo</label>
+                            <label for="url" class="textlabel col-md-3 control-label offset-1 required">Archivo acuerdo</label>
 
                             <div class="urlinput col-md-6">
                                 <input id="url" type="file" name="url">
