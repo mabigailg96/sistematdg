@@ -25,7 +25,7 @@
                        {{ csrf_field() }}
 
                         <div class="row form-group{{ $errors->has('ciclo') ? ' has-error' : '' }}">
-                            <label for="ciclo" class="textlabel col-md-2 control-label offset-2">Ciclo</label>
+                            <label for="ciclo" class="textlabel col-md-2 control-label offset-2 required">Ciclo</label>
                             <div class="col-md-6">
                 
                             <select id="ciclo" name="ciclo" value="{{old('ciclo')}}"  class="form-control" required>
@@ -43,7 +43,7 @@
                         </div>
                         <br>
                         <div class="row form-group{{ $errors->has('fechaInicio') ? ' has-error' : '' }}">
-                            <label for="fechaInicio" class="textlabel col-md-3 control-label offset-1">Fecha de inicio</label>
+                            <label for="fechaInicio" class="textlabel col-md-3 control-label offset-1 required">Fecha de inicio</label>
                             <div class="col-md-6">
                                 <input type="date" name="fechaInicio" id="fechaInicio" class="form-control" required>
                                 @if ($errors->has('fechaInicio'))

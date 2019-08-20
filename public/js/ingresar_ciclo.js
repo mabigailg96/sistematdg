@@ -3,7 +3,7 @@ $(document).ready(function(){
     //alert($(".help-block").html());
     if($.urlParam("save") == 1){
       Swal.fire(
-        'Perfil:',
+        'Ciclo:',
         "Registrado con éxito!",
         'success'
       );
