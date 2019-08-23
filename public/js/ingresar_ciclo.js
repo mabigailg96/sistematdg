@@ -1,3 +1,8 @@
+// Declarar variables
+var fecha_actual = 0;
+var dia_minimo = 0;
+var dia_maximo = 0;
+
 $(document).ready(function(){
     //alert($.urlParam("nombre"));
     //alert($(".help-block").html());
@@ -23,6 +28,15 @@ $(document).ready(function(){
     }
 
     history.pushState({data:true}, 'Titulo', '/ingresar/ciclo');
+
+    // Colocar rango de fecha minimo y máximo
+
+    fecha_actual = new Date();
+    dia_minimo = (fecha_actual.getFullYear()-1) + '-01-01';
+    dia_maximo = fecha_actual.getFullYear() + '-12-31';
+
+    $("#fechaInicio").attr("min", dia_minimo);
+    $("#fechaInicio").attr("max", dia_maximo);
 });
 
 // Función para saber el valor de los parametros get
