@@ -56,12 +56,9 @@
                                 </span>
                             </div>
                         </div>
-
-                        
-                        
                       
-<br>
-                      <div class="row form-group">
+                        <br>
+                        <div class="row form-group">
                             <div class="col-md-2 offset-4">
                                 <button type="submit" class="btn btn-primary btn-color">
                                     Guardar ciclo
@@ -69,8 +66,10 @@
                             </div>
                         </div>
                     </form>
-
                     <br>
+                </div>
+                <div class="card-footer text-muted">
+                    Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
                 </div>
             </div>
         </div>

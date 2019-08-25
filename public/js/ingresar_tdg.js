@@ -15,11 +15,8 @@ $(document).ready(function(){
       showConfirmButton: false,
       timer: 2000
     });
-    if($.urlParam("nombre") != undefined){
-      $("#nombre").val($.urlParam("nombre"));
-    }
   }
-  history.pushState({data:true}, 'Titulo', '/ingresar/tdg');
+  //history.pushState({data:true}, 'Titulo', '/ingresar/tdg');
 });
 
 $.urlParam = function(name){

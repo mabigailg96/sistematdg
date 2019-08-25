@@ -50,32 +50,21 @@
                             </div>
 						</div>
 
-                        <div class="row form-group{{ $errors->has('ciclo') ? ' has-error' : '' }}">
-                            <label class="textlabel col-md-3 offset-1 control-label required" for="ciclo">Ciclo</label>
-                            <select id="ciclo" name="ciclo" value="{{old('ciclo')}}"  class="form-control col-4"  required>
-                                <option value="" selected>Seleccione un ciclo...</option >
-                                <option value="01">I</option>
-                                <option value="02">II</option>
-                            </select>
-                            @if ($errors->has('ciclo'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('ciclo') }}</strong>
-                                </span>
-                            @endif
-                        </div>
- 
-                        <div class="row form-group{{ $errors->has('anio') ? ' has-error' : '' }}" style="margin-top:10px">
-                            <label class="textlabel col-md-3 offset-1 control-label required" for="anio">Año</label>
-                            <select id="anio" name="anio" value="{{old('anio')}}" class="form-control col-4" required>
-                                <option value="" selected>Seleccione el año </option>
-                                <option value="2019">2019</option>
-                                <option value="2020">2020</option>
-                            </select>
-                            @if ($errors->has('anio'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('anio') }}</strong>
-                                </span>
-                            @endif
+                        <div class="row form-group{{ $errors->has('ciclo_id') ? ' has-error' : '' }}">
+                            <label class="textlabel col-md-3 offset-1 control-label required" for="ciclo_id">Ciclo</label>
+                            <div class="urlinput col-md-6">
+                                <select id="ciclo_id" name="ciclo_id" value="{{old('ciclo_id')}}"  class="form-control col-8" required>
+                                    <option value="" selected>Seleccione un ciclo...</option >
+                                    @foreach ($ciclos as $ciclo)
+                                        <option value="{{ $ciclo->id}}">{{ $ciclo->ciclo}}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('ciclo_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('ciclo_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 						
                         <div class="form-group{{ $errors->has('college_id') ? ' has-error' : '' }}">
@@ -92,6 +81,9 @@
 						
                     </form>
                     <br>
+                </div>
+                <div class="card-footer text-muted">
+                    Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
                 </div>
             </div>
         </div>

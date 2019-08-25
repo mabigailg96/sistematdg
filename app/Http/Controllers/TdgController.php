@@ -13,7 +13,9 @@ class TdgController extends Controller
 
     public function create()
     {
-        return view('tdg.ingresar');
+        $ciclos = new SemesterController();
+
+        return view('tdg.ingresar', ['ciclos' => $ciclos->viewSemesters()]);
     }
 
     public function store(Request $request)
@@ -21,12 +23,12 @@ class TdgController extends Controller
         $perfil = $request->validate([
             'nombre' => 'required|unique:tdgs',
             'perfil' => 'required|unique:tdgs',
-            'ciclo' => 'required',
-            'anio' => 'required',
+            'ciclo_id' => 'required',
         ]);
 
         // Rescatando el ciclo a que pertenece el tdg
-        $ciclo = $request->input('ciclo') . '-' . $request->input('anio');
+        $ciclo_request = $request->Input('ciclo_id');
+        $ciclo_id = (int) $ciclo_request;
 
         //Rescatar escuela del usuario
         $escuela_request = $request->Input('college_id');
@@ -41,7 +43,6 @@ class TdgController extends Controller
             //Partiendo el codigo del TDG para solo extraer el correlativo.
             $lastCorrelativo = (int) substr($lastTdg->codigo, strlen($lastTdg->codigo) - 3, strlen($lastTdg->codigo));
         }
-
 
         //Hacer codigo de TDG
 
@@ -59,8 +60,6 @@ class TdgController extends Controller
 
         //Nuevo codigo TDG
         $codigo = 'P' . $escuela->nombre . date("y") . $correlativo . ($lastCorrelativo + 1);
-
-
 
         //Guardar archivos
         $file = $request->file('perfil');
@@ -91,8 +90,7 @@ class TdgController extends Controller
                 'escuela_id' => $escuela_id,
                 'codigo' => $codigo,
                 'perfil' => $nombre_archivo,
-                'ciclo' => $ciclo,
-
+                'ciclo_id' => $ciclo_id,
             ]);
 
             return redirect()->route('tdg.ingresar', '/?' . $tdg->id . '&save=1')
