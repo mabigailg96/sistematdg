@@ -7,7 +7,6 @@
 
 @section('content')
 <div class="container">
-    <span id="token" style="display:none">{{ csrf_token() }}</span>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -31,20 +30,19 @@
 								<textarea id="nombre" type="nombre" class="textarea form-control" name="nombre" value="{{old('nombre')}}" rows="10" cols="50" required autofocus></textarea>
                                 @if ($errors->has('nombre'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('nombre') }}</strong>
+                                       {{ $errors->first('nombre') }}
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="row form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
-							<label for="perfil" class="textlabel col-md-3 offset-1 control-label required">Archivo perfil</label>
+							<label for="perfil" class="textlabel col-md-3 offset-1 control-label required">Archivo de perfil</label>
                             <div class="urlinput col-md-6">
                                 <input id="perfil" type="file" name="perfil" required>
-
                                 @if ($errors->has('perfil'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('perfil') }}</strong>
+                                    <span class="help-block row">
+                                        {{ $errors->first('perfil') }}
                                     </span>
                                 @endif
                             </div>
@@ -54,17 +52,21 @@
                             <label class="textlabel col-md-3 offset-1 control-label required" for="ciclo_id">Ciclo</label>
                             <div class="urlinput col-md-6">
                                 <select id="ciclo_id" name="ciclo_id" value="{{old('ciclo_id')}}"  class="form-control col-8" required>
-                                    <option value="" selected>Seleccione un ciclo...</option >
+                                    <option value="" selected disabled>Seleccione un ciclo:</option >
                                     @foreach ($ciclos as $ciclo)
                                         <option value="{{ $ciclo->id}}">{{ $ciclo->ciclo}}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('ciclo_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('ciclo_id') }}</strong>
+                                        {{ $errors->first('ciclo_id') }}
                                     </span>
                                 @endif
                             </div>
+                        </div>
+
+                        <div class="row offset-4">
+                            <span style="color:red; margin-left:10px">*</span> Campos requeridos.
                         </div>
 						
                         <div class="form-group{{ $errors->has('college_id') ? ' has-error' : '' }}">
@@ -81,9 +83,6 @@
 						
                     </form>
                     <br>
-                </div>
-                <div class="card-footer text-muted">
-                    Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
                 </div>
             </div>
         </div>

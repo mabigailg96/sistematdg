@@ -32,3 +32,8 @@ form label.required:after
     color: red;
     content: " *";
 }
+
+.help-block{
+  color:red;
+  margin-left: 0px;
+}

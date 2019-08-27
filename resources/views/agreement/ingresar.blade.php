@@ -6,7 +6,6 @@
 
 @section('content')
 <div class="container">
-    <span id="token" style="display:none">{{ csrf_token() }}</span>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -31,7 +30,7 @@
 
                                 @if ($errors->has('nombre'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('nombre') }}</strong>
+                                        {{ $errors->first('nombre') }}
                                     </span>
                                 @endif
                             </div>
@@ -43,29 +42,31 @@
                                 <input type="date" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" required>
                                 @if ($errors->has('fecha'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('fecha') }}</strong>
+                                        {{ $errors->first('fecha') }}
                                     </span>
                                 @endif
                             </div>
                         </div>
-
 
                         <div class="row form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                            <label for="url" class="textlabel col-md-3 control-label offset-1 required">Archivo acuerdo</label>
+                            <label for="url" class="textlabel col-md-3 control-label offset-1 required">Archivo de acuerdo</label>
 
                             <div class="urlinput col-md-6">
-                                <input id="url" type="file" name="url">
+                                <input id="url" type="file" name="url" required>
 
                                 @if ($errors->has('url'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('url') }}</strong>
+                                    <span class="help-block row">
+                                        {{ $errors->first('url') }}
                                     </span>
                                 @endif
                             </div>
                         </div>
 
+                        <div class="row offset-4">
+                            <span style="color:red; margin-left:10px">*</span> Campos requeridos.
+                        </div>
 
-
+                        <div class="form-group"></div>
 
                         <div class="row form-group">
                             <div class="col-md-2 offset-4">
@@ -77,9 +78,6 @@
                     </form>
 
                     <br>
-                </div>
-                <div class="card-footer text-muted">
-                    Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
                 </div>
             </div>
         </div>

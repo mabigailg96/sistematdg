@@ -6,7 +6,6 @@
 
 @section('content')
 <div class="container">
-    <span id="token" style="display:none">{{ csrf_token() }}</span>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -22,7 +21,7 @@
                     @endif
 
                     <form class="form-horizontal" method="POST" action="{{ route('semester.guardar') }}" enctype="multipart/form-data">
-                       {{ csrf_field() }}
+                       @csrf
 
                         <div class="row form-group{{ $errors->has('ciclo') ? ' has-error' : '' }}">
                             <label for="ciclo" class="textlabel col-md-2 control-label offset-2 required">Ciclo</label>
@@ -36,28 +35,30 @@
 
                                 @if ($errors->has('ciclo'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('ciclo') }}</strong>
+                                        {{ $errors->first('ciclo') }}
                                     </span>
                                 @endif
                             </div>
                         </div>
-                        <br>
+
                         <div class="row form-group{{ $errors->has('fechaInicio') ? ' has-error' : '' }}">
                             <label for="fechaInicio" class="textlabel col-md-3 control-label offset-1 required">Fecha de inicio</label>
                             <div class="col-md-6">
                                 <input type="date" name="fechaInicio" id="fechaInicio" class="form-control" required>
                                 @if ($errors->has('fechaInicio'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('fechaInicio') }}</strong>
+                                    <span class="help-block"    >
+                                        {{ $errors->first('fechaInicio') }}
                                     </span>
                                 @endif
-                                <span class="help-block">
-                                    <strong id="mensaje_fecha" class="oculto">xD</strong>
-                                </span>
                             </div>
                         </div>
+
+                        <div class="row offset-4">
+                            <span style="color:red; margin-left:10px">*</span> Campos requeridos.
+                        </div>
                       
-                        <br>
+                        <div class="form-group"></div>
+
                         <div class="row form-group">
                             <div class="col-md-2 offset-4">
                                 <button type="submit" class="btn btn-primary btn-color">
@@ -67,9 +68,6 @@
                         </div>
                     </form>
                     <br>
-                </div>
-                <div class="card-footer text-muted">
-                    Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
                 </div>
             </div>
         </div>
