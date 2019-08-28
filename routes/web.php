@@ -34,4 +34,7 @@ Route::post('/guardar/tdg', 'TdgController@store')->name('tdg.guardar')->middlew
 Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingresar')->middleware('can:semester.ingresar');
 Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guardar')->middleware('can:semester.ingresar');
 
+//Rutas para importar los estudiantes por medio de un excel
+Route::get('/ingresar/estudiantes', 'StudentController@create')->name('student.ingresar');
+Route::post('/guardar/estudiantes', 'StudentController@store')->name('student.guardar');
 });
