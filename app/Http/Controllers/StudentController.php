@@ -39,7 +39,7 @@ class StudentController extends Controller
     {
         Excel::import(new StudentsImport, request()->file('file'));
 
-        return back();
+        return redirect('/ingresar/estudiantes/?&save=1')->with('info', 'Los estudiantes han sido guardados con exito');
     }
 
     /**
