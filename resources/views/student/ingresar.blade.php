@@ -24,9 +24,12 @@
                     <form action="{{ route('student.guardar') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                        <input type="file" name="file" class="form-control">
+                        <input type="file" name="file" class="col-md-6 offset-3" required >
                         <br>
-                        <button class="btn btn-success">Guardar estudiantes</button>
+                        <div class="col-md-2 offset-4">
+                            <button class="btn btn-primary btn-color" style="margin: 10px" >Guardar estudiantes</button>
+                        </div>
+
                     </form>
                     <br>
                 </div>

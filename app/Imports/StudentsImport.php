@@ -4,8 +4,8 @@ namespace App\Imports;
 
 use App\Student;
 use Maatwebsite\Excel\Concerns\ToModel;
-
-class StudentsImport implements ToModel
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+class StudentsImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -14,11 +14,18 @@ class StudentsImport implements ToModel
     */
     public function model(array $row)
     {
+        /*  Aqui obtenemos el id de la escuela por medio del
+        usario loggeado para asignarselo al estudiante
+        Automaticamente */
+        $escuela = auth()->user()->college_id;
+       /* Se procede al llenado de la base de datos con los datos
+       obtenidos por medio del excel
+       Autor: Guillermo Cornejo  */
         return new Student([
-            'carnet'     => $row[0],
-            'nombres'    => $row[1],
-            'apellidos'  => $row[2],
-            'escuela_id' => 8,
+            'carnet'     => $row['carnet'],
+            'nombres'    => $row['nombres'],
+            'apellidos'  => $row['apellidos'],
+            'escuela_id' => $escuela,
         ]);
     }
 }
