@@ -23,13 +23,17 @@
 
                     <form action="{{ route('student.guardar') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <label for="file" class="textlabel col-md-4 control-label offset-1 required">Archivo de estudiantes</label>
 
-                        <input type="file" name="file" class="col-md-6 offset-3" required >
+                        <input  id="file" type="file" name="file" required >
                         <br>
-                        <div class="col-md-2 offset-4">
-                            <button class="btn btn-primary btn-color" style="margin: 10px" >Guardar estudiantes</button>
-                        </div>
 
+                        <div class="col-md-4 offset-5">
+                            <button class="btn btn-primary btn-color" id="btnCargar" name="btnCargar" >Guardar estudiantes</button>
+                        </div>
+                        <div class="row offset-5">
+                            <span style="color:red; margin-left:10px">*</span> Campos requeridos.
+                        </div>
                     </form>
                     <br>
                 </div>
