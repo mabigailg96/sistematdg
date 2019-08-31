@@ -26,7 +26,22 @@
                         <label for="file" class="textlabel col-md-4 control-label offset-1 required">Archivo de estudiantes</label>
 
                         <input  id="file" type="file" name="file" required >
-                        <br>
+
+                        <div class="row form-group">
+                            <label class="textlabel col-md-4 offset-1 control-label required" for="escuela_id" >Escuela de los estudiantes</label>
+                                <select name="escuela_id" id="escuela_id" value="{{ old('escuela_id') }}" class="form-control col-5" required>
+                                        <option value="" selected disabled>Seleccione una escuela</option >
+                                        <option value="1">Civil</option>
+                                        <option value="2">Industrial</option>
+                                        <option value="3">Mecanica</option>
+                                        <option value="4">Electrica</option>
+                                        <option value="5">Quimica</option>
+                                        <option value="6">Alimentos</option>
+                                        <option value="7">Sistemas Informaticos</option>
+                                        <option value="8">Arquitectura</option>
+                                        <option value="9">Posgrado</option>
+                                </select>
+                        </div>
 
                         <div class="col-md-4 offset-5">
                             <button class="btn btn-primary btn-color" id="btnCargar" name="btnCargar" >Guardar estudiantes</button>

@@ -4,13 +4,14 @@ despues de verificado despliega el mensaje de carga, mientras se cargan
 todos los estudiantes. */
 $(document).ready(function(){
     $("#btnCargar").click(function(){
-        if($("#file").val().length > 0){
-            Swal.fire(
+        if($("#file").val().length > 0 ){
+            if($("#escuela_id").val().length > 0){
+                Swal.fire(
                 'Registrando a los estudiantes',
                );
                Swal.showLoading();
+            }
         }
-
     });
   });
 

@@ -35,11 +35,11 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        Excel::import(new StudentsImport, request()->file('file'));
-
-        return redirect('/ingresar/estudiantes/?&save=1')->with('info', 'Los estudiantes han sido guardados con exito');
+        $idEscuela = $request['escuela_id'];
+        Excel::import(new StudentsImport($idEscuela), request()->file('file'));
+        return redirect()->route('student.ingresar','/?&save=1')->with('info', 'Los estudiantes han sido guardados con exito');
     }
 
     /**
