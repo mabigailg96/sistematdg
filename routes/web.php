@@ -37,4 +37,10 @@ Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guarda
 //Rutas para importar los estudiantes por medio de un excel
 Route::get('/ingresar/estudiantes', 'StudentController@create')->name('student.ingresar');
 Route::post('/guardar/estudiantes', 'StudentController@store')->name('student.guardar');
+
+//Rutas para importar los maestros y el formulario de profesores.accordion
+Route::get('/ingresar/profesores', 'ProfessorController@create')->name('professor.ingresar');
+Route::post('/guardar/profesores', 'ProfessorController@store')->name('professor.guardar');
+Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('professor.guardarexcel');
+
 });
