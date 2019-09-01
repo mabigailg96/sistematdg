@@ -14,7 +14,17 @@ $(document).ready(function(){
         }
     });
   });
-
+  $(document).ready(function(){
+    if($.urlParam("error") == 1){
+           Swal.fire({
+            type: 'error',
+            title: 'Error en los datos ingresados, se repite un estudiante',
+            showConfirmButton: false,
+            timer: 4000
+            }
+           );
+         }
+   });
 /* Funcion que despliega un mensaje de exito
    cuando se cargaron todos los estudiantes
    a la base de datos desde el excel.
