@@ -14,6 +14,7 @@ $(document).ready(function(){
         }
     });
   });
+
   $(document).ready(function(){
     if($.urlParam("error") == 1){
            Swal.fire({
@@ -24,20 +25,26 @@ $(document).ready(function(){
             }
            );
          }
-   });
+
+     });
+ $(document).ready(function(){
+            if($.urlParam("save") == 1){
+                   Swal.fire(
+                     'Estudiantes:',
+                     "Registrados con éxito!",
+                     'success'
+                   );
+                 }
+                 history.pushState({data:true}, 'Titulo', '/ingresar/estudiantes');
+           });
+
+
+
 /* Funcion que despliega un mensaje de exito
    cuando se cargaron todos los estudiantes
    a la base de datos desde el excel.
  */
-$(document).ready(function(){
- if($.urlParam("save") == 1){
-        Swal.fire(
-          'Estudiantes:',
-          "Registrados con éxito!",
-          'success'
-        );
-      }
-});
+
 
 $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);

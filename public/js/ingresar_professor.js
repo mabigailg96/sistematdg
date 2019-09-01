@@ -41,6 +41,8 @@ $(document).ready(function(){
              'success'
            );
          }
+
+         history.pushState({data:true}, 'Titulo', '/ingresar/profesores');
    });
 //funcion para obtener los parametros de la url.
 $.urlParam = function(name){
