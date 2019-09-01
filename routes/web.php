@@ -30,6 +30,10 @@ Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.g
 Route::get('/ingresar/tdg', 'TdgController@create')->name('tdg.ingresar')->middleware('can:tdg.ingresar');
 Route::post('/guardar/tdg', 'TdgController@store')->name('tdg.guardar')->middleware('can:tdg.guardar');
 
+
+Route::get('/todos/tdg', 'TdgController@allTdg')->name('tdg.todos');
+
+
 //Ruta para la creacion del ciclo
 Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingresar')->middleware('can:semester.ingresar');
 Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guardar')->middleware('can:semester.ingresar');
@@ -42,5 +46,13 @@ Route::post('/guardar/estudiantes', 'StudentController@store')->name('student.gu
 Route::get('/ingresar/profesores', 'ProfessorController@create')->name('professor.ingresar');
 Route::post('/guardar/profesores', 'ProfessorController@store')->name('professor.guardar');
 Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('professor.guardarexcel');
+
+// Pantalla mostrar filtros de TDG para solicitudes
+Route::get('/listar/tdg/solicitudes', function () {
+    return view('requests.filtro');
+});
+
+
+Route::get('/todos/colleges', 'CollegeController@allNameColleges')->name('colllege.todos');
 
 });

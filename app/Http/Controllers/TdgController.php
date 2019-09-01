@@ -68,7 +68,9 @@ class TdgController extends Controller
         $nombre_archivo = $file->getClientOriginalName();
 
         //Obtenemos todos los TDG para verificar que el nombre del archivo no exista.
-        $existeTDG = Tdg::all();
+        $existeTDG = DB::table('tdgs')
+            ->select('perfil')
+            ->get();
 
 
         $existe = 0;
@@ -99,5 +101,28 @@ class TdgController extends Controller
             return redirect()->route('tdg.ingresar', '/?&save=0&nombre=' . $perfil['nombre'])
                 ->with('info', 'El nombre del perfil ya existe. Por favor cambie el nombre del archivo');
         }
+    }
+
+    // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre
+    public function allTdg(Request $request){
+        
+        // Inicializar variables
+        $escuela_id = '';
+        $escuela_id = $request->escuela_id;
+        $codigo = '';
+        $codigo = $request->codigo;
+        $nombre = '';
+        $nombre = $request->nombre;
+
+        // Realizar consultas a la base de datos
+        $tdgs = DB::table('tdgs')
+            ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+            ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
+            ->where('tdgs.escuela_id', '=', $escuela_id)
+            ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+            ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+            ->get();
+
+        return $tdgs;
     }
 }

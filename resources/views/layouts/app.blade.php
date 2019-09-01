@@ -13,6 +13,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/sweetalert2.js') }}" defer></script>
+    <script src="{{ asset('lib/DataTables/datatables.js') }}" defer></script>
     @yield('javascript')
 
     <!-- Fonts -->
@@ -22,6 +23,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/DataTables/datatables.css') }}" rel="stylesheet">
 
 </head>
 <body>
