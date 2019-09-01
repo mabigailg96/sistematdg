@@ -16,7 +16,7 @@ $(document).ready(function(){
       timer: 2000
     });
   }
-  //history.pushState({data:true}, 'Titulo', '/ingresar/tdg');
+  history.pushState({data:true}, 'Titulo', '/ingresar/tdg');
 });
 
 $.urlParam = function(name){
