@@ -23,6 +23,8 @@ $(document).ready(function(){
             "previous": "Anterior"
         }
     };
+    // Ejecutar función para llenar el select con los nombre de escuela
+    //cargarSelectEscuela();
 
     // Cargar datos a la tabla
     cargarDatosTdg();
@@ -71,7 +73,7 @@ function cargarDatosTdg() {
     console.log(params);
 
     // Ejecutar petición ajax
-    axios.get('/todos/tdg/solicitudes', {
+    axios.get('/todos/tdg/asignaciones', {
         params: params
     }).then(response => {
         //console.log(response.data);
@@ -86,12 +88,11 @@ function cargarDatosTdg() {
             "columns": [
                 { 'data': 'codigo' },
                 { 'data': 'nombre' },
-                { 'data': 'ciclo' },
                 { sortable: false,
                 "render": function ( data, type, full, meta ) {
                     var id = full.id;
                     /// Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                    var htmlButtons = `<a href="{url del fomulario de solicitud}${id}">Seleccionar</a>`;
+                    var htmlButtons = `<a href="{url del fomulario de solicitud}${id}">Asignar grupo</a>`;
                     return htmlButtons;
                 }},
             ],
@@ -118,6 +119,30 @@ function cargarDatosTdg() {
             "lengthChange": false,
             "language": lenguaje_datatable,
         });
+
+        // Mostrar mensaje de error en caso de que algo haya salido mal con la consulta
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: '¡Algo ha salido mal!, por favor intente más tarde.',
+        });
+    })
+}
+
+// Función para llenar el select con los nombres de escuela
+function cargarSelectEscuela() {
+    // Función de axios para hacer la consulta
+    axios.get('/todos/colleges')
+    .then(response => {
+        //console.log(response);
+
+        // Llenar el select con los elementos traidos
+        response.data.forEach(element => {
+            $("#select-filtro-escuela").append(new Option(element.escuela, element.id));  
+        });
+    }).catch(e => {
+        // Imprimir error en consola
+        console.log(e);
 
         // Mostrar mensaje de error en caso de que algo haya salido mal con la consulta
         Swal.fire({

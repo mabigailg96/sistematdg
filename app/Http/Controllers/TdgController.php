@@ -103,8 +103,8 @@ class TdgController extends Controller
         }
     }
 
-    // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre
-    public function allTdg(Request $request){
+    // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para solicitudes
+    public function allTdgSolicitudes(Request $request){
         
         // Inicializar variables
         $escuela_id = '';
@@ -121,6 +121,28 @@ class TdgController extends Controller
             ->where('tdgs.escuela_id', '=', $escuela_id)
             ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
             ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+            ->get();
+
+        return $tdgs;
+    }
+
+    // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para asignar docentes, estudiantes y asesores
+    public function allTdgAsignaciones(Request $request){
+        
+        // Inicializar variables
+        $escuela_id = '';
+        $escuela_id = $request->escuela_id;
+        $codigo = '';
+        $codigo = $request->codigo;
+        $nombre = '';
+        $nombre = $request->nombre;
+
+        // Realizar consultas a la base de datos
+        $tdgs = DB::table('tdgs')
+            ->select('id', 'codigo', 'nombre')
+            ->where('escuela_id', '=', $escuela_id)
+            ->where('codigo', 'like', '%'.$codigo.'%')
+            ->where('nombre', 'like', '%'.$nombre.'%')
             ->get();
 
         return $tdgs;

@@ -30,8 +30,10 @@ Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.g
 Route::get('/ingresar/tdg', 'TdgController@create')->name('tdg.ingresar')->middleware('can:tdg.ingresar');
 Route::post('/guardar/tdg', 'TdgController@store')->name('tdg.guardar')->middleware('can:tdg.guardar');
 
-
-Route::get('/todos/tdg', 'TdgController@allTdg')->name('tdg.todos');
+// Ruta para para enviar todos los datos del TDG para filtro de solicitudes
+Route::get('/todos/tdg/solicitudes', 'TdgController@allTdgSolicitudes')->name('tdg.todosTdgSolicitudes');
+// Ruta para para enviar todos los datos del TDG para filtro de asignaciones de docente, estudiantes y asesores
+Route::get('/todos/tdg/asignaciones', 'TdgController@allTdgAsignaciones')->name('tdg.todosTdgAsignaciones');
 
 
 //Ruta para la creacion del ciclo
@@ -52,7 +54,12 @@ Route::get('/listar/tdg/solicitudes', function () {
     return view('requests.filtro');
 });
 
+// Pantalla mostrar filtros de TDG para solicitudes
+Route::get('/listar/tdg/asignar', function () {
+    return view('assignments.filtro');
+});
 
+// Ruta para todos los nombres de las escuelas
 Route::get('/todos/colleges', 'CollegeController@allNameColleges')->name('colllege.todos');
 
 });
