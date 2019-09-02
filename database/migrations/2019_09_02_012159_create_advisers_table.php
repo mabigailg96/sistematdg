@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeAgreementsTable extends Migration
+class CreateAdvisersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateTypeAgreementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_agreements', function (Blueprint $table) {
+        Schema::create('advisers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo')->nonullable();
+            $table->string('nombre')->nonullable();
+            $table->string('apellido')->nonullable();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTypeAgreementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_agreements');
+        Schema::dropIfExists('advisers');
     }
 }

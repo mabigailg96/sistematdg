@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RequestOfficials extends Model
+class RequestTribunal extends Model
 {
     //
 }

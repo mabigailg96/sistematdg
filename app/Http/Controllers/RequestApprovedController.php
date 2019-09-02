@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\RequestOfficials;
+use App\RequestApproved;
 use Illuminate\Http\Request;
 
-class RequestOfficialsController extends Controller
+class RequestApprovedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class RequestOfficialsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RequestOfficials  $requestOfficials
+     * @param  \App\RequestApproved  $requestApproved
      * @return \Illuminate\Http\Response
      */
-    public function show(RequestOfficials $requestOfficials)
+    public function show(RequestApproved $requestApproved)
     {
         //
     }
@@ -52,10 +52,10 @@ class RequestOfficialsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RequestOfficials  $requestOfficials
+     * @param  \App\RequestApproved  $requestApproved
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequestOfficials $requestOfficials)
+    public function edit(RequestApproved $requestApproved)
     {
         //
     }
@@ -64,10 +64,10 @@ class RequestOfficialsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequestOfficials  $requestOfficials
+     * @param  \App\RequestApproved  $requestApproved
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequestOfficials $requestOfficials)
+    public function update(Request $request, RequestApproved $requestApproved)
     {
         //
     }
@@ -75,10 +75,10 @@ class RequestOfficialsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RequestOfficials  $requestOfficials
+     * @param  \App\RequestApproved  $requestApproved
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequestOfficials $requestOfficials)
+    public function destroy(RequestApproved $requestApproved)
     {
         //
     }

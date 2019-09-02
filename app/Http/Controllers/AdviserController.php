@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\RequestApproveds;
+use App\Adviser;
 use Illuminate\Http\Request;
 
-class RequestApprovedsController extends Controller
+class AdviserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class RequestApprovedsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RequestApproveds  $requestApproveds
+     * @param  \App\Adviser  $adviser
      * @return \Illuminate\Http\Response
      */
-    public function show(RequestApproveds $requestApproveds)
+    public function show(Adviser $adviser)
     {
         //
     }
@@ -52,10 +52,10 @@ class RequestApprovedsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RequestApproveds  $requestApproveds
+     * @param  \App\Adviser  $adviser
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequestApproveds $requestApproveds)
+    public function edit(Adviser $adviser)
     {
         //
     }
@@ -64,10 +64,10 @@ class RequestApprovedsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequestApproveds  $requestApproveds
+     * @param  \App\Adviser  $adviser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequestApproveds $requestApproveds)
+    public function update(Request $request, Adviser $adviser)
     {
         //
     }
@@ -75,10 +75,10 @@ class RequestApprovedsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RequestApproveds  $requestApproveds
+     * @param  \App\Adviser  $adviser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequestApproveds $requestApproveds)
+    public function destroy(Adviser $adviser)
     {
         //
     }

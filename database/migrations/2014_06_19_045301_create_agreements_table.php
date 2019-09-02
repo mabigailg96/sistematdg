@@ -18,8 +18,6 @@ class CreateAgreementsTable extends Migration
             $table->string('nombre',100)->unique()->nonullable();
             $table->string('url')->unique()->nonullable();
             $table->date('fecha')->nonullable();
-            $table->integer('type_id')->unsigned()->nonullable();
-            $table->foreign('type_id')->references('id')->on('type_agreements')->onDelete('cascade')->nonullable();
             $table->timestamps();
         });
     }

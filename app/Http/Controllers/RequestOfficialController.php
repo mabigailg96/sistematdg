@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\RequestTribunals;
+use App\RequestOfficial;
 use Illuminate\Http\Request;
 
-class RequestTribunalsController extends Controller
+class RequestOfficialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class RequestTribunalsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RequestTribunals  $requestTribunals
+     * @param  \App\RequestOfficial  $requestOfficial
      * @return \Illuminate\Http\Response
      */
-    public function show(RequestTribunals $requestTribunals)
+    public function show(RequestOfficial $requestOfficial)
     {
         //
     }
@@ -52,10 +52,10 @@ class RequestTribunalsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RequestTribunals  $requestTribunals
+     * @param  \App\RequestOfficial  $requestOfficial
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequestTribunals $requestTribunals)
+    public function edit(RequestOfficial $requestOfficial)
     {
         //
     }
@@ -64,10 +64,10 @@ class RequestTribunalsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequestTribunals  $requestTribunals
+     * @param  \App\RequestOfficial  $requestOfficial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequestTribunals $requestTribunals)
+    public function update(Request $request, RequestOfficial $requestOfficial)
     {
         //
     }
@@ -75,10 +75,10 @@ class RequestTribunalsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RequestTribunals  $requestTribunals
+     * @param  \App\RequestOfficial  $requestOfficial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequestTribunals $requestTribunals)
+    public function destroy(RequestOfficial $requestOfficial)
     {
         //
     }
