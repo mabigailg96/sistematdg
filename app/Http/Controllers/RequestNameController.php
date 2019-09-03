@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\RequestName;
 use Illuminate\Http\Request;
-
+use \DB;
 class RequestNameController extends Controller
 {
     /**
@@ -22,9 +22,14 @@ class RequestNameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+      
+        $nombre = DB::table('tdgs')->find($id);
+       
+
+        return view('requests.cambio_nombre')->with('tdgs', $nombre);
     }
 
     /**
@@ -36,6 +41,12 @@ class RequestNameController extends Controller
     public function store(Request $request)
     {
         //
+        $request_name = $request->validate([
+            'nombre_nuevo' => 'required',
+            'justificacion' => 'required',
+        ]);
+
+        dd($request_name);
     }
 
     /**

@@ -113,15 +113,84 @@ class TdgController extends Controller
         $codigo = $request->codigo;
         $nombre = '';
         $nombre = $request->nombre;
+        $tipo_solicitud = '';
+        $tipo_solicitud = $request->tipo_solicitud;
 
         // Realizar consultas a la base de datos
-        $tdgs = DB::table('tdgs')
-            ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-            ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
-            ->where('tdgs.escuela_id', '=', $escuela_id)
-            ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
-            ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
-            ->get();
+
+        $tdgs = '';
+        if($tipo_solicitud == 'cambio_de_nombre'){
+            $tdgs = DB::table('tdgs')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.estado_oficial', '<>', 'Abandonado')
+                ->where('tdgs.estado_oficial', '<>', 'Aprobado')
+                ->where('tdgs.estado_oficial', '<>', 'Finalizado')
+                ->where('tdgs.estado_oficial', '<>', 'Tribunal')
+                ->where('tdgs.estado_oficial', '<>', 'Resultados')
+                ->get();
+        } else if($tipo_solicitud == 'prorroga'){
+            $tdgs = DB::table('tdgs')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.estado_oficial', '<>', 'Prórroga')
+                ->where('tdgs.estado_oficial', '<>', 'Extensión de prórroga')
+                ->where('tdgs.estado_oficial', '<>', 'Prórroga especial')
+                ->where('tdgs.estado_oficial', '<>', 'Abandonado')
+                ->where('tdgs.estado_oficial', '<>', 'Aprobado')
+                ->where('tdgs.estado_oficial', '<>', 'Finalizado')
+                ->get();
+        } else if($tipo_solicitud == 'extension_de_prorroga'){
+            $tdgs = DB::table('tdgs')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.estado_oficial', '=', 'Prórroga')
+                ->get();
+        } else if($tipo_solicitud == 'prorroga_especial'){
+            $tdgs = DB::table('tdgs')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.estado_oficial', '=', 'Extensión de prórroga')
+                ->get();
+        } else if($tipo_solicitud == 'nombramiento_de_tribunal'){
+            $tdgs = DB::table('tdgs')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.estado_oficial', '<>', 'Abandonado')
+                ->where('tdgs.estado_oficial', '<>', 'Aprobado')
+                ->where('tdgs.estado_oficial', '<>', 'Finalizado')
+                ->where('tdgs.estado_oficial', '<>', 'Resultados')
+                ->where('tdgs.estado_oficial', '<>', 'Tribunal')
+                ->get();
+        }else if($tipo_solicitud == 'ratificacion_de_resultado'){
+            $tdgs = DB::table('tdgs')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.estado_oficial', '<>', 'Abandonado')
+                ->where('tdgs.estado_oficial', '<>', 'Aprobado')
+                ->where('tdgs.estado_oficial', '<>', 'Finalizado')
+                ->where('tdgs.estado_oficial', '=', 'Tribunal')
+                ->where('tdgs.estado_oficial', '<>', 'Resultados')
+                ->get();
+        }
 
         return $tdgs;
     }

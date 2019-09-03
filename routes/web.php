@@ -54,6 +54,10 @@ Route::get('/listar/tdg/solicitudes', function () {
     return view('requests.filtro');
 });
 
+Route::get('/ingresar/solicitud/nombre/{id}', 'RequestNameController@create')->name('request_name.ingresar');
+Route::post('/guardar/solicitud/nombre', 'RequestNameController@store')->name('request_name.guardar');
+
+
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/asignar', function () {
     return view('assignments.filtro');
