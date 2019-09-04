@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\RequestTribunal;
 use Illuminate\Http\Request;
+use \DB;
 
 class RequestTribunalController extends Controller
 {
@@ -22,9 +23,10 @@ class RequestTribunalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $nombre = DB::table('tdgs')->find($id);
+        return view('requests.nombramiento_tribunal')->with('tdgs', $nombre);
     }
 
     /**
