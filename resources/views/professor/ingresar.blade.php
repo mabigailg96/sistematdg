@@ -33,9 +33,6 @@
                                         <div class="col-md-4 offset-5">
                                             <button class="btn btn-primary btn-color" id="btnCargar" name="btnCargar" >Guardar profesores</button>
                                         </div>
-                                        <div class="row offset-5">
-                                            <span style="color:red; margin-left:10px">*</span> Campos requeridos.
-                                        </div>
                                     </form>
                             </div>
 
@@ -91,6 +88,9 @@
                        </div>
 
                   </div>
+                  <div class="card-footer text-muted">
+                    Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
+                </div>
 
               </div>
 

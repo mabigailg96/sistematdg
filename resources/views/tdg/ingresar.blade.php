@@ -64,10 +64,6 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="row offset-4">
-                            <span style="color:red; margin-left:10px">*</span> Campos requeridos.
-                        </div>
 						
                         <div class="form-group{{ $errors->has('college_id') ? ' has-error' : '' }}">
                             <input type="hidden" name="college_id" value="{{auth()->user()->college_id}}">
@@ -83,6 +79,9 @@
 						
                     </form>
                     <br>
+                </div>
+                <div class="card-footer text-muted">
+                    Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
                 </div>
             </div>
         </div>
