@@ -115,13 +115,13 @@ function cargarDatosTdg() {
                             var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;
                         } else if(tipo_solicitud == 'prorroga'){
                             // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;
+                            var htmlButtons = `<a href="/ingresar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
                         } else if(tipo_solicitud == 'extension_de_prorroga'){
                             // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;
+                            var htmlButtons = `<a href="/ingresar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
                         } else if(tipo_solicitud == 'prorroga_especial'){
                             // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;
+                            var htmlButtons = `<a href="/ingresar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
                         } else if(tipo_solicitud == 'nombramiento_de_tribunal'){
                             // Acá se le va a concatenar dependiendo de que tipo de solicitud es
                             var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\RequestExtension;
 use Illuminate\Http\Request;
+use \DB;
 
 class RequestExtensionController extends Controller
 {
@@ -22,9 +23,25 @@ class RequestExtensionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($tipo_solicitud,$id)
     {
         //
+      
+
+        $nombre = DB::table('tdgs')->find($id);
+       
+       if($tipo_solicitud=='prorroga')
+        {
+        return view('requests.prorroga')->with('tdgs', $nombre);
+        }
+        else if ($tipo_solicitud=='extension_de_prorroga')
+        {
+            return vview('requests.extension_prorroga')->with('tdgs', $nombre); 
+        }
+        else if ($tipo_solicitud=='prorroga_especial')
+        {
+            return view('requests.prorroga_especial')->with('tdgs', $nombre); 
+        }
     }
 
     /**
