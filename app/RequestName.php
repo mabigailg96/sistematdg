@@ -14,4 +14,6 @@ class RequestName extends Model
     public function agreement(){
         return $this->belongsTo(Agreement::class);
     }
+
+    protected $fillable = ['nuevo_nombre', 'justifacion','tdg_id','fecha'];
 }

@@ -29,11 +29,14 @@
                                     <label class="input-group-text">Escoga la solicitud que desea</label>
                                 </div>
                                 <select id="select-filtro-solicitud" class="custom-select">
-                                    <option selected>Seleccionar solicitud</option>
-                                    <option value="">Solicitud de cambio de nombre</option>
-                                    <option value="">Solicitud de prórroga</option>
-                                    <option value="">Solicitud de nombramiento de tribunal</option>
-                                    <option value="">Solicitud de ratificación de resultados</option>
+                                    <option value="0" selected >Seleccionar solicitud de:</option>
+                                    <option value="cambio_de_nombre">Cambio de nombre</option>
+                                    <option value="prorroga">Prórroga</option>
+                                    <option value="extension_de_prorroga">Extensión de prórroga</option>
+                                    <option value="prorroga_especial">Prórroga especial</option>
+                                    <option value="nombramiento_de_tribunal">Nombramiento de tribunal</option>
+                                    <option value="ratificacion_de_resultados">Ratificación de resultados</option>
+                                   
                                 </select>
                             </div>
                         </div>
