@@ -18,8 +18,8 @@ class CreateTdgsTable extends Migration
             $table->string('nombre',500)->nonullable();
             $table->string('codigo',10)->unique()->nonullable();
             $table->string('perfil')->unique()->nonullable();
-            $table->enum('estado_oficial',['Aprobado','Oficializado','Abandonado','Prórroga','Extensión de prórroga','Prórroga especial','Tribunal','Resultados','Finalizado'])->nullable();
-            $table->enum('estado_escuela',['Recien ingresado','Asignación','Abandonado','Prórroga','Extensión de prórroga','Prórroga especial','Tribunal','Resultados','Finalizado'])->nullable();
+            $table->enum('estado_oficial',['Aprobado','Oficializado','Abandonado','Prórroga','Extensión de prórroga','Prórroga especial','Finalizado'])->nullable();
+            $table->enum('solicitud_escuela',['Recien ingresado','Asignación','Abandonado','Prórroga','Extensión de prórroga','Prórroga especial','Tribunal','Resultados','Finalizado'])->nullable();
             $table->integer('profesor_id')->unsigned()->nullable();
             $table->foreign('profesor_id')->references('id')->on('professors')->onDelete('cascade')->nullable();
             $table->integer('escuela_id')->unsigned()->nonullable();
