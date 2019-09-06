@@ -45,8 +45,8 @@ class TdgTableSeeder extends Seeder
 
             // Seleccionar un estado oficial
 
-            $estado_oficial = ['Aprobado','Oficializado','Abandonado','Prórroga 1','Extensión de prórroga','Prórroga especial','Finalizado'];
-            $numero_estado = rand(1,6);
+            //$estado_oficial = ['Aprobado','Oficializado','Abandonado','Prórroga','Extensión de prórroga','Prórroga especial','Finalizado'];
+            //$numero_estado = rand(0,6);
 
 
             //Nuevo codigo TDG
@@ -56,7 +56,8 @@ class TdgTableSeeder extends Seeder
                 'nombre' => Str::random(30),
                 'escuela_id' => $escuela_id,
                 'codigo' => $codigo,
-                'estado_oficial' => $estado_oficial[$numero_estado],
+                //'estado_oficial' => $estado_oficial[$numero_estado],
+                'solicitud_escuela' => 'Recien ingresado',
                 'perfil' => 'Acuerdo de JD-'.$i.'.pdf',
                 'ciclo_id' => rand(1,4),
             ]);
