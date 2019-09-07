@@ -74,5 +74,5 @@ Route::get('/todos/colleges', 'CollegeController@allNameColleges')->name('collle
 });
 // Pantalla para mostrar los filtros y mostrar los acuerdos de junta directiva
 Route::get('/listar/acuerdos/jd', function(){
-    return view('agreement.filtro');
+    return view('agreement.listar_acuerdos');
 });
