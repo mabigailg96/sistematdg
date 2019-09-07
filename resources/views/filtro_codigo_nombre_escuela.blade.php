@@ -20,7 +20,7 @@
             <div class="input-group-prepend">
                 <label class="input-group-text">Escuela</label>
             </div>
-            <select id="select-filter-escuela" class="custom-select">
+            <select id="select-filter-escuela" class="form-control" class="custom-select">
                 <option selected>Seleccionar escuela</option>
             </select>
         </div>

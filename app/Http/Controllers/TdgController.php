@@ -216,4 +216,26 @@ class TdgController extends Controller
 
         return $tdgs;
     }
+
+        // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para gestionar tdg por escuela
+        public function allTdgGestionarEscuela(Request $request){
+        
+            // Inicializar variables
+            $escuela_id = '';
+            $escuela_id = $request->escuela_id;
+            $codigo = '';
+            $codigo = $request->codigo;
+            $nombre = '';
+            $nombre = $request->nombre;
+    
+            // Realizar consultas a la base de datos
+            $tdgs = DB::table('tdgs')
+                ->select('id', 'codigo', 'nombre')
+                ->where('escuela_id', '=', $escuela_id)
+                ->where('codigo', 'like', '%'.$codigo.'%')
+                ->where('nombre', 'like', '%'.$nombre.'%')
+                ->get();
+    
+            return $tdgs;
+        }
 }
