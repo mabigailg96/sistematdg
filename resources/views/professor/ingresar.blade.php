@@ -11,93 +11,118 @@
     <div class="row justify-content-center">
           <div class="col-md-8">
               <div class="card">
-                  <div class="card-header"> Ingreso de profesores.</div>
-                  <div class="card-body">
-                       <div class=" justify-content-center">
-                           <div class="row justify-content-center">
-                            <p>
-                                <button type="button" class="btn btn-primary btn-color" data-toggle="collapse" data-target="#excelInput">Registrar por Excel</button>
-                                <button type="button" class="btn btn-primary btn-color" data-toggle="collapse" data-target="#registroIndividual">Registrar Individualmente</button>
-                               </p>
-                           </div>
 
+                <div class="card-header">
+					Importación de docentes.
+				</div>
 
-                            <div id="excelInput" class="collapse card-body border">
-
-                                    <form action="{{ route('professor.guardarexcel') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <label for="file" class="textlabel col-md-4 control-label offset-1 required">Archivo de profesores</label>
-
-                                        <input  id="file" type="file" name="file" required >
-
-                                        <div class="col-md-4 offset-5">
-                                            <button class="btn btn-primary btn-color" id="btnCargar" name="btnCargar" >Guardar profesores</button>
-                                        </div>
-                                    </form>
-                            </div>
-
-                            <div id="registroIndividual" class="collapse card-body border">
-                                <form class="form-horizontal" method="POST" action="{{ route('professor.guardar') }}" enctype="multipart/form-data">
-                                        @csrf
-                                    <div class="row form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
-                                        <label for="codigo" class="textlabel col-md-3 offset-1 control-label required "> Codigo </label>
-                                        <div class="col-md-6">
-                                            <input type="text" name="codigo" id="codigo"  class="textarea form-control" required>
-                                                @if ($errors->has('codigo'))
-                                                    <span class="help-block">
-                                                        {{ $errors->first('codigo') }}
-                                                    </span>
-                                                @endif
-                                        </div>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+					@endif
+                        
+                    <br>
+                    <div class="row justify-content-center">
+                        <button type="button" id="btn-formulario-excel" class="btn btn-primary btn-color">Importar docentes archivo excel</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" id="btn-formulario-individual" class="btn btn-primary btn-color">Registrar Individualmente</button>
+                    </div>
+                    <br>
+                    <br>
+                    <!-- Formulario para registro con excel -->
+                    <div id="formulario-excel" class="card collapse">
+                        <div class="card-body">
+                            <form class="form-horizontal" method="POST" action="{{ route('professor.guardarexcel') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row form-group{{ $errors->has('file') ? ' has-error' : '' }}">                                        <label for="file" class="textlabel col-md-3 offset-1 control-label required">Elegir el archivo a importar</label>
+                                    <div class="urlinput col-md-6">
+                                        <input id="file" class="form-control-file" type="file" name="file" required>
+                                        @if ($errors->has('file'))
+                                            <span class="help-block row">
+                                                {{ $errors->first('file') }}
+                                            </span>
+                                        @endif
                                     </div>
+                                </div>
 
-                                    <div class="row form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                                            <label for="nombre" class="textlabel col-md-3 offset-1 control-label required "> Nombres </label>
-                                            <div class="col-md-6">
-                                                <input type="text" name="nombre" id="nombre"  class="textarea form-control" required>
-                                                    @if ($errors->has('nombre'))
-                                                        <span class="help-block">
-                                                            {{ $errors->first('nombre') }}
-                                                        </span>
-                                                    @endif
-                                            </div>
-                                        </div>
+                                <div class="row form-group">
+                                    <div class="col-md-2 offset-4">
+                                        <button id="btn-formulario-excel" type="submit" class="btn btn-primary btn-color">
+                                            Guardar docentes
+                                        </button>
+                                    </div>
+                                </div>
+                                    
+                            </form>
+                        </div>
+                    </div>
 
-                                        <div class="row form-group{{ $errors->has('apellido') ? ' has-error' : '' }}">
-                                                <label for="apellido" class="textlabel col-md-3 offset-1 control-label required "> Apellidos </label>
-                                                <div class="col-md-6">
-                                                    <input type="text" name="apellido" id="apellido"  class="textarea form-control" required>
-                                                        @if ($errors->has('apellido'))
-                                                            <span class="help-block">
-                                                                {{ $errors->first('apellido') }}
-                                                            </span>
-                                                        @endif
-                                                </div>
-                                            </div>
+                    <!-- Formulario para registro de docentes de forma individual -->
+                    <div id="formulario-individual" class="card collapse">
+                        <div class="card-body">
+                              <form class="form-horizontal" method="POST" action="{{ route('professor.guardar') }}" enctype="multipart/form-data">
+                                @csrf
 
-                                            <div class="row form-group">
-                                                    <div class="col-md-2 offset-4">
-                                                        <button type="submit" class="btn btn-primary btn-color">
-                                                            Guardar profesor
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                 </form>
+                                <div class="row form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
+                                <label for="codigo" class="textlabel col-md-3 offset-1 control-label required">Código</label>
+                                    <div class="col-md-6">
+                                        <input id="codigo" type="text" class="form-control" name="codigo" value="{{old('codigo')}}" required>
+                                        @if ($errors->has('codigo'))
+                                            <span class="help-block">
+                                            {{ $errors->first('codigo') }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
 
-                           </div>
-                       </div>
+                                <div class="row form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
+                                    <label for="nombre" class="textlabel col-md-3 offset-1 control-label required">Nombre</label>
+                                    <div class="col-md-6">
+                                        <input id="nombre" type="text" class="form-control" name="nombre" value="{{old('nombre')}}" required>
+                                        @if ($errors->has('nombre'))
+                                            <span class="help-block">
+                                            {{ $errors->first('nombre') }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
 
-                  </div>
-                  <div class="card-footer text-muted">
+                                <div class="row form-group{{ $errors->has('apellido') ? ' has-error' : '' }}">
+                                    <label for="apellido" class="textlabel col-md-3 offset-1 control-label required">Apellido</label>
+                                    <div class="col-md-6">
+                                        <input id="apellido" type="text" class="form-control" name="apellido" value="{{old('apellido')}}" required>
+                                        @if ($errors->has('apellido'))
+                                            <span class="help-block">
+                                            {{ $errors->first('apellido') }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-md-2 offset-4">
+                                        <button type="submit" class="btn btn-primary btn-color">
+                                            Guardar docente
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
                     Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
                 </div>
 
               </div>
-
           </div>
-
     </div>
 </div>
+
+
 
 
 @endsection

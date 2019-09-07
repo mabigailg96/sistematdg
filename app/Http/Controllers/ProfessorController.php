@@ -36,33 +36,38 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     {
-        $perfil =$request ->validate([
-
+        $professor = $request->validate([
             'codigo'=> 'required|unique:professors',
             'nombre'=> 'required',
             'apellido'=> 'required',
-
         ]);
+
         $escuela = auth()->user()->college_id;
         $data = $request->all();
+
         Professor::create([
             'codigo'    => $data['codigo'],
             'nombre'    => $data['nombre'],
             'apellido'  => $data['apellido'],
             'escuela_id'=> $escuela,
         ]);
-        return redirect()->route('professor.ingresar','/?&save=2')->with('info', 'Los profesores han sido guardados con exito');
+        
+        return redirect()->route('professor.ingresar','/?save=1')->with('info', 'Los profesores han sido guardados con exito');
     }
 
-    public function storexls()
+    public function storexls(Request $request)
     {
         try {
+            $professor = $request->validate([
+                'file'=> 'required|mimes:xls,xlsx',
+            ]);
+
             Excel::import(new ProfessorsImport, request()->file('file'));
         } catch (\Exception $ex) {
-            return redirect()->route('professor.ingresar','/?&error=1')->with('info', 'Los profesores no han sido guardados');
+            return redirect()->route('professor.ingresar','/?save=0')->with('info', 'Los profesores no han sido guardados');
         }
 
-        return redirect()->route('professor.ingresar','/?&save=1')->with('info', 'Los profesores han sido guardados con exito');
+        return redirect()->route('professor.ingresar','/?save=1')->with('info', 'Los profesores han sido guardados con exito');
     }
     /**
      * Display the specified resource.

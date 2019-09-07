@@ -27,7 +27,7 @@
                         <div class="row form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
                             <label for="nombre" class="textlabel col-md-3 offset-1 control-label required">Nombre</label>
                             <div class="col-md-6">
-								<textarea id="nombre" type="nombre" class="textarea form-control" name="nombre" value="{{old('nombre')}}" rows="10" cols="50" required autofocus></textarea>
+								<textarea id="nombre" type="text" class="textarea form-control" name="nombre" value="{{old('nombre')}}" rows="10" cols="50" required autofocus></textarea>
                                 @if ($errors->has('nombre'))
                                     <span class="help-block">
                                        {{ $errors->first('nombre') }}
@@ -39,7 +39,7 @@
                         <div class="row form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
 							<label for="perfil" class="textlabel col-md-3 offset-1 control-label required">Archivo de perfil</label>
                             <div class="urlinput col-md-6">
-                                <input id="perfil" type="file" name="perfil" required>
+                                <input id="perfil" type="file" class="form-control-file" name="perfil" required>
                                 @if ($errors->has('perfil'))
                                     <span class="help-block row">
                                         {{ $errors->first('perfil') }}

@@ -37,14 +37,20 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'file'=>'required|mimes:xls,xlsx',
+            'escuela_id'=>'required',
+        ]);
+
         $idEscuela = $request['escuela_id'];
+        
         try {
             Excel::import(new StudentsImport($idEscuela), request()->file('file'));
         } catch (\Exception $ex) {
-            return redirect()->route('student.ingresar','/?&error=1')->with('info', 'Los estudiantes no han sido guardados');
+            return redirect()->route('student.ingresar','/?save=0')->with('info', 'Los estudiantes no han sido guardados');
         }
 
-        return redirect()->route('student.ingresar','/?&save=1')->with('info', 'Los estudiantes han sido guardados con exito');
+        return redirect()->route('student.ingresar','/?save=1')->with('info', 'Los estudiantes han sido guardados con exito');
     }
 
     /**

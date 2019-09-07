@@ -1,49 +1,56 @@
 $(document).ready(function(){
-    $("#btnCargar").click(function(){
-        if($("#file").val().length > 0 ){
 
-                Swal.fire(
-                'Registrando a los docentes',
-               );
-               Swal.showLoading();
+  // Ocultar formularios al cargar la página
+  $("#formulario-excel").collapse("hide");
+  $("#formulario-individual").collapse("hide");
 
-        }
+  if($.urlParam("save") == 1) {
+    Swal.fire(
+      'Docentes:',
+      "Registrado con éxito!",
+      'success'
+    );
+  } else if($.urlParam("save") == 0 || $(".help-block").html() != undefined) {
+
+    $(".help-block").closest(".collapse").collapse("show");
+
+    Swal.fire({
+      position: 'top-end',
+      type: 'error',
+      title: 'Error en los datos ingresados',
+      showConfirmButton: false,
+      timer: 2000
     });
-  });
+  }
 
-  $(document).ready(function(){
-    if($.urlParam("save") == 1){
-           Swal.fire(
-             'Profesores:',
-             "Registrados con éxito!",
-             'success'
-           );
-         }
-   });
+  history.pushState({data:true}, 'Titulo', '/ingresar/profesores');
+});
 
-   $(document).ready(function(){
-    if($.urlParam("error") == 1){
-           Swal.fire({
-            type: 'error',
-            title: 'Error en los datos ingresados, se repite un profesor',
-            showConfirmButton: false,
-            timer: 2000
-            }
-           );
-         }
-   });
+// Simbolo de carga al subir datos
+$(document).on("click", "#btn-formulario-excel", function(){
+  if($("#file").val().length > 0 ){
 
-   $(document).ready(function(){
-    if($.urlParam("save") == 2){
-           Swal.fire(
-             'Profesor:',
-             "Registrado con éxito!",
-             'success'
-           );
-         }
+    Swal.fire(
+      'Registrando a los docentes',
+    );
+    Swal.showLoading();
+  }
+});
 
-         history.pushState({data:true}, 'Titulo', '/ingresar/profesores');
-   });
+// Mostrar formulario para importar docentes mediantes archivo de excel
+$(document).on("click", "#btn-formulario-excel", function(){
+  $("#formulario-individual").collapse("hide");
+  $("#formulario-excel").collapse("toggle");
+});
+
+
+// Mostrar formulario para importar docentes mediantes formulario individual
+$(document).on("click", "#btn-formulario-individual", function(){
+  $("#formulario-excel").collapse("hide");
+  $("#formulario-individual").collapse("toggle");
+});
+
+
 //funcion para obtener los parametros de la url.
 $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);

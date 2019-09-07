@@ -52,7 +52,7 @@
                             <label for="url" class="textlabel col-md-3 control-label offset-1 required">Archivo de acuerdo</label>
 
                             <div class="urlinput col-md-6">
-                                <input id="url" type="file" name="url" required>
+                                <input id="url" type="file" class="form-control-file" name="url" required>
 
                                 @if ($errors->has('url'))
                                     <span class="help-block row">

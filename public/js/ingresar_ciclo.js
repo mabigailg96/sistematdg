@@ -6,7 +6,7 @@ var dia_maximo = 0;
 $(document).ready(function(){
     //alert($.urlParam("nombre"));
     //alert($(".help-block").html());
-    if($.urlParam("save") == 1){
+    if($.urlParam("save") == 1) {
       Swal.fire(
         'Ciclo:',
         "Registrado con éxito!",
