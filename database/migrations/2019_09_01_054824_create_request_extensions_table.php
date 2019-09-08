@@ -19,7 +19,7 @@ class CreateRequestExtensionsTable extends Migration
             $table->boolean('aprobado')->nonullable();
             $table->date('fecha_inicio')->nonullable();
             $table->date('fecha_fin')->nonullable();
-            $table->string('justificacion')->nonullable();
+            $table->string('justificacion',500)->nonullable();
             $table->integer('tdg_id')->unsigned()->nonullable();
             $table->foreign('tdg_id')->references('id')->on('tdgs')->onDelete('cascade')->nonullable();
             $table->integer('agreement_id')->unsigned()->nonullable();

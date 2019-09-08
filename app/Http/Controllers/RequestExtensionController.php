@@ -36,7 +36,7 @@ class RequestExtensionController extends Controller
         }
         else if ($tipo_solicitud=='extension_de_prorroga')
         {
-            return vview('requests.extension_prorroga')->with('tdgs', $nombre); 
+            return view('requests.extension_prorroga')->with('tdgs', $nombre); 
         }
         else if ($tipo_solicitud=='prorroga_especial')
         {

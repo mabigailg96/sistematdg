@@ -14,7 +14,10 @@
   color: #000000 !important;
   font-weight: bold;
 }
-
+.negrita{
+  color: #000000;
+  font-weight: bold;
+}
 .textarea{
   resize: none;
 }

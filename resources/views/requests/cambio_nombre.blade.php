@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-<script src="" defer></script>
+<script src="{{ asset('') }}" defer></script>
 <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 @endsection
 
@@ -11,7 +11,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-					Ingresar solicitud de cambio de nombre.
+					Ingresar solicitud de cambio de nombre
 				</div>
 
                 <div class="card-body">
@@ -23,16 +23,20 @@
 						
                     <form class="form-horizontal" method="POST" action="{{ route('request_name.guardar') }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="card-header">
-					{{$tdgs->nombre}}
-				</div>
-                        <div class="row form-group{{ $errors->has('nombre_nuevo') ? ' has-error' : '' }}">
-                            <label for="nombre_nuevo" class="textlabel col-md-3 offset-1 control-label required">Nombre propuesto</label>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                               <p class="negrita">Nombre actual:</p> {{$tdgs->nombre}} 
+                            </div>
+                          </div>
+                          <br>
+
+                        <div class="row form-group{{ $errors->has('nuevo_nombre') ? ' has-error' : '' }}">
+                            <label for="nuevo_nombre" class="textlabel col-md-3 offset-1 control-label required">Nuevo nombre</label>
                             <div class="col-md-6">
-								<textarea id="nombre_nuevo" type="nombre_nuevo" class="textarea form-control" name="nombre_nuevo" value="{{old('nombre_nuevo')}}" rows="10" cols="50" required autofocus></textarea>
-                                @if ($errors->has('nombre_nuevo'))
+								<textarea id="nuevo_nombre" type="text" class="textarea form-control" name="nuevo_nombre" value="{{old('nuevo_nombre')}}" rows="10" cols="50" required autofocus></textarea>
+                                @if ($errors->has('nuevo_nombre'))
                                     <span class="help-block">
-                                       {{ $errors->first('nombre_nuevo') }}
+                                       {{ $errors->first('nuevo_nombre') }}
                                     </span>
                                 @endif
                             </div>
@@ -41,22 +45,17 @@
                         <div class="row form-group{{ $errors->has('justificacion') ? ' has-error' : '' }}">
                             <label for="justificacion" class="textlabel col-md-3 offset-1 control-label required">Justificación</label>
                             <div class="col-md-6">
-								<textarea id="justificacion" type="justificacion" class="textarea form-control" name="justificacion" value="{{old('justificacion')}}" rows="10" cols="50" required autofocus></textarea>
+								<textarea id="justificacion" type="text" class="textarea form-control" name="justificacion" value="{{old('justificacion')}}" rows="10" cols="50" required autofocus></textarea>
                                 @if ($errors->has('justificacion'))
                                     <span class="help-block">
                                        {{ $errors->first('justificacion') }}
                                     </span>
                                 @endif
                             </div>
-                        </div>
-
-                        
-                        <div class="row offset-4">
-                            <span style="color:red; margin-left:10px">*</span> Campos requeridos.
-                        </div>
+                        </div>  
 						
-                        <div class="form-group{{ $errors->has('college_id') ? ' has-error' : '' }}">
-                            <input type="hidden" name="college_id" value="{{auth()->user()->college_id}}">
+                        <div class="form-group{{ $errors->has('tdg_id') ? ' has-error' : '' }}">
+                            <input type="hidden" name="tdg_id" value="{{$tdgs->id}}">
                         </div>
 
                         <div class="row form-group">
@@ -68,7 +67,10 @@
 						</div>
 						
                     </form>
-                    <br>
+                    
+                </div>
+                <div class="card-footer text-muted">
+                    Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
                 </div>
             </div>
         </div>
