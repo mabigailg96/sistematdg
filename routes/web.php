@@ -76,3 +76,5 @@ Route::get('/todos/colleges', 'CollegeController@allNameColleges')->name('collle
 Route::get('/listar/acuerdos/jd', function(){
     return view('agreement.listar_acuerdos');
 });
+
+Route::get('/todos/acuerdos/ver/jd', 'AgreementController@allJdAcuerdos')->name('agreement.show');

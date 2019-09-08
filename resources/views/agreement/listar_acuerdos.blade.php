@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('javascript')
-<script src="{{ asset('js/filtro_acuerdo_jd.js') }}" defer></script>
+<script src="{{ asset('js/filtro_acuerdos_jd.js') }}" defer></script>
 <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 @endsection
 
