@@ -36,6 +36,8 @@ Route::get('/todos/tdg/solicitudes', 'TdgController@allTdgSolicitudes')->name('t
 Route::get('/todos/tdg/asignaciones', 'TdgController@allTdgAsignaciones')->name('tdg.todosTdgAsignaciones');
 // Ruta para para enviar todos los datos del TDG para filtro de gestionar para la escuela
 Route::get('/todos/tdg/gestionar/escuela', 'TdgController@allTdgGestionarEscuela')->name('tdg.todosTdgGestionarEscuela');
+// Ruta para para enviar todos los datos del TDG para filtro de gestionar para el coordinador general
+Route::get('/todos/tdg/gestionar/general', 'TdgController@allTdgGestionarGeneral')->name('tdg.todosTdgGestionarGeneral');
 
 //Ruta para la creacion del ciclo
 Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingresar')->middleware('can:semester.ingresar');
@@ -69,9 +71,14 @@ Route::get('/listar/tdg/asignar', function () {
     return view('assignments.filtro');
 });
 
-// Pantalla mostrar filtros de TDG para gestionar
+// Pantalla mostrar filtros de TDG para gestionar coordinador de escuela
 Route::get('/listar/tdg/gestionar/escuela', function () {
     return view('tdg.filtro_gestionar_escuela');
+});
+
+// Pantalla mostrar filtros de TDG para gestionar coordinador general
+Route::get('/listar/tdg/gestionar/general', function () {
+    return view('tdg.filtro_gestionar_general');
 });
 
 // Ruta para todos los nombres de las escuelas

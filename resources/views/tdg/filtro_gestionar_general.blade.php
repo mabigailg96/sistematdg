@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-<script src="{{ asset('js/filtro_tdg_gestionar_escuela.js') }}" defer></script>
+<script src="{{ asset('js/filtro_tdg_gestionar_general.js') }}" defer></script>
 <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 @endsection
 
@@ -22,9 +22,12 @@
 					@endif
 						
                     <br>
-                    @include('filtro_codigo_nombre_estado')
+                    @include('filtro_codigo_nombre_escuela')
                     <br>
                     <div class="row">
+                        <div class="col-md-3">
+                            @include('select_estado')
+                        </div>
                         <div class="col-md-2">
                             <button type="button" id="btn-filtro-limpiar-busqueda" class="btn btn-outline-dark">Limpiar Búsqueda</button>
                         </div>

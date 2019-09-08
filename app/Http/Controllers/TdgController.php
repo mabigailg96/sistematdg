@@ -217,24 +217,120 @@ class TdgController extends Controller
         return $tdgs;
     }
 
-        // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para gestionar tdg por escuela
+        // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para gestionar tdg por coordinador de escuela
         public function allTdgGestionarEscuela(Request $request){
         
             // Inicializar variables
             $escuela_id = '';
             $escuela_id = $request->escuela_id;
+            $estado_oficial = '';
+            $estado_oficial = $request->estado_oficial;
             $codigo = '';
             $codigo = $request->codigo;
             $nombre = '';
             $nombre = $request->nombre;
-    
+
             // Realizar consultas a la base de datos
-            $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
-                ->get();
+            if ($request->estado_oficial == null) {
+
+                $tdgs = DB::table('tdgs')
+                    ->select('id', 'codigo', 'nombre', 'estado_oficial')
+                    ->where('escuela_id', '=', $escuela_id)
+                    ->where('codigo', 'like', '%'.$codigo.'%')
+                    ->where('nombre', 'like', '%'.$nombre.'%')
+                    ->get();
+
+            } else if ($request->estado_oficial == 'Recien ingresado') {
+
+                $tdgs = DB::table('tdgs')
+                    ->select('id', 'codigo', 'nombre', 'estado_oficial')
+                    ->where('escuela_id', '=', $escuela_id)
+                    ->where('codigo', 'like', '%'.$codigo.'%')
+                    ->where('nombre', 'like', '%'.$nombre.'%')
+                    ->whereNull('estado_oficial')
+                    ->get();
+
+            } else if ($request->estado_oficial != 'Recien ingresado' && $request->estado_oficial != null) {
+
+                $tdgs = DB::table('tdgs')
+                    ->select('id', 'codigo', 'nombre', 'estado_oficial')
+                    ->where('escuela_id', '=', $escuela_id)
+                    ->where('codigo', 'like', '%'.$codigo.'%')
+                    ->where('nombre', 'like', '%'.$nombre.'%')
+                    ->where('estado_oficial', '=', $estado_oficial)
+                    ->get();
+
+            }
+    
+            return $tdgs;
+        }
+
+        // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para gestionar tdg por coordinador de escuela
+        public function allTdgGestionarGeneral(Request $request){
+        
+            // Inicializar variables
+            $escuela_id = '';
+            $escuela_id = $request->escuela_id;
+            $estado_oficial = '';
+            $estado_oficial = $request->estado_oficial;
+            $codigo = '';
+            $codigo = $request->codigo;
+            $nombre = '';
+            $nombre = $request->nombre;
+
+            // Realizar consultas a la base de datos
+            if ($request->escuela_id == null && $request->estado_oficial == null) {
+
+                $tdgs = DB::table('tdgs')
+                    ->select('id', 'codigo', 'nombre', 'estado_oficial')
+                    ->get();
+
+            } else if ($request->escuela_id == null && $request->estado_oficial == 'Recien ingresado') {
+
+                $tdgs = DB::table('tdgs')
+                    ->select('id', 'codigo', 'nombre', 'estado_oficial')
+                    ->where('codigo', 'like', '%'.$codigo.'%')
+                    ->where('nombre', 'like', '%'.$nombre.'%')
+                    ->whereNull('estado_oficial')
+                    ->get();
+
+            } else if ($request->escuela_id != null && $request->estado_oficial == null) {
+
+                $tdgs = DB::table('tdgs')
+                    ->select('id', 'codigo', 'nombre', 'estado_oficial')
+                    ->where('escuela_id', '=', $escuela_id)
+                    ->where('codigo', 'like', '%'.$codigo.'%')
+                    ->where('nombre', 'like', '%'.$nombre.'%')
+                    ->get();
+
+            } else if ($request->escuela_id != null && $request->estado_oficial == 'Recien ingresado') {
+
+                $tdgs = DB::table('tdgs')
+                    ->select('id', 'codigo', 'nombre', 'estado_oficial')
+                    ->where('escuela_id', '=', $escuela_id)
+                    ->where('codigo', 'like', '%'.$codigo.'%')
+                    ->where('nombre', 'like', '%'.$nombre.'%')
+                    ->whereNull('estado_oficial')
+                    ->get();
+
+            } else if ($request->escuela_id == null && $request->estado_oficial != 'Recien ingresado' && $request->estado_oficial != null) {
+
+                $tdgs = DB::table('tdgs')
+                    ->where('codigo', 'like', '%'.$codigo.'%')
+                    ->where('nombre', 'like', '%'.$nombre.'%')
+                    ->where('estado_oficial', '=', $estado_oficial)
+                    ->get();
+
+            } else if ($request->escuela_id != null && $request->estado_oficial != 'Recien ingresado' && $request->estado_oficial != null) {
+
+                $tdgs = DB::table('tdgs')
+                    ->where('escuela_id', '=', $escuela_id)
+                    ->where('codigo', 'like', '%'.$codigo.'%')
+                    ->where('nombre', 'like', '%'.$nombre.'%')
+                    ->where('estado_oficial', '=', $estado_oficial)
+                    ->get();
+                    
+            }
     
             return $tdgs;
         }

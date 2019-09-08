@@ -28,6 +28,8 @@ $(document).ready(function(){
         }
     };
 
+    cargarSelectEscuela()
+
     // Al cargar la página que la tabla esté sin información
     cargarDataTable();
       
@@ -45,8 +47,10 @@ $(document).on("click", "#btn-filtro-buscar", function(){
 $(document).on("click", "#btn-filtro-limpiar-busqueda", function(){
     $("#txt-filtro-codigo").val("");
     $("#txt-filtro-nombre").val("");
+    $("#select-filtro-escuela").val("null");
     $("#select-filter-estado").val("null");
     cargarDatosTdg();
+    $("#select-filtro-escuela").val("");
     $("#select-filter-estado").val("");
 });
 
@@ -57,11 +61,12 @@ function cargarDatosTdg() {
     // Inicializar variables
     var codigo = '';
     var nombre = '';
+    var escuela_id = '';
 
     // Obtener valores de los input
     var txt_filter_codigo = $("#txt-filtro-codigo").val();
     var txt_filter_nombre = $("#txt-filtro-nombre").val();
-    var filter_escuela_id = $("#filtro-escuela_id").val();
+    var filter_escuela_id = $("#select-filtro-escuela").val();
     var filter_estado_oficial = $("#select-filter-estado").val();
 
     // Validar si los input no continen nada
@@ -84,7 +89,7 @@ function cargarDatosTdg() {
     //console.log(params);
 
     // Ejecutar petición ajax
-    axios.get('/todos/tdg/gestionar/escuela', {
+    axios.get('/todos/tdg/gestionar/general', {
         params: params
     }).then(response => {
         //console.log(response.data);
@@ -160,4 +165,28 @@ function cargarDataTable(){
     table
         .clear()
         .draw();
+}
+
+// Función para llenar el select con los nombres de escuela
+function cargarSelectEscuela() {
+    // Función de axios para hacer la consulta
+    axios.get('/todos/colleges')
+    .then(response => {
+        //console.log(response);
+
+        // Llenar el select con los elementos traidos
+        response.data.forEach(element => {
+            $("#select-filtro-escuela").append(new Option(element.escuela, element.id));  
+        });
+    }).catch(e => {
+        // Imprimir error en consola
+        console.log(e);
+
+        // Mostrar mensaje de error en caso de que algo haya salido mal con la consulta
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: '¡Algo ha salido mal!, por favor intente más tarde.',
+        });
+    });
 }

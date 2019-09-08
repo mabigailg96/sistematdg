@@ -150,5 +150,5 @@ function cargarSelectEscuela() {
             title: 'Oops...',
             text: '¡Algo ha salido mal!, por favor intente más tarde.',
         });
-    })
+    });
 }
