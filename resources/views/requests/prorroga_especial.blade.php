@@ -30,24 +30,24 @@
                           </div>
                           <br>
 
-                          <div class="row form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
-                                <label for="fecha" class="textlabel col-md-4 control-label offset-1 required">Fecha de inicio</label>
+                          <div class="row form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
+                                <label for="fecha_inicio" class="textlabel col-md-4 control-label offset-1 required">Fecha de inicio</label>
                                 <div class="col-md-6">
-                                    <input type="date" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" required>
-                                    @if ($errors->has('fecha'))
+                                    <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control" value="{{old('fecha_inicio')}}" required>
+                                    @if ($errors->has('fecha_inicio'))
                                         <span class="help-block">
-                                            {{ $errors->first('fecha') }}
+                                            {{ $errors->first('fecha_inicio') }}
                                         </span>
                                     @endif
                                 </div>
                             </div>
-                            <div class="row form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
-                                    <label for="fecha" class="textlabel col-md-4 control-label offset-1 required">Fecha de finalización</label>
+                            <div class="row form-group{{ $errors->has('fecha_fin') ? ' has-error' : '' }}">
+                                    <label for="fecha_fin" class="textlabel col-md-4 control-label offset-1 required">Fecha de finalización</label>
                                     <div class="col-md-6">
-                                        <input type="date" name="fecha_inicio" id="fecha" class="form-control" value="{{old('fecha')}}" required>
-                                        @if ($errors->has('fecha'))
+                                        <input type="date" name="fecha_fin" id="fecha_fin" class="form-control" value="{{old('fecha_fin')}}" required>
+                                        @if ($errors->has('fecha_fin'))
                                             <span class="help-block">
-                                                {{ $errors->first('fecha') }}
+                                                {{ $errors->first('fecha_fin') }}
                                             </span>
                                         @endif
                                     </div>
