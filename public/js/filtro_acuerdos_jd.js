@@ -77,13 +77,21 @@ function cargarDatosAcuerdos() {
                 "pageLength": 10,
                 "columns": [
                     { 'data': 'nombre' },
-                    { 'data': 'fecha' },
+                    { /*'data': 'fecha'*/
+                    sorteable: false,
+                    'data':function (data, type, full, meta){
+                        var texto = data.fecha;
+                        return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
+                      }
+                },
                     {
                         sorteable: false,
                         "render": function(data, type, full, meta) {
                             //url del documento a mostrar o descargar
                             var path = full.url;
                             console.log(path);
+                            // esta funcion lo que hace es reiniciar la url y fija la
+                            //url de donde se encuetra los archivos
                             axios.defaults.baseURL = '';
                             var htmlButtons = `<a href='/acuerdos/${path}'  target="_blank" >Visualizar</a>`;
                             return htmlButtons;
