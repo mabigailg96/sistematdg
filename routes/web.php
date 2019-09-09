@@ -72,3 +72,9 @@ Route::get('/listar/tdg/asignar', function () {
 Route::get('/todos/colleges', 'CollegeController@allNameColleges')->name('colllege.todos');
 
 });
+// Pantalla para mostrar los filtros y mostrar los acuerdos de junta directiva
+Route::get('/listar/acuerdos/jd', function(){
+    return view('agreement.listar_acuerdos');
+});
+
+Route::get('/todos/acuerdos/ver/jd', 'AgreementController@allJdAcuerdos')->name('agreement.show');

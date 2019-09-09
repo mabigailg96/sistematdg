@@ -4,12 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Agreement;
+use \DB;
 
 class AgreementController extends Controller
 {
   public function create()
   {
     return view('agreement.ingresar');
+  }
+
+  public function allJdAcuerdos(Request $request){
+
+    /*Funcion Creada por Guillermo Cornejo*/
+    //Primero inicializamos las variables
+
+    $nombre_acuerdo =   '';
+    $nombre_acuerdo =   $request->nombre;
+    $fecha_acuerdo  =   '';
+    $fecha_acuerdo  =   $request->fecha;
+
+
+    //Realizando la consulta a la base de datos para obtener los acuerdos
+    $acuerdos = DB::table('agreements')
+    ->select('nombre', 'url', 'fecha')
+    ->where('nombre', 'like', '%'.$nombre_acuerdo.'%')
+    ->where('fecha', 'like', '%'.$fecha_acuerdo.'%')
+    ->get();
+
+
+    return $acuerdos;
+
   }
 
   public function store(Request $request)
