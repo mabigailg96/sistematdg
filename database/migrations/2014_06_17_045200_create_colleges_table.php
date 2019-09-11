@@ -17,6 +17,7 @@ class CreateCollegesTable extends Migration
             $table->increments('id');
             $table->string('codigo',3)->unique()->nonullable();
             $table->string('nombre',4)->unique()->nonullable();
+            $table->string('nombre_completo',30)->unique()->nonullable();
             $table->timestamps();
             
         });
