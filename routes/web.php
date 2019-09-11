@@ -41,13 +41,13 @@ Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingre
 Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guardar')->middleware('can:semester.ingresar');
 
 //Rutas para importar los estudiantes por medio de un excel
-Route::get('/ingresar/estudiantes', 'StudentController@create')->name('student.ingresar');
-Route::post('/guardar/estudiantes', 'StudentController@store')->name('student.guardar');
+Route::get('/ingresar/estudiantes', 'StudentController@create')->name('student.ingresar')->middleware('can:student.ingresar');
+Route::post('/guardar/estudiantes', 'StudentController@store')->name('student.guardar')->middleware('can:student.guardar');
 
 //Rutas para importar los maestros y el formulario de profesores.accordion
-Route::get('/ingresar/profesores', 'ProfessorController@create')->name('professor.ingresar');
-Route::post('/guardar/profesores', 'ProfessorController@store')->name('professor.guardar');
-Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('professor.guardarexcel');
+Route::get('/ingresar/profesores', 'ProfessorController@create')->name('professor.ingresar')->middleware('can:professor.ingresar');
+Route::post('/guardar/profesores', 'ProfessorController@store')->name('professor.guardar')->middleware('can:professor.guardar');
+Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('professor.guardarexcel')->middleware('can:professor.ingresarexcel');
 
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/solicitudes', function () {

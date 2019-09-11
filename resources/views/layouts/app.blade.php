@@ -58,6 +58,16 @@
                       <a class="nav-link" href="{{ url('/ingresar/ciclo') }}"> Ingresar ciclo</a>
                     </li>
                   @endcan
+                  @can('student.ingresar')
+                    <li class="nav-item navegacion-item">
+                      <a class="nav-link" href="{{ url('/ingresar/estudiantes') }}"> Ingresar estudiantes</a>
+                    </li>
+                  @endcan
+                  @can('professor.ingresar')
+                    <li class="nav-item navegacion-item">
+                      <a class="nav-link" href="{{ url('/ingresar/profesores') }}"> Ingresar profesores</a>
+                    </li>
+                  @endcan
 
                     </ul>
 

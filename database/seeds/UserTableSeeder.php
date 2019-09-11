@@ -96,7 +96,86 @@ class UserTableSeeder extends Seeder
             'password'=> bcrypt('1234'),
 
         ]);
-        
+        User::create([
+            'nombre'=> 'Secretaria Civil',
+            'username'=> 'secreCivil',
+            'college_id'=>'1',
+            'email' => 'secretaria1@hotmail.com',
+            'password'=> bcrypt('1234'),
+
+        ]);
+        User::create([
+            'nombre'=> 'Secretaria Industrial',
+            'username'=> 'secreIndustrial',
+            'college_id'=>'2',
+            'email' => 'secretaria2@hotmail.com',
+            'password'=> bcrypt('1234'),
+
+        ]);
+        User::create([
+            'nombre'=> 'Secretaria Mecánica',
+            'username'=> 'secreMecanica',
+            'college_id'=>'3',
+            'email' => 'secretaria3@hotmail.com',
+            'password'=> bcrypt('1234'),
+
+        ]);
+        User::create([
+            'nombre'=> 'Secretaria Eléctrica',
+            'username'=> 'secreElectrica',
+            'college_id'=>'4',
+            'email' => 'secretaria4@hotmail.com',
+            'password'=> bcrypt('1234'),
+
+        ]);
+        User::create([
+            'nombre'=> 'Secretaria Quimica',
+            'username'=> 'secreQuimica',
+            'college_id'=>'5',
+            'email' => 'secretaria5@hotmail.com',
+            'password'=> bcrypt('1234'),
+
+        ]);
+        User::create([
+            'nombre'=> 'Secretaria Alimentos',
+            'username'=> 'secreAlimentos',
+            'college_id'=>'6',
+            'email' => 'secretaria6@hotmail.com',
+            'password'=> bcrypt('1234'),
+
+        ]);
+        User::create([
+            'nombre'=> 'Secretaria Sistemas',
+            'username'=> 'secreSistemas',
+            'college_id'=>'7',
+            'email' => 'secretaria7@hotmail.com',
+            'password'=> bcrypt('1234'),
+
+        ]);
+        User::create([
+            'nombre'=> 'Secretaria Arquitectura',
+            'username'=> 'secreArquitectura',
+            'college_id'=>'8',
+            'email' => 'secretaria8@hotmail.com',
+            'password'=> bcrypt('1234'),
+
+        ]);
+        User::create([
+            'nombre'=> 'Secretaria Posgrado',
+            'username'=> 'secrePosgrado',
+            'college_id'=>'9',
+            'email' => 'secretaria9@hotmail.com',
+            'password'=> bcrypt('1234'),
+
+        ]);
+        User::create([
+            'nombre'=> 'Administración Académica',
+            'username'=> 'academica',
+            'email' => 'academica@hotmail.com',
+            'password'=> bcrypt('1234'),
+
+        ]);
+
         
     }
 }

@@ -22,5 +22,16 @@ class RoleTableSeeder extends Seeder
             'slug'=> 'cooresc',
         ]);
 
+        Role::create([
+            'name'=> 'Secretaria de Escuela',
+            'slug'=> 'secres',
+        ]);
+
+        Role::create([
+            'name'=> 'Administracion academica',
+            'slug'=> 'academica',
+        ]);
+
+
     }
 }

@@ -53,6 +53,43 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'semester.guardar',
             'description' => 'Ingresar el ciclo al sistema',
         ]);
+        
+                //***********MAESTROS*************
+        //Permiso para mostrar la pantalla para ingresar los maestros
+        Permission::create([
+            'name' => 'Ingresar maestros',
+            'slug' => 'professor.ingresar',
+            'description' => 'Formulario de ingreso de los maestros al sistema',
+        ]);
+
+        //Permiso que permite mandar a llamar el controller para el ingreso de maestro
+        Permission::create([
+            'name' => 'Ingresar maestros(llamando al controller1)',
+            'slug' => 'professor.guardar',
+            'description' => 'Ingresar maestros controlador',
+        ]);
+        Permission::create([
+            'name' => 'Ingresar maestros(llamando al controller2)',
+            'slug' => 'professor.guardarexcel',
+            'description' => 'Ingresar maestros llamada por el excel',
+        ]);
+
+                //*************ALUMNOS***************
+        //Permiso para mostrar la pantalla para ingresar los alumnos
+        Permission::create([
+            'name' => 'Ingresar alumnos',
+            'slug' => 'student.ingresar',
+            'description' => 'Formulario de ingreso de los alumnos al sistema',
+        ]);
+
+        //Permiso que permite mandar a llamar el controller para el ingreso de alumnos
+        Permission::create([
+            'name' => 'Ingresar alumnos(llamando al controller)',
+            'slug' => 'student.guardar',
+            'description' => 'Guardar los alumnos en el sistema',
+        ]);
+
+
 
         
 

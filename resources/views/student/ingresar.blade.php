@@ -23,7 +23,7 @@
 						
                     <form class="form-horizontal" method="POST" action="{{ route('student.guardar') }}" enctype="multipart/form-data">
                         @csrf
-
+                    <br>
                         <div class="row form-group{{ $errors->has('file') ? ' has-error' : '' }}">
 							<label for="file" class="textlabel col-md-3 offset-1 control-label required">Elegir el archivo a importar</label>
                             <div class="urlinput col-md-6">

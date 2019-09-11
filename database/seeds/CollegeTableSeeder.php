@@ -16,6 +16,7 @@ class CollegeTableSeeder extends Seeder
         College::create([
             'codigo'=> '1',
             'nombre'=> 'CI',
+            
         ]);
         College::create([
             'codigo'=> '2',

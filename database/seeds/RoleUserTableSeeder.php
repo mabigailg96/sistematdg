@@ -26,5 +26,20 @@ class RoleUserTableSeeder extends Seeder
         //Dando al admin el rol 1
         DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [1,1]);
 
+        //Dando a las secretarias el rol 3
+        DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [11,3]);
+        DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [12,3]);
+        DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [13,3]);
+        DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [14,3]);
+        DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [15,3]);
+        DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [16,3]);
+        DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [17,3]);
+        DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [18,3]);
+        DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [19,3]);
+
+        //Dando a academica el rol 4
+        DB::insert('insert into role_user (user_id, role_id) values (?, ?)', [20,4]);
+
+
     }
 }
