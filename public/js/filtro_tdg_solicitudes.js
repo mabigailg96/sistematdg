@@ -92,23 +92,27 @@ function cargarDatosTdg() {
         params: params
     }).then(response => {
         console.log(response.data);
+        response.data.forEach(element => {
+            console.log('codigo: '+element[0].codigo);
+        });
         if(response.data.length > 0){
             // Llenar la tabla con los resultados traidos de la peticion
             $("#table-filtro-tdgs").DataTable({
+        
                 "destroy": true,
                 "processing": true,
                 "data": response.data,
                 "ordering": false,
                 "pageLength": 10,
                 "columns": [
-                    { 'data': 'codigo' },
-                    { 'data': 'nombre' },
-                    { 'data': 'ciclo' },
+                    { 'data': '0.codigo' },
+                    { 'data': '0.nombre' },
+                    { 'data': '0.ciclo' },
                     { sortable: false,
                     "render": function ( data, type, full, meta ) {
                         // Id del TDG
-                        var id = full.id;
-
+                        var id = full[0].id;
+                        console.log(id);
                         // Concatenar ruta para el formulario
                         if(tipo_solicitud == 'cambio_de_nombre'){
                             // Acá se le va a concatenar dependiendo de que tipo de solicitud es
@@ -125,13 +129,13 @@ function cargarDatosTdg() {
                         } else if(tipo_solicitud == 'nombramiento_de_tribunal'){
                             // Acá se le va a concatenar dependiendo de que tipo de solicitud es
                             var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;
-                        } else if(tipo_solicitud == 'ratificacion_de_resultados'){
+                        }else{
                             // Acá se le va a concatenar dependiendo de que tipo de solicitud es
                             var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;
-                        }
-
+                        } 
                         return htmlButtons;
-                    }},
+                    }
+                },
                 ],
                 "info": false,
                 "searching": false,

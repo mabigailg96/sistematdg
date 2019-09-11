@@ -1,5 +1,6 @@
 <?php
 
+use App\TypeExtension;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentTableSeeder::class);
         $this->call(ProfessorTableSeeder::class);
         $this->call(TdgTableSeeder::class);
+        $this->call(TypeExtensionSeeder::class);
         
     }
 }
