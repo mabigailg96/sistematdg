@@ -158,7 +158,7 @@ class TdgController extends Controller
                  //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
                 $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                 ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
-                ->where('tdgs.escuela_id', '=', '7')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
                 ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                 ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                 ->where('tdgs.id','=',$enable)
@@ -204,7 +204,7 @@ class TdgController extends Controller
 
                 $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                 ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
-                ->where('tdgs.escuela_id', '=', '7')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
                 ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                 ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                 ->where('tdgs.id','=',$enable)
@@ -249,7 +249,7 @@ class TdgController extends Controller
               
                     $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                     ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
-                    ->where('tdgs.escuela_id', '=', '7')
+                    ->where('tdgs.escuela_id', '=', $escuela_id)
                     ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                     ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                     ->where('tdgs.id','=',$enable)
@@ -264,19 +264,31 @@ class TdgController extends Controller
         } else if($tipo_solicitud == 'prorroga_especial'){
                //Rescatamos los datos para la toma de criterio
                $request_extensions_2 = RequestExtension::where('aprobado',1)->where('type_extension_id',2)->get();
+               $request_extensions_3 = RequestExtension::where('aprobado',1)->where('type_extension_id',3)->get();
                $tdgs = array();
    
                //Validamos que existan prorrogas de tipo 2
                if($request_extensions_2->isEmpty()){
-                  //Vacio
-               }else{
-                   //Si existen las recorremos
-                   foreach($request_extensions_2 as $re1){
-                       $enable_extensions_2[]= $re1->tdg_id;
+             
+            }else{
+                //Si existen las recorremos
+                foreach($request_extensions_2 as $re2){
+                    $enable_extensions_2[]= $re2->tdg_id;
+                }
 
-                   }
-                   $enable_request = $enable_extensions_2;
-   
+                //Validamos que existan prorrogas de tipo 3 que esten validadas
+                if(!$request_extensions_3->isEmpty()){
+                    foreach($request_extensions_3 as $re3){
+                        $enable_extensions_3[]= $re3->tdg_id;
+                    }
+
+                    //Teniendo ambas prorrogas hacemos una diferencia para que quitar datos repetidos
+                      $enable_request = array_diff($enable_extensions_2, $enable_extensions_3);
+                    
+                }else{
+                    //Sino, los tdgs disponibles seran por defecto solo los que tengan una prorroga tipo 2 aprobada.
+                    $enable_request = $enable_extensions_2;
+                }
                 
                        
                   
@@ -286,7 +298,7 @@ class TdgController extends Controller
                  
                        $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                        ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
-                       ->where('tdgs.escuela_id', '=', '7')
+                       ->where('tdgs.escuela_id', '=', $escuela_id)
                        ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                        ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                        ->where('tdgs.id','=',$enable)
@@ -333,7 +345,7 @@ class TdgController extends Controller
              
                    $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
-                   ->where('tdgs.escuela_id', '=', '7')
+                   ->where('tdgs.escuela_id', '=', $escuela_id)
                    ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                    ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                    ->where('tdgs.id','=',$enable)
@@ -378,7 +390,7 @@ class TdgController extends Controller
              
                    $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
-                   ->where('tdgs.escuela_id', '=', '7')
+                   ->where('tdgs.escuela_id', '=', $escuela_id)
                    ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                    ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                    ->where('tdgs.id','=',$enable)
