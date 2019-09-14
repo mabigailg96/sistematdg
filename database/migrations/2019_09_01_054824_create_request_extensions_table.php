@@ -22,8 +22,8 @@ class CreateRequestExtensionsTable extends Migration
             $table->string('justificacion',500)->nonullable();
             $table->integer('tdg_id')->unsigned()->nonullable();
             $table->foreign('tdg_id')->references('id')->on('tdgs')->onDelete('cascade')->nonullable();
-            $table->integer('agreement_id')->unsigned()->nonullable();
-            $table->foreign('agreement_id')->references('id')->on('agreements')->onDelete('cascade')->nonullable();
+            $table->integer('agreement_id')->unsigned()->nullable();
+            $table->foreign('agreement_id')->references('id')->on('agreements')->onDelete('cascade')->nullable();
             $table->integer('type_extension_id')->unsigned()->nonullable();
             $table->foreign('type_extension_id')->references('id')->on('type_extensions')->onDelete('cascade')->nonullable();
             $table->timestamps();

@@ -56,7 +56,7 @@ Route::get('/listar/tdg/solicitudes', function () {
 
 //Rutas para las solicitudes
 Route::get('/ingresar/solicitud/nombre/{id}', 'RequestNameController@create')->name('request_name.ingresar');
-Route::post('/guardar/solicitud/nombre', 'RequestNameController@store')->name('request_name.guardar');
+Route::post('/guardar/solicitud/nombre', 'RequestNameController@store')->name('name.guardar');
 
 Route::get('/ingresar/solicitud/tribunal/{id}', 'RequestTribunalController@create')->name('request_tribunal.ingresar');
 Route::post('/guardar/solicitud/tribunal', 'RequestTribunalController@store')->name('request_tribunal.guardar');
