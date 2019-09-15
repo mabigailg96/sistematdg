@@ -16,7 +16,7 @@ class CreateRequestNamesTable extends Migration
         Schema::create('request_names', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha')->nonullable();
-            $table->boolean('aprobado')->nonullable();
+            $table->boolean('aprobado')->nullable();
             $table->string('nuevo_nombre',500)->nonullable();
             $table->string('justificacion',500)->nonullable();
             $table->integer('tdg_id')->unsigned()->nonullable();

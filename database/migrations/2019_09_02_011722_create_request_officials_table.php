@@ -16,7 +16,7 @@ class CreateRequestOfficialsTable extends Migration
         Schema::create('request_officials', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha')->nonullable();
-            $table->boolean('aprobado')->nonullable();
+            $table->boolean('aprobado')->nullable();
             $table->integer('tdg_id')->unsigned()->nonullable();
             $table->foreign('tdg_id')->references('id')->on('tdgs')->onDelete('cascade')->nonullable();
             $table->integer('agreement_id')->unsigned()->nullable();

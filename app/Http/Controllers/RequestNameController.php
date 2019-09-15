@@ -45,8 +45,15 @@ class RequestNameController extends Controller
             'nombre_nuevo' => 'required',
             'justificacion' => 'required',
         ]);
+           
+        $name = RequestName::create([
+            'fecha' => date("y-m-d"),
+            'nuevo_nombre' => $request_name['nombre_nuevo'],
+            'justificacion' => $request_name['justificacion'],
+            'tdg_id' => $request['tdg_id'],
+        ]);
 
-        dd($request_name);
+        return redirect()->route('solicitudes.listar','&save=1&tipo=Cambio de nombre');
     }
 
     /**

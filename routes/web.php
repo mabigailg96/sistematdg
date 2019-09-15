@@ -52,7 +52,7 @@ Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/solicitudes', function () {
     return view('requests.filtro');
-});
+})->name('solicitudes.listar');
 
 //Rutas para las solicitudes
 Route::get('/ingresar/solicitud/nombre/{id}', 'RequestNameController@create')->name('request_name.ingresar');

@@ -14,4 +14,9 @@ class RequestExtension extends Model
     public function agreement(){
         return $this->belongsTo(Agreement::class);
     }
+
+    
+    protected $fillable = [
+        'fecha', 'aprobado','fecha_inicio','fecha_fin','justificacion','tdg_id','agreement_id','type_extension_id',
+    ];
 }

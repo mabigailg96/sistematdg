@@ -16,7 +16,7 @@ class CreateRequestExtensionsTable extends Migration
         Schema::create('request_extensions', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha')->nonullable();
-            $table->boolean('aprobado')->nonullable();
+            $table->boolean('aprobado')->nullable();
             $table->date('fecha_inicio')->nonullable();
             $table->date('fecha_fin')->nonullable();
             $table->string('justificacion',500)->nonullable();

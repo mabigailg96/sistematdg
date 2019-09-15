@@ -100,7 +100,7 @@ class TdgController extends Controller
                 'ciclo_id' => $ciclo_id,
             ]);
 
-            return redirect()->route('tdg.ingresar', '/?' . $tdg->id . '&save=1')
+            return redirect()->route('tdg.ingresar', '/?' . $escuela_id . '&save=1')
                 ->with('info', 'Trabajo de graduación guardado con éxito');
         } else {
             return redirect()->route('tdg.ingresar', '/?&save=0&nombre=' . $perfil['nombre'])
@@ -128,7 +128,7 @@ class TdgController extends Controller
             //Solicitudes de oficializacion aprobadas
             $request_officials = RequestOfficial::where('aprobado',1)->get();
             //Solicitudes de cambio de nombre aprobadas
-            $request_names = RequestName::where('aprobado',1)->get();
+            $request_names = RequestName::where('aprobado',1)->orWhere('aprobado',null)->get();
             $tdgs = array();
             //Validacion para que existan oficializados
             if($request_officials->isEmpty()){

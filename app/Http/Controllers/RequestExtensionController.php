@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\RequestExtension;
 use Illuminate\Http\Request;
 use \DB;
+use App\Tdg;
 
 class RequestExtensionController extends Controller
 {
@@ -28,19 +29,23 @@ class RequestExtensionController extends Controller
         //
       
 
-        $nombre = DB::table('tdgs')->find($id);
+        $tdg = Tdg::find($id);
+        $ciclo = DB::table('semesters')->find($tdg->ciclo_id);
+        //Rescatar el ciclo del tdg que esta en curso.
+        $ciclo_id = $tdg->students()->where('tdg_id', $tdg->id)->first()->pivot->ciclo_id;
+        $ciclo = DB::table('semesters')->find($ciclo_id);
        
        if($tipo_solicitud=='prorroga')
         {
-        return view('requests.prorroga')->with('tdgs', $nombre);
+        return view('requests.prorroga')->with('tdgs', $tdg)->with('ciclo', $ciclo);
         }
         else if ($tipo_solicitud=='extension_de_prorroga')
         {
-            return view('requests.extension_prorroga')->with('tdgs', $nombre); 
+            return view('requests.extension_prorroga')->with('tdgs', $tdg); 
         }
         else if ($tipo_solicitud=='prorroga_especial')
         {
-            return view('requests.prorroga_especial')->with('tdgs', $nombre); 
+            return view('requests.prorroga_especial')->with('tdgs', $tdg); 
         }
     }
 

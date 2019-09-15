@@ -2,6 +2,7 @@
 
 @section('javascript')
 <script src="{{ asset('js/filtro_tdg_solicitudes.js') }}" defer></script>
+<script src="{{ asset('js/ingresar_solicitud.js') }}" defer></script>
 <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 @endsection
 

@@ -33,7 +33,7 @@
                         <div class="row form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
                             <label for="fecha_inicio" class="textlabel col-md-4 offset-1 control-label">Fecha de inicio:</label>
                             <div class="col-md-6">
-                                    <label for="fecha_inicio" class="textlabel control-label" value="{{old('fecha_inicio')}}">Fecha de inicio </label>
+                                    <label for="fecha_inicio" class="textlabel control-label" value="{{old('fecha_inicio')}}">{{$ciclo->fechaInicio}} </label>
                                 @if ($errors->has('fecha_inicio'))
                                     <span class="help-block">
                                        {{ $errors->first('fecha_inicio') }}
