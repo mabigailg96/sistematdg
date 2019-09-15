@@ -25,6 +25,7 @@ class RequestTribunalController extends Controller
      */
     public function create($id)
     {
+        
         $nombre = DB::table('tdgs')->find($id);
         return view('requests.nombramiento_tribunal')->with('tdgs', $nombre);
     }

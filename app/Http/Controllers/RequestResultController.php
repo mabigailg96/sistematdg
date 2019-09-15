@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\RequestResult;
 use Illuminate\Http\Request;
+use \DB;
 
 class RequestResultController extends Controller
 {
@@ -17,14 +18,19 @@ class RequestResultController extends Controller
         //
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+        
+        $nombre = DB::table('tdgs')->find($id);
+        dd($nombre);
+        return view('requests.ratificacion_resultados')->with('tdgs', $nombre);
     }
 
     /**

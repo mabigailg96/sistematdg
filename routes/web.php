@@ -64,8 +64,8 @@ Route::post('/guardar/solicitud/tribunal', 'RequestTribunalController@store')->n
 Route::get('/ingresar/solicitud/{tipo_solicitud}/{id}', 'RequestExtensionController@create')->name('request_extension.ingresar');
 Route::post('/guardar/solicitud/prorroga', 'RequestExtensionController@store')->name('request_extension.guardar');
 
-Route::get('/ingresar/solicitud/resultado/{id}', 'RequestResultController@create')->name('request_result.ingresar');
-Route::post('/guardar/solicitud/resultado', 'RequestResultController@store')->name('request_result.guardar');
+Route::get('/ingresar/solicitud/{id}', 'RequestResultController@create')->name('request_result.ingresar');
+Route::post('/guardar/solicitud/', 'RequestResultController@store')->name('request_result.guardar');
 
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/asignar', function () {

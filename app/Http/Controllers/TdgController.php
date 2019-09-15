@@ -173,7 +173,7 @@ class TdgController extends Controller
            //Solicitudes de oficializacion
             $request_officials = RequestOfficial::where('aprobado',1)->get();
             //Solicitudes de prorroga de tipo 1
-            $request_extensions = RequestExtension::where('aprobado',1)->where('type_extension_id',1)->get();
+            $request_extensions = RequestExtension::where('aprobado',1)->where('type_extension_id',1)->orWhere('aprobado',null)->get();
             $tdgs = array();
             //Validamos que existan tdgs oficializados
             if($request_officials->isEmpty()){
@@ -219,7 +219,7 @@ class TdgController extends Controller
 
             //Rescatamos los datos para la toma de criterio
             $request_extensions_1 = RequestExtension::where('aprobado',1)->where('type_extension_id',1)->get();
-            $request_extensions_2 = RequestExtension::where('aprobado',1)->where('type_extension_id',2)->get();
+            $request_extensions_2 = RequestExtension::where('aprobado',1)->where('type_extension_id',2)->orWhere('aprobado',null)->get();
             $tdgs = array();
             //Validamos que existan prorrogas de tipo 1
             if($request_extensions_1->isEmpty()){
@@ -264,7 +264,7 @@ class TdgController extends Controller
         } else if($tipo_solicitud == 'prorroga_especial'){
                //Rescatamos los datos para la toma de criterio
                $request_extensions_2 = RequestExtension::where('aprobado',1)->where('type_extension_id',2)->get();
-               $request_extensions_3 = RequestExtension::where('aprobado',1)->where('type_extension_id',3)->get();
+               $request_extensions_3 = RequestExtension::where('aprobado',1)->where('type_extension_id',3)->orWhere('aprobado',null)->get();
                $tdgs = array();
    
                //Validamos que existan prorrogas de tipo 2
@@ -315,7 +315,7 @@ class TdgController extends Controller
         } else if($tipo_solicitud == 'nombramiento_de_tribunal'){
            //Rescatamos los datos para la toma de criterio
            $request_officials = RequestOfficial::where('aprobado',1)->get();
-           $request_tribunal = RequestTribunal::where('aprobado',1)->get();
+           $request_tribunal = RequestTribunal::where('aprobado',1)->orWhere('aprobado',null)->get();
            $tdgs = array();
            //Validamos que existan tdgs oficializados
            if($request_officials->isEmpty()){
@@ -360,7 +360,7 @@ class TdgController extends Controller
         }else{
              //Rescatamos los datos para la toma de criterio
            $request_tribunal = RequestTribunal::where('aprobado',1)->get();
-           $request_result = RequestResult::where('aprobado',1)->get();
+           $request_result = RequestResult::where('aprobado',1)->orWhere('aprobado',null)->get();
            $tdgs = array();
            //Validamos que existan solicitudes de tribunal 
            if($request_tribunal->isEmpty()){
