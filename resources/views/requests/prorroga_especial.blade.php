@@ -31,20 +31,27 @@
                           <br>
 
                           <div class="row form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
-                                <label for="fecha_inicio" class="textlabel col-md-4 control-label offset-1 required">Fecha de inicio</label>
-                                <div class="col-md-6">
-                                    <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control" value="{{old('fecha_inicio')}}" required>
-                                    @if ($errors->has('fecha_inicio'))
-                                        <span class="help-block">
-                                            {{ $errors->first('fecha_inicio') }}
-                                        </span>
-                                    @endif
-                                </div>
+                            <label for="fecha_inicio" class="textlabel col-md-4 offset-1 control-label">Fecha de inicio:</label>
+                            <div class="col-md-6">
+                                    <label for="fecha_inicio" class="textlabel control-label" value="{{old('fecha_inicio')}}">{{$fechaInicio}}</label>
+                                    <input type="hidden" name="fecha_inicio" value="{{$fechaInicio}}">
+                                @if ($errors->has('fecha_inicio'))
+                                    <span class="help-block">
+                                       {{ $errors->first('fecha_inicio') }}
+                                    </span>
+                                @endif
                             </div>
+                        </div>
                             <div class="row form-group{{ $errors->has('fecha_fin') ? ' has-error' : '' }}">
-                                    <label for="fecha_fin" class="textlabel col-md-4 control-label offset-1 required">Fecha de finalización</label>
+                                    <label for="fecha_fin" class="textlabel col-md-4 control-label offset-1 required">Meses de prórroga</label>
                                     <div class="col-md-6">
-                                        <input type="date" name="fecha_fin" id="fecha_fin" class="form-control" value="{{old('fecha_fin')}}" required>
+                                    <select id="fecha_fin" name="fecha_fin" value="{{old('fecha_fin')}}"  class="form-control col-8" required>
+                                    <option value="" selected disabled>Seleccione número de meses:</option >
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    </select>
+                                       
                                         @if ($errors->has('fecha_fin'))
                                             <span class="help-block">
                                                 {{ $errors->first('fecha_fin') }}
@@ -68,6 +75,9 @@
 						
                         <div class="form-group{{ $errors->has('tdg_id') ? ' has-error' : '' }}">
                             <input type="hidden" name="tdg_id" value="{{$tdgs->id}}">
+                        </div>
+                        <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
+                            <input type="hidden" name="tipo" value="{{$tipo}}">
                         </div>
 
                         <div class="row form-group">

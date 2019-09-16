@@ -30,12 +30,12 @@
                           </div>
                           <br>
 
-                        <div class="row form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
-                            <label for="fecha_inicio" class="textlabel col-md-4 offset-1 control-label">Fecha de inicio:</label>
+                          <div class="row form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
+                            <label for="fecha_inicio" class="textlabel col-md-4 offset-1 control-label">Fecha de inicio</label>
                             <div class="col-md-6">
-                                    <label for="fecha_inicio" class="textlabel control-label" value="{{old('fecha_inicio')}}">Fecha de inicio</label>
+                                    <label for="fecha_inicio" class="textlabel control-label" value="{{old('fecha_inicio')}}">{{$fechaInicio}} </label>
                                     <input type="hidden" name="fecha_inicio" value="{{$fechaInicio}}">
-                                @if ($errors->has('fecha_inicio'))
+                                    @if ($errors->has('fecha_inicio'))
                                     <span class="help-block">
                                        {{ $errors->first('fecha_inicio') }}
                                     </span>
@@ -46,8 +46,9 @@
                         <div class="row form-group{{ $errors->has('fecha_fin') ? ' has-error' : '' }}">
                                 <label for="fecha_fin" class="textlabel col-md-4 offset-1 control-label">Fecha de finalización</label>
                                 <div class="col-md-6">
-                                        <label for="fecha_fin" class="textlabel control-label" value="{{old('fecha_fin')}}">Fecha de fin</label>
-                                        <input type="hidden" name="fecha_fin" value="{{$fechaFin}}">
+                                        <label for="fecha_fin" class="textlabel control-label" value="{{old('fecha_fin')}}">{{$fechaFin}}</label>       
+                                            <input type="hidden" name="fecha_fin" value="{{$fechaFin}}">
+        
                                     @if ($errors->has('fecha_fin'))
                                         <span class="help-block">
                                            {{ $errors->first('fecha_fin') }}
