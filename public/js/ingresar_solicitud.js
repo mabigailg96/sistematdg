@@ -11,7 +11,7 @@ $(document).ready(function(){
     Swal.fire({
       position: 'top-end',
       type: 'error',
-      title: 'Error en los datos ingresados',
+      title: 'Ya rebaso los límites para la prórroga',
       showConfirmButton: false,
       timer: 2000
     });

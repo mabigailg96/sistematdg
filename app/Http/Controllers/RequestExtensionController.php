@@ -38,11 +38,11 @@ class RequestExtensionController extends Controller
         $ciclo_id = $tdg->students()->where('tdg_id', $tdg->id)->first()->pivot->ciclo_id;
         $ciclo = DB::table('semesters')->find($ciclo_id);
         
-        $fecha = new Carbon($ciclo->fechaInicio);
+        $fecha_ciclo = new Carbon($ciclo->fechaInicio);
       
        if($tipo_solicitud=='prorroga')
         {
-            $fechaInicioProrroga = ($fecha->copy()->addMonths(9));
+            $fechaInicioProrroga = ($fecha_ciclo->copy()->addMonths(9));
             $fechaFinProrroga = $fechaInicioProrroga->copy()->addMonths(6)->subDays(1);
           
             
@@ -66,11 +66,38 @@ class RequestExtensionController extends Controller
 
         else if ($tipo_solicitud=='prorroga_especial')
         {
-            //Rescatamos solicitud de extension de prorroga para obtener la fecha en la que termina.
-            $extension_prorroga = $tdg->request_extensions()->where('aprobado',1)->where('type_extension_id',2)->first();
-
+            $prorroga_especial = $tdg->request_extensions()->where('aprobado',1)->where('type_extension_id',3)->orderby('created_at','DESC')->take(1)->get();
+            if($prorroga_especial->isEmpty()){
+                $extension_prorroga = $tdg->request_extensions()->where('aprobado',1)->where('type_extension_id',2)->first();
+           
             $fecha = new Carbon($extension_prorroga->fecha_fin);
             $fechaInicioExtensionProrroga = $fecha;
+            }else{
+                //dd('tiene soli');
+                foreach ($prorroga_especial as $especial => $prorroga) {
+                    # code...
+                    $especial_anterior = $prorroga;
+                }
+                $fecha = new Carbon($especial_anterior->fecha_fin);
+                $fechaInicioExtensionProrroga = $fecha;
+                //dd($fecha_ciclo, $fechaInicioExtensionProrroga);
+                
+                //Esto lo estoy haciendo para validad que las prorrogas especiales no pasen de 3 anos, validando con la fecha inicio del ciclo y la fecha final de la ultima prorroga
+                $diff = $fecha_ciclo->diffInMonths($fechaInicioExtensionProrroga);
+
+                //Evaluando la cantidad de meses para saber si puede pedir o no la prórroga
+                if($diff<36){
+                    $fecha = new Carbon($especial_anterior->fecha_fin);
+                    $fechaInicioExtensionProrroga = $fecha;
+                    return view('requests.prorroga_especial')->with('tdgs', $tdg)->with('fechaInicio', $fechaInicioExtensionProrroga->format('d/m/Y'))->with('tipo',3);
+
+                }else if($diff>=36)
+                {
+                    return redirect()->route('solicitudes.listar','&save=0');
+                }
+            }
+            //Rescatamos solicitud de extension de prorroga para obtener la fecha en la que termina.
+           
 
             return view('requests.prorroga_especial')->with('tdgs', $tdg)->with('fechaInicio', $fechaInicioExtensionProrroga->format('d/m/Y'))->with('tipo',3);
         }
