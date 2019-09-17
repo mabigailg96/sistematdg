@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\RequestApproved;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 class RequestApprovedController extends Controller
 {
     /**
@@ -33,9 +33,16 @@ class RequestApprovedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($tgd)
     {
         //
+        $requestApproved=RequestApproved::create([
+            'fecha'=> Carbon::now(),
+            'tdg_id'=>$tgd,
+
+        ]);
+        return $requestApproved;
+
     }
 
     /**

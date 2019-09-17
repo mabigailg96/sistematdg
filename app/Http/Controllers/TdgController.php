@@ -100,6 +100,11 @@ class TdgController extends Controller
                 'ciclo_id' => $ciclo_id,
             ]);
 
+            //Aqui guardamos la solicitud para apobacion ya que es el primer paso del proceso, donde se sube el perfil en espera de la respuesta
+            $requestApproved=new RequestApprovedController();
+            $approved=$requestApproved->store($tdg->id);
+            
+
             return redirect()->route('tdg.ingresar', '/?' . $escuela_id . '&save=1')
                 ->with('info', 'Trabajo de graduación guardado con éxito');
         } else {
