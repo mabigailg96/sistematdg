@@ -82,3 +82,11 @@ Route::get('/listar/acuerdos/jd', function(){
 });
 
 Route::get('/todos/acuerdos/ver/jd', 'AgreementController@allJdAcuerdos')->name('agreement.show');
+
+//Pantalla para mostrar las tdg, para el administrador
+Route::get('/listar/tdg/ratificacion', function(){
+    return view('tdg.listar_tdg');
+});
+
+Route::get('/todos/tdg/ver/ratificacion', 'TdgController@allTdgRatificacion')->name('tdg.showtdgRatificacion');
+
