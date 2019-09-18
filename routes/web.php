@@ -30,6 +30,10 @@ Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.g
 Route::get('/ingresar/tdg', 'TdgController@create')->name('tdg.ingresar')->middleware('can:tdg.ingresar');
 Route::post('/guardar/tdg', 'TdgController@store')->name('tdg.guardar')->middleware('can:tdg.guardar');
 
+// Ruta para traer todos los docentes para asignación de tribunal
+Route::get('/todos/profesores/nombramiento/tribunal', 'ProfessorController@allProfessorNombramientoTribunal')->name('professor.todosProfesoresNombramientoTribunal');
+
+
 // Ruta para para enviar todos los datos del TDG para filtro de solicitudes
 Route::get('/todos/tdg/solicitudes', 'TdgController@allTdgSolicitudes')->name('tdg.todosTdgSolicitudes');
 // Ruta para para enviar todos los datos del TDG para filtro de asignaciones de docente, estudiantes y asesores
@@ -59,7 +63,8 @@ Route::get('/ingresar/solicitud/nombre/{id}', 'RequestNameController@create')->n
 Route::post('/guardar/solicitud/nombre', 'RequestNameController@store')->name('name.guardar');
 
 Route::get('/ingresar/solicitud/tribunal/{id}', 'RequestTribunalController@create')->name('request_tribunal.ingresar');
-Route::post('/guardar/solicitud/tribunal', 'RequestTribunalController@store')->name('request_tribunal.guardar');
+Route::get('/guardar/solicitud/tribunal', 'RequestTribunalController@store')->name('request_tribunal.guardar');
+Route::get('/guardar/tribunal/profesor', 'RequestTribunalController@storeRequestTribunalProfessor')->name('request_tribunal.guardarRequestTribunalProfessor');
 
 Route::get('/ingresar/solicitud/{tipo_solicitud}/{id}', 'RequestExtensionController@create')->name('request_extension.ingresar');
 Route::post('/guardar/solicitud/prorroga', 'RequestExtensionController@store')->name('request_extension.guardar');
