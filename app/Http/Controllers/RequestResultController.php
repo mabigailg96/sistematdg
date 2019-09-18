@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\RequestResult;
 use Illuminate\Http\Request;
 use \DB;
+use App\Tdg;
 
 class RequestResultController extends Controller
 {
@@ -28,9 +29,12 @@ class RequestResultController extends Controller
     {
         //
         
-        $nombre = DB::table('tdgs')->find($id);
-        dd($nombre);
-        return view('requests.ratificacion_resultados')->with('tdgs', $nombre);
+        $tdgs = Tdg::find($id);
+        
+        $students = $tdgs->students;
+        
+       
+        return view('requests.ratificacion_resultados', compact('tdgs', 'students'));
     }
 
     /**

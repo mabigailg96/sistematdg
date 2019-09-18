@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('javascript')
-<script src="" defer></script>
-<link rel="stylesheet" type = "text/css" href="{{ asset('css/estilos.css') }}">
+
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 @endsection
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-					Ingresar solicitud de ratificación de resultados.
+					Ingresar solicitud de cambio de nombre
 				</div>
 
                 <div class="card-body">
@@ -21,62 +21,60 @@
                         </div>
 					@endif
 						
-                    <form class="form-horizontal" method="POST" action="{{ route('request_result.guardar') }}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="{{ route('name.guardar') }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="card-header">
-					{{$tdgs->nombre}}
-				</div>
-               
-
-                <div class="card">
-                    <h6 class="card-header">Agrege las calificaciones finales a los alumnos.</h6>
-                    <div class="card-body">
-                    <div class="row form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                            <label for="nombre" class="textlabel col-md-2 control-label offset-2 required">Profesor:</label>
-                            <div class="col-md-6">
-                            <input id="nombre" name="nombre" type="text" class="form-control required" value="{{old('nombre')}}" required autofocus>
-                            <button type="submit" class="btn btn-primary btn-color">
-                                   Agregar profesor.
-                                </button>
-                                @if ($errors->has('nombre'))
-                                    <span class="help-block">
-                                        {{ $errors->first('nombre') }}
-                                    </span>
-                                @endif
+                        <div class="card">
+                            <div class="card-body bg-light">
+                               {{$tdgs->nombre}} 
                             </div>
-                </div>
-                        
-                    </div>
-                </div>
+                          </div>
+                          <br>
+                     
+                          <table class="table">
+                            <thead>
+                              <tr class="text-center">
 
-
-                <ul class="list-group">
-  <li class="list-group-item">Profesor 1</li>
-  <li class="list-group-item">Profesor 2</li>
-  <li class="list-group-item">Profesor 3</li>
-</ul>
-
-                        
-
-                        
-                        <div class="row offset-4">
-                            <span style="color:red; margin-left:10px">*</span> Campos requeridos.
-                        </div>
+                                <th class="d-inline-block col-5" scope="col">Apellidos</th>
+                                <th class="d-inline-block col-5" scope="col">Nombres</th>
+                                <th class="d-inline-block col-2 "  scope="col" >Nota</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            
+                        @foreach ($students as $student)
+                                <tr>
+                                    <td class="d-inline-block col-5">{{$student->apellidos}}</td>
+                                     <td class="d-inline-block col-5">{{$student->nombres}}</td>
+                                     <td class="d-inline-block col-2">
+                                         <div class="form-group row">
+                                             <div class="col-6">
+                                            <input type="text" id="nota" name="nota" class="form-control" align="center">
+                                        </div>
+                                         </div>
+                                        </td> 
+                                     
+                                </tr>
+                        @endforeach
+                            </tbody>
+                        </table>
 						
-                        <div class="form-group{{ $errors->has('college_id') ? ' has-error' : '' }}">
-                            <input type="hidden" name="college_id" value="{{auth()->user()->college_id}}">
+                        <div class="form-group{{ $errors->has('tdg_id') ? ' has-error' : '' }}">
+                            <input type="hidden" name="tdg_id" value="{{$tdgs->id}}">
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-md-2 offset-4">
+                            <div class="col text-center">
                                 <button type="submit" class="btn btn-primary btn-color">
-                                    Guardar solicitud
+                                    Guardar resultados
                                 </button>
                             </div>
 						</div>
 						
                     </form>
-                    <br>
+                    
+                </div>
+                <div class="card-footer text-muted">
+                    Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
                 </div>
             </div>
         </div>

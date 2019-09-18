@@ -16,6 +16,6 @@ class RequestResult extends Model
     }
 
     protected $fillable = [
-        'fecha', 'aprobado','','tdg_id','agreement_id',
+        'fecha', 'aprobado','nota','tdg_id','agreement_id',
     ];
 }
