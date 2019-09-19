@@ -21,7 +21,7 @@
                         </div>
 					@endif
 						
-                    <form class="form-horizontal" method="POST" action="{{ route('name.guardar') }}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="{{ route('request_result.guardar') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
                             <div class="card-body bg-light">
@@ -32,7 +32,7 @@
                      
                           <table class="table form-group">
                             <thead>
-                              <tr class="text-center">
+                              <tr class="text-center d-flex row">
 
                                 <th class="d-inline-block col-5" scope="col">Apellidos</th>
                                 <th class="d-inline-block col-5" scope="col">Nombres</th>
@@ -42,13 +42,16 @@
                             <tbody>
                             
                         @foreach ($students as $student)
-                                <tr>
-                                    <td class="d-inline-block col-5">{{$student->apellidos}}</td>
-                                     <td class="d-inline-block col-5">{{$student->nombres}}</td>
+                                <tr class = "d-flex row">
+                                    <td class="d-inline-block col-5 w-25">{{$student->apellidos}}</td>
+                                     <td class="d-inline-block col-5 w-25">{{$student->nombres}}</td>
                                      <td class="d-inline-block col-2">
                                          <div class="form-group row justify-content-center">
                                              <div class="col-6">
-                                            <input type="text" id="nota" name="nota" class="form-control" align="center" required>
+                                            <input type="text" id="nota[]" name="nota[]" class="form-control" align="center" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" name="student[]" id="student[]" value="{{$student->id}}">
                                         </div>
                                          </div>
                                         </td> 

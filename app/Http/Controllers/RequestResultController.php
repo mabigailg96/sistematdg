@@ -46,6 +46,20 @@ class RequestResultController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request['nota'], $request['student']);
+        $students = $request['student'];
+        $notas = $request['nota'];
+        $tdg_id = $request['tdg_id'];
+
+        //dd($students, $notas, $tdg_id);
+
+        $tdg = Tdg::find($tdg_id);
+        //dd(sizeOf($students));
+
+        for($i=0; $i<sizeOf($students); $i++){
+            $tdg->students()->updateExistingPivot($students[$i], ['nota'=> $notas[$i]]);
+        }
+        return redirect()->route('solicitudes.listar','&save=1&tipo=Ratificación de Resultados');
     }
 
     /**
