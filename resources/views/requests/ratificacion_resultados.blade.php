@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-					Ingresar solicitud de cambio de nombre
+					Ingresar solicitud de ratificación de resultados
 				</div>
 
                 <div class="card-body">
@@ -30,13 +30,13 @@
                           </div>
                           <br>
                      
-                          <table class="table">
+                          <table class="table form-group">
                             <thead>
                               <tr class="text-center">
 
                                 <th class="d-inline-block col-5" scope="col">Apellidos</th>
                                 <th class="d-inline-block col-5" scope="col">Nombres</th>
-                                <th class="d-inline-block col-2 "  scope="col" >Nota</th>
+                                <th class="d-inline-block col-2 required"  scope="col" >Nota</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -46,9 +46,9 @@
                                     <td class="d-inline-block col-5">{{$student->apellidos}}</td>
                                      <td class="d-inline-block col-5">{{$student->nombres}}</td>
                                      <td class="d-inline-block col-2">
-                                         <div class="form-group row">
+                                         <div class="form-group row justify-content-center">
                                              <div class="col-6">
-                                            <input type="text" id="nota" name="nota" class="form-control" align="center">
+                                            <input type="text" id="nota" name="nota" class="form-control" align="center" required>
                                         </div>
                                          </div>
                                         </td> 

@@ -43,8 +43,8 @@ class RequestTribunalController extends Controller
         } else {
             return redirect()->route('assignments.filtro');
         }*/
-        $nombre = DB::table('tdgs')->find($id);
-        return view('requests.nombramiento_tribunal')->with('tdgs', $nombre);
+        $tdg = DB::table('tdgs')->find($id);
+        return view('requests.nombramiento_tribunal')->with('tdgs', $tdg);
     }
 
     /**

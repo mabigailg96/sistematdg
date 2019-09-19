@@ -26,10 +26,10 @@ class RequestNameController extends Controller
     {
         //
       
-        $nombre = DB::table('tdgs')->find($id);
+        $tdg = DB::table('tdgs')->find($id);
        
 
-        return view('requests.cambio_nombre')->with('tdgs', $nombre);
+        return view('requests.cambio_nombre')->with('tdgs', $tdg);
     }
 
     /**

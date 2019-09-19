@@ -35,6 +35,11 @@ form label.required:after
     color: red;
     content: " *";
 }
+form th.required:after
+{
+    color: red;
+    content: " *";
+}
 
 .help-block{
   color:red;
