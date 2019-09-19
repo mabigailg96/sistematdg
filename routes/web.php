@@ -47,7 +47,7 @@ Route::post('/guardar/estudiantes', 'StudentController@store')->name('student.gu
 //Rutas para importar los maestros y el formulario de profesores.accordion
 Route::get('/ingresar/profesores', 'ProfessorController@create')->name('professor.ingresar')->middleware('can:professor.ingresar');
 Route::post('/guardar/profesores', 'ProfessorController@store')->name('professor.guardar')->middleware('can:professor.guardar');
-Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('professor.guardarexcel')->middleware('can:professor.ingresarexcel');
+Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('professor.guardarexcel')->middleware('can:professor.guardarexcel');
 
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/solicitudes', function () {
