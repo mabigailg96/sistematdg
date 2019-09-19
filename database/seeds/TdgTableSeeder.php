@@ -57,7 +57,7 @@ class TdgTableSeeder extends Seeder
                 'escuela_id' => $escuela_id,
                 'codigo' => $codigo,
                 //'estado_oficial' => $estado_oficial[$numero_estado],
-                'solicitud_escuela' => 'Recien ingresado',
+                //'solicitud_escuela' => 'Recien ingresado',
                 'perfil' => 'Acuerdo de JD-'.$i.'.pdf',
                 'ciclo_id' => rand(1,4),
             ]);
