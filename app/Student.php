@@ -15,6 +15,6 @@ class Student extends Model
     }
 
     protected $fillable = [
-        'carnet', 'nombres','apellidos','escuela_id',
+        'carnet', 'nombres','apellidos','nota','escuela_id',
     ];
 }
