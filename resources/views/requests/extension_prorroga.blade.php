@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-<script src="{{ asset('') }}" defer></script>
+
 <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 @endsection
 

@@ -48,7 +48,7 @@
                                      <td class="d-inline-block col-2">
                                          <div class="form-group row justify-content-center">
                                              <div class="col-6">
-                                            <input type="text" id="nota[]" name="nota[]" class="form-control nota" align="center" required>
+                                            <input type="number" id="nota[]" name="nota[]" min="0.00" max="10.00" class="form-control nota" align="center" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="hidden" name="student[]" id="student[]" value="{{$student->id}}">
