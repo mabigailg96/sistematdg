@@ -56,9 +56,9 @@ class RequestExtensionController extends Controller
             
             $fecha = new Carbon($prorroga->fecha_fin);
 
-            $fechaInicioProrroga = $fecha;
+            $fechaInicioProrroga = $fecha->copy()->addDays(1);
             //A la fecha de finalizacion se le suman los 6 meses y resta un dia
-            $fechaFinProrroga = $fecha->copy()->addMonths(3)->subDays(1); 
+            $fechaFinProrroga = $fecha->copy()->addMonths(3); 
         return view('requests.extension_prorroga')->with('tdgs', $tdg)->with('fechaInicio', $fechaInicioProrroga->format('d/m/Y'))->with('fechaFin', $fechaFinProrroga->format('d/m/Y'))->with('tipo',2);
         
     
@@ -71,15 +71,15 @@ class RequestExtensionController extends Controller
                 $extension_prorroga = $tdg->request_extensions()->where('aprobado',1)->where('type_extension_id',2)->first();
            
             $fecha = new Carbon($extension_prorroga->fecha_fin);
-            $fechaInicioExtensionProrroga = $fecha;
+            $fechaInicioExtensionProrroga = $fecha->copy()->addDays(1);
             }else{
-                //dd('tiene soli');
+                
                 foreach ($prorroga_especial as $especial => $prorroga) {
                     # code...
                     $especial_anterior = $prorroga;
                 }
                 $fecha = new Carbon($especial_anterior->fecha_fin);
-                $fechaInicioExtensionProrroga = $fecha;
+                $fechaInicioExtensionProrroga = $fecha->copy()->addDays(1);
                 //dd($fecha_ciclo, $fechaInicioExtensionProrroga);
                 
                 //Esto lo estoy haciendo para validad que las prorrogas especiales no pasen de 3 anos, validando con la fecha inicio del ciclo y la fecha final de la ultima prorroga
@@ -88,7 +88,7 @@ class RequestExtensionController extends Controller
                 //Evaluando la cantidad de meses para saber si puede pedir o no la prórroga
                 if($diff<36){
                     $fecha = new Carbon($especial_anterior->fecha_fin);
-                    $fechaInicioExtensionProrroga = $fecha;
+                    $fechaInicioExtensionProrroga = $fecha->copy()->addDays(1);
                     return view('requests.prorroga_especial')->with('tdgs', $tdg)->with('fechaInicio', $fechaInicioExtensionProrroga->format('d/m/Y'))->with('tipo',3);
 
                 }else if($diff>=36)
