@@ -100,7 +100,12 @@ class TdgController extends Controller
                 'ciclo_id' => $ciclo_id,
             ]);
 
-            return redirect()->route('tdg.ingresar', '/?' . $tdg->id . '&save=1')
+            //Aqui guardamos la solicitud para apobacion ya que es el primer paso del proceso, donde se sube el perfil en espera de la respuesta
+            $requestApproved=new RequestApprovedController();
+            $approved=$requestApproved->store($tdg->id);
+            
+
+            return redirect()->route('tdg.ingresar', '/?' . $escuela_id . '&save=1')
                 ->with('info', 'Trabajo de graduación guardado con éxito');
         } else {
             return redirect()->route('tdg.ingresar', '/?&save=0&nombre=' . $perfil['nombre'])
@@ -128,7 +133,7 @@ class TdgController extends Controller
             //Solicitudes de oficializacion aprobadas
             $request_officials = RequestOfficial::where('aprobado',1)->get();
             //Solicitudes de cambio de nombre aprobadas
-            $request_names = RequestName::where('aprobado',1)->get();
+            $request_names = RequestName::where('aprobado',1)->orWhere('aprobado',null)->get();
             $tdgs = array();
             //Validacion para que existan oficializados
             if($request_officials->isEmpty()){
@@ -173,7 +178,7 @@ class TdgController extends Controller
            //Solicitudes de oficializacion
             $request_officials = RequestOfficial::where('aprobado',1)->get();
             //Solicitudes de prorroga de tipo 1
-            $request_extensions = RequestExtension::where('aprobado',1)->where('type_extension_id',1)->get();
+            $request_extensions = RequestExtension::where('aprobado',1)->where('type_extension_id',1)->orWhere('aprobado',null)->get();
             $tdgs = array();
             //Validamos que existan tdgs oficializados
             if($request_officials->isEmpty()){
@@ -219,7 +224,7 @@ class TdgController extends Controller
 
             //Rescatamos los datos para la toma de criterio
             $request_extensions_1 = RequestExtension::where('aprobado',1)->where('type_extension_id',1)->get();
-            $request_extensions_2 = RequestExtension::where('aprobado',1)->where('type_extension_id',2)->get();
+            $request_extensions_2 = RequestExtension::where('aprobado',1)->where('type_extension_id',2)->orWhere('aprobado',null)->get();
             $tdgs = array();
             //Validamos que existan prorrogas de tipo 1
             if($request_extensions_1->isEmpty()){
@@ -264,11 +269,13 @@ class TdgController extends Controller
         } else if($tipo_solicitud == 'prorroga_especial'){
                //Rescatamos los datos para la toma de criterio
                $request_extensions_2 = RequestExtension::where('aprobado',1)->where('type_extension_id',2)->get();
-               $request_extensions_3 = RequestExtension::where('aprobado',1)->where('type_extension_id',3)->get();
+              $request_extensions_3 = RequestExtension::where('aprobado',null)->where('type_extension_id',3)->get();
+            
+               
                $tdgs = array();
-   
-               //Validamos que existan prorrogas de tipo 2
-               if($request_extensions_2->isEmpty()){
+
+               //Validamos que existan prorrogas de tipo 1
+            if($request_extensions_2->isEmpty()){
              
             }else{
                 //Si existen las recorremos
@@ -276,7 +283,7 @@ class TdgController extends Controller
                     $enable_extensions_2[]= $re2->tdg_id;
                 }
 
-                //Validamos que existan prorrogas de tipo 3 que esten validadas
+                //Validamos que existan prorrogas de tipo 2 que esten validadas
                 if(!$request_extensions_3->isEmpty()){
                     foreach($request_extensions_3 as $re3){
                         $enable_extensions_3[]= $re3->tdg_id;
@@ -286,14 +293,11 @@ class TdgController extends Controller
                       $enable_request = array_diff($enable_extensions_2, $enable_extensions_3);
                     
                 }else{
-                    //Sino, los tdgs disponibles seran por defecto solo los que tengan una prorroga tipo 2 aprobada.
+                    //Sino, los tdgs disponibles seran por defecto solo los que tengan una prorroga 1 aprobada.
                     $enable_request = $enable_extensions_2;
                 }
-                
-                       
-                  
-                   
-                   
+
+             
                    foreach($enable_request as $enable){
                  
                        $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
@@ -309,13 +313,13 @@ class TdgController extends Controller
                        }
                     }
                        
-                   }
+                }
                
            
         } else if($tipo_solicitud == 'nombramiento_de_tribunal'){
            //Rescatamos los datos para la toma de criterio
            $request_officials = RequestOfficial::where('aprobado',1)->get();
-           $request_tribunal = RequestTribunal::where('aprobado',1)->get();
+           $request_tribunal = RequestTribunal::where('aprobado',1)->orWhere('aprobado',null)->get();
            $tdgs = array();
            //Validamos que existan tdgs oficializados
            if($request_officials->isEmpty()){
@@ -360,7 +364,7 @@ class TdgController extends Controller
         }else{
              //Rescatamos los datos para la toma de criterio
            $request_tribunal = RequestTribunal::where('aprobado',1)->get();
-           $request_result = RequestResult::where('aprobado',1)->get();
+           $request_result = RequestResult::where('aprobado',1)->orWhere('aprobado',null)->get();
            $tdgs = array();
            //Validamos que existan solicitudes de tribunal 
            if($request_tribunal->isEmpty()){

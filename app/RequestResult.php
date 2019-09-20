@@ -14,4 +14,8 @@ class RequestResult extends Model
     public function agreement(){
         return $this->belongsTo(Agreement::class);
     }
+
+    protected $fillable = [
+        'fecha', 'aprobado','nota','tdg_id','agreement_id',
+    ];
 }

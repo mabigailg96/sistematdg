@@ -14,4 +14,7 @@ class RequestApproved extends Model
     public function agreement(){
         return $this->belongsTo(Agreement::class);
     }
+    protected $fillable = [
+        'fecha', 'aprobado','tdg_id','agreement_id',
+    ];
 }

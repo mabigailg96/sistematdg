@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-<script src="" defer></script>
-<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+<script src="{{ asset('js/ingresar_nombramiento_tribunal.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -20,63 +19,43 @@
                             {{ session('status') }}
                         </div>
 					@endif
-						
-                    <form class="form-horizontal" method="POST" action="{{ route('request_tribunal.guardar') }}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="card-header">
+                    <div class="card-header">
+                    <p id="tdg-id" class="oculto">{{$tdgs->id}}</p>
 					{{$tdgs->nombre}}
 				</div>
-               
-
-                <div class="card">
-                    <h6 class="card-header">Agrege profesores al tribunal calificador.</h6>
-                    <div class="card-body">
-                    <div class="row form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                            <label for="nombre" class="textlabel col-md-2 control-label offset-2 required">Profesor:</label>
-                            <div class="col-md-6">
-                            <input id="nombre" name="nombre" type="text" class="form-control required" value="{{old('nombre')}}" required autofocus>
-                            <button type="submit" class="btn btn-primary btn-color">
-                                   Agregar profesor.
-                                </button>
-                                @if ($errors->has('nombre'))
-                                    <span class="help-block">
-                                        {{ $errors->first('nombre') }}
-                                    </span>
-                                @endif
+                <br>
+                <br>
+                    <!-- Espacio para buscar Docente -->
+                    <h3>Agregar docente al tribunal calificador</h3>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Buscar docente</span>
+                                </div>
+                                <input type="text" id="txt-buscar-docente" class="form-control">
                             </div>
-                </div>
-                        
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" id="btn-agregar-docente" class="btn btn-success">Agregar</button>
+                        </div>
                     </div>
-                </div>
-
-
-                <ul class="list-group">
-  <li class="list-group-item">Profesor 1</li>
-  <li class="list-group-item">Profesor 2</li>
-  <li class="list-group-item">Profesor 3</li>
-</ul>
-
-                        
-
-                        
-                        <div class="row offset-4">
-                            <span style="color:red; margin-left:10px">*</span> Campos requeridos.
-                        </div>
-						
-                        <div class="form-group{{ $errors->has('college_id') ? ' has-error' : '' }}">
-                            <input type="hidden" name="college_id" value="{{auth()->user()->college_id}}">
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col-md-2 offset-4">
-                                <button type="submit" class="btn btn-primary btn-color">
-                                    Guardar solicitud
-                                </button>
-                            </div>
-						</div>
-						
-                    </form>
                     <br>
+
+                    <br>
+                    <h3>Listado de tribunal calificador:</h3>
+                    <ul id="lista-tribunal" class="list-group">
+                    </ul>
+
+                    <!-- Botones para guardar o cancelar la asignacion de grupo de TDG -->
+                    <div class="d-flex flex-row-reverse bd-highlight">
+                        <div class="p-2 bd-highlight">
+                            <button type="button" id="btn-guardar" class="btn btn-primary btn-color">Envíar solicitud</button>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <button type="button" id="btn-cancelar" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

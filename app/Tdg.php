@@ -51,6 +51,11 @@ class Tdg extends Model
         return $this->hasMany(RequestExtension::class);
     }
 
+    public function students(){
+        return $this->belongsToMany(Student::class)->withPivot('ciclo_id','nota','activo');
+    }
+
+
 
     protected $fillable = [
         'nombre', 'codigo','perfil','escuela_id','ciclo_id',

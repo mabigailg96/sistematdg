@@ -35,8 +35,20 @@ form label.required:after
     color: red;
     content: " *";
 }
+form th.required:after
+{
+    color: red;
+    content: " *";
+}
 
 .help-block{
   color:red;
   margin-left: 0px;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }

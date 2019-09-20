@@ -6,6 +6,7 @@ use App\Professor;
 use Illuminate\Http\Request;
 use App\Imports\ProfessorsImport;
 use Maatwebsite\Excel\Facades\Excel;
+use \DB;
 class ProfessorController extends Controller
 {
     /**
@@ -112,5 +113,82 @@ class ProfessorController extends Controller
     public function destroy(Professor $professor)
     {
         //
+    }
+
+    // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para nombramiento de tribunal
+    public function allProfessorNombramientoTribunal(Request $request){
+        
+        // Inicializar variables
+        $escuela_id = auth()->user()->college_id;
+        $input = $request->input;
+
+        $professors = array();
+
+        if($input == '') {
+
+            $professors = DB::table('professors')
+            ->select('id', 'codigo', 'nombre', 'apellido')
+            ->where('escuela_id', '=', $escuela_id)
+            ->get();
+
+        } else {
+
+            // Realizar consultas a la base de datos con las coindicencias del codigo de docente
+            $professors_codigo = DB::table('professors')
+                ->select('id', 'codigo', 'nombre', 'apellido')
+                ->where('escuela_id', '=', $escuela_id)
+                ->where('codigo', 'like', '%'.$input.'%')
+                ->get();
+
+            if(!$professors_codigo->isEmpty()){
+                foreach ($professors_codigo as $professor) {
+                    array_push($professors, $professor);
+                }
+            }
+
+            $professors_nombre = DB::table('professors')
+                ->select('id', 'codigo', 'nombre', 'apellido')
+                ->where('escuela_id', '=', $escuela_id)
+                ->where('nombre', 'like', '%'.$input.'%')
+                ->get();
+
+            if(!$professors_nombre->isEmpty()){
+                foreach ($professors_nombre as $professor) {
+                    $existe = false;
+                    foreach ($professors as $professor_main) {
+                        if($professor_main->id == $professor->id) {
+                            $existe = true;
+                        }
+                    }
+
+                    if(!$existe) {
+                        array_push($professors, $professor);
+                    }
+                }
+            }
+
+            $professors_apellido = DB::table('professors')
+                ->select('id', 'codigo', 'nombre', 'apellido')
+                ->where('escuela_id', '=', $escuela_id)
+                ->where('apellido', 'like', '%'.$input.'%')
+                ->get();
+
+            if(!$professors_apellido->isEmpty()){
+                foreach ($professors_apellido as $professor) {
+                    $existe = false;
+                    foreach ($professors as $professor_main) {
+                        if($professor_main->id == $professor->id) {
+                            $existe = true;
+                        }
+                    }
+
+                    if(!$existe) {
+                        array_push($professors, $professor);
+                    }
+                }
+            }
+        }
+
+        return $professors;
     }
 }

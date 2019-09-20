@@ -30,6 +30,10 @@ Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.g
 Route::get('/ingresar/tdg', 'TdgController@create')->name('tdg.ingresar')->middleware('can:tdg.ingresar');
 Route::post('/guardar/tdg', 'TdgController@store')->name('tdg.guardar')->middleware('can:tdg.guardar');
 
+// Ruta para traer todos los docentes para asignación de tribunal
+Route::get('/todos/profesores/nombramiento/tribunal', 'ProfessorController@allProfessorNombramientoTribunal')->name('professor.todosProfesoresNombramientoTribunal');
+
+
 // Ruta para para enviar todos los datos del TDG para filtro de solicitudes
 Route::get('/todos/tdg/solicitudes', 'TdgController@allTdgSolicitudes')->name('tdg.todosTdgSolicitudes');
 // Ruta para para enviar todos los datos del TDG para filtro de asignaciones de docente, estudiantes y asesores
@@ -52,20 +56,21 @@ Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/solicitudes', function () {
     return view('requests.filtro');
-});
+})->name('solicitudes.listar');
 
 //Rutas para las solicitudes
 Route::get('/ingresar/solicitud/nombre/{id}', 'RequestNameController@create')->name('request_name.ingresar');
-Route::post('/guardar/solicitud/nombre', 'RequestNameController@store')->name('request_name.guardar');
+Route::post('/guardar/solicitud/nombre', 'RequestNameController@store')->name('name.guardar');
 
 Route::get('/ingresar/solicitud/tribunal/{id}', 'RequestTribunalController@create')->name('request_tribunal.ingresar');
-Route::post('/guardar/solicitud/tribunal', 'RequestTribunalController@store')->name('request_tribunal.guardar');
+Route::get('/guardar/solicitud/tribunal', 'RequestTribunalController@store')->name('request_tribunal.guardar');
+Route::get('/guardar/tribunal/profesor', 'RequestTribunalController@storeRequestTribunalProfessor')->name('request_tribunal.guardarRequestTribunalProfessor');
 
 Route::get('/ingresar/solicitud/{tipo_solicitud}/{id}', 'RequestExtensionController@create')->name('request_extension.ingresar');
 Route::post('/guardar/solicitud/prorroga', 'RequestExtensionController@store')->name('request_extension.guardar');
 
-Route::get('/ingresar/solicitud/resultado/{id}', 'RequestResultController@create')->name('request_result.ingresar');
-Route::post('/guardar/solicitud/resultado', 'RequestResultController@store')->name('request_result.guardar');
+Route::get('/ingresar/solicitud/{id}', 'RequestResultController@create')->name('request_result.ingresar');
+Route::post('/guardar/solicitud/', 'RequestResultController@store')->name('request_result.guardar');
 
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/asignar', function () {

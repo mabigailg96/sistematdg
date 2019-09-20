@@ -128,10 +128,10 @@ function cargarDatosTdg() {
                             var htmlButtons = `<a href="/ingresar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
                         } else if(tipo_solicitud == 'nombramiento_de_tribunal'){
                             // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;
-                        }else{
+                            var htmlButtons = `<a href="/ingresar/solicitud/tribunal/${id}">Seleccionar</a>`;
+                        }else if(tipo_solicitud == 'ratificacion_de_resultados'){
                             // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;
+                            var htmlButtons = `<a href="/ingresar/solicitud/${id}">Seleccionar</a>`;
                         } 
                         return htmlButtons;
                     }

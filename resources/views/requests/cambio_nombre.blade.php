@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-<script src="{{ asset('') }}" defer></script>
+
 <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 @endsection
 
@@ -21,7 +21,7 @@
                         </div>
 					@endif
 						
-                    <form class="form-horizontal" method="POST" action="{{ route('request_name.guardar') }}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="{{ route('name.guardar') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
                             <div class="card-body bg-light">
@@ -30,13 +30,13 @@
                           </div>
                           <br>
 
-                        <div class="row form-group{{ $errors->has('nuevo_nombre') ? ' has-error' : '' }}">
-                            <label for="nuevo_nombre" class="textlabel col-md-3 offset-1 control-label required">Nuevo nombre</label>
+                        <div class="row form-group{{ $errors->has('nombre_nuevo') ? ' has-error' : '' }}">
+                            <label for="nombre_nuevo" class="textlabel col-md-3 offset-1 control-label required">Nuevo nombre</label>
                             <div class="col-md-6">
-								<textarea id="nuevo_nombre" type="text" class="textarea form-control" name="nuevo_nombre" value="{{old('nuevo_nombre')}}" rows="10" cols="50" required autofocus></textarea>
-                                @if ($errors->has('nuevo_nombre'))
+								<textarea id="nombre_nuevo" type="text" class="textarea form-control" name="nombre_nuevo" value="{{old('nombre_nuevo')}}" rows="10" cols="50" required autofocus></textarea>
+                                @if ($errors->has('nombre_nuevo'))
                                     <span class="help-block">
-                                       {{ $errors->first('nuevo_nombre') }}
+                                       {{ $errors->first('nombre_nuevo') }}
                                     </span>
                                 @endif
                             </div>

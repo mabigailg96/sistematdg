@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\RequestResult;
 use Illuminate\Http\Request;
+use \DB;
+use App\Tdg;
 
 class RequestResultController extends Controller
 {
@@ -17,14 +19,22 @@ class RequestResultController extends Controller
         //
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+        
+        $tdgs = Tdg::find($id);
+        
+        $students = $tdgs->students;
+        
+       
+        return view('requests.ratificacion_resultados', compact('tdgs', 'students'));
     }
 
     /**
@@ -35,7 +45,25 @@ class RequestResultController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        
+        $students = $request['student'];
+        $notas = $request['nota'];
+        $tdg_id = $request['tdg_id'];
+
+       
+        $tdg = Tdg::find($tdg_id);
+       
+
+        for($i=0; $i<sizeOf($students); $i++){
+            $tdg->students()->updateExistingPivot($students[$i], ['nota'=> $notas[$i]]);
+        }
+        $name = RequestResult::create([
+            'fecha' => date("y-m-d"),
+            'tdg_id' => $request['tdg_id'],
+        ]);
+        
+        return redirect()->route('solicitudes.listar','&save=1&tipo=Ratificación de Resultados');
     }
 
     /**

@@ -31,10 +31,11 @@
                           <br>
 
                         <div class="row form-group{{ $errors->has('fecha_inicio') ? ' has-error' : '' }}">
-                            <label for="fecha_inicio" class="textlabel col-md-4 offset-1 control-label">Fecha de inicio:</label>
+                            <label for="fecha_inicio" class="textlabel col-md-4 offset-1 control-label">Fecha de inicio</label>
                             <div class="col-md-6">
-                                    <label for="fecha_inicio" class="textlabel control-label" value="{{old('fecha_inicio')}}">Fecha de inicio </label>
-                                @if ($errors->has('fecha_inicio'))
+                                    <label for="fecha_inicio" class="textlabel control-label" value="{{old('fecha_inicio')}}">{{$fechaInicio}} </label>
+                                    <input type="hidden" name="fecha_inicio" value="{{$fechaInicio}}">
+                                    @if ($errors->has('fecha_inicio'))
                                     <span class="help-block">
                                        {{ $errors->first('fecha_inicio') }}
                                     </span>
@@ -43,9 +44,11 @@
                         </div>
 
                         <div class="row form-group{{ $errors->has('fecha_fin') ? ' has-error' : '' }}">
-                                <label for="fecha_fin" class="textlabel col-md-4 offset-1 control-label">Fecha de finalización:</label>
+                                <label for="fecha_fin" class="textlabel col-md-4 offset-1 control-label">Fecha de finalización</label>
                                 <div class="col-md-6">
-                                        <label for="fecha_fin" class="textlabel control-label" value="{{old('fecha_fin')}}">Fecha de fin</label>
+                                        <label for="fecha_fin" class="textlabel control-label" value="{{old('fecha_fin')}}">{{$fechaFin}}</label>       
+                                            <input type="hidden" name="fecha_fin" value="{{$fechaFin}}">
+        
                                     @if ($errors->has('fecha_fin'))
                                         <span class="help-block">
                                            {{ $errors->first('fecha_fin') }}
@@ -69,6 +72,10 @@
                         <div class="form-group{{ $errors->has('tdg_id') ? ' has-error' : '' }}">
                             <input type="hidden" name="tdg_id" value="{{$tdgs->id}}">
                         </div>
+                        <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
+                            <input type="hidden" name="tipo" value="{{$tipo}}">
+                        </div>
+
 
                         <div class="row form-group">
                             <div class="col-md-2 offset-5">
