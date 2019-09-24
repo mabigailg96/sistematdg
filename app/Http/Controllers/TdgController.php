@@ -119,7 +119,7 @@ class TdgController extends Controller
 
     // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para solicitudes
     public function allTdgSolicitudes(Request $request){
-        
+
         // Inicializar variables
         $escuela_id = '';
         $escuela_id = $request->escuela_id;
@@ -141,7 +141,7 @@ class TdgController extends Controller
             $tdgs = array();
             //Validacion para que existan oficializados
             if($request_officials->isEmpty()){
-              
+
             }else{
                 //Si existen las recorremos
                 foreach($request_officials as $re1){
@@ -156,13 +156,13 @@ class TdgController extends Controller
 
                     //Hacemos una diferencia para que quitar datos repetidos.
                       $enable_request = array_diff($enable_officials, $enable_names);
-                    
+
                 }else{
                     //Sino, los tdgs disponibles seran por defecto solo los que sea oficializados aprobados
                     $enable_request = $enable_officials;
                 }
-    
-           
+
+
             foreach($enable_request as $enable){
                  //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
                 $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
@@ -172,7 +172,7 @@ class TdgController extends Controller
                 ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                 ->where('tdgs.id','=',$enable)
                 ->get();
-            
+
                 if(!$consulta->isEmpty()){
                     array_push($tdgs, $consulta);
                 }
@@ -186,7 +186,7 @@ class TdgController extends Controller
             $tdgs = array();
             //Validamos que existan tdgs oficializados
             if($request_officials->isEmpty()){
-             
+
             }else{
                 //Si existen las recorremos
                 foreach($request_officials as $re1){
@@ -201,14 +201,14 @@ class TdgController extends Controller
 
                     //Hacemos una diferencia para que quitar datos repetidos
                       $enable_request = array_diff($enable_officials, $enable_extensions);
-                    
+
                 }else{
                     //Sino, los tdgs disponibles seran por defecto solo los oficializados aprobados
                     $enable_request = $enable_officials;
                 }
-        
-        
-            
+
+
+
             foreach($enable_request as $enable){
 
                 $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
@@ -218,7 +218,7 @@ class TdgController extends Controller
                 ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                 ->where('tdgs.id','=',$enable)
                 ->get();
-            
+
                 if(!$consulta->isEmpty()){
                     array_push($tdgs, $consulta);
                 }
@@ -232,7 +232,7 @@ class TdgController extends Controller
             $tdgs = array();
             //Validamos que existan prorrogas de tipo 1
             if($request_extensions_1->isEmpty()){
-             
+
             }else{
                 //Si existen las recorremos
                 foreach($request_extensions_1 as $re1){
@@ -247,15 +247,15 @@ class TdgController extends Controller
 
                     //Teniendo ambas prorrogas hacemos una diferencia para que quitar datos repetidos
                       $enable_request = array_diff($enable_extensions_1, $enable_extensions_2);
-                    
+
                 }else{
                     //Sino, los tdgs disponibles seran por defecto solo los que tengan una prorroga 1 aprobada.
                     $enable_request = $enable_extensions_1;
                 }
 
-                
+
                 foreach($enable_request as $enable){
-              
+
                     $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                     ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
                     ->where('tdgs.escuela_id', '=', $escuela_id)
@@ -263,13 +263,13 @@ class TdgController extends Controller
                     ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                     ->where('tdgs.id','=',$enable)
                     ->get();
-                
+
                     if(!$consulta->isEmpty()){
                         array_push($tdgs, $consulta);
-                    } 
+                    }
                 }
             }
-        
+
         } else if($tipo_solicitud == 'prorroga_especial'){
                //Rescatamos los datos para la toma de criterio
                $request_extensions_2 = RequestExtension::where('aprobado',1)->where('type_extension_id',2)->get();
@@ -278,7 +278,7 @@ class TdgController extends Controller
                
                $tdgs = array();
 
-               //Validamos que existan prorrogas de tipo 1
+            //Validamos que existan prorrogas de tipo 2
             if($request_extensions_2->isEmpty()){
              
             }else{
@@ -295,7 +295,7 @@ class TdgController extends Controller
 
                     //Teniendo ambas prorrogas hacemos una diferencia para que quitar datos repetidos
                       $enable_request = array_diff($enable_extensions_2, $enable_extensions_3);
-                    
+
                 }else{
                     //Sino, los tdgs disponibles seran por defecto solo los que tengan una prorroga 1 aprobada.
                     $enable_request = $enable_extensions_2;
@@ -303,7 +303,7 @@ class TdgController extends Controller
 
              
                    foreach($enable_request as $enable){
-                 
+
                        $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                        ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
                        ->where('tdgs.escuela_id', '=', $escuela_id)
@@ -311,14 +311,12 @@ class TdgController extends Controller
                        ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                        ->where('tdgs.id','=',$enable)
                        ->get();
-                   
+
                        if(!$consulta->isEmpty()){
                            array_push($tdgs, $consulta);
                        }
-                    }
-                       
-                }
-               
+                    }      
+                }  
            
         } else if($tipo_solicitud == 'nombramiento_de_tribunal'){
            //Rescatamos los datos para la toma de criterio
@@ -327,7 +325,7 @@ class TdgController extends Controller
            $tdgs = array();
            //Validamos que existan tdgs oficializados
            if($request_officials->isEmpty()){
-        
+
            }else{
                //Si existen las recorremos
                foreach($request_officials as $re1){
@@ -342,15 +340,15 @@ class TdgController extends Controller
 
                    //Hacemos una diferencia para que quitar datos repetidos
                      $enable_request = array_diff($enable_officials, $enable_tribunal);
-                   
+
                }else{
                    //Sino, los tdgs disponibles seran por defecto solo los oficializados aprobados.
                    $enable_request = $enable_officials;
                }
-                
-              
+
+
                foreach($enable_request as $enable){
-             
+
                    $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
                    ->where('tdgs.escuela_id', '=', $escuela_id)
@@ -358,11 +356,11 @@ class TdgController extends Controller
                    ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                    ->where('tdgs.id','=',$enable)
                    ->get();
-               
+
                    if(!$consulta->isEmpty()){
                        array_push($tdgs, $consulta);
                    }
-                   
+
                }
            }
         }else{
@@ -370,9 +368,9 @@ class TdgController extends Controller
            $request_tribunal = RequestTribunal::where('aprobado',1)->get();
            $request_result = RequestResult::where('aprobado',1)->orWhere('aprobado',null)->get();
            $tdgs = array();
-           //Validamos que existan solicitudes de tribunal 
+           //Validamos que existan solicitudes de tribunal
            if($request_tribunal->isEmpty()){
-               
+
            }else{
                //Si existen las recorremos
                foreach($request_tribunal as $re1){
@@ -387,15 +385,15 @@ class TdgController extends Controller
 
                    //Hacemos una diferencia para que quitar datos repetidos
                      $enable_request = array_diff($enable_tribunal, $enable_result);
-                   
+
                }else{
                    //Sino, los tdgs disponibles seran por defecto solo los que tengan tribunal aprobado
                    $enable_request = $enable_tribunal;
                }
 
-               
+
                foreach($enable_request as $enable){
-             
+
                    $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
                    ->where('tdgs.escuela_id', '=', $escuela_id)
@@ -403,21 +401,21 @@ class TdgController extends Controller
                    ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                    ->where('tdgs.id','=',$enable)
                    ->get();
-               
+
                    if(!$consulta->isEmpty()){
                        array_push($tdgs, $consulta);
                    }
-                   
+
                }
            }
         }
-       
+
         return $tdgs;
     }
 
     // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para asignar docentes, estudiantes y asesores
     public function allTdgAsignaciones(Request $request){
-        
+
         // Inicializar variables
         $escuela_id = '';
         $escuela_id = $request->escuela_id;
@@ -547,4 +545,26 @@ class TdgController extends Controller
             ]);
         }
     }
+    //esta funcion se consulta mediante ajax para traer los tdg filtrados por codigo,nombre,escuela para asignarle su ratificacion
+    public function allTdgRatificacion(Request $request){
+
+        // Inicializar variables
+        $escuela_id = '';
+        $escuela_id = $request->escuela_id;
+        $codigo = '';
+        $codigo = $request->codigo;
+        $nombre = '';
+        $nombre = $request->nombre;
+
+        // Realizar consultas a la base de datos
+        $tdgs = DB::table('tdgs')
+            ->select('id', 'codigo', 'nombre')
+            ->where('escuela_id', 'like', '%'.$escuela_id.'%')
+            ->where('codigo', 'like', '%'.$codigo.'%')
+            ->where('nombre', 'like', '%'.$nombre.'%')
+            ->get();
+
+        return $tdgs;
+    }
+
 }
