@@ -39,6 +39,13 @@ Route::get('/todos/tdg/solicitudes', 'TdgController@allTdgSolicitudes')->name('t
 // Ruta para para enviar todos los datos del TDG para filtro de asignaciones de docente, estudiantes y asesores
 Route::get('/todos/tdg/asignaciones', 'TdgController@allTdgAsignaciones')->name('tdg.todosTdgAsignaciones');
 
+// Pantalla para guardar las asignaciones respectivas de docentes, estudiantes y asesores de TDG
+Route::get('/ingresar/tdg/asignacion/{id}', 'TdgController@createAsignaciones')->name('tdg.ingresarTdgAsignaciones');
+Route::get('/guardar/tdg/asignacion', 'TdgController@storeAsignaciones')->name('tdg.guardarTdgAsignaciones');
+
+// Ruta para para enviar todos los datos de los docentes para 
+Route::get('/todos/profesores/asignaciones', 'ProfessorController@allProfessorAsignaciones')->name('professor.todosProfesoresAsignaciones');
+Route::get('/todos/estudiantes/asignaciones', 'StudentController@allStudentAsignaciones')->name('student.todosStudentAsignaciones');
 
 //Ruta para la creacion del ciclo
 Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingresar')->middleware('can:semester.ingresar');
@@ -75,7 +82,7 @@ Route::post('/guardar/solicitud/', 'RequestResultController@store')->name('reque
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/asignar', function () {
     return view('assignments.filtro');
-});
+})->name('assignments.filtro');
 
 // Ruta para todos los nombres de las escuelas
 Route::get('/todos/colleges', 'CollegeController@allNameColleges')->name('colllege.todos');

@@ -92,7 +92,7 @@ function cargarDatosTdg() {
                 "render": function ( data, type, full, meta ) {
                     var id = full.id;
                     /// Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                    var htmlButtons = `<a href="{url del fomulario de solicitud}${id}">Asignar grupo</a>`;
+                    var htmlButtons = `<a href="/ingresar/tdg/asignacion/${id}">Asignar grupo</a>`;
                     return htmlButtons;
                 }},
             ],

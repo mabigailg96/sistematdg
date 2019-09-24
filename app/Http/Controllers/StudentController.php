@@ -6,6 +6,7 @@ use App\Student;
 use Illuminate\Http\Request;
 use App\Imports\StudentsImport;
 use Maatwebsite\Excel\Facades\Excel;
+use \DB;
 
 class StudentController extends Controller
 {
@@ -96,5 +97,90 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+    }
+
+    // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, carnet y nombre para asignar docentes, estudiantes y asesores
+    public function allStudentAsignaciones(Request $request){
+        
+        // Inicializar variables
+        $escuela_id = auth()->user()->college_id;
+        $input = $request->input;
+
+        $students = array();
+
+        if($input == '') {
+
+            $students = DB::table('students')
+                ->leftJoin('student_tdg', 'student_tdg.student_id', '=', 'students.id')
+                ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos')
+                ->where('student_tdg.student_id', '=', NULL)
+                ->where('students.escuela_id', '=', $escuela_id)
+                ->get();
+
+        } else {
+
+            // Realizar consultas a la base de datos con las coindicencias del carnet del estudiante
+            $students_carnet = DB::table('students')
+                ->leftJoin('student_tdg', 'student_tdg.student_id', '=', 'students.id')
+                ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos')
+                ->where('student_tdg.student_id', '=', NULL)
+                ->where('students.escuela_id', '=', $escuela_id)
+                ->where('students.carnet', 'like', '%'.$input.'%')
+                ->get();
+
+            if(!$students_carnet->isEmpty()){
+                foreach ($students_carnet as $student) {
+                    array_push($students, $student);
+                }
+            }
+
+            $students_nombres = DB::table('students')
+                ->leftJoin('student_tdg', 'student_tdg.student_id', '=', 'students.id')
+                ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos')
+                ->where('student_tdg.student_id', '=', NULL)
+                ->where('students.escuela_id', '=', $escuela_id)
+                ->where('students.nombres', 'like', '%'.$input.'%')
+                ->get();
+
+            if(!$students_nombres->isEmpty()){
+                foreach ($students_nombres as $student) {
+                    $existe = false;
+                    foreach ($students as $student_main) {
+                        if($student_main->id == $student->id) {
+                            $existe = true;
+                        }
+                    }
+
+                    if(!$existe) {
+                        array_push($students, $student);
+                    }
+                }
+            }
+
+            $students_apellidos = DB::table('students')
+                ->leftJoin('student_tdg', 'student_tdg.student_id', '=', 'students.id')
+                ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos')
+                ->where('student_tdg.student_id', '=', NULL)
+                ->where('students.escuela_id', '=', $escuela_id)
+                ->where('students.apellidos', 'like', '%'.$input.'%')
+                ->get();
+
+            if(!$students_apellidos->isEmpty()){
+                foreach ($students_apellidos as $student) {
+                    $existe = false;
+                    foreach ($students as $student_main) {
+                        if($student_main->id == $student->id) {
+                            $existe = true;
+                        }
+                    }
+
+                    if(!$existe) {
+                        array_push($students, $student);
+                    }
+                }
+            }
+        }
+
+        return $students;
     }
 }

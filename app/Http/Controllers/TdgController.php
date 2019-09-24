@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tdg;
+use App\Student;
+use App\Professor;
+use App\Adviser;
+use App\Ciclo;
 use App\RequestOfficial;
 use App\RequestName;
 use App\RequestExtension;
@@ -424,12 +428,123 @@ class TdgController extends Controller
 
         // Realizar consultas a la base de datos
         $tdgs = DB::table('tdgs')
-            ->select('id', 'codigo', 'nombre')
-            ->where('escuela_id', '=', $escuela_id)
-            ->where('codigo', 'like', '%'.$codigo.'%')
-            ->where('nombre', 'like', '%'.$nombre.'%')
+            ->leftJoin('request_officials', 'tdgs.id', '=', 'request_officials.tdg_id')
+            ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre')
+            ->where('request_officials.tdg_id', '=', NULL)
+            ->where('tdgs.escuela_id', '=', $escuela_id)
+            ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+            ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+            ->get();
+        return $tdgs;
+    }
+
+    // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para asignar docentes, estudiantes y asesores
+    public function createAsignaciones($id){
+        // Inicializar variables
+        $escuela_id = auth()->user()->college_id;
+
+        $tdg = DB::table('tdgs')
+            ->leftJoin('request_officials', 'tdgs.id', '=', 'request_officials.tdg_id')
+            ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre')
+            ->where('request_officials.tdg_id', '=', NULL)
+            ->where('tdgs.escuela_id', '=', $escuela_id)
+            ->where('tdgs.id', '=', $id)
+            ->get();
+        
+        if (!$tdg->isEmpty()) {
+            return view('assignments.ingresar')->with('tdg', $tdg[0]);
+        } else {
+            return redirect()->route('assignments.filtro');
+        }
+    }
+
+    // Está función guarda todas las asignaciones de docente, estudiantes y asesores. También crea la solicitud para oficialización.
+    public function storeAsignaciones(Request $request){
+        // Inicializar variables
+        $tdg_id = $request->tdg_id;
+        $professor_id = $request->professor_id;
+        $students = json_decode($request->students);
+        $advisers_internal = json_decode($request->advisers_internal);
+        $advisers_external = json_decode($request->advisers_external);
+        
+        $escuela_id = auth()->user()->college_id;
+        
+        $oficializacion = new RequestOfficial();
+        $retornar = true;
+        
+
+        /*
+            Actualizar campo profesor_id para asignar el docente director
+        */
+            
+        $tdg = Tdg::find($tdg_id);
+        $tdg->profesor_id = $professor_id;
+        $tdg->save();
+            
+        /*
+            Asignar integrates
+        */
+
+        //$ciclo = Ciclo::orderby('created_at','DESC')->take(1)->get();
+
+        for ($i=0; $i < sizeof($students); $i++) { 
+            $tdg->students()->attach($students[$i], ['ciclo_id' => 4]);
+        }
+
+        /*
+            Asignar asesores internos
+        */
+            
+        for ($i=0; $i < sizeof($advisers_internal); $i++) { 
+            DB::table('professor_tdg')->insert(['tdg_id' => $tdg_id, 'professor_id' => $advisers_internal[$i]]);
+        }
+
+        /*
+            Asignar asesores externos
+        */
+ 
+        for ($i=0; $i < sizeof($advisers_external); $i++) {
+            $adviser_ex = json_decode($advisers_external[$i]);
+            $adviser = new Adviser();
+
+            $adviser->nombre = $adviser_ex[0];
+            $adviser->apellido = $adviser_ex[1];
+            $adviser->save();
+
+            $tdg->advisers()->attach($adviser->id);
+        }
+
+        /*
+            Crear la solicitud de oficialización
+        */
+
+        $existe = DB::table('tdgs')
+            ->join('request_officials', 'tdgs.id', '=', 'request_officials.tdg_id')
+            ->select('tdgs.id', 'request_officials.aprobado')
+            ->where('tdgs.escuela_id', '=', $escuela_id)
+            ->where('tdgs.id', '=', $tdg_id)
             ->get();
 
-        return $tdgs;
+        if ($existe->isEmpty()) {
+            // Crear objeto a guardar
+            $oficializacion->fecha = date("y-m-d");
+            $oficializacion->aprobado = 0;
+            $oficializacion->tdg_id = $tdg_id;
+            $oficializacion->save();
+
+        } else {
+            $retornar = false;
+        }
+
+        if ($retornar) {
+            return response()->json([
+                'oficializacion' => $oficializacion,
+                'mensaje' => 'registrado',
+            ]);
+        } else {
+            return response()->json([
+                'mensaje' => 'ya existe',
+            ]);
+        }
     }
 }
