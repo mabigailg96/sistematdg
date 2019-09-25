@@ -4,28 +4,32 @@ var lenguaje_datatable;
 $(document).ready(function(){
     // Variable del idioma para la datatable
     lenguaje_datatable = {
-        "decimal": "",
-        "emptyTable": "No hay información",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-        "infoPostFix": "",
-        "thousands": ",",
-        "lengthMenu": "Mostrar _MENU_ Entradas",
-        "loadingRecords": "Cargando...",
-        "processing": "Procesando...",
-        "search": "Buscar:",
-        "zeroRecords": "Sin resultados encontrados",
-        "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
+        "sProcessing":     "Procesando...",
+        "sLengthMenu":     "Mostrar _MENU_ registros",
+        "sZeroRecords":    "No se encontraron resultados",
+        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":    "",
+        "sSearch":         "Buscar:",
+        "sUrl":            "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst":    "Primero",
+            "sLast":     "Último",
+            "sNext":     "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
         }
     };
 
     // Al cargar la página que la tabla esté sin información
-    //cargarDataTable();
+    cargarDataTable();
       
 
     // Cargar datos a la tabla
@@ -41,14 +45,11 @@ $(document).on("click", "#btn-filtro-buscar", function(){
 $(document).on("click", "#btn-filtro-limpiar-busqueda", function(){
     $("#txt-filtro-codigo").val("");
     $("#txt-filtro-nombre").val("");
+    $("#select-filter-estado").val("null");
     cargarDatosTdg();
+    $("#select-filter-estado").val("");
 });
 
-// Al seleccionar un tipo de solicitud que se actualice la tabla con los TDG aptos para esa solicitud
-$(document).on("change", "#select-filtro-solicitud", function(){
-    //alert($(this).val());
-    cargarDatosTdg();
-});
 
 // Función para llenar la tabla TDG
 function cargarDatosTdg() {
@@ -61,6 +62,7 @@ function cargarDatosTdg() {
     var txt_filter_codigo = $("#txt-filtro-codigo").val();
     var txt_filter_nombre = $("#txt-filtro-nombre").val();
     var filter_escuela_id = $("#filtro-escuela_id").val();
+    var filter_estado_oficial = $("#select-filter-estado").val();
 
     // Validar si los input no continen nada
     if(txt_filter_codigo != undefined || txt_filter_codigo != '') {
@@ -74,6 +76,7 @@ function cargarDatosTdg() {
     // Parametros a enviar a la perticion de datos
     var params = {
         escuela_id: filter_escuela_id,
+        estado_oficial: filter_estado_oficial,
         codigo: codigo,
         nombre: nombre,
     };
@@ -81,15 +84,13 @@ function cargarDatosTdg() {
     //console.log(params);
 
     // Ejecutar petición ajax
-    axios.get('/todos/tdg/asignaciones', {
+    axios.get('/todos/tdg/gestionar/escuela', {
         params: params
     }).then(response => {
         //console.log(response.data);
-
         if(response.data.length > 0){
             // Llenar la tabla con los resultados traidos de la peticion
             $("#table-filtro-tdgs").DataTable({
-        
                 "destroy": true,
                 "processing": true,
                 "data": response.data,
@@ -99,10 +100,21 @@ function cargarDatosTdg() {
                     { 'data': 'codigo' },
                     { 'data': 'nombre' },
                     { sortable: false,
+                        "render": function ( data, type, full, meta ) {
+                            // En caso de que traiga un valor null
+                            var etiqueta = full.estado_oficial;
+                            if(etiqueta == null) {
+                                return 'Recien ingresado';
+                            } else {
+                                return etiqueta;
+                            }
+                    }},
+                    { sortable: false,
                     "render": function ( data, type, full, meta ) {
+                        // Id del TDG
                         var id = full.id;
-                        /// Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                        var htmlButtons = `<a href="/ingresar/tdg/asignacion/${id}">Asignar grupo</a>`;
+                        var htmlButtons = `<a href="/ingresar/solicitud/${id}">Ver detalles</a>`;
+
                         return htmlButtons;
                     }},
                 ],

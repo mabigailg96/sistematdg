@@ -16,14 +16,10 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text">Escuela</label>
-            </div>
-            <select id="select-filtro-escuela" class="form-control" class="custom-select">
-                <option value="" selected disabled>Seleccionar escuela</option>
-            </select>
-        </div>
+        @include('select_estado')
+    </div>
+    <div class="form-group{{ $errors->has('college_id') ? ' has-error' : '' }}">
+        <input id="filtro-escuela_id" type="hidden" name="college_id" value="{{auth()->user()->college_id}}">
     </div>
     <div class="col-md-1">
         <button type="button" id="btn-filtro-buscar" class="btn btn-outline-dark">Buscar</button>
