@@ -1,6 +1,8 @@
+// Declarar variables globales
 var lenguaje_datatable;
+
 $(document).ready(function(){
-    cargarSelectEscuela();
+    // Variable del idioma para la datatable
     lenguaje_datatable = {
         "decimal": "",
         "emptyTable": "No hay información",
@@ -21,72 +23,119 @@ $(document).ready(function(){
             "previous": "Anterior"
         }
     };
-     // Al cargar la página que la tabla esté sin información
-     cargarDataTable();
 
-      // Cargar datos a la tabla
-    cargarDatosTdgRatificacion();
-  });
+    // Al cargar la página que la tabla esté sin información
+    cargarDataTable();
+      
 
-  $(document).on("click", "#btn-filtro-buscar", function() {
-    cargarDatosTdgRatificacion();
+    // Cargar datos a la tabla
+    //cargarDatosTdg();
 });
 
-$(document).on("click", "#btn-filtro-limpiar-busqueda", function() {
-    $("#txt-filtro-nombre-tdg").val("");
-    $("#txt-filtro-codigo-tdg").val("");
-    $("#txt-filtro-escuela").val("");
-    cargarDatosTdgRatificacion();
+// Al dar click en buscar que se actualicé la tabla
+$(document).on("click", "#btn-filtro-buscar", function(){
+    cargarDatosTdg();
 });
 
-function cargarDatosTdgRatificacion() {
-    // Inicializamos las variables a utilizar
-    var nombre = '';
+// Al dar click en buscar que se limpien los campos de codigo y nombre y se regresan los datos sin filtro
+$(document).on("click", "#btn-filtro-limpiar-busqueda", function(){
+    $("#txt-filtro-codigo").val("");
+    $("#txt-filtro-nombre").val("");
+    cargarDatosTdg();
+});
+
+// Al seleccionar un tipo de solicitud que se actualice la tabla con los TDG aptos para esa solicitud
+$(document).on("change", "#select-filtro-solicitud", function(){
+    //alert($(this).val());
+    cargarDatosTdg();
+});
+
+// Función para llenar la tabla TDG
+function cargarDatosTdg() {
+
+    // Inicializar variables
     var codigo = '';
-    var escuela_id ='';
-    //Obtenemos los datos
-    var txt_filter_nombre = $("#txt-filtro-nombre-tdg").val();
-    var txt_filter_codigo = $("#txt-filtro-codigo-tdg").val();
-    var txt_filter_escuela = $("#txt-filtro-escuela").val();
-    console.log(txt_filter_nombre);
-    console.log(txt_filter_codigo);
-    console.log(txt_filter_escuela);
-    // Validamos que los imputs contengan o no informacion
-    if (txt_filter_nombre != undefined || txt_filter_nombre != '') {
+    var nombre = '';
+    var tipo_solicitud = '';
+
+    // Obtener valores de los input
+    var txt_filter_codigo = $("#txt-filtro-codigo").val();
+    var txt_filter_nombre = $("#txt-filtro-nombre").val();
+    var filter_escuela_id = $("#filtro-escuela_id").val();
+    var filter_tipo_solicitud = $("#select-filtro-solicitud").val();
+
+    // Validar si los input no continen nada
+    if(txt_filter_codigo != undefined || txt_filter_codigo != '') {
+        codigo = txt_filter_codigo;
+    }
+
+    if(txt_filter_nombre != undefined || txt_filter_nombre != '') {
         nombre = txt_filter_nombre;
     }
 
-    if (txt_filter_codigo != undefined || txt_filter_codigo != '') {
-        codigo = txt_filter_codigo;
-    }
-    if (txt_filter_escuela != undefined || txt_filter_escuela != '') {
-        escuela_id = txt_filter_escuela;
+    if(filter_tipo_solicitud != 0) {
+        tipo_solicitud = filter_tipo_solicitud;
     }
 
-    // Parametros que se enviaran a la peticion de los datos.
+    // Parametros a enviar a la perticion de datos
     var params = {
-        nombre: nombre,
+        escuela_id: filter_escuela_id,
         codigo: codigo,
-        escuela_id: escuela_id,
-    }
+        nombre: nombre,
+        tipo_solicitud: tipo_solicitud,
+    };
 
-    //ahora ejecutamos la peticion AJAX
+    //console.log(params);
 
+    // Ejecutar petición ajax
     axios.get('/todos/tdg/ver/ratificacion', {
         params: params
     }).then(response => {
         console.log(response.data);
-        if (response.data.length > 0) {
-            $("#table-filtro-tdg-ratificacion").DataTable({
+        response.data.forEach(element => {
+            console.log(element);
+        });
+        if(response.data.length > 0){
+            // Llenar la tabla con los resultados traidos de la peticion
+            $("#table-filtro-tdgs").DataTable({
+        
                 "destroy": true,
                 "processing": true,
                 "data": response.data,
                 "ordering": false,
                 "pageLength": 10,
                 "columns": [
-                    { 'data': 'id' },
-                    { 'data':'codigo' },
-                    { 'data': 'nombre'},
+                    { 'data': 'codigo' },
+                    { 'data': 'nombre' },
+                    { sortable: false,
+                    "render": function ( data, type, full, meta ) {
+                        var htmlButtons = '';
+                        // Id del TDG
+                        /*var id = full[0].id;
+                        console.log(id);
+                        // Concatenar ruta para el formulario
+                        if(tipo_solicitud == 'cambio_de_nombre'){
+                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
+                            var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;
+                        } else if(tipo_solicitud == 'prorroga'){
+                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
+                            var htmlButtons = `<a href="/ingresar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
+                        } else if(tipo_solicitud == 'extension_de_prorroga'){
+                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
+                            var htmlButtons = `<a href="/ingresar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
+                        } else if(tipo_solicitud == 'prorroga_especial'){
+                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
+                            var htmlButtons = `<a href="/ingresar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
+                        } else if(tipo_solicitud == 'nombramiento_de_tribunal'){
+                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
+                            var htmlButtons = `<a href="/ingresar/solicitud/tribunal/${id}">Seleccionar</a>`;
+                        }else if(tipo_solicitud == 'ratificacion_de_resultados'){
+                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
+                            var htmlButtons = `<a href="/ingresar/solicitud/${id}">Seleccionar</a>`;
+                        } */
+                        return htmlButtons;
+                    }
+                },
                 ],
                 "info": false,
                 "searching": false,
@@ -94,13 +143,13 @@ function cargarDatosTdgRatificacion() {
                 "lengthChange": false,
                 "language": lenguaje_datatable,
             });
-        } else if (response.data.length == 0) {
+        } else if(response.data.length == 0) {
             cargarDataTable();
         }
     }).catch(e => {
         // Imprimir error en consola
         console.log(e);
-
+        
         // En caso de que no hayan resultados, siempre pasasr la configuración a la tabla
         cargarDataTable()
 
@@ -113,8 +162,9 @@ function cargarDatosTdgRatificacion() {
     })
 }
 
-function cargarDataTable() {
-    var table = $("#table-filtro-tdg-ratificacion").DataTable({
+// Cargar el DataTable sin ningún dato
+function cargarDataTable(){
+    var table = $("#table-filtro-tdgs").DataTable({
         "destroy": true,
         "processing": true,
         "ordering": false,
@@ -129,28 +179,4 @@ function cargarDataTable() {
     table
         .clear()
         .draw();
-}
-
-// Función para llenar el select con los nombres de escuela
-function cargarSelectEscuela() {
-  // Función de axios para hacer la consulta
-  axios.get('/todos/colleges')
-  .then(response => {
-      //console.log(response);
-
-      // Llenar el select con los elementos traidos
-      response.data.forEach(element => {
-          $("#txt-filtro-escuela").append(new Option(element.escuela, element.id));
-      });
-  }).catch(e => {
-      // Imprimir error en consola
-      console.log(e);
-
-      // Mostrar mensaje de error en caso de que algo haya salido mal con la consulta
-      Swal.fire({
-          type: 'error',
-          title: 'Oops...',
-          text: '¡Algo ha salido mal!, por favor intente más tarde.',
-      });
-  })
 }

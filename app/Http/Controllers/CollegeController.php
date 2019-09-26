@@ -11,9 +11,8 @@ class CollegeController extends Controller
     public function allNameColleges(){
 
         // Realizar consultas a la base de datos
-        $colleges = DB::table('users')
-            ->select('college_id as id', 'username as escuela')
-            ->whereNotNull('college_id')
+        $colleges = DB::table('colleges')
+            ->select('id', 'nombre_completo as escuela')
             ->get();
 
         return $colleges;

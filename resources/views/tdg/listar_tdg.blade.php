@@ -17,25 +17,40 @@
                         </div>
                     @endif
                     <br>
-                    @include('filtro_tdg_ratificacion')
-                    <br>
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Escoga la solicitud que desea</label>
+                                </div>
+                                <select id="select-filtro-solicitud" class="custom-select">
+                                    <option value="0" selected >Seleccionar solicitud de:</option>
+                                    <option value="cambio_de_nombre">Cambio de nombre</option>
+                                    <option value="prorroga">Prórroga</option>
+                                    <option value="extension_de_prorroga">Extensión de prórroga</option>
+                                    <option value="prorroga_especial">Prórroga especial</option>
+                                    <option value="nombramiento_de_tribunal">Nombramiento de tribunal</option>
+                                    <option value="ratificacion_de_resultados">Ratificación de resultados</option>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
                             <button type="button" id="btn-filtro-limpiar-busqueda" class="btn btn-outline-dark">Limpiar Búsqueda</button>
                         </div>
                     </div>
-                <br>
-                <table id="table-filtro-tdg-ratificacion" class="table table-striped">
+                    @include('filtro_codigo_nombre_escuela')
+
+                    <table id="table-filtro-tdgs" class="table table-striped">
                         <thead>
                             <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Nombre de Tdg</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Solicitar</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            
                         </tbody>
                     </table>
 
