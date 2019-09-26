@@ -684,4 +684,46 @@ class TdgController extends Controller
     
         return $tdgs;
     }
+
+    // Función para mostrar la pantalla de detalles de tdg para coordinador de escuela
+    public function createDetalleTdgEscuela($id){
+        // Inicializar variables
+        $escuela_id = auth()->user()->college_id;
+        $tdg_id = $id;
+
+        $tdg = DB::table('tdgs')
+            ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
+            ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+            ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', 'semesters.fechaInicio')
+            ->where('tdgs.escuela_id', '=', $escuela_id)
+            ->where('tdgs.id', '=', $tdg_id)
+            ->get();
+
+        if (!$tdg->isEmpty()) {
+
+            $students = DB::table('student_tdg')
+                ->join('students', 'student_tdg.student_id', '=', 'students.id')
+                ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos', 'student_tdg.activo')
+                ->where('student_tdg.tdg_id', '=', $tdg_id)
+                ->get();
+            
+            $advisers_internal = DB::table('professor_tdg')
+                ->join('professors', 'professor_tdg.professor_id', '=', 'professors.id')
+                ->select('professors.id', 'professors.nombre', 'professors.apellido')
+                ->where('professor_tdg.tdg_id', '=', $tdg_id)
+                ->get();
+
+            $advisers_external = DB::table('adviser_tdg')
+                ->join('advisers', 'adviser_tdg.adviser_id', '=', 'advisers.id')
+                ->select('advisers.id', 'advisers.nombre', 'advisers.apellido')
+                ->where('adviser_tdg.tdg_id', '=', $tdg_id)
+                ->get();
+
+            return view('tdg.ver_detalles_escuela', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external]);
+        } else {
+            return redirect()->route('tdg.todosTdgGestionarEscuela');
+        }
+    }
+
+
 }

@@ -113,7 +113,7 @@ function cargarDatosTdg() {
                     "render": function ( data, type, full, meta ) {
                         // Id del TDG
                         var id = full.id;
-                        var htmlButtons = `<a href="/ingresar/solicitud/${id}">Ver detalles</a>`;
+                        var htmlButtons = `<a href="/ver/detalle/tdg/escuela/${id}">Ver detalles</a>`;
 
                         return htmlButtons;
                     }},

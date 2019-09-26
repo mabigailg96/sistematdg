@@ -51,6 +51,9 @@ Route::get('/todos/tdg/gestionar/escuela', 'TdgController@allTdgGestionarEscuela
 // Ruta para para enviar todos los datos del TDG para filtro de gestionar para el coordinador general
 Route::get('/todos/tdg/gestionar/general', 'TdgController@allTdgGestionarGeneral')->name('tdg.todosTdgGestionarGeneral');
 
+// Ruta para mostrar detalle de tdg coordinador de escuela
+Route::get('/ver/detalle/tdg/escuela/{id}', 'TdgController@createDetalleTdgEscuela')->name('tdg.verDetalleTdgEscuela');
+
 //Ruta para la creacion del ciclo
 Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingresar')->middleware('can:semester.ingresar');
 Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guardar')->middleware('can:semester.ingresar');
