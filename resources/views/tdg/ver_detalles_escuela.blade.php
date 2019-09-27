@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-
+<script src="{{ asset('js/ver_detalles_tdg_escuela.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -33,17 +33,14 @@
                     </div>
                     <br>
                     
-                    <!-- Espacio para buscar Asesores externos -->
-
+                    <!-- Espacio para mostrar los estudiantes -->
                     <h3>Estudiantes</h3>
                     <br>
-                    <table id="table-students" class="table table-striped">
+                    <table id="table-students" class="table table-striped table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">Carnet</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,24 +48,16 @@
                             <tr>
                                 <td>{{$student->carnet}}</td>
                                 <td>{{$student->nombres}} {{$student->apellidos}}</td>
-                                @if ($student->activo)
-                                    <td>Activo</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Inhabilitar</button>
-                                    </td>
-                                @else
-                                    <td>Abandono</td>
-                                    <td></td>
-                                @endif
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    <br>
 
-                            
+                    <!-- Espacio para mostrar los asesores internos -->
                     <h3>Asesores internos</h3>
                     <br>
-                    <table id="table-students" class="table table-striped">
+                    <table id="table-advisers-internal" class="table table-striped table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>
@@ -82,10 +71,12 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <br>
 
+                    <!-- Espacio para mostrar los asesores externos -->
                     <h3>Asesores externos</h3>
                     <br>
-                    <table id="table-students" class="table table-striped">
+                    <table id="table-advisers-external" class="table table-striped table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>

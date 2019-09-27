@@ -703,7 +703,7 @@ class TdgController extends Controller
 
             $students = DB::table('student_tdg')
                 ->join('students', 'student_tdg.student_id', '=', 'students.id')
-                ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos', 'student_tdg.activo')
+                ->select('student_tdg.id as student_tdg_id', 'students.id', 'students.carnet', 'students.nombres', 'students.apellidos', 'student_tdg.activo')
                 ->where('student_tdg.tdg_id', '=', $tdg_id)
                 ->get();
             
@@ -725,5 +725,23 @@ class TdgController extends Controller
         }
     }
 
+    // Función para inhabilitar a un estudiante del tdg
+    public function inhabilitarStudentTdg(Request $request) {
+        // Inicializar variables
+        $student_tdg_id = $request->student_tdg_id;
 
+        // Actualizar el estado de habilitado al student dentro del tdg
+        DB::table('student_tdg')
+            ->where('id', '=', $student_tdg_id)
+            ->update(['activo' => 0]);
+
+        // Consultar de nuevo los student para actualizarlos en la tabla de la vista
+        $students = DB::table('student_tdg')
+            ->join('students', 'student_tdg.student_id', '=', 'students.id')
+            ->select('student_tdg.id as student_tdg_id', 'students.id', 'students.carnet', 'students.nombres', 'students.apellidos', 'student_tdg.activo')
+            ->where('student_tdg.tdg_id', '=', $tdg_id)
+            ->get();
+
+        return $students;
+    }
 }
