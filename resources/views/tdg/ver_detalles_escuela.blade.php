@@ -26,7 +26,7 @@
                             <p id="tdg-id" class="oculto">{{$tdg->id}}</p>
                             <p><strong>Código:</strong> {{$tdg->codigo}}</p>
                             <p><strong>Nombre:</strong> {{$tdg->nombre}}</p>
-                            <p><strong>Estado:</strong> {{$tdg->estado_oficial}}</p>
+                            <p><strong>Estado:</strong> <span id="lbl-estado-oficial">{{$tdg->estado_oficial}}</span></p>
                             <p><strong>Fecha de inicio:</strong> {{$tdg->fechaInicio}}</p>
                             <p><strong>Docente director:</strong> {{$tdg->profesor_nombre}} {{$tdg->profesor_apellido}}</p>
                         </div>
@@ -90,6 +90,18 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <br>
+
+                    <!-- Botones para abandonar el tdg -->
+                    <div class="d-flex flex-row-reverse bd-highlight">
+                        <div class="p-2 bd-highlight">
+                            @if ($tdg->estado_oficial != 'Abandonado')
+                                <button type="button" id="btn-abandonar-tdg" class="btn btn-danger">Abandonar TDG</button>
+                            @else
+                                <button type="button" id="btn-abandonar-tdg" class="btn btn-secundary" disabled>Abandonar TDG</button>
+                            @endif
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer text-muted">
                     Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.

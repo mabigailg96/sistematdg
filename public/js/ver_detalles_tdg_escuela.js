@@ -67,3 +67,57 @@ $(document).ready(function() {
         "language": lenguaje_datatable,
     });
 });
+
+// Función para abandonar el TDG
+$(document).on("click", "#btn-abandonar-tdg", function() {
+
+    Swal.fire({
+        title: 'Un momento...',
+        text: "¿Seguro que desea abadonar el TDG?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, abandonar!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            var params = {
+                tdg_id: $("#tdg-id").html(),
+            };
+
+            console.log(params);
+
+            axios.get("/abandonar/student/tdg", {
+    
+                params: params
+    
+            }).then(response => {
+    
+                console.log(response.data);
+    
+                // Mostrar mensaje de éxito de que todo ha sido registrado
+                Swal.fire({
+                    type: 'success',
+                    title: 'Abandonado!:',
+                    text: 'El presente TDG ha sido abandonado.!:',
+                })
+                .then(function(){
+                    $("#lbl-estado-oficial").html(response.data.tdg.estado_oficial);
+                });
+
+            }).catch(e => {
+                // Imprimir error en consola
+                console.log(e);
+        
+                // Mostrar mensaje de error en caso de que algo haya salido mal con la consulta
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: '¡Algo ha salido mal!, por favor intente más tarde.',
+                });
+            });
+        }
+    })
+
+});

@@ -96,8 +96,8 @@ Route::get('/listar/tdg/gestionar/escuela', function () {
     return view('tdg.filtro_gestionar_escuela');
 });
 
-// Ruta para inhabilitar al estudiante que fue asignado a un TDG
-Route::get('/inabilitar/student/tdg', 'TdgController@inhabilitarStudentTdg')->name('tdg.inhabilitarStudentTdg');
+// Ruta para abandonar el TDG
+Route::get('/abandonar/student/tdg', 'TdgController@abandonarTdg')->name('tdg.abandonarTdg');
 
 // Pantalla mostrar filtros de TDG para gestionar coordinador general
 Route::get('/listar/tdg/gestionar/general', function () {
