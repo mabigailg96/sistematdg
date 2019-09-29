@@ -952,4 +952,13 @@ else if($tipo_solicitud=='aprobado'){
         return $tdgUpdate;
     }
 
+    public function updateCodigo($id_tdg){
+
+        $tdgUpdate = Tdg::find($id_tdg);
+        $newCodigo = substr($tdgUpdate->codigo, 1, 9);
+        $tdgUpdate->codigo = $newCodigo;
+        $tdgUpdate->save();
+        return $tdgUpdate;
+    }
+
 }

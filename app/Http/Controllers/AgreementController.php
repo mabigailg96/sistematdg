@@ -44,6 +44,7 @@ class AgreementController extends Controller
           'nombre'=>'required|unique:agreements',
           'url'=>'required|unique:agreements',
           'fecha'=>'required',
+          'aprobado'=>'accepted' //Para validar que seleccione una opcion del checkbox
           ]);
         //Obtenemos si fue aprobado o rechazado
         $aprobado = $request['aprobado'];
@@ -111,9 +112,16 @@ class AgreementController extends Controller
          
           $request_Approved =  $requestApproved->storeRatificacion($id_tdg, $aprobado, $agreement->id);
         }else if($tipo_solicitud=='oficializacion'){
+          //Guardar ratificacion
           $requestOfficial = new RequestOfficialController();
-         
           $request_Official =  $requestOfficial->storeRatificacion($id_tdg, $aprobado, $agreement->id);
+
+          //Actualizar el codigo del TDG, quitar la 'P' de perfil.
+          if($aprobado=='1'){
+            $tdg_controller = new  TdgController();
+            $tdg = $tdg_controller->updateCodigo($id_tdg);
+          }
+          
         }
 
         //Ver como mostrar mensajes de error.

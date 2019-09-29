@@ -65,13 +65,13 @@
                  <div class="row form-group col-md-12 offset-2">
                         <label for="url" class="textlabel control-label required">Resolución</label>
                 
-                        <div class="form-check form-check-inline offset-1">
-                            <input class="form-check-input" type="radio" name="aprobado" id="inlineRadio1" value="1">
+                        <div class="form-check form-check-inline offset-1" >
+                            <input class="form-check-input" type="radio" name="aprobado" id="inlineRadio1" value="1" required>
                             <label class="form-check-label" for="inlineRadio1">Aceptar</label>
                           </div>
                       
                           <div class="form-check form-check-inline offset-1">
-                            <input class="form-check-input" type="radio" name="aprobado" id="inlineRadio1" value="0">
+                            <input class="form-check-input" type="radio" name="aprobado" id="inlineRadio1" value="0" required>
                             <label class="form-check-label" for="inlineRadio1">Rechazar</label>
                           </div>
                         </div>
