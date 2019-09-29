@@ -13,6 +13,7 @@ use App\RequestName;
 use App\RequestExtension;
 use App\RequestTribunal;
 use App\RequestResult;
+use App\RequestApproved;
 use \DB;
 use SebastianBergmann\Environment\Console;
 
@@ -555,65 +556,269 @@ class TdgController extends Controller
         $codigo = $request->codigo;
         $nombre = '';
         $nombre = $request->nombre;
+        $tipo_solicitud = '';
+        $tipo_solicitud = $request->tipo_solicitud;
 
         // Realizar consultas a la base de datos
-        $tdgs = DB::table('tdgs')
-            ->select('id', 'codigo', 'nombre')
-            ->where('escuela_id', 'like', '%'.$escuela_id.'%')
-            ->where('codigo', 'like', '%'.$codigo.'%')
-            ->where('nombre', 'like', '%'.$nombre.'%')
-            ->get();
+        $tdgs = '';
+        if($tipo_solicitud == 'cambio_de_nombre'){
+            //Solicitudes de cambio de nombre
+            $request_name = RequestName::where('aprobado',null)->get();
+            $tdgs = array();
+            //Validacion para que existan solicitudes de cambio de nombre
+            if($request_name->isEmpty()){
 
-        return $tdgs;
-    }
+            }else{
+                //Si existen las recorremos
+                foreach($request_name as $re1){
+                    $enable_name[]= $re1->tdg_id;
+                }
 
-    // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para gestionar tdg por coordinador de escuela
-    public function allTdgGestionarEscuela(Request $request){
-        
-        // Inicializar variables
-        $escuela_id = '';
-        $escuela_id = $request->escuela_id;
-        $estado_oficial = '';
-        $estado_oficial = $request->estado_oficial;
-        $codigo = '';
-        $codigo = $request->codigo;
-        $nombre = '';
-        $nombre = $request->nombre;
+                //Pasamos las solicitudes
+                $enable_request = $enable_name;
 
-        // Realizar consultas a la base de datos
-        if ($request->estado_oficial == null) {
-
-            $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre', 'estado_oficial')
-                ->where('escuela_id', '=', $escuela_id)
+            foreach($enable_request as $enable){
+                 //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+                $consulta = DB::table('tdgs')
+                ->select('id', 'codigo', 'nombre')
+                ->where('escuela_id', 'like', '%'.$escuela_id.'%')
                 ->where('codigo', 'like', '%'.$codigo.'%')
                 ->where('nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.id','=',$enable)
                 ->get();
 
-        } else if ($request->estado_oficial == 'Recien ingresado') {
-
-            $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre', 'estado_oficial')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
-                ->whereNull('estado_oficial')
-                ->get();
-
-        } else if ($request->estado_oficial != 'Recien ingresado' && $request->estado_oficial != null) {
-
-            $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre', 'estado_oficial')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
-                ->where('estado_oficial', '=', $estado_oficial)
-                ->get();
-
+                if(!$consulta->isEmpty()){
+                    array_push($tdgs, $consulta);
+                }
+            }
         }
-    
+        } else if($tipo_solicitud == 'prorroga'){
+            //Solicitudes de prorroga
+            $request_extension1 = RequestExtension::where('aprobado',null)->where('type_extension_id',1)->get();
+            $tdgs = array();
+            //Validacion para que existan solicitudes prorroga
+            if($request_extension1->isEmpty()){
+
+            }else{
+                //Si existen las recorremos
+                foreach($request_extension1 as $re1){
+                    $enable_extension1[]= $re1->tdg_id;
+                }
+
+                //Pasamos las solicitudes
+                $enable_request = $enable_extension1;
+
+            foreach($enable_request as $enable){
+                 //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+                $consulta = DB::table('tdgs')
+                ->select('id', 'codigo', 'nombre')
+                ->where('escuela_id', 'like', '%'.$escuela_id.'%')
+                ->where('codigo', 'like', '%'.$codigo.'%')
+                ->where('nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.id','=',$enable)
+                ->get();
+
+                if(!$consulta->isEmpty()){
+                    array_push($tdgs, $consulta);
+                }
+            }
+        }
+        } else if($tipo_solicitud == 'extension_de_prorroga'){
+
+            //Solicitudes de extension de prorroga
+            $request_extension2 = RequestExtension::where('aprobado',null)->where('type_extension_id',2)->get();
+            $tdgs = array();
+            //Validacion para que existan solicitudes prorroga
+            if($request_extension2->isEmpty()){
+
+            }else{
+                //Si existen las recorremos
+                foreach($request_extension2 as $re2){
+                    $enable_extension2[]= $re2->tdg_id;
+                }
+
+                //Pasamos las solicitudes
+                $enable_request = $enable_extension2;
+
+            foreach($enable_request as $enable){
+                 //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+                $consulta = DB::table('tdgs')
+                ->select('id', 'codigo', 'nombre')
+                ->where('escuela_id', 'like', '%'.$escuela_id.'%')
+                ->where('codigo', 'like', '%'.$codigo.'%')
+                ->where('nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.id','=',$enable)
+                ->get();
+
+                if(!$consulta->isEmpty()){
+                    array_push($tdgs, $consulta);
+                }
+            }
+        }
+
+        } else if($tipo_solicitud == 'prorroga_especial'){
+         //Solicitudes de extension de prorroga
+         $request_extension3 = RequestExtension::where('aprobado',null)->where('type_extension_id',3)->get();
+         $tdgs = array();
+         //Validacion para que existan solicitudes prorroga
+         if($request_extension3->isEmpty()){
+
+         }else{
+             //Si existen las recorremos
+             foreach($request_extension3 as $re3){
+                 $enable_extension3[]= $re3->tdg_id;
+             }
+
+             //Pasamos las solicitudes
+             $enable_request = $enable_extension3;
+
+         foreach($enable_request as $enable){
+              //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+             $consulta = DB::table('tdgs')
+             ->select('id', 'codigo', 'nombre')
+             ->where('escuela_id', 'like', '%'.$escuela_id.'%')
+             ->where('codigo', 'like', '%'.$codigo.'%')
+             ->where('nombre', 'like', '%'.$nombre.'%')
+             ->where('tdgs.id','=',$enable)
+             ->get();
+
+             if(!$consulta->isEmpty()){
+                 array_push($tdgs, $consulta);
+             }
+         }
+     }  
+           
+        } else if($tipo_solicitud == 'nombramiento_de_tribunal'){
+           //Solicitudes de nombramiento tribunal
+           $request_tribunal = RequestTribunal::where('aprobado',null)->get();
+           $tdgs = array();
+           //Validacion para que existan solicitudes nombramiento tribunal
+           if($request_tribunal->isEmpty()){
+
+           }else{
+               //Si existen las recorremos
+               foreach($request_tribunal as $re2){
+                   $enable_tribunal[]= $re2->tdg_id;
+               }
+
+               //Pasamos las solicitudes
+               $enable_request = $enable_tribunal;
+
+           foreach($enable_request as $enable){
+                //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+               $consulta = DB::table('tdgs')
+               ->select('id', 'codigo', 'nombre')
+               ->where('escuela_id', 'like', '%'.$escuela_id.'%')
+               ->where('codigo', 'like', '%'.$codigo.'%')
+               ->where('nombre', 'like', '%'.$nombre.'%')
+               ->where('tdgs.id','=',$enable)
+               ->get();
+
+               if(!$consulta->isEmpty()){
+                   array_push($tdgs, $consulta);
+               }
+           }
+       }
+       
+        } 
+        else if($tipo_solicitud == 'ratificacion_de_resultados') {
+         //Solicitudes de extension de resultado
+         $request_results = RequestResult::where('aprobado',null)->get();
+         $tdgs = array();
+         //Validacion para que existan solicitudes resultado
+         if($request_results->isEmpty()){
+
+         }else{
+             //Si existen las recorremos
+             foreach($request_results as $re2){
+                 $enable_results[]= $re2->tdg_id;
+             }
+
+             //Pasamos las solicitudes
+             $enable_request = $enable_results;
+
+         foreach($enable_request as $enable){
+              //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+             $consulta = DB::table('tdgs')
+             ->select('id', 'codigo', 'nombre')
+             ->where('escuela_id', 'like', '%'.$escuela_id.'%')
+             ->where('codigo', 'like', '%'.$codigo.'%')
+             ->where('nombre', 'like', '%'.$nombre.'%')
+             ->where('tdgs.id','=',$enable)
+             ->get();
+
+             if(!$consulta->isEmpty()){
+                 array_push($tdgs, $consulta);
+             }
+         }
+     }
+        }
+else if($tipo_solicitud=='aprobado'){
+     //Solicitudes de extension de resultado
+     $request_approved = RequestApproved::where('aprobado',null)->get();
+     $tdgs = array();
+     //Validacion para que existan solicitudes resultado
+     if($request_approved->isEmpty()){
+
+     }else{
+         //Si existen las recorremos
+         foreach($request_approved as $re2){
+             $enable_approved[]= $re2->tdg_id;
+         }
+
+         //Pasamos las solicitudes
+         $enable_request = $enable_approved;
+
+     foreach($enable_request as $enable){
+          //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+         $consulta = DB::table('tdgs')
+         ->select('id', 'codigo', 'nombre')
+         ->where('escuela_id', 'like', '%'.$escuela_id.'%')
+         ->where('codigo', 'like', '%'.$codigo.'%')
+         ->where('nombre', 'like', '%'.$nombre.'%')
+         ->where('tdgs.id','=',$enable)
+         ->get();
+
+         if(!$consulta->isEmpty()){
+             array_push($tdgs, $consulta);
+         }
+     }
+}
+}else if($tipo_solicitud == 'oficializacion'){
+      //Solicitudes de extension de resultado
+      $request_official = RequestOfficial::where('aprobado',null)->get();
+      $tdgs = array();
+      //Validacion para que existan solicitudes resultado
+      if($request_official->isEmpty()){
+ 
+      }else{
+          //Si existen las recorremos
+          foreach($request_official as $re2){
+              $enable_official[]= $re2->tdg_id;
+          }
+ 
+          //Pasamos las solicitudes
+          $enable_request = $enable_official;
+ 
+      foreach($enable_request as $enable){
+           //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+          $consulta = DB::table('tdgs')
+          ->select('id', 'codigo', 'nombre')
+          ->where('escuela_id', 'like', '%'.$escuela_id.'%')
+          ->where('codigo', 'like', '%'.$codigo.'%')
+          ->where('nombre', 'like', '%'.$nombre.'%')
+          ->where('tdgs.id','=',$enable)
+          ->get();
+ 
+          if(!$consulta->isEmpty()){
+              array_push($tdgs, $consulta);
+          }
+      }
+ }
+}
         return $tdgs;
     }
+
 
     // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para gestionar tdg por coordinador de escuela
     public function allTdgGestionarGeneral(Request $request){
@@ -739,4 +944,12 @@ class TdgController extends Controller
             'tdg' => $tdg,
         ]);
     }
+    public function updateName($nuevo_nombre, $id_tdg){
+
+        $tdgUpdate = Tdg::find($id_tdg);
+        $tdgUpdate->nombre = $nuevo_nombre;
+        $tdgUpdate->save();
+        return $tdgUpdate;
+    }
+
 }

@@ -38,6 +38,23 @@ class RequestOfficialController extends Controller
         //
     }
 
+    public function storeRatificacion($id_tdg, $aprobado, $id_agreement)
+    {
+        //
+         //Agregar acuerdo y aprobacion de la solicitud
+         $requestOfficial = RequestOfficial::where('tdg_id',$id_tdg)->where('aprobado',null)->get();
+         foreach ($requestOfficial as $request => $r_Official) {
+             # code...
+            $request_Official = RequestOfficial::find($r_Official->id);
+            
+            $request_Official->aprobado = $aprobado;
+            $request_Official->agreement_id = $id_agreement;
+            $request_Official->save();
+         }
+        return $requestOfficial;
+
+    }
+
     /**
      * Display the specified resource.
      *

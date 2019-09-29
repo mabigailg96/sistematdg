@@ -25,6 +25,8 @@
                                 </div>
                                 <select id="select-filtro-solicitud" class="custom-select">
                                     <option value="0" selected >Seleccionar solicitud de:</option>
+                                    <option value="aprobado">Aprobado</option>
+                                    <option value="oficializacion">Oficialización</option>
                                     <option value="cambio_de_nombre">Cambio de nombre</option>
                                     <option value="prorroga">Prórroga</option>
                                     <option value="extension_de_prorroga">Extensión de prórroga</option>

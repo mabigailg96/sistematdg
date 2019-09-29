@@ -175,6 +175,21 @@ class RequestExtensionController extends Controller
         
     }
 
+    public function storeRatificacion($id_tdg, $aprobado, $id_agreement){
+        //dd($id_tdg);
+        //Agregar acuerdo y aprobacion de la solicitud
+        $requestExtension = RequestExtension::where('tdg_id',$id_tdg)->where('aprobado',null)->get();
+        foreach ($requestExtension as $request => $r_Extension) {
+            # code...
+           $request_Extension = RequestExtension::find($r_Extension->id);
+           
+           $request_Extension->aprobado = $aprobado;
+           $request_Extension->agreement_id = $id_agreement;
+           $request_Extension->save();
+        }
+       return $request_Extension;
+    }
+
     /**
      * Display the specified resource.
      *

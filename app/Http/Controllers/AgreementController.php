@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Agreement;
+use App\Tdg;
 use \DB;
 
 class AgreementController extends Controller
 {
-  public function create()
+  public function create($tipo_solicitud, $id)
   {
-    return view('agreement.ingresar');
+    //dd($tipo_solicitud, $id);
+    return view('agreement.ingresar')->with('tipo_solicitud', $tipo_solicitud)->with('id', $id);
   }
 
   public function allJdAcuerdos(Request $request){
@@ -43,7 +45,15 @@ class AgreementController extends Controller
           'url'=>'required|unique:agreements',
           'fecha'=>'required',
           ]);
-
+        //Obtenemos si fue aprobado o rechazado
+        $aprobado = $request['aprobado'];
+        
+        //Obtenemos el tipo de solicitud que se ratificara para saber en que tabla de solicitudes asignar el acuerdo
+        $tipo_solicitud = '';
+      $tipo_solicitud = $request['tipo_solicitud'];
+    
+      $id_tdg = $request['id_tdg'];
+      
       $file = $request->file('url');
 
       //obtenemos el nombre del archivo
@@ -70,8 +80,44 @@ class AgreementController extends Controller
             'url'=>$nombrearchivo,
             'fecha'=>$data['fecha'],
         ]);
+          
+        if($tipo_solicitud == 'cambio_de_nombre'){
 
-        return redirect()->route('agreement.ingresar', $agreement->id.'&save=1')->with('info','Acuerdo guardado con éxito');
+          $requestName = new RequestNameController();
+         $request_name =  $requestName->storeRatificacion($id_tdg, $aprobado, $agreement->id);
+         if($aprobado =='1'){
+          $tdg_controller = new  TdgController();
+          $tdg = $tdg_controller->updateName($request_name->nuevo_nombre, $id_tdg);
+         }
+        
+
+        }else if($tipo_solicitud == 'prorroga' ){
+
+          $requestExtension = new RequestExtensionController();
+          $request_Extension =  $requestExtension->storeRatificacion($id_tdg, $aprobado, $agreement->id);
+
+        }else if($tipo_solicitud == 'nombramiento_de_tribunal'){
+
+        $requestTribunal = new RequestTribunalController();
+        $request_Tribunal =  $requestTribunal->storeRatificacion($id_tdg, $aprobado, $agreement->id);
+
+        }else if($tipo_solicitud=='ratificacion_de_resultados'){
+
+          $requestResult = new RequestResultController();
+        $request_Result =  $requestResult->storeRatificacion($id_tdg, $aprobado, $agreement->id);
+
+        }else if($tipo_solicitud=='aprobado'){
+          $requestApproved = new RequestApprovedController();
+         
+          $request_Approved =  $requestApproved->storeRatificacion($id_tdg, $aprobado, $agreement->id);
+        }else if($tipo_solicitud=='oficializacion'){
+          $requestOfficial = new RequestOfficialController();
+         
+          $request_Official =  $requestOfficial->storeRatificacion($id_tdg, $aprobado, $agreement->id);
+        }
+
+        //Ver como mostrar mensajes de error.
+        return redirect('/listar/tdg/ratificacion')->with('info','Acuerdo guardado con éxito');
       }
       else {
           return redirect()->route('agreement.ingresar', '/?save=0&nombre='.$request->nombre)

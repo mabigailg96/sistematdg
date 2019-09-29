@@ -78,6 +78,21 @@ class RequestTribunalController extends Controller
         $request_tribunal->professors()->attach($professor_id);
     }
 
+    public function storeRatificacion($id_tdg, $aprobado, $id_agreement){
+        //dd($id_tdg);
+        //Agregar acuerdo y aprobacion de la solicitud
+        $requestTribunal = RequestTribunal::where('tdg_id',$id_tdg)->where('aprobado',null)->get();
+        foreach ($requestTribunal as $request => $r_Tribunal) {
+            # code...
+           $request_Tribunal = RequestTribunal::find($r_Tribunal->id);
+           
+           $request_Tribunal->aprobado = $aprobado;
+           $request_Tribunal->agreement_id = $id_agreement;
+           $request_Tribunal->save();
+        }
+       return $request_Tribunal;
+    }
+
     /**
      * Display the specified resource.
      *

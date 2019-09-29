@@ -93,7 +93,7 @@ function cargarDatosTdg() {
     }).then(response => {
         console.log(response.data);
         response.data.forEach(element => {
-            console.log(element);
+            console.log('codigo: '+element[0].codigo);
         });
         if(response.data.length > 0){
             // Llenar la tabla con los resultados traidos de la peticion
@@ -105,34 +105,19 @@ function cargarDatosTdg() {
                 "ordering": false,
                 "pageLength": 10,
                 "columns": [
-                    { 'data': 'codigo' },
-                    { 'data': 'nombre' },
+                    { 'data': '0.codigo' },
+                    { 'data': '0.nombre' },
                     { sortable: false,
                     "render": function ( data, type, full, meta ) {
                         var htmlButtons = '';
                         // Id del TDG
-                        /*var id = full[0].id;
+                        var id = full[0].id; //Cuando haga el filtro tengo que agregar [0]
                         console.log(id);
                         // Concatenar ruta para el formulario
-                        if(tipo_solicitud == 'cambio_de_nombre'){
-                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/nombre/${id}">Seleccionar</a>`;
-                        } else if(tipo_solicitud == 'prorroga'){
-                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
-                        } else if(tipo_solicitud == 'extension_de_prorroga'){
-                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
-                        } else if(tipo_solicitud == 'prorroga_especial'){
-                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
-                        } else if(tipo_solicitud == 'nombramiento_de_tribunal'){
-                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/tribunal/${id}">Seleccionar</a>`;
-                        }else if(tipo_solicitud == 'ratificacion_de_resultados'){
-                            // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                            var htmlButtons = `<a href="/ingresar/solicitud/${id}">Seleccionar</a>`;
-                        } */
+                       
+                        // Ruta que lleva como parametro el tipo de solicitud que se va ratificar y el id del tdg
+                        var htmlButtons = `<a href="/ratificar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
+                       
                         return htmlButtons;
                     }
                 },

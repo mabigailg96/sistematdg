@@ -56,6 +56,22 @@ class RequestNameController extends Controller
         return redirect()->route('solicitudes.listar','&save=1&tipo=Cambio de nombre');
     }
 
+    //Metodo para agregar el acuerdo de JD, para ratificarla. Recibe codigo tdg, aprobado(aceptado 1, denegado 0), id acuerdo 
+    public function storeRatificacion($id_tdg, $aprobado, $id_agreement){
+        //dd($id_tdg);
+        //Agregar acuerdo y aprobacion de la solicitud
+        $requestName = RequestName::where('tdg_id',$id_tdg)->where('aprobado',null)->get();
+        foreach ($requestName as $request => $r_name) {
+            # code...
+           $request_name = RequestName::find($r_name->id);
+           
+           $request_name->aprobado = $aprobado;
+           $request_name->agreement_id = $id_agreement;
+           $request_name->save();
+        }
+       return $request_name;
+    }
+
     /**
      * Display the specified resource.
      *
