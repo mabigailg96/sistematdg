@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('javascript')
+<script src="{{ asset('js/ratificar.js') }}" defer></script>
 <script src="{{ asset('js/filtro_tdg_ratificacion.js') }}" defer></script>
 <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 @endsection

@@ -124,7 +124,7 @@ class AgreementController extends Controller
         }
 
         //Ver como mostrar mensajes de error.
-        return redirect('/listar/tdg/ratificacion')->with('info','Acuerdo guardado con éxito');
+        return redirect()->route('ratificar.listar','&save=1');
       }
       else {
           return redirect()->route('agreement.ingresar', '/?save=0&nombre='.$request->nombre)

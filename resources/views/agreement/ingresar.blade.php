@@ -74,6 +74,11 @@
                             <input class="form-check-input" type="radio" name="aprobado" id="inlineRadio1" value="0" required>
                             <label class="form-check-label" for="inlineRadio1">Rechazar</label>
                           </div>
+                          @if ($errors->has('aprobado'))
+                                    <span class="help-block row">
+                                        {{ $errors->first('aprobado') }}
+                                    </span>
+                                @endif
                         </div>
 
 
