@@ -76,7 +76,7 @@ $(document).on("click", "#btn-agregar-docente_director", function(){
                     $(this).attr("disabled", true); 
                     var concatenar = response.data[0].codigo+', '+response.data[0].nombre+' '+response.data[0].apellido;
                     $("#txt-buscar-docente_director").val(concatenar); 
-                    $("#lbl-docente_director").html('<br>• '+concatenar+` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" id="btn-quitar-docente_director" class="close float-none"><span class="oi oi-circle-x" title="Quitar docente director" aria-hidden="true" style="color:red">X</span></button>`);
+                    $("#lbl-docente_director").html('<br>• '+concatenar+` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" id="btn-quitar-docente_director" class="close float-none"><span class="oi oi-circle-x" title="Quitar docente director" aria-hidden="true" style="color:red"></span></button>`);
                     $("#lbl-docente_director").attr("value", response.data[0].id);
                 } else {
                     $("#txt-buscar-docente_director").val(""); 
@@ -204,7 +204,7 @@ $(document).on("click", "#btn-agregar-estudiante", function(){
                         }
                         var concatenar = response.data[0].carnet+', '+response.data[0].nombres+' '+response.data[0].apellidos;
 
-                        $("#lbl-estudiantes").html($("#lbl-estudiantes").html()+`<p class="lbl-estudiante" value="${response.data[0].id}">• `+concatenar+` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" value="${response.data[0].id}" class="close float-none btn-quitar-estudiante"><span class="oi oi-circle-x" title="Quitar integrante" aria-hidden="true" style="color:red">X</span></button></p>`);
+                        $("#lbl-estudiantes").html($("#lbl-estudiantes").html()+`<p class="lbl-estudiante" value="${response.data[0].id}">• `+concatenar+` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" value="${response.data[0].id}" class="close float-none btn-quitar-estudiante"><span class="oi oi-circle-x" title="Quitar docente director" aria-hidden="true" style="color:red"></span></button></p>`);
                     } else {
                         Swal.fire({
                             // Mensaje para indicar de que ya se ha agregado este interno
@@ -342,7 +342,7 @@ $(document).on("click", "#btn-agregar-asesor_interno", function(){
                                 $(this).attr("disabled", false); 
                             }
                             var concatenar = response.data[0].codigo+', '+response.data[0].nombre+' '+response.data[0].apellido;
-                            $("#lbl-asesores_internos").html($("#lbl-asesores_internos").html()+`<p class="lbl-asesor_interno" value="${response.data[0].id}">• `+concatenar+` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" value="${response.data[0].id}" class="close float-none btn-quitar-asesor_interno"><span class="oi oi-circle-x" title="Quitar asesor interno" aria-hidden="true" style="color:red">X</span></button></p>`);
+                            $("#lbl-asesores_internos").html($("#lbl-asesores_internos").html()+`<p class="lbl-asesor_interno" value="${response.data[0].id}">• `+concatenar+` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" value="${response.data[0].id}" class="close float-none btn-quitar-asesor_interno"><span class="oi oi-circle-x" title="Quitar docente director" aria-hidden="true" style="color:red"></span></button></p>`);
                         } else {
                             // Mensaje para indicar de que ya se ha agregado este asesor interno
                             Swal.fire({
@@ -448,7 +448,7 @@ $(document).on("click", "#btn-agregar-asesor_externo", function() {
             apellido_asesor_externo.attr("disabled", false);
             $(this).attr("disabled", false); 
         }
-        $("#lbl-asesores_externos").html($("#lbl-asesores_externos").html()+`<p class="lbl-asesor_externo">• <span class="nombre">${nombre_asesor_externo.val()}</span>&nbsp;<span class="apellido">${apellido_asesor_externo.val()}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="close float-none btn-quitar-asesor_externo"><span class="oi oi-circle-x" title="Quitar asesor externo" aria-hidden="true" style="color:red">X</span></button></p>`);
+        $("#lbl-asesores_externos").html($("#lbl-asesores_externos").html()+`<p class="lbl-asesor_externo">• <span class="nombre">${nombre_asesor_externo.val()}</span>&nbsp;<span class="apellido">${apellido_asesor_externo.val()}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="close float-none btn-quitar-asesor_externo"><span class="oi oi-circle-x" title="Quitar docente director" aria-hidden="true" style="color:red"></span></button></p>`);
         nombre_asesor_externo.val("");
         nombre_asesor_externo.removeClass("is-invalid");
         apellido_asesor_externo.val("");

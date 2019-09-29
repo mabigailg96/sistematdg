@@ -26,6 +26,7 @@
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/jquery-ui/jquery-ui.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/DataTables/datatables.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/open-iconic/font/css/open-iconic-bootstrap.css') }}" rel="stylesheet">
 
 </head>
 <body>

@@ -87,7 +87,7 @@ $(document).on("click", "#btn-agregar-docente", function(){
                             $(this).attr("disabled", false); 
                         }
                         var concatenar = response.data[0].codigo+', '+response.data[0].nombre+' '+response.data[0].apellido;
-                        $("#lista-tribunal").append(`<li class="list-group-item" value="${response.data[0].id}">`+concatenar+` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" value="${response.data[0].id}" class="close float-none btn-quitar-docente"><span aria-hidden="true">&times;</span></button></li>`);
+                        $("#lista-tribunal").append(`<li class="list-group-item" value="${response.data[0].id}">`+concatenar+` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" value="${response.data[0].id}" class="close float-none btn-quitar-docente"><span class="oi oi-circle-x" title="Quitar docente director" aria-hidden="true" style="color:red"></span></button></li>`);
 
                     } else {
                         // Mensaje de error en caso de que sea el mismo registro que los se encuentran en lista de tribunal
