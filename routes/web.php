@@ -54,6 +54,9 @@ Route::get('/todos/tdg/gestionar/general', 'TdgController@allTdgGestionarGeneral
 // Ruta para mostrar detalle de tdg coordinador de escuela
 Route::get('/ver/detalle/tdg/escuela/{id}', 'TdgController@createDetalleTdgEscuela')->name('tdg.verDetalleTdgEscuela');
 
+// Ruta para mostrar detalle de tdg coordinador general
+Route::get('/ver/detalle/tdg/general/{id}', 'TdgController@createDetalleTdgGeneral')->name('tdg.verDetalleTdgGeneral');
+
 //Ruta para la creacion del ciclo
 Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingresar')->middleware('can:semester.ingresar');
 Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guardar')->middleware('can:semester.ingresar');
@@ -102,7 +105,7 @@ Route::get('/abandonar/student/tdg', 'TdgController@abandonarTdg')->name('tdg.ab
 // Pantalla mostrar filtros de TDG para gestionar coordinador general
 Route::get('/listar/tdg/gestionar/general', function () {
     return view('tdg.filtro_gestionar_general');
-});
+})->name('tdg.filtroGestionarGeneral');
 
 // Ruta para todos los nombres de las escuelas
 Route::get('/todos/colleges', 'CollegeController@allNameColleges')->name('colllege.todos');

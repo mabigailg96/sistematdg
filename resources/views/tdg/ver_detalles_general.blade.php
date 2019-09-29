@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-<script src="{{ asset('js/ver_detalles_tdg_escuela.js') }}" defer></script>
+<script src="{{ asset('js/ver_detalles_tdg_general.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="col-lg-10">
             <div class="card">
                 <div class="card-header">
-					Detalle del Trabajo de Graduación
+					    Detalle del Trabajo de Graduación
 				</div>
 
                 <div class="card-body">
@@ -92,16 +92,6 @@
                     </table>
                     <br>
 
-                    <!-- Botones para abandonar el tdg -->
-                    <div class="d-flex flex-row-reverse bd-highlight">
-                        <div class="p-2 bd-highlight">
-                            @if ($tdg->estado_oficial != 'Abandonado')
-                                <button type="button" id="btn-abandonar-tdg" class="btn btn-danger">Abandonar TDG</button>
-                            @else
-                                <button type="button" id="btn-abandonar-tdg" class="btn btn-secundary" disabled>Abandonar TDG</button>
-                            @endif
-                        </div>
-                    </div>
                 </div>
                 <div class="card-footer text-muted">
                     
