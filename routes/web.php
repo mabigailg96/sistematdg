@@ -94,7 +94,7 @@ Route::get('/listar/tdg/asignar', function () {
 // Pantalla mostrar filtros de TDG para gestionar coordinador de escuela
 Route::get('/listar/tdg/gestionar/escuela', function () {
     return view('tdg.filtro_gestionar_escuela');
-});
+})->name('tdg.filtroGestionarEscuela');
 
 // Ruta para abandonar el TDG
 Route::get('/abandonar/student/tdg', 'TdgController@abandonarTdg')->name('tdg.abandonarTdg');
