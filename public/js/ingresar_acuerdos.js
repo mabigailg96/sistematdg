@@ -19,7 +19,7 @@ $(document).ready(function(){
       $("#nombre").val($.urlParam("nombre"));
     }
   }
-  history.pushState({data:true}, 'Titulo', '/ingresar/acuerdos');
+  //history.pushState({data:true}, 'Titulo', '/ingresar/acuerdos');
 });
 
 $.urlParam = function(name){

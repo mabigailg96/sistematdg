@@ -32,6 +32,6 @@ class Agreement extends Model
     }
 
     protected $fillable = [
-        'nombre','url','fecha','aprobado',
+        'nombre','url','fecha','resolución',
     ];
 }

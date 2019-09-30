@@ -44,10 +44,10 @@ class AgreementController extends Controller
           'nombre'=>'required|unique:agreements',
           'url'=>'required|unique:agreements',
           'fecha'=>'required',
-          'aprobado'=>'required' //Para validar que seleccione una opcion del checkbox
+          'resolución'=>'required' //Para validar que seleccione una opcion del checkbox
           ]);
         //Obtenemos si fue aprobado o rechazado
-        $aprobado = $request['aprobado'];
+        $aprobado = $request['resolución'];
         
         //Obtenemos el tipo de solicitud que se ratificara para saber en que tabla de solicitudes asignar el acuerdo
         $tipo_solicitud = '';
@@ -127,7 +127,8 @@ class AgreementController extends Controller
         return redirect()->route('ratificar.listar','&save=1');
       }
       else {
-          return redirect()->route('agreement.ingresar', '/?save=0&nombre='.$request->nombre)
+        
+          return redirect()->route('agreement.ingresar', $tipo_solicitud.'/'.$id_tdg.'?save=0')
           ->with('error','El nombre del acuerdo ya existe. Por favor cambie el nombre del archivo');
       }
   }

@@ -23,7 +23,7 @@ Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guarda
 
 Route::middleware(['auth'])->group(function(){
 //Rutas para acuerdos
-Route::get('/ratificar/solicitud/{tipo_solicitud}/{id}', 'AgreementController@create')->name('agreement.ingresar')->middleware('can:agreement.ingresar');
+Route::get('/ratificar/solicitud/{tipo_solicitud}/{id?}', 'AgreementController@create')->name('agreement.ingresar')->middleware('can:agreement.ingresar');
 Route::post('/guardar/acuerdos', 'AgreementController@store')->name('agreement.guardar')->middleware('can:agreement.guardar');
 
 //Rutas para trabajos de graduacion

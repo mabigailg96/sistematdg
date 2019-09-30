@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-<script src="{{ asset('') }}" defer></script>
+<script src="{{ asset('js/ingresar_acuerdos.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -66,19 +66,21 @@
                         <label for="url" class="textlabel control-label required">Resolución</label>
                 
                         <div class="form-check form-check-inline offset-1" >
-                            <input class="form-check-input" type="radio" name="aprobado" id="inlineRadio1" value="1" required>
+                            <input class="form-check-input" type="radio" name="resolución" id="inlineRadio1" value="1" >
                             <label class="form-check-label" for="inlineRadio1">Aceptar</label>
                           </div>
                       
                           <div class="form-check form-check-inline offset-1">
-                            <input class="form-check-input" type="radio" name="aprobado" id="inlineRadio1" value="0" required>
+                            <input class="form-check-input" type="radio" name="resolución" id="inlineRadio1" value="0">
                             <label class="form-check-label" for="inlineRadio1">Rechazar</label>
                           </div>
-                          @if ($errors->has('aprobado'))
+                          <div class="urlinput col-md-6">
+                          @if ($errors->has('resolución'))
                                     <span class="help-block row">
-                                        {{ $errors->first('aprobado') }}
+                                        {{ $errors->first('resolución') }}
                                     </span>
                                 @endif
+                                </div>
                         </div>
 
 
