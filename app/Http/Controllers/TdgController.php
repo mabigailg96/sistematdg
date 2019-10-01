@@ -62,10 +62,10 @@ class TdgController extends Controller
         $correlativo = '';
 
         //Verificando el ultimo id, para completar el correlativo.
-        if ($lastCorrelativo <= 9) {
+        if ($lastCorrelativo < 9) {
             $correlativo = '00';
         }
-        if ($lastCorrelativo > 9 && $lastCorrelativo <= 99) {
+        if ($lastCorrelativo >= 9 && $lastCorrelativo <= 99) {
             $correlativo = '0';
         }
 
