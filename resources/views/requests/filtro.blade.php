@@ -21,7 +21,7 @@
                             {{ session('status') }}
                         </div>
 					@endif
-						
+                    <button type="button" id="btn-filtro-limpiar-busqueda" class="btn btn-primary btn-color float-right"><span class="oi oi-loop-circular"></span>&nbsp;Limpiar</button>
                     <br>
                     <div class="row">
                         <div class="col-md-6">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="col-md-1">
-                            <button type="button" id="btn-filtro-limpiar-busqueda" class="btn btn-outline-dark">Limpiar Búsqueda</button>
+                            
                         </div>
                     </div>
                     @include('filtro_codigo_nombre')

@@ -25,7 +25,4 @@
             </select>
         </div>
     </div>
-    <div class="col-md-1">
-        <button type="button" id="btn-filtro-buscar" class="btn btn-primary btn-color"><span class="oi oi-magnifying-glass"></span>&nbsp;Buscar</button>
-    </div>
 </div>

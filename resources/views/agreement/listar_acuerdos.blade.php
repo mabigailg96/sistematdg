@@ -16,14 +16,13 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+
+                        <button type="button" id="btn-filtro-limpiar-busqueda" class="btn btn-primary btn-color float-right"><span class="oi oi-loop-circular"></span>&nbsp;Limpiar</button>
                         <br>
+                        <br>
+                        
                         @include('filtro_acuerdos_jd')
-                        <br>
-                        <div class="row">
-                                <div class="col-md-2">
-                                    <button type="button" id="btn-filtro-limpiar-busqueda" class="btn btn-outline-dark">Limpiar Búsqueda</button>
-                                </div>
-                            </div>
+
                         <br>
                         <table id="table-filtro-acuerdos" class="table table-striped">
                                 <thead>
