@@ -123,6 +123,12 @@ function cargarDatosTdg() {
                         return htmlButtons;
                     }},
                 ],
+                "columnDefs": [
+                    { "width": "10%", "targets": 0 },
+                    { "width": "65%", "targets": 1 },
+                    { "width": "15%", "targets": 2 },
+                    { "width": "10%", "targets": 3 },
+                  ],
                 "info": false,
                 "searching": false,
                 "ordering": false,

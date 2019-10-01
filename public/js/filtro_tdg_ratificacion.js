@@ -122,9 +122,14 @@ function cargarDatosTdg() {
                         var htmlButtons = `<a href="/ratificar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
                        
                         return htmlButtons;
-                    }
-                },
+                        }
+                    },
                 ],
+                "columnDefs": [
+                    { "width": "10%", "targets": 0 },
+                    { "width": "65%", "targets": 1 },
+                    { "width": "15%", "targets": 2 }
+                  ],
                 "info": false,
                 "searching": false,
                 "ordering": false,
