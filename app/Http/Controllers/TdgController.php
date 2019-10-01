@@ -527,7 +527,6 @@ class TdgController extends Controller
         if ($existe->isEmpty()) {
             // Crear objeto a guardar
             $oficializacion->fecha = date("y-m-d");
-            $oficializacion->aprobado = 0;
             $oficializacion->tdg_id = $tdg_id;
             $oficializacion->save();
 
@@ -1096,6 +1095,13 @@ else if($tipo_solicitud=='aprobado'){
         $tdgUpdate->codigo = $newCodigo;
         $tdgUpdate->save();
         return $tdgUpdate;
+    }
+
+    public function updateEstado($id_tdg, $estado){
+        $tdgUpdateState = Tdg::find($id_tdg);
+        $tdgUpdateState->estado_oficial = $estado;
+        $tdgUpdateState->save();
+        return $tdgUpdateState;
     }
 
 }

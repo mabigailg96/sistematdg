@@ -92,11 +92,26 @@ class AgreementController extends Controller
          }
         
 
-        }else if($tipo_solicitud == 'prorroga' ){
+        }else if($tipo_solicitud == 'prorroga' || $tipo_solicitud=='extension_de_prorroga' || $tipo_solicitud=='prorroga_especial'){
 
           $requestExtension = new RequestExtensionController();
           $request_Extension =  $requestExtension->storeRatificacion($id_tdg, $aprobado, $agreement->id);
 
+          $estado = '';
+          if($tipo_solicitud=='prorroga'){
+            $estado = 'Prórroga';
+          }else if($tipo_solicitud=='extension_de_prorroga'){
+            $estado = 'Extensión de prórroga';
+          }else if($tipo_solicitud=='prorroga_especial'){
+            $estado = 'Prórroga especial';
+          }
+          
+          
+          //Actualizar el estado oficial del Tdg
+          if($aprobado=='1'){
+            $tdg_controller = new  TdgController();
+            $tdg = $tdg_controller->updateEstado($id_tdg, $estado);
+          }
         }else if($tipo_solicitud == 'nombramiento_de_tribunal'){
 
         $requestTribunal = new RequestTribunalController();
@@ -105,22 +120,36 @@ class AgreementController extends Controller
         }else if($tipo_solicitud=='ratificacion_de_resultados'){
 
           $requestResult = new RequestResultController();
-        $request_Result =  $requestResult->storeRatificacion($id_tdg, $aprobado, $agreement->id);
+          $request_Result =  $requestResult->storeRatificacion($id_tdg, $aprobado, $agreement->id);
+          $estado = 'Finalizado';
+          if($aprobado=='1'){
+          $tdg_controller = new  TdgController();
+          $tdg = $tdg_controller->updateEstado($id_tdg, $estado);
+        }
+        
 
         }else if($tipo_solicitud=='aprobado'){
           $requestApproved = new RequestApprovedController();
          
           $request_Approved =  $requestApproved->storeRatificacion($id_tdg, $aprobado, $agreement->id);
-
+          $estado = 'Aprobado';
           //Actualizar el codigo del TDG, quitar la 'P' de perfil.
           if($aprobado=='1'){
             $tdg_controller = new  TdgController();
             $tdg = $tdg_controller->updateCodigo($id_tdg);
+
+            $tdg = $tdg_controller->updateEstado($id_tdg, $estado);
           }
         }else if($tipo_solicitud=='oficializacion'){
           //Guardar ratificacion
           $requestOfficial = new RequestOfficialController();
-          $request_Official =  $requestOfficial->storeRatificacion($id_tdg, $aprobado, $agreement->id);    
+          $request_Official =  $requestOfficial->storeRatificacion($id_tdg, $aprobado, $agreement->id);  
+          $estado = 'Oficializado';
+
+          if($aprobado=='1'){
+            $tdg_controller = new  TdgController();
+            $tdg = $tdg_controller->updateEstado($id_tdg, $estado);
+          }  
         }
 
         //Ver como mostrar mensajes de error.
