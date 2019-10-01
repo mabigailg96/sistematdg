@@ -43,9 +43,10 @@ Route::get('/todos/tdg/asignaciones', 'TdgController@allTdgAsignaciones')->name(
 Route::get('/ingresar/tdg/asignacion/{id}', 'TdgController@createAsignaciones')->name('tdg.ingresarTdgAsignaciones');
 Route::get('/guardar/tdg/asignacion', 'TdgController@storeAsignaciones')->name('tdg.guardarTdgAsignaciones');
 
-// Ruta para para enviar todos los datos de los docentes para 
+// Ruta para para enviar todos los datos de los docentes p
 Route::get('/todos/profesores/asignaciones', 'ProfessorController@allProfessorAsignaciones')->name('professor.todosProfesoresAsignaciones');
 Route::get('/todos/estudiantes/asignaciones', 'StudentController@allStudentAsignaciones')->name('student.todosStudentAsignaciones');
+
 // Ruta para para enviar todos los datos del TDG para filtro de gestionar para la escuela
 Route::get('/todos/tdg/gestionar/escuela', 'TdgController@allTdgGestionarEscuela')->name('tdg.todosTdgGestionarEscuela');
 // Ruta para para enviar todos los datos del TDG para filtro de gestionar para el coordinador general
@@ -72,22 +73,22 @@ Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('
 
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/solicitudes', function () {
-    return view('requests.filtro');
-})->name('solicitudes.listar');
+return view('requests.filtro');
+})->name('solicitudes.listar')->middleware('can:solicitudes.listar');
 
 //Rutas para las solicitudes
-Route::get('/ingresar/solicitud/nombre/{id}', 'RequestNameController@create')->name('request_name.ingresar');
-Route::post('/guardar/solicitud/nombre', 'RequestNameController@store')->name('name.guardar');
+Route::get('/ingresar/solicitud/nombre/{id}', 'RequestNameController@create')->name('request_name.ingresar')->middleware('can:request_name.ingresar');
+Route::post('/guardar/solicitud/nombre', 'RequestNameController@store')->name('name.guardar')->middleware('can:name.guardar');
 
-Route::get('/ingresar/solicitud/tribunal/{id}', 'RequestTribunalController@create')->name('request_tribunal.ingresar');
-Route::get('/guardar/solicitud/tribunal', 'RequestTribunalController@store')->name('request_tribunal.guardar');
-Route::get('/guardar/tribunal/profesor', 'RequestTribunalController@storeRequestTribunalProfessor')->name('request_tribunal.guardarRequestTribunalProfessor');
+Route::get('/ingresar/solicitud/tribunal/{id}', 'RequestTribunalController@create')->name('request_tribunal.ingresar')->middleware('can:request_tribunal.ingresar');
+Route::get('/guardar/solicitud/tribunal', 'RequestTribunalController@store')->name('request_tribunal.guardar')->middleware('can:request_tribunal.guardar');
+Route::get('/guardar/tribunal/profesor', 'RequestTribunalController@storeRequestTribunalProfessor')->name('request_tribunal.guardarRequestTribunalProfessor')->middleware('can:request_tribunal.guardarRequestTribunalProfessor');
 
-Route::get('/ingresar/solicitud/{tipo_solicitud}/{id}', 'RequestExtensionController@create')->name('request_extension.ingresar');
-Route::post('/guardar/solicitud/prorroga', 'RequestExtensionController@store')->name('request_extension.guardar');
+Route::get('/ingresar/solicitud/{tipo_solicitud}/{id}', 'RequestExtensionController@create')->name('request_extension.ingresar')->middleware('can:request_extension.ingresar');
+Route::post('/guardar/solicitud/prorroga', 'RequestExtensionController@store')->name('request_extension.guardar')->middleware('can:request_extension.guardar');
 
-Route::get('/ingresar/solicitud/{id}', 'RequestResultController@create')->name('request_result.ingresar');
-Route::post('/guardar/solicitud/', 'RequestResultController@store')->name('request_result.guardar');
+Route::get('/ingresar/solicitud/{id}', 'RequestResultController@create')->name('request_result.ingresar')->middleware('can:request_result.ingresar');
+Route::post('/guardar/solicitud/', 'RequestResultController@store')->name('request_result.guardar')->middleware('can:request_result.guardar');
 
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/asignar', function () {
@@ -111,17 +112,17 @@ Route::get('/listar/tdg/gestionar/general', function () {
 Route::get('/todos/colleges', 'CollegeController@allNameColleges')->name('colllege.todos');
 
 });
-// Pantalla para mostrar los filtros y mostrar los acuerdos de junta directiva
+// Pantalla para mostrar los filtros y mostrar los acuerdos de JD
 Route::get('/listar/acuerdos/jd', function(){
     return view('agreement.listar_acuerdos');
-});
+})->middleware('can:agreement.listar_acuerdos');
 
 Route::get('/todos/acuerdos/ver/jd', 'AgreementController@allJdAcuerdos')->name('agreement.show');
 
 //Pantalla para mostrar las tdg, para el administrador
 Route::get('/listar/tdg/ratificacion', function(){
     return view('tdg.listar_tdg');
-})->name('ratificar.listar');
+})->name('ratificar.listar')->middleware('can:ratificar.listar');
 
 Route::get('/todos/tdg/ver/ratificacion', 'TdgController@allTdgRatificacion')->name('tdg.showtdgRatificacion');
 

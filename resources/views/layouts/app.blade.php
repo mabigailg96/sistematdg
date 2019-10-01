@@ -45,12 +45,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-                    @can('agreement.ingresar')
-                      <li class="nav-item navegacion-item">
-                        <a class="nav-link" href="{{ url('/ingresar/acuerdos') }}"> Ingresar acuerdos</a>
-                      </li>
-                   @endcan
-
+                   
                     @can('tdg.ingresar')
                       <li class="nav-item navegacion-item">
                         <a class="nav-link" href="{{ url('/ingresar/tdg') }}"> Ingresar perfil</a>
@@ -71,7 +66,31 @@
                       <a class="nav-link" href="{{ url('/ingresar/profesores') }}"> Ingresar profesores</a>
                     </li>
                   @endcan
-
+                  @can('ratificar.listar')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/tdg/ratificacion') }}"> Resolución de solicitudes</a>
+                  </li>
+                  @endcan
+                  @can('solicitudes.listar')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/tdg/solicitudes') }}"> Solicitudes</a>
+                  </li>
+                  @endcan
+                  @can('tdg.filtroGestionarGeneral')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/tdg/gestionar/general') }}">  Ver detalles</a>
+                  </li>
+                  @endcan
+                  @can('tdg.filtroGestionarEscuela')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/tdg/gestionar/escuela') }}"> Gestionar TDG</a>
+                  </li>
+                  @endcan
+                  @can('agreement.listar_acuerdos')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/acuerdos/jd') }}"> Ver acuerdos</a>
+                  </li>
+                  @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

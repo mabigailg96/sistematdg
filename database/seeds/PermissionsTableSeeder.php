@@ -89,8 +89,90 @@ class PermissionsTableSeeder extends Seeder
             'description' => 'Guardar los alumnos en el sistema',
         ]);
 
+                 //*************SOLICITUDES***************
+        //Permiso para mostrar la pantalla para la gestión de solicitudes
+        Permission::create([
+            'name' => 'Ingresar solicitudes',
+            'slug' => 'solicitudes.listar',
+            'description' => 'Listado de todas las solicitudes',
+        ]);
+        //Solicitud de cambio de nombre
+        Permission::create([
+            'name' => 'Ingresar solicitud de cambio de nombre',
+            'slug' => 'request_name.ingresar',
+            'description' => 'Solicitud de cambio de nombre ingresar',
+        ]);
+        Permission::create([
+            'name' => 'Guardar solicitud de cambio de nombre',
+            'slug' => 'name.guardar',
+            'description' => 'Solicitud de cambio de nombre guardar',
+        ]);
+        //Solicitud de tribunal calificador
+        Permission::create([
+            'name' => 'Ingresar solicitud de tribunal',
+            'slug' => 'request_tribunal.ingresar',
+            'description' => 'Solicitud de cambio de tribunal ingresar',
+        ]);
+        Permission::create([
+            'name' => 'Guardar solicitud de tribunal',
+            'slug' => 'request_tribunal.guardar',
+            'description' => 'Solicitud de cambio de tribunal guardar',
+        ]);
+        Permission::create([
+            'name' => 'Guardar solicitud de tribunal profesores',
+            'slug' => 'request_tribunal.guardarRequestTribunalProfessor',
+            'description' => 'Solicitud de cambio de tribunal guardar profesores',
+        ]);
+            //Solicitud de prorrogas
+        Permission::create([
+            'name' => 'Ingresar solicitud de prorroga',
+            'slug' => 'request_extension.ingresar',
+            'description' => 'Solicitud de de prorroga ingresar',
+        ]);
+        Permission::create([
+            'name' => 'Guardar solicitud de prorroga',
+            'slug' => 'request_extension.guardar',
+            'description' => 'Solicitud de prorroga guardar',
+        ]);
+        // Solicitud de ratificación de resultados
+        Permission::create([
+            'name' => 'Ingresar solicitud de resultados',
+            'slug' => 'request_result.ingresar',
+            'description' => 'Solicitud de resultados ingresar',
+        ]);
+        Permission::create([
+            'name' => 'Guardar solicitud de resultados',
+            'slug' => 'request_result.guardar',
+            'description' => 'Solicitud de resultados guardar',
+        ]);
 
-
+         //*************RATIFICACIONES***************
+        //Permiso para mostrar la pantalla para la gestión de ratificaciones
+        Permission::create([
+            'name' => 'Gestionar ratificaciones',
+            'slug' => 'ratificar.listar',
+            'description' => 'Listado de todas las solicitudes a ratificar',
+        ]);
+        
+         //*************VER DETALLES***************
+        //Permiso para mostrar la pantalla de ver detalles
+        Permission::create([
+            'name' => 'Ver detalles coordinador general',
+            'slug' => 'tdg.filtroGestionarGeneral',
+            'description' => 'Muestra los detalles de los tdgs',
+        ]);
+        Permission::create([
+            'name' => 'Ver detalles coordinador de escuela',
+            'slug' => 'tdg.filtroGestionarEscuela',
+            'description' => 'Muestra los detalles de los tdgs',
+        ]);
+         //*************VER ACUERDOS**************
+        //Permiso para mostrar la pantalla de ver acuerdos
+        Permission::create([
+            'name' => 'Ver los acuerdos',
+            'slug' => 'agreement.listar_acuerdos',
+            'description' => 'Muestra los acuerdos de JD',
+        ]);
         
 
     }

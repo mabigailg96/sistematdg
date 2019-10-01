@@ -11,7 +11,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-					Gestionar trabajos de graduación.
+					Ver detalles
 				</div>
 
                 <div class="card-body">
@@ -36,10 +36,10 @@
                     <table id="table-filtro-tdgs" class="table table-striped">
                         <thead>
                             <tr>
-                            <th scope="col">Código</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Seleccionar</th>
+                            <th  scope="col">Código</th>
+                            <th  scope="col">Nombre</th>
+                            <th  scope="col">Estado</th>
+                            <th  scope="col">Seleccionar</th>
                             </tr>
                         </thead>
                         <tbody>
