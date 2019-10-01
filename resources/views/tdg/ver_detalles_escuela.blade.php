@@ -20,13 +20,24 @@
                         </div>
 					@endif
                     
+                    <!-- Boton para generar el pdf a imprimir del tdg -->
+                    <div class="d-flex flex-row-reverse bd-highlight">
+                        <div class="p-2 bd-highlight">
+                            <button type="button" id="btn-imprimir-tdg" class="btn btn-secondary" value="{{$tdg->id}}">Imprimir</button>
+                        </div>
+                    </div>
+
                     <!-- Mostrar datos generales del TDG -->
                     <div class="card">
                         <div class="card-body bg-light">
                             <p id="tdg-id" class="oculto">{{$tdg->id}}</p>
                             <p><strong>Código:</strong> {{$tdg->codigo}}</p>
                             <p><strong>Nombre:</strong> {{$tdg->nombre}}</p>
-                            <p><strong>Estado:</strong> <span id="lbl-estado-oficial">{{$tdg->estado_oficial}}</span></p>
+                            @if ($tdg->estado_oficial == null)
+                                <p><strong>Estado:</strong> <span id="lbl-estado-oficial">Recien ingresado</span></p>
+                            @else
+                                <p><strong>Estado:</strong> <span id="lbl-estado-oficial">{{$tdg->estado_oficial}}</span></p>
+                            @endif
                             <p><strong>Fecha de inicio:</strong> {{$tdg->fechaInicio}}</p>
                             <p><strong>Docente director:</strong> {{$tdg->profesor_nombre}} {{$tdg->profesor_apellido}}</p>
                         </div>

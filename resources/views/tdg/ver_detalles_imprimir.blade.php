@@ -1,36 +1,15 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    
 
-@section('javascript')
-<script src="{{ asset('js/ver_detalles_tdg_general.js') }}" defer></script>
-@endsection
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="card">
-                <div class="card-header">
-					    Detalle del Trabajo de Graduación
-				</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-					@endif
-
-                    <!-- Boton para generar el pdf a imprimir del tdg -->
-                    <div class="d-flex flex-row-reverse bd-highlight">
-                        <div class="p-2 bd-highlight">
-                            <button type="button" id="btn-imprimir-tdg" class="btn btn-secondary" value="{{$tdg->id}}">Imprimir</button>
-                        </div>
-                    </div>
+    <title>Detalle de Trabajo de Graduación</title>
+  </head>
+  <body>
                     
                     <!-- Mostrar datos generales del TDG -->
-                    <div class="card">
-                        <div class="card-body bg-light">
-                            <p id="tdg-id" class="oculto">{{$tdg->id}}</p>
                             <p><strong>Código:</strong> {{$tdg->codigo}}</p>
                             <p><strong>Nombre:</strong> {{$tdg->nombre}}</p>
                             @if ($tdg->estado_oficial == null)
@@ -40,14 +19,12 @@
                             @endif
                             <p><strong>Fecha de inicio:</strong> {{$tdg->fechaInicio}}</p>
                             <p><strong>Docente director:</strong> {{$tdg->profesor_nombre}} {{$tdg->profesor_apellido}}</p>
-                        </div>
-                    </div>
                     <br>
                     
                     <!-- Espacio para mostrar los estudiantes -->
                     <h3>Estudiantes</h3>
                     <br>
-                    <table id="table-students" class="table table-striped table-responsive">
+                    <table>
                         <thead>
                             <tr>
                                 <th scope="col">Carnet</th>
@@ -68,7 +45,7 @@
                     <!-- Espacio para mostrar los asesores internos -->
                     <h3>Asesores internos</h3>
                     <br>
-                    <table id="table-advisers-internal" class="table table-striped table-responsive">
+                    <table>
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>
@@ -87,10 +64,10 @@
                     <!-- Espacio para mostrar los asesores externos -->
                     <h3>Asesores externos</h3>
                     <br>
-                    <table id="table-advisers-external" class="table table-striped table-responsive">
+                    <table>
                         <thead>
                             <tr>
-                                <th scope="col">Nombre</th>
+                                <th>Nombre</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -103,12 +80,6 @@
                     </table>
                     <br>
 
-                </div>
-                <div class="card-footer text-muted">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+
+  </body>
+</html>

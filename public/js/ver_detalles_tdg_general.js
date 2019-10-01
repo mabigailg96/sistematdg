@@ -67,3 +67,8 @@ $(document).ready(function() {
         "language": lenguaje_datatable,
     });
 });
+
+// Boton de imprimir
+$(document).on("click", "#btn-imprimir-tdg", function(){
+    window.location.href = "/imprimir/detalle/tdg/"+$(this).attr("value");
+});

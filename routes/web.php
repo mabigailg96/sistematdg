@@ -55,6 +55,9 @@ Route::get('/todos/tdg/gestionar/general', 'TdgController@allTdgGestionarGeneral
 // Ruta para mostrar detalle de tdg coordinador de escuela
 Route::get('/ver/detalle/tdg/escuela/{id}', 'TdgController@createDetalleTdgEscuela')->name('tdg.verDetalleTdgEscuela');
 
+// Ruta para imprimir ver detalles para coordinador de escuela
+Route::get('/imprimir/detalle/tdg/{id}','TdgController@generatePdfDetallesTdg')->name('tdg.generatePdfDetallesTdg');
+
 // Ruta para mostrar detalle de tdg coordinador general
 Route::get('/ver/detalle/tdg/general/{id}', 'TdgController@createDetalleTdgGeneral')->name('tdg.verDetalleTdgGeneral');
 

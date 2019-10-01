@@ -121,3 +121,8 @@ $(document).on("click", "#btn-abandonar-tdg", function() {
     })
 
 });
+
+// Boton de imprimir
+$(document).on("click", "#btn-imprimir-tdg", function(){
+    window.location.href = "/imprimir/detalle/tdg/"+$(this).attr("value");
+});

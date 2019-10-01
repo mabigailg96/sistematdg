@@ -15,6 +15,7 @@ use App\RequestTribunal;
 use App\RequestResult;
 use App\RequestApproved;
 use \DB;
+use PDF;
 use SebastianBergmann\Environment\Console;
 
 class TdgController extends Controller
@@ -904,7 +905,7 @@ else if($tipo_solicitud=='aprobado'){
             if ($tdg_prueba[0]->profesor_id == NULL) {
                 $tdg = DB::table('tdgs')
                     ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.fechaInicio')
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
                     
@@ -914,7 +915,7 @@ else if($tipo_solicitud=='aprobado'){
                 $tdg = DB::table('tdgs')
                     ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
                     ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', 'semesters.fechaInicio')
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
             }
@@ -1013,7 +1014,7 @@ else if($tipo_solicitud=='aprobado'){
             if ($tdg_prueba[0]->profesor_id == NULL) {
                 $tdg = DB::table('tdgs')
                     ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.fechaInicio')
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
                     ->where('tdgs.escuela_id', '=', $escuela_id)
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
@@ -1024,7 +1025,7 @@ else if($tipo_solicitud=='aprobado'){
                 $tdg = DB::table('tdgs')
                     ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
                     ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', 'semesters.fechaInicio')
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
                     ->where('tdgs.escuela_id', '=', $escuela_id)
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
@@ -1061,6 +1062,75 @@ else if($tipo_solicitud=='aprobado'){
             }
 
             return view('tdg.ver_detalles_escuela', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external]);
+        } else {
+            return redirect()->route('tdg.filtroGestionarEscuela');
+        }
+    }
+
+    public function generatePdfDetallesTdg($id) {
+        // Inicializar variables
+        $tdg_id = $id;
+    
+        $tdg_prueba = DB::table('tdgs')
+            ->select('id', 'profesor_id')
+            ->where('id', '=', $tdg_id)
+            ->get();
+    
+        if (!$tdg_prueba->isEmpty()) {
+    
+            if ($tdg_prueba[0]->profesor_id == NULL) {
+                $tdg = DB::table('tdgs')
+                    ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+                    ->where('tdgs.id', '=', $tdg_id)
+                    ->get();
+                    
+                $tdg[0]->profesor_nombre = '';
+                $tdg[0]->profesor_apellido = '';
+            } else {
+                $tdg = DB::table('tdgs')
+                    ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
+                    ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+                    ->where('tdgs.id', '=', $tdg_id)
+                    ->get();
+            }
+    
+            $students = DB::table('student_tdg')
+                ->join('students', 'student_tdg.student_id', '=', 'students.id')
+                ->select('student_tdg.id as student_tdg_id', 'students.id', 'students.carnet', 'students.nombres', 'students.apellidos', 'student_tdg.activo')
+                ->where('student_tdg.tdg_id', '=', $tdg_id)
+                ->get();
+                
+            if ($students->isEmpty()) {
+                $students = [];
+            }
+                
+            $advisers_internal = DB::table('professor_tdg')
+                ->join('professors', 'professor_tdg.professor_id', '=', 'professors.id')
+                ->select('professors.id', 'professors.nombre', 'professors.apellido')
+                ->where('professor_tdg.tdg_id', '=', $tdg_id)
+                ->get();
+                
+            if ($advisers_internal->isEmpty()) {
+                $advisers_internal = [];
+            }
+    
+            $advisers_external = DB::table('adviser_tdg')
+                ->join('advisers', 'adviser_tdg.adviser_id', '=', 'advisers.id')
+                ->select('advisers.id', 'advisers.nombre', 'advisers.apellido')
+                ->where('adviser_tdg.tdg_id', '=', $tdg_id)
+                ->get();
+                
+            if ($advisers_external->isEmpty()) {
+                $advisers_external = [];
+            }
+
+            $pdf = PDF::loadView('tdg.ver_detalles_imprimir', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external]);
+
+            //$pdf = PDF::loadView('myPDF', $data);
+  
+            return $pdf->download('TDG_'.$tdg[0]->codigo.'.pdf');
         } else {
             return redirect()->route('tdg.filtroGestionarEscuela');
         }
