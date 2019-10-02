@@ -39,7 +39,7 @@
                                 <p><strong>Estado:</strong> <span id="lbl-estado-oficial">{{$tdg->estado_oficial}}</span></p>
                             @endif
                             <p><strong>Fecha de inicio:</strong> {{$tdg->fechaInicio}}</p>
-                            <p><strong>Docente director:</strong> {{$tdg->profesor_nombre}} {{$tdg->profesor_apellido}}</p>
+                            <p><strong>Docente asesor:</strong> {{$tdg->profesor_nombre}} {{$tdg->profesor_apellido}}</p>
                         </div>
                     </div>
                     <br>
@@ -103,7 +103,7 @@
                     </table>
                     <br>
 
-                    <!-- Espacio para mostrar los asesores externos -->
+                    <!-- Espacio para mostrar el historial de las solicitudes y el estado en que se encuentran -->
                     <h3>Historial</h3>
                     <br>
                     <table id="table-historial" class="table table-striped table-responsive">
