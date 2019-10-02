@@ -30,7 +30,7 @@
                     </div>
                     <br>
                     <!-- Espacio para buscar Docente Director -->
-                    <h3>Docente director</h3>
+                    <h3>Docente asesor</h3>
                     <div class="row">
                         <div class="col-md-10">
                             <div class="input-group">
@@ -110,7 +110,7 @@
                         <div class="card-body bg-light">
                             <h3>Resumen del grupo asignado:</h3>
                             <br>
-                            <p><strong>Docente director:</strong> <span id="lbl-docente_director" value=""></span></p>
+                            <p><strong>Docente asesor:</strong> <span id="lbl-docente_director" value=""></span></p>
                             <p><strong>Integrantes:</strong></p>
                             <p id="lbl-estudiantes">
                                 

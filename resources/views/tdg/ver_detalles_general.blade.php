@@ -23,7 +23,7 @@
                     <!-- Boton para generar el pdf a imprimir del tdg -->
                     <div class="d-flex flex-row-reverse bd-highlight">
                         <div class="p-2 bd-highlight">
-                            <button type="button" id="btn-imprimir-tdg" class="btn btn-secondary" value="{{$tdg->id}}">Imprimir</button>
+                            <button type="button" id="btn-imprimir-tdg" class="btn btn-primary btn-color" value="{{$tdg->id}}"><span class="oi oi-print"></span>&nbsp;Imprimir</button>
                         </div>
                     </div>
                     

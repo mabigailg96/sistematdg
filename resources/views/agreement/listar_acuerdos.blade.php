@@ -25,17 +25,17 @@
 
                         <br>
                         <table id="table-filtro-acuerdos" class="table table-striped">
-                                <thead>
-                                    <tr>
+                            <thead>
+                                <tr>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Opcion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
                 </div>
             </div>
 
