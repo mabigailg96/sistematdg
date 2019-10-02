@@ -103,6 +103,33 @@
                     </table>
                     <br>
 
+                    <!-- Espacio para mostrar los asesores externos -->
+                    <h3>Historial</h3>
+                    <br>
+                    <table id="table-historial" class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tipo de solicitud</th>
+                                <th scope="col">Resolución</th>
+                                <th scope="col">Acuerdo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($historial as $historial_especifico)
+                            <tr>
+                                <td>{{$historial_especifico['tipo_solicitud']}}</td>
+                                <td>{{$historial_especifico['resolucion']}}</td>
+                                @if ($historial_especifico['acuerdo_texto'] == 'Acuerdo')
+                                    <td><a href="/acuerdos/{{$historial_especifico['url']}}">{{$historial_especifico['acuerdo_texto']}}</a></td>
+                                @else
+                                    <td>{{$historial_especifico['acuerdo_texto']}}</td>
+                                @endif
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <br>
+
                 </div>
                 <div class="card-footer text-muted">
                     

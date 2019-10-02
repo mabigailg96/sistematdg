@@ -428,9 +428,9 @@ class TdgController extends Controller
 
         // Realizar consultas a la base de datos
         $tdgs = DB::table('tdgs')
-            ->leftJoin('request_officials', 'tdgs.id', '=', 'request_officials.tdg_id')
+            ->join('request_approveds', 'tdgs.id', '=', 'request_approveds.tdg_id')
             ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre')
-            ->where('request_officials.tdg_id', '=', NULL)
+            ->where('request_approveds.aprobado', '=', '1')
             ->where('tdgs.escuela_id', '=', $escuela_id)
             ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
             ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
@@ -444,9 +444,9 @@ class TdgController extends Controller
         $escuela_id = auth()->user()->college_id;
 
         $tdg = DB::table('tdgs')
-            ->leftJoin('request_officials', 'tdgs.id', '=', 'request_officials.tdg_id')
+            ->join('request_approveds', 'tdgs.id', '=', 'request_approveds.tdg_id')
             ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre')
-            ->where('request_officials.tdg_id', '=', NULL)
+            ->where('request_approveds.aprobado', '=', '1')
             ->where('tdgs.escuela_id', '=', $escuela_id)
             ->where('tdgs.id', '=', $id)
             ->get();
@@ -901,6 +901,8 @@ else if($tipo_solicitud=='aprobado'){
             ->get();
     
         if (!$tdg_prueba->isEmpty()) {
+
+            // Datos del TDG y docente director
     
             if ($tdg_prueba[0]->profesor_id == NULL) {
                 $tdg = DB::table('tdgs')
@@ -919,6 +921,8 @@ else if($tipo_solicitud=='aprobado'){
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
             }
+
+            // Integrantes
     
             $students = DB::table('student_tdg')
                 ->join('students', 'student_tdg.student_id', '=', 'students.id')
@@ -929,6 +933,8 @@ else if($tipo_solicitud=='aprobado'){
             if ($students->isEmpty()) {
                 $students = [];
             }
+
+            // Asesores internos
                 
             $advisers_internal = DB::table('professor_tdg')
                 ->join('professors', 'professor_tdg.professor_id', '=', 'professors.id')
@@ -939,6 +945,8 @@ else if($tipo_solicitud=='aprobado'){
             if ($advisers_internal->isEmpty()) {
                 $advisers_internal = [];
             }
+
+            // Asesores externos
     
             $advisers_external = DB::table('adviser_tdg')
                 ->join('advisers', 'adviser_tdg.adviser_id', '=', 'advisers.id')
@@ -949,8 +957,282 @@ else if($tipo_solicitud=='aprobado'){
             if ($advisers_external->isEmpty()) {
                 $advisers_external = [];
             }
+
+            // Historial de solicitudes
+            
+            $historial = array();
+
+            // Solicitud de aprobado
+            $request_approveds = DB::table('request_approveds')
+                ->select('id', 'aprobado')
+                ->where('tdg_id', '=', $tdg_id)
+                ->get();
+            
+            if(!$request_approveds->isEmpty()) {
+                foreach ($request_approveds as $request_approved) {
+
+                    $acuerdo_texto = 'No aplica';
+                    $url = '';
+
+                    $request_approved_datos = DB::table('request_approveds')
+                        ->join('agreements', 'request_approveds.agreement_id','=', 'agreements.id')
+                        ->select('agreements.url')
+                        ->where('request_approveds.id', '=', $request_approved->id)
+                        ->get();
+                    
+                    if (!$request_approved_datos->isEmpty()) {
+                        $acuerdo_texto = 'Acuerdo';
+                        $url = $request_approved_datos[0]->url;
+                    }
+
+                    $resolucion = '';
+
+                    if (is_null($request_approved->aprobado)) {
+                        $resolucion = 'En trámite';
+                    } else if (empty($request_approved->aprobado)) {
+                        $resolucion = 'Rechazado';
+                    } else if ($request_approved->aprobado == 1) {
+                        $resolucion = 'Aprobado';
+                    }
+
+                    $historial_especifico = array(
+                        'tipo_solicitud' => 'Aprobado',
+                        'resolucion' => $resolucion,
+                        'acuerdo_texto' => $acuerdo_texto,
+                        'url' => $url,
+                    );
+
+                    array_push($historial, $historial_especifico);
+                }
+            }
+
+            // Solicitud prórroga
+            $request_prorrogas = DB::table('request_extensions')
+                ->select('id', 'aprobado')
+                ->where('type_extension_id', '=', '1')
+                ->where('tdg_id', '=', $tdg_id)
+                ->get();
+            
+            if(!$request_prorrogas->isEmpty()) {
+                foreach ($request_prorrogas as $request_prorroga) {
+
+                    $acuerdo_texto = 'No aplica';
+                    $url = '';
+
+                    $request_prorroga_datos = DB::table('request_extensions')
+                        ->join('agreements', 'request_extensions.agreement_id','=', 'agreements.id')
+                        ->select('agreements.url')
+                        ->where('type_extension_id', '=', '1')
+                        ->where('request_extensions.id', '=', $request_prorroga->id)
+                        ->get();
+                    
+                    if (!$request_prorroga_datos->isEmpty()) {
+                        $acuerdo_texto = 'Acuerdo';
+                        $url = $request_prorroga_datos[0]->url;
+                    }
+
+                    $resolucion = '';
+
+                    if (is_null($request_prorroga->aprobado)) {
+                        $resolucion = 'En trámite';
+                    } else if (empty($request_prorroga->aprobado)) {
+                        $resolucion = 'Rechazado';
+                    } else if ($request_prorroga->aprobado == 1) {
+                        $resolucion = 'Aprobado';
+                    }
+
+                    $historial_especifico = array(
+                        'tipo_solicitud' => 'Prórroga',
+                        'resolucion' => $resolucion,
+                        'acuerdo_texto' => $acuerdo_texto,
+                        'url' => $url,
+                    );
+
+                    array_push($historial, $historial_especifico);
+                }
+            }
+
+            // Solicitud de extensión de prórroga
+            $request_extensions = DB::table('request_extensions')
+                ->select('id', 'aprobado')
+                ->where('type_extension_id', '=', '2')
+                ->where('tdg_id', '=', $tdg_id)
+                ->get();
+            
+            if(!$request_extensions->isEmpty()) {
+                foreach ($request_extensions as $request_extension) {
+
+                    $acuerdo_texto = 'No aplica';
+                    $url = '';
+
+                    $request_extension_datos = DB::table('request_extensions')
+                        ->join('agreements', 'request_extensions.agreement_id','=', 'agreements.id')
+                        ->select('agreements.url')
+                        ->where('type_extension_id', '=', '2')
+                        ->where('request_extensions.id', '=', $request_extension->id)
+                        ->get();
+                    
+                    if (!$request_extension_datos->isEmpty()) {
+                        $acuerdo_texto = 'Acuerdo';
+                        $url = $request_extension_datos[0]->url;
+                    }
+
+                    $resolucion = '';
+
+                    if (is_null($request_extension->aprobado)) {
+                        $resolucion = 'En trámite';
+                    } else if (empty($request_extension->aprobado)) {
+                        $resolucion = 'Rechazado';
+                    } else if ($request_extension->aprobado == 1) {
+                        $resolucion = 'Aprobado';
+                    }
+
+                    $historial_especifico = array(
+                        'tipo_solicitud' => 'Extensión de prórroga',
+                        'resolucion' => $resolucion,
+                        'acuerdo_texto' => $acuerdo_texto,
+                        'url' => $url,
+                    );
+
+                    array_push($historial, $historial_especifico);
+                }
+            }
+
+            // Solicitud de extensión especial
+            $request_especials = DB::table('request_extensions')
+                ->select('id', 'aprobado')
+                ->where('type_extension_id', '=', '3')
+                ->where('tdg_id', '=', $tdg_id)
+                ->get();
+            
+            if(!$request_especials->isEmpty()) {
+                foreach ($request_especials as $request_especial) {
+
+                    $acuerdo_texto = 'No aplica';
+                    $url = '';
+
+                    $request_especial_datos = DB::table('request_extensions')
+                        ->join('agreements', 'request_extensions.agreement_id','=', 'agreements.id')
+                        ->select('agreements.url')
+                        ->where('type_extension_id', '=', '3')
+                        ->where('request_extensions.id', '=', $request_especial->id)
+                        ->get();
+                    
+                    if (!$request_especial_datos->isEmpty()) {
+                        $acuerdo_texto = 'Acuerdo';
+                        $url = $request_especial_datos[0]->url;
+                    }
+
+                    $resolucion = '';
+
+                    if (is_null($request_especial->aprobado)) {
+                        $resolucion = 'En trámite';
+                    } else if (empty($request_especial->aprobado)) {
+                        $resolucion = 'Rechazado';
+                    } else if ($request_especial->aprobado == 1) {
+                        $resolucion = 'Aprobado';
+                    }
+
+                    $historial_especifico = array(
+                        'tipo_solicitud' => 'Prórroga especial',
+                        'resolucion' => $resolucion,
+                        'acuerdo_texto' => $acuerdo_texto,
+                        'url' => $url,
+                    );
+
+                    array_push($historial, $historial_especifico);
+                }
+            }
+
+            // Solicitud de nombramiento de tribunal
+            $request_tribunals = DB::table('request_tribunals')
+                ->select('id', 'aprobado')
+                ->where('tdg_id', '=', $tdg_id)
+                ->get();
+            
+            if(!$request_tribunals->isEmpty()) {
+                foreach ($request_tribunals as $request_tribunal) {
+
+                    $acuerdo_texto = 'No aplica';
+                    $url = '';
+
+                    $request_tribunal_datos = DB::table('request_tribunals')
+                        ->join('agreements', 'request_tribunals.agreement_id','=', 'agreements.id')
+                        ->select('agreements.url')
+                        ->where('request_tribunals.id', '=', $request_prorroga->id)
+                        ->get();
+                    
+                    if (!$request_tribunal_datos->isEmpty()) {
+                        $acuerdo_texto = 'Acuerdo';
+                        $url = $request_tribunal_datos[0]->url;
+                    }
+
+                    $resolucion = '';
+
+                    if (is_null($request_tribunal->aprobado)) {
+                        $resolucion = 'En trámite';
+                    } else if (empty($request_tribunal->aprobado)) {
+                        $resolucion = 'Rechazado';
+                    } else if ($request_tribunal->aprobado == 1) {
+                        $resolucion = 'Aprobado';
+                    }
+
+                    $historial_especifico = array(
+                        'tipo_solicitud' => 'Nombramiento de tribunal',
+                        'resolucion' => $resolucion,
+                        'acuerdo_texto' => $acuerdo_texto,
+                        'url' => $url,
+                    );
+
+                    array_push($historial, $historial_especifico);
+                }
+            }
+
+            // Solicitud de resultados
+            $request_results = DB::table('request_results')
+                ->select('id', 'aprobado')
+                ->where('tdg_id', '=', $tdg_id)
+                ->get();
+            
+            if(!$request_results->isEmpty()) {
+                foreach ($request_results as $request_result) {
+
+                    $acuerdo_texto = 'No aplica';
+                    $url = '';
+
+                    $request_result_datos = DB::table('request_results')
+                        ->join('agreements', 'request_results.agreement_id','=', 'agreements.id')
+                        ->select('agreements.url')
+                        ->where('request_results.id', '=', $request_result->id)
+                        ->get();
+                    
+                    if (!$request_result_datos->isEmpty()) {
+                        $acuerdo_texto = 'Acuerdo';
+                        $url = $request_result_datos[0]->url;
+                    }
+
+                    $resolucion = '';
+
+                    if (is_null($request_result->aprobado)) {
+                        $resolucion = 'En trámite';
+                    } else if (empty($request_result->aprobado)) {
+                        $resolucion = 'Rechazado';
+                    } else if ($request_result->aprobado == 1) {
+                        $resolucion = 'Aprobado';
+                    }
+
+                    $historial_especifico = array(
+                        'tipo_solicitud' => 'Nombramiento de tribunal',
+                        'resolucion' => $resolucion,
+                        'acuerdo_texto' => $acuerdo_texto,
+                        'url' => $url,
+                    );
+
+                    array_push($historial, $historial_especifico);
+                }
+            }
     
-            return view('tdg.ver_detalles_general', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external]);
+            return view('tdg.ver_detalles_general', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial]);
         } else {
             return redirect()->route('tdg.filtroGestionarGeneral');
         }
