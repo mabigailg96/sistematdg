@@ -838,6 +838,8 @@ else if($tipo_solicitud=='aprobado'){
 
             $tdgs = DB::table('tdgs')
                 ->select('id', 'codigo', 'nombre', 'estado_oficial')
+                ->where('codigo', 'like', '%'.$codigo.'%')
+                ->where('nombre', 'like', '%'.$nombre.'%')
                 ->get();
 
         } else if ($request->escuela_id == null && $request->estado_oficial == 'Recien ingresado') {
@@ -868,7 +870,7 @@ else if($tipo_solicitud=='aprobado'){
                 ->whereNull('estado_oficial')
                 ->get();
 
-        } else if ($request->escuela_id == null && $request->estado_oficial != 'Recien ingresado' && $request->estado_oficial != null) {
+        } else if ($request->escuela_id == null && $request->estado_oficial != 'Recien ingresado' || $request->estado_oficial != null) {
 
             $tdgs = DB::table('tdgs')
                 ->where('codigo', 'like', '%'.$codigo.'%')
@@ -876,7 +878,7 @@ else if($tipo_solicitud=='aprobado'){
                 ->where('estado_oficial', '=', $estado_oficial)
                 ->get();
 
-        } else if ($request->escuela_id != null && $request->estado_oficial != 'Recien ingresado' && $request->estado_oficial != null) {
+        } else if ($request->escuela_id != null && $request->estado_oficial != 'Recien ingresado' || $request->estado_oficial != null) {
 
             $tdgs = DB::table('tdgs')
                 ->where('escuela_id', '=', $escuela_id)
