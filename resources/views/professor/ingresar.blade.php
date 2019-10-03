@@ -38,7 +38,7 @@
                                     @csrf
                                     <div class="row form-group{{ $errors->has('file') ? ' has-error' : '' }}">                                        <label for="file" class="textlabel col-md-3 offset-1 control-label required">Elegir el archivo a importar</label>
                                     <div class="urlinput col-md-6">
-                                        <input id="file" class="form-control-file" type="file" name="file" required>
+                                        <input id="file" class="form-control-file" type="file" name="file" accept=".xlsx, .xls, .xlsm, .xlsb, .xltx, .xltm, .xlt, .xml, .xlam, .xla, .xlw" required>
                                         @if ($errors->has('file'))
                                             <span class="help-block row">
                                                 {{ $errors->first('file') }}
