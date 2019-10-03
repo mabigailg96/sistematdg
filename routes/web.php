@@ -96,7 +96,7 @@ Route::post('/guardar/solicitud/', 'RequestResultController@store')->name('reque
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/asignar', function () {
     return view('assignments.filtro');
-})->name('assignments.filtro');
+})->name('assignments.filtro')->middleware('can:assignments.filtro');
 
 // Pantalla mostrar filtros de TDG para gestionar coordinador de escuela
 Route::get('/listar/tdg/gestionar/escuela', function () {
