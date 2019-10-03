@@ -39,7 +39,6 @@ $(document).ready(function() {
         "ordering": false,
         "lengthChange": false,
         "language": lenguaje_datatable,
-        "bAutoWidth": false,
     });
 
     $("#table-advisers-internal").DataTable({
