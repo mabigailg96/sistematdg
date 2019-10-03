@@ -46,59 +46,29 @@
                                 </div>
                                 <br>
 
+                                <!-- Espacio para mostrar los estudiantes -->
+                                <h3>Estudiantes</h3>
+                                <br>
+                                <table id="table-students" class="table table-striped table-responsive" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Carnet</th>
+                                            <th scope="col">Nombre</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($students as $student)
+                                        <tr>
+                                            <td>{{$student->carnet}}</td>
+                                            <td>{{$student->nombres}} {{$student->apellidos}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <br>
+                                
                                 <div class="row">
                                     <div class="col-6"> <!-- Primera Columna -->
-
-                                        <!-- Espacio para mostrar los estudiantes -->
-                                        <h3>Estudiantes</h3>
-                                        <br>
-                                        <table id="table-students" class="table table-striped table-responsive" width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Carnet</th>
-                                                    <th scope="col">Nombre</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($students as $student)
-                                                <tr>
-                                                    <td>{{$student->carnet}}</td>
-                                                    <td>{{$student->nombres}} {{$student->apellidos}}</td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                        <br>
-
-                                        <!-- Espacio para mostrar el historial de las solicitudes y el estado en que se encuentran -->
-                                        <h3>Historial</h3>
-                                        <br>
-                                        <table id="table-historial" class="table table-striped table-responsive"  width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Tipo de solicitud</th>
-                                                    <th scope="col">Resolución</th>
-                                                    <th scope="col">Acuerdo</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($historial as $historial_especifico)
-                                                <tr>
-                                                    <td>{{$historial_especifico['tipo_solicitud']}}</td>
-                                                    <td>{{$historial_especifico['resolucion']}}</td>
-                                                    @if ($historial_especifico['acuerdo_texto'] == 'Acuerdo')
-                                                        <td><a href="/acuerdos/{{$historial_especifico['url']}}">{{$historial_especifico['acuerdo_texto']}}</a></td>
-                                                    @else
-                                                        <td>{{$historial_especifico['acuerdo_texto']}}</td>
-                                                    @endif
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                        <br>
-                                    </div>
-
-                                    <div class="col-6"> <!-- Segunda Columna -->
                                         <!-- Espacio para mostrar los asesores internos -->
                                         <h3>Docentes Asesores Internos</h3>
                                         <br>
@@ -117,7 +87,9 @@
                                             </tbody>
                                         </table>
                                         <br>
+                                    </div>
 
+                                    <div class="col-6"> <!-- Segunda Columna -->
                                         <!-- Espacio para mostrar los asesores externos -->
                                         <h3>Asesores Especialistas Externos</h3>
                                         <br>
@@ -138,6 +110,33 @@
                                         <br>
                                     </div>
                                 </div>
+
+                                <!-- Espacio para mostrar el historial de las solicitudes y el estado en que se encuentran -->
+                                <h3>Historial</h3>
+                                <br>
+                                <table id="table-historial" class="table table-striped table-responsive"  width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Tipo de solicitud</th>
+                                            <th scope="col">Resolución</th>
+                                            <th scope="col">Acuerdo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($historial as $historial_especifico)
+                                        <tr>
+                                            <td>{{$historial_especifico['tipo_solicitud']}}</td>
+                                            <td>{{$historial_especifico['resolucion']}}</td>
+                                            @if ($historial_especifico['acuerdo_texto'] == 'Acuerdo')
+                                                <td><a href="/acuerdos/{{$historial_especifico['url']}}">{{$historial_especifico['acuerdo_texto']}}</a></td>
+                                            @else
+                                                <td>{{$historial_especifico['acuerdo_texto']}}</td>
+                                            @endif
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <br>
  
                     </div>
 
