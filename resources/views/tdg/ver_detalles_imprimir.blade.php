@@ -43,7 +43,7 @@
                     <br>
 
                     <!-- Espacio para mostrar los asesores internos -->
-                    <h3>Asesores internos</h3>
+                    <h3>Docentes Asesores Internos</h3>
                     <br>
                     <table>
                         <thead>
@@ -62,7 +62,7 @@
                     <br>
 
                     <!-- Espacio para mostrar los asesores externos -->
-                    <h3>Asesores externos</h3>
+                    <h3>Asesores Especialistas Externos</h3>
                     <br>
                     <table>
                         <thead>
