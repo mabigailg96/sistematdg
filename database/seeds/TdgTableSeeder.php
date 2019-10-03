@@ -3,10 +3,18 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+
+
 use App\Tdg;
 
 class TdgTableSeeder extends Seeder
 {
+
+    protected $faker;
+
+public function __construct(Faker\Generator $faker) {
+$this->faker = $faker;
+}
     /**
      * Run the database seeds.
      *
@@ -52,13 +60,14 @@ class TdgTableSeeder extends Seeder
             //Nuevo codigo TDG
             $codigo = 'P' . $escuela->nombre . date("y") . $correlativo . ($lastCorrelativo + 1);
 
+
             $tdg = Tdg::create([
-                'nombre' => Str::random(30),
+                'nombre' => $this->faker->sentence,
                 'escuela_id' => $escuela_id,
                 'codigo' => $codigo,
                 //'estado_oficial' => $estado_oficial[$numero_estado],
                 //'solicitud_escuela' => 'Recien ingresado',
-                'perfil' => 'Acuerdo de JD-'.$i.'.pdf',
+                'perfil' => 'Perfil N-'.$i.'.pdf',
                 'ciclo_id' => rand(1,4),
             ]);
         }
