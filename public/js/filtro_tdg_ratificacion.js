@@ -42,6 +42,8 @@ $(document).on("click", "#btn-filtro-buscar", function(){
 
 // Al dar click en buscar que se limpien los campos de codigo y nombre y se regresan los datos sin filtro
 $(document).on("click", "#btn-filtro-limpiar-busqueda", function(){
+    $("#select-filtro-solicitud").val(0);
+    $("#select-filtro-escuela").val("");
     $("#txt-filtro-codigo").val("");
     $("#txt-filtro-nombre").val("");
     cargarDatosTdg();
@@ -64,7 +66,7 @@ function cargarDatosTdg() {
     // Obtener valores de los input
     var txt_filter_codigo = $("#txt-filtro-codigo").val();
     var txt_filter_nombre = $("#txt-filtro-nombre").val();
-    var filter_escuela_id = $("#filtro-escuela_id").val();
+    var filter_escuela_id = $("#select-filtro-escuela").val();
     var filter_tipo_solicitud = $("#select-filtro-solicitud").val();
 
     // Validar si los input no continen nada
@@ -94,10 +96,10 @@ function cargarDatosTdg() {
     axios.get('/todos/tdg/ver/ratificacion', {
         params: params
     }).then(response => {
-        console.log(response.data);
-        response.data.forEach(element => {
+        //console.log(response.data);
+        /*response.data.forEach(element => {
             console.log('codigo: '+element[0].codigo);
-        });
+        });*/
         if(response.data.length > 0){
             // Llenar la tabla con los resultados traidos de la peticion
             $("#table-filtro-tdgs").DataTable({
@@ -115,7 +117,7 @@ function cargarDatosTdg() {
                         var htmlButtons = '';
                         // Id del TDG
                         var id = full[0].id; //Cuando haga el filtro tengo que agregar [0]
-                        console.log(id);
+                        //console.log(id);
                         // Concatenar ruta para el formulario
                        
                         // Ruta que lleva como parametro el tipo de solicitud que se va ratificar y el id del tdg

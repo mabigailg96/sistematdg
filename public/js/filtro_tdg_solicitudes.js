@@ -39,6 +39,7 @@ $(document).on("click", "#btn-filtro-buscar", function(){
 
 // Al dar click en buscar que se limpien los campos de codigo y nombre y se regresan los datos sin filtro
 $(document).on("click", "#btn-filtro-limpiar-busqueda", function(){
+    $("#select-filtro-solicitud").val(0);
     $("#txt-filtro-codigo").val("");
     $("#txt-filtro-nombre").val("");
     cargarDatosTdg();
