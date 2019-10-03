@@ -39,6 +39,7 @@ $(document).ready(function() {
         "ordering": false,
         "lengthChange": false,
         "language": lenguaje_datatable,
+        "bAutoWidth": false,
     });
 
     $("#table-advisers-internal").DataTable({
@@ -55,6 +56,19 @@ $(document).ready(function() {
     });
 
     $("#table-advisers-external").DataTable({
+        "destroy": true,
+        "processing": true,
+        "ordering": false,
+        "pageLength": 10,
+        "paging": false,
+        "info": false,
+        "searching": false,
+        "ordering": false,
+        "lengthChange": false,
+        "language": lenguaje_datatable,
+    });
+
+    $("#table-historial").DataTable({
         "destroy": true,
         "processing": true,
         "ordering": false,
