@@ -28,6 +28,7 @@ $(document).ready(function() {
         }
     };
 
+
     $("#table-students").DataTable({
         "destroy": true,
         "processing": true,
@@ -84,4 +85,13 @@ $(document).ready(function() {
 // Boton de imprimir
 $(document).on("click", "#btn-imprimir-tdg", function(){
     window.location.href = "/imprimir/detalle/tdg/"+$(this).attr("value");
+});
+
+$(document).ready(function(){
+    $("#printButton").click(function(){
+        var mode = 'iframe'; //popup
+        var close = mode == "popup";
+        var options = { mode : mode, popClose : close};
+        $("div.printableArea").printArea( options );
+    });
 });
