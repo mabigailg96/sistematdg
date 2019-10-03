@@ -91,6 +91,11 @@
                     <a class="nav-link" href="{{ url('/listar/acuerdos/jd') }}"> Ver acuerdos</a>
                   </li>
                   @endcan
+                  @can('assignments.filtro')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/tdg/asignar') }}"> Asignar grupo</a>
+                  </li>
+                  @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

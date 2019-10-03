@@ -7,6 +7,12 @@ use App\Student;
 
 class StudentTableSeeder extends Seeder
 {
+
+    protected $faker;
+
+    public function __construct(Faker\Generator $faker) {
+    $this->faker = $faker;
+    }
     /**
      * Run the database seeds.
      *
@@ -18,8 +24,8 @@ class StudentTableSeeder extends Seeder
             $escuela_id = rand(1,9);
             $student = Student::create([
                 'carnet' => Str::random(2).rand(10,18).rand(100,999),
-                'nombres' => Str::random(70),
-                'apellidos' => Str::random(70),
+                'nombres' => $this->faker->firstName.' '.$this->faker->firstName,
+                'apellidos' => $this->faker->lastname.' '.$this->faker->lastname,
                 'escuela_id' => $escuela_id,
             ]);
         }

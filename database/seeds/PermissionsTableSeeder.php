@@ -173,7 +173,15 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'agreement.listar_acuerdos',
             'description' => 'Muestra los acuerdos de JD',
         ]);
-        
+
+        //*************ASIGNAR GRUPO**************
+        //Permiso para mostrar la pantalla de asignar grupo al tdg
+        Permission::create([
+            'name' => 'Asignar el grupo al tdg',
+            'slug' => 'assignments.filtro',
+            'description' => 'Muestra los acuerdos de JD',
+        ]);
+
 
     }
 }

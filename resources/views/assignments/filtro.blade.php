@@ -11,7 +11,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-					Trabajos de graduación aprobados
+					Asignación de grupo a los Trabajos de Graduación
 				</div>
 
                 <div class="card-body">
