@@ -71,7 +71,7 @@
                     <table id="table-advisers-internal" class="table table-striped table-responsive" width="100%">
                         <thead>
                             <tr>
-                                <th scope="col">Nombre</th>
+                                <th scope="col">Nombres</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,7 +90,7 @@
                     <table id="table-advisers-external" class="table table-striped table-responsive"  width="100%">
                         <thead>
                             <tr>
-                                <th scope="col">Nombre</th>
+                                <th scope="col">Nombres</th>
                             </tr>
                         </thead>
                         <tbody>
