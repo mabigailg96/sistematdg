@@ -102,13 +102,13 @@ $(document).on("click", "#btn-abandonar-tdg", function() {
             console.log(params);
 
             axios.get("/abandonar/student/tdg", {
-    
+
                 params: params
-    
+
             }).then(response => {
-    
+
                 console.log(response.data);
-    
+
                 // Mostrar mensaje de éxito de que todo ha sido registrado
                 Swal.fire({
                     type: 'success',
@@ -122,7 +122,7 @@ $(document).on("click", "#btn-abandonar-tdg", function() {
             }).catch(e => {
                 // Imprimir error en consola
                 console.log(e);
-        
+
                 // Mostrar mensaje de error en caso de que algo haya salido mal con la consulta
                 Swal.fire({
                     type: 'error',
@@ -138,4 +138,12 @@ $(document).on("click", "#btn-abandonar-tdg", function() {
 // Boton de imprimir
 $(document).on("click", "#btn-imprimir-tdg", function(){
     window.location.href = "/imprimir/detalle/tdg/"+$(this).attr("value");
+});
+$(document).ready(function(){
+    $("#printButton").click(function(){
+        var mode = 'iframe'; //popup
+        var close = mode == "popup";
+        var options = { mode : mode, popClose : close};
+        $("div.printableArea").printArea( options );
+    });
 });
