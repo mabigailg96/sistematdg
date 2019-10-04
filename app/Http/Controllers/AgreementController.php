@@ -17,7 +17,6 @@ class AgreementController extends Controller
 
   public function allJdAcuerdos(Request $request){
 
-    /*Funcion Creada por Guillermo Cornejo*/
     //Primero inicializamos las variables
 
     $nombre_acuerdo =   '';
