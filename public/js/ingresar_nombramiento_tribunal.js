@@ -231,3 +231,8 @@ $(document).on("click", "#btn-guardar", function() {
         });
     }
 });
+
+// Funcion que cancela la solicitud de nombramiento de tribunal y retorna a la lista de TDGs
+$(document).on("click", "#btn-cancelar  ", function() {
+    window.location.href = "/listar/tdg/solicitudes";
+});

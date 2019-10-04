@@ -591,4 +591,4 @@ $(document).on("click", "#btn-guardar-asignacion", function() {
 // Funcion que cancela la asignacion y retorna a la lista de TDGs
 $(document).on("click", "#btn-cancelar-asignacion", function() {
     window.location.href = "/listar/tdg/asignar";
-})
+});

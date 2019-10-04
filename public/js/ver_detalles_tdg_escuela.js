@@ -107,16 +107,19 @@ $(document).on("click", "#btn-abandonar-tdg", function() {
 
             }).then(response => {
 
-                console.log(response.data);
+                //console.log(response.data);
 
                 // Mostrar mensaje de éxito de que todo ha sido registrado
                 Swal.fire({
                     type: 'success',
-                    title: 'Abandonado!:',
-                    text: 'El presente TDG ha sido abandonado.!:',
+                    title: '¡Abandonado!',
+                    text: 'El presente TDG ha sido abandonado.!',
                 })
                 .then(function(){
                     $("#lbl-estado-oficial").html(response.data.tdg.estado_oficial);
+                    $("#btn-abandonar-tdg").attr("disabled", "disabled");
+                    $("#btn-abandonar-tdg").removeClass("btn-danger");
+                    $("#btn-abandonar-tdg").addClass("btn-secundary");
                 });
 
             }).catch(e => {
@@ -139,6 +142,7 @@ $(document).on("click", "#btn-abandonar-tdg", function() {
 $(document).on("click", "#btn-imprimir-tdg", function(){
     window.location.href = "/imprimir/detalle/tdg/"+$(this).attr("value");
 });
+
 $(document).ready(function(){
     $("#printButton").click(function(){
         var mode = 'iframe'; //popup
@@ -147,3 +151,4 @@ $(document).ready(function(){
         $("div.printableArea").printArea( options );
     });
 });
+

@@ -429,8 +429,10 @@ class TdgController extends Controller
         // Realizar consultas a la base de datos
         $tdgs = DB::table('tdgs')
             ->join('request_approveds', 'tdgs.id', '=', 'request_approveds.tdg_id')
+            ->join('request_officials', 'tdgs.id', '=', 'request_officials.tdg_id')
             ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre')
             ->where('request_approveds.aprobado', '=', '1')
+            ->where('request_officials.aprobado', '=', '0')
             ->where('tdgs.escuela_id', '=', $escuela_id)
             ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
             ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
