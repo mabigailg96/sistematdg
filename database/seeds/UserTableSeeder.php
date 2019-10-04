@@ -98,7 +98,7 @@ class UserTableSeeder extends Seeder
         ]);
         User::create([
             'nombre'=> 'Secretaria Civil',
-            'username'=> 'secreCivil',
+            'username'=> 'secrecivil',
             'college_id'=>'1',
             'email' => 'secretaria1@hotmail.com',
             'password'=> bcrypt('1234'),
@@ -106,7 +106,7 @@ class UserTableSeeder extends Seeder
         ]);
         User::create([
             'nombre'=> 'Secretaria Industrial',
-            'username'=> 'secreIndustrial',
+            'username'=> 'secreindustrial',
             'college_id'=>'2',
             'email' => 'secretaria2@hotmail.com',
             'password'=> bcrypt('1234'),
@@ -114,7 +114,7 @@ class UserTableSeeder extends Seeder
         ]);
         User::create([
             'nombre'=> 'Secretaria Mecánica',
-            'username'=> 'secreMecanica',
+            'username'=> 'secremecanica',
             'college_id'=>'3',
             'email' => 'secretaria3@hotmail.com',
             'password'=> bcrypt('1234'),
@@ -122,7 +122,7 @@ class UserTableSeeder extends Seeder
         ]);
         User::create([
             'nombre'=> 'Secretaria Eléctrica',
-            'username'=> 'secreElectrica',
+            'username'=> 'secreelectrica',
             'college_id'=>'4',
             'email' => 'secretaria4@hotmail.com',
             'password'=> bcrypt('1234'),
@@ -130,7 +130,7 @@ class UserTableSeeder extends Seeder
         ]);
         User::create([
             'nombre'=> 'Secretaria Quimica',
-            'username'=> 'secreQuimica',
+            'username'=> 'secrequimica',
             'college_id'=>'5',
             'email' => 'secretaria5@hotmail.com',
             'password'=> bcrypt('1234'),
@@ -138,7 +138,7 @@ class UserTableSeeder extends Seeder
         ]);
         User::create([
             'nombre'=> 'Secretaria Alimentos',
-            'username'=> 'secreAlimentos',
+            'username'=> 'secrealimentos',
             'college_id'=>'6',
             'email' => 'secretaria6@hotmail.com',
             'password'=> bcrypt('1234'),
@@ -146,7 +146,7 @@ class UserTableSeeder extends Seeder
         ]);
         User::create([
             'nombre'=> 'Secretaria Sistemas',
-            'username'=> 'secreSistemas',
+            'username'=> 'secresistemas',
             'college_id'=>'7',
             'email' => 'secretaria7@hotmail.com',
             'password'=> bcrypt('1234'),
@@ -154,7 +154,7 @@ class UserTableSeeder extends Seeder
         ]);
         User::create([
             'nombre'=> 'Secretaria Arquitectura',
-            'username'=> 'secreArquitectura',
+            'username'=> 'secrearquitectura',
             'college_id'=>'8',
             'email' => 'secretaria8@hotmail.com',
             'password'=> bcrypt('1234'),
@@ -162,7 +162,7 @@ class UserTableSeeder extends Seeder
         ]);
         User::create([
             'nombre'=> 'Secretaria Posgrado',
-            'username'=> 'secrePosgrado',
+            'username'=> 'secreposgrado',
             'college_id'=>'9',
             'email' => 'secretaria9@hotmail.com',
             'password'=> bcrypt('1234'),
