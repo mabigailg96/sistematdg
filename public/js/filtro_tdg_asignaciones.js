@@ -85,7 +85,10 @@ function cargarDatosTdg() {
         params: params
     }).then(response => {
         //console.log(response.data);
-
+        console.log(response.data);
+        response.data.forEach(element => {
+            console.log('codigo: '+element[0].codigo);
+        });
         if(response.data.length > 0){
             // Llenar la tabla con los resultados traidos de la peticion
             $("#table-filtro-tdgs").DataTable({
@@ -96,11 +99,12 @@ function cargarDatosTdg() {
                 "ordering": false,
                 "pageLength": 10,
                 "columns": [
-                    { 'data': 'codigo' },
-                    { 'data': 'nombre' },
+                    { 'data': '0.codigo' },
+                    { 'data': '0.nombre' },
                     { sortable: false,
                     "render": function ( data, type, full, meta ) {
-                        var id = full.id;
+                        var id = full[0].id;
+                        console.log(id);
                         /// Acá se le va a concatenar dependiendo de que tipo de solicitud es
                         var htmlButtons = `<a href="/ingresar/tdg/asignacion/${id}">Asignar grupo</a>`;
                         return htmlButtons;

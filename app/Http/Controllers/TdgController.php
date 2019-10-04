@@ -425,18 +425,51 @@ class TdgController extends Controller
         $codigo = $request->codigo;
         $nombre = '';
         $nombre = $request->nombre;
+        $tdgs = '';
+           //Solicitudes de oficializacion aprobadas
+           $request_Approveds = RequestApproved::where('aprobado',1)->get();
+           //Solicitudes de cambio de nombre aprobadas
+           $request_Officials = RequestOfficial::where('aprobado',1)->orWhere('aprobado',null)->get();
+           $tdgs = array();
+           //Validacion para que existan oficializados
+           if($request_Approveds->isEmpty()){
 
-        // Realizar consultas a la base de datos
-        $tdgs = DB::table('tdgs')
-            ->join('request_approveds', 'tdgs.id', '=', 'request_approveds.tdg_id')
-            ->join('request_officials', 'tdgs.id', '=', 'request_officials.tdg_id')
-            ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre')
-            ->where('request_approveds.aprobado', '=', '1')
-            ->where('request_officials.aprobado', '=', '0')
-            ->where('tdgs.escuela_id', '=', $escuela_id)
-            ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
-            ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
-            ->get();
+           }else{
+               //Si existen las recorremos
+               foreach($request_Approveds as $re1){
+                   $enable_Approveds[]= $re1->tdg_id;
+               }
+
+               //Validamos que existan cambios de nombres que esten aprobadas
+               if(!$request_Officials->isEmpty()){
+                   foreach($request_Officials as $re2){
+                       $enable_Officials[]= $re2->tdg_id;
+                   }
+
+                   //Hacemos una diferencia para que quitar datos repetidos.
+                     $enable_request = array_diff($enable_Approveds, $enable_Officials);
+
+               }else{
+                   //Sino, los tdgs disponibles seran por defecto solo los que sea oficializados aprobados
+                   $enable_request = $enable_Approveds;
+               }
+
+
+           foreach($enable_request as $enable){
+                //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+               $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+               ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
+               ->where('tdgs.escuela_id', '=', $escuela_id)
+               ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+               ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+               ->where('tdgs.id','=',$enable)
+               ->get();
+
+               if(!$consulta->isEmpty()){
+                   array_push($tdgs, $consulta);
+               }
+           }
+       }
         return $tdgs;
     }
 
