@@ -24,9 +24,6 @@ class SemesterTableSeeder extends Seeder
             'ciclo'=> 'I-2019',
             'fechaInicio'=> '2019-02-12',
         ]);
-        Semester::create([
-            'ciclo'=> 'II-2019',
-            'fechaInicio'=> '2019-08-12',
-        ]);
+        
     }
 }
