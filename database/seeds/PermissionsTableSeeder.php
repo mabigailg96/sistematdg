@@ -181,7 +181,18 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'assignments.filtro',
             'description' => 'Muestra los acuerdos de JD',
         ]);
-
+                //*************VER DETALLES RUTAS PRINCIPALES***************
+        //Permiso para mostrar la pantalla de ver detalles
+        Permission::create([
+            'name' => 'Ver detalles coordinador de escuela',
+            'slug' => 'tdg.todosTdgGestionarEscuela',
+            'description' => 'Muestra los detalles de los tdgs',
+        ]);
+        Permission::create([
+            'name' => 'Ver detalles coordinador general',
+            'slug' => 'tdg.todosTdgGestionarGeneral',
+            'description' => 'Muestra los detalles de los tdgs',
+        ]);
 
     }
 }

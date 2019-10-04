@@ -48,9 +48,9 @@ Route::get('/todos/profesores/asignaciones', 'ProfessorController@allProfessorAs
 Route::get('/todos/estudiantes/asignaciones', 'StudentController@allStudentAsignaciones')->name('student.todosStudentAsignaciones');
 
 // Ruta para para enviar todos los datos del TDG para filtro de gestionar para la escuela
-Route::get('/todos/tdg/gestionar/escuela', 'TdgController@allTdgGestionarEscuela')->name('tdg.todosTdgGestionarEscuela');
+Route::get('/todos/tdg/gestionar/escuela', 'TdgController@allTdgGestionarEscuela')->name('tdg.todosTdgGestionarEscuela')->middleware('can:tdg.todosTdgGestionarEscuela');
 // Ruta para para enviar todos los datos del TDG para filtro de gestionar para el coordinador general
-Route::get('/todos/tdg/gestionar/general', 'TdgController@allTdgGestionarGeneral')->name('tdg.todosTdgGestionarGeneral');
+Route::get('/todos/tdg/gestionar/general', 'TdgController@allTdgGestionarGeneral')->name('tdg.todosTdgGestionarGeneral')->middleware('can:tdg.todosTdgGestionarGeneral');
 
 // Ruta para mostrar detalle de tdg coordinador de escuela
 Route::get('/ver/detalle/tdg/escuela/{id}', 'TdgController@createDetalleTdgEscuela')->name('tdg.verDetalleTdgEscuela');
