@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 
 use App\Tdg;
+use App\Http\Controllers\RequestApprovedController;
 
 class TdgTableSeeder extends Seeder
 {
@@ -70,6 +71,10 @@ $this->faker = $faker;
                 'perfil' => 'Perfil N-'.$i.'.pdf',
                 'ciclo_id' => rand(1,4),
             ]);
+
+            //Aqui guardamos la solicitud para apobacion ya que es el primer paso del proceso, donde se sube el perfil en espera de la respuesta
+            $requestApproved = new RequestApprovedController();
+            $approved = $requestApproved->store($tdg->id);
         }
     }
 }
