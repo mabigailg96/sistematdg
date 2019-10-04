@@ -69,7 +69,7 @@ $this->faker = $faker;
                 //'estado_oficial' => $estado_oficial[$numero_estado],
                 //'solicitud_escuela' => 'Recien ingresado',
                 'perfil' => 'Perfil N-'.$i.'.pdf',
-                'ciclo_id' => rand(1,4),
+                'ciclo_id' => rand(1,3),
             ]);
 
             //Aqui guardamos la solicitud para apobacion ya que es el primer paso del proceso, donde se sube el perfil en espera de la respuesta
