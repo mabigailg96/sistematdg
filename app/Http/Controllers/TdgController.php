@@ -908,8 +908,7 @@ else if($tipo_solicitud=='aprobado'){
     
             if ($tdg_prueba[0]->profesor_id == NULL) {
                 $tdg = DB::table('tdgs')
-                    ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial')
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
                     
@@ -918,12 +917,22 @@ else if($tipo_solicitud=='aprobado'){
             } else {
                 $tdg = DB::table('tdgs')
                     ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
-                    ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido')
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
             }
 
+            
+            $ciclo =  DB::table('tdgs')
+            ->join('student_tdg', 'tdgs.id', '=', 'student_tdg.tdg_id')
+            ->join('semesters','student_tdg.ciclo_id','=','semesters.id')
+            ->select('tdgs.id', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+            ->where('tdgs.id', '=', $tdg_id)
+            ->get();
+
+            if($ciclo->isEmpty()){
+                $ciclo[0] = '';
+            }
             // Integrantes
     
             $students = DB::table('student_tdg')
@@ -964,7 +973,7 @@ else if($tipo_solicitud=='aprobado'){
             $historial = array();
             $historial = $this->historialSolicitudes($tdg_id);
     
-            return view('tdg.ver_detalles_general', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial]);
+            return view('tdg.ver_detalles_general', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial, 'ciclo' => $ciclo[0]]);
         } else {
             return redirect()->route('tdg.filtroGestionarGeneral');
         }
@@ -1027,8 +1036,7 @@ else if($tipo_solicitud=='aprobado'){
 
             if ($tdg_prueba[0]->profesor_id == NULL) {
                 $tdg = DB::table('tdgs')
-                    ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial')
                     ->where('tdgs.escuela_id', '=', $escuela_id)
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
@@ -1038,12 +1046,23 @@ else if($tipo_solicitud=='aprobado'){
             } else {
                 $tdg = DB::table('tdgs')
                     ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
-                    ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido')
                     ->where('tdgs.escuela_id', '=', $escuela_id)
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
             }
+
+            $ciclo =  DB::table('student_tdg')
+            ->join('semesters','student_tdg.ciclo_id','=','semesters.id')
+            ->select('student_tdg.tdg_id', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+            ->where('student_tdg.tdg_id', '=', $tdg_id)
+            ->get();
+            
+            if($ciclo->isEmpty()){
+                $ciclo[0] = '';
+                
+            }
+           
 
             $students = DB::table('student_tdg')
                 ->join('students', 'student_tdg.student_id', '=', 'students.id')
@@ -1078,7 +1097,7 @@ else if($tipo_solicitud=='aprobado'){
             $historial = array();
             $historial = $this->historialSolicitudes($tdg_id);
 
-            return view('tdg.ver_detalles_escuela', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial]);
+            return view('tdg.ver_detalles_escuela', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial, 'ciclo' => $ciclo[0]]);
         } else {
             return redirect()->route('tdg.filtroGestionarEscuela');
         }
@@ -1097,8 +1116,7 @@ else if($tipo_solicitud=='aprobado'){
     
             if ($tdg_prueba[0]->profesor_id == NULL) {
                 $tdg = DB::table('tdgs')
-                    ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial')
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
                     
@@ -1107,10 +1125,19 @@ else if($tipo_solicitud=='aprobado'){
             } else {
                 $tdg = DB::table('tdgs')
                     ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
-                    ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido')
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
+            }
+            $ciclo =  DB::table('tdgs')
+            ->join('student_tdg', 'tdgs.id', '=', 'student_tdg.tdg_id')
+            ->join('semesters','student_tdg.ciclo_id','=','semesters.id')
+            ->select('tdgs.id', DB::raw('DATE_FORMAT(semesters.fechaInicio, "%d/%m/%Y") as fechaInicio'))
+            ->where('tdgs.id', '=', $tdg_id)
+            ->get();
+
+            if($ciclo->isEmpty()){
+                $ciclo[0] = '';   
             }
     
             $students = DB::table('student_tdg')
@@ -1146,7 +1173,7 @@ else if($tipo_solicitud=='aprobado'){
             $historial = array();
             $historial = $this->historialSolicitudes($tdg_id);
 
-            $pdf = PDF::loadView('tdg.ver_detalles_imprimir', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial]);
+            $pdf = PDF::loadView('tdg.ver_detalles_imprimir', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial, 'ciclo' => $ciclo[0]]);
 
             //$pdf = PDF::loadView('myPDF', $data);
   

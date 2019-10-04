@@ -40,7 +40,11 @@
                                     @else
                                         <p><strong>Estado:</strong> <span id="lbl-estado-oficial">{{$tdg->estado_oficial}}</span></p>
                                     @endif
-                                    <p><strong>Fecha de inicio:</strong> {{$tdg->fechaInicio}}</p>
+                                    @if ($ciclo == '')
+                                        <p><strong>Fecha de inicio:</strong> Aún no se ha inscrito este trabajo de graduación.</p>
+                                    @else
+                                        <p><strong>Fecha de inicio:</strong> {{$ciclo->fechaInicio}}</p>
+                                    @endif
                                     <p><strong>Docente asesor:</strong> {{$tdg->profesor_nombre}} {{$tdg->profesor_apellido}}</p>
                                 </div>
                             </div>
