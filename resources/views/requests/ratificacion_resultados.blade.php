@@ -32,23 +32,23 @@
                      
                           <table class="table form-group">
                             <thead>
-                              <tr class="text-center d-flex row">
+                              <tr class="text d-flex row">
 
                                 <th class="d-inline-block col-5" scope="col">Apellidos</th>
                                 <th class="d-inline-block col-5" scope="col">Nombres</th>
-                                <th class="d-inline-block col-2 required"  scope="col" >Nota</th>
+                                <th class="d-inline-block col-2 required text-center"  scope="col" >Nota</th>
                               </tr>
                             </thead>
                             <tbody>
                             
                         @foreach ($students as $student)
                                 <tr class = "d-flex row">
-                                    <td class="d-inline-block col-5 w-25">{{$student->apellidos}}</td>
-                                     <td class="d-inline-block col-5 w-25">{{$student->nombres}}</td>
+                                    <td class="d-inline-block col-5 ">{{$student->apellidos}}</td>
+                                     <td class="d-inline-block col-5 ">{{$student->nombres}}</td>
                                      <td class="d-inline-block col-2">
                                          <div class="form-group row justify-content-center">
                                              <div class="col-6">
-                                            <input type="text" id="nota[]" name="nota[]" min="0.00" max="10.00" class="form-control nota" align="center" required>
+                                            <input type="number" id="nota[]" name="nota[]" min="0" max="10" step="0.001" class="form-control nota" align="center" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="hidden" name="student[]" id="student[]" value="{{$student->id}}">
