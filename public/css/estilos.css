@@ -1,54 +1,68 @@
-.navbar, .btn-color, .cerrar-sesion-color:active  {
-  background-color: #eba593 !important;
+.navbar,
+.btn-color,
+.cerrar-sesion-color:active {
+    background-color: #eba593 !important;
 }
 
-.btn-color{
-  border-color: #000000 !important;
+.btn-color {
+    border-color: #000000 !important;
 }
 
-.navbar-brand, .btn-color, .navegacion-item,.cerrar-sesion-color  {
-  color: #000000 !important;
-  font-weight: bold;
-}
-.nav-link{
-  color: #000000 !important;
-  font-weight: bold;
-}
-.negrita{
-  color: #000000;
-  font-weight: bold;
-}
-.textarea{
-  resize: none;
+.btn-past {
+    background-color: #cce6ff !important;
 }
 
-.textlabel{
-  text-align: end;
+.navbar-brand,
+.btn-color,
+.navegacion-item,
+.cerrar-sesion-color {
+    color: #000000 !important;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #000000 !important;
+    font-weight: bold;
+}
+
+.negrita {
+    color: #000000;
+    font-weight: bold;
+}
+
+.textarea {
+    resize: none;
+}
+
+.textlabel {
+    text-align: end;
 }
 
 .oculto {
-  display: none;
+    display: none;
 }
 
-form label.required:after
-{
-    color: red;
-    content: " *";
-}
-form th.required:after
-{
+form label.required:after {
     color: red;
     content: " *";
 }
 
-.help-block{
-  color:red;
-  margin-left: 0px;
-}
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+form th.required:after {
+    color: red;
+    content: " *";
 }
 
-input[type=number] { -moz-appearance:textfield; }
+.help-block {
+    color: red;
+    margin-left: 0px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
