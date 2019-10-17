@@ -132,11 +132,15 @@ Route::get('/todos/tdg/ver/ratificacion', 'TdgController@allTdgRatificacion')->n
 //Rutas para el modulo de usuarios del sistema
 /*Mostrar los Usuarios en el sistema*/
 Route::get('/todos/usuarios/sistema', 'UserController@index')->name('user.index');
+
 /*Nos lleva a la pantalla de ingresar nuevo usuario */
 Route::get('/ingresar/usuario/sistema', 'UserController@create')->name('ingresar.usuario');
+
 /* Ruta que nos permite guardar un nuevo usuario*/
 Route::post('/guardar/usuario', 'UserController@store')->name('user.guardar');
+
 /* Ruta para editar los usuarios*/
 Route::get('users/{user}/edit', 'UserController@edit')->name('user.edit');
+
 /*Actualiza y guarda la informacion */
 Route::post('users/{user}', 'UserController@update')->name('user.update');
