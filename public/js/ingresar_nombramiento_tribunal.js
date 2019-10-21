@@ -226,8 +226,8 @@ $(document).on("click", "#btn-guardar", function() {
         // Mostrar mensaje de error en caso de que no se hayan seleccionado los 3 integrantes
         Swal.fire({
             type: 'error',
-            title: 'Oops...',
-            text: '¡Algo ha salido mal!, por favor intente más tarde.',
+            title:'Error',
+            text: 'El tribunal debe estar compuesto por 3 docentes',
         });
     }
 });
