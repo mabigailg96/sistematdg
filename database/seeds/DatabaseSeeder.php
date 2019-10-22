@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfessorTableSeeder::class);
         $this->call(TdgTableSeeder::class);
         $this->call(TypeExtensionSeeder::class);
+        $this->call(MonthTableSeeder::class);
         
     }
 }

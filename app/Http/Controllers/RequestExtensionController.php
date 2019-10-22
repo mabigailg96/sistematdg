@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use \DB;
 use App\Tdg;
 use Carbon\Carbon;
+use App\MonthExtension;
 
 class RequestExtensionController extends Controller
 {
@@ -42,8 +43,19 @@ class RequestExtensionController extends Controller
       
        if($tipo_solicitud=='prorroga')
         {
-            $fechaInicioProrroga = ($fecha_ciclo->copy()->addMonths(9));
-            $fechaFinProrroga = $fechaInicioProrroga->copy()->addMonths(6)->subDays(1);
+            $monthExtension = MonthExtension::where('tipo', 'Prórroga')->get();
+            foreach($monthExtension as $month){
+                $prorroga = $month;
+            }
+
+            $finalizacion  = MonthExtension::where('tipo', 'Finalización')->get();
+            foreach($finalizacion as $fin){
+                $mesesFin = $fin;
+            }
+            
+
+            $fechaInicioProrroga = ($fecha_ciclo->copy()->addMonths($mesesFin->meses));
+            $fechaFinProrroga = $fechaInicioProrroga->copy()->addMonths($prorroga->meses)->subDays(1);
           
             
                 return view('requests.prorroga')->with('tdgs', $tdg)->with('fechaInicio', $fechaInicioProrroga->format('d/m/Y'))->with('fechaFin', $fechaFinProrroga->format('d/m/Y'))->with('tipo',1);
@@ -53,12 +65,18 @@ class RequestExtensionController extends Controller
         {
             //Rescatamos la solicitud de prorroga aprobada para rescatar la fecha de finalizacion de esa prorroga.
             $prorroga = $tdg->request_extensions()->where('aprobado',1)->where('type_extension_id',1)->first();
+
+            $monthExtension = MonthExtension::where('tipo', 'Extension de prórroga')->get();
+            foreach($monthExtension as $month){
+                $prorrogaExtension = $month;
+            }
             
+           
             $fecha = new Carbon($prorroga->fecha_fin);
 
             $fechaInicioProrroga = $fecha->copy()->addDays(1);
-            //A la fecha de finalizacion se le suman los 6 meses y resta un dia
-            $fechaFinProrroga = $fecha->copy()->addMonths(3); 
+            //A la fecha de finalizacion se le suman los 3 meses y resta un dia
+            $fechaFinProrroga = $fecha->copy()->addMonths($prorrogaExtension->meses); 
         return view('requests.extension_prorroga')->with('tdgs', $tdg)->with('fechaInicio', $fechaInicioProrroga->format('d/m/Y'))->with('fechaFin', $fechaFinProrroga->format('d/m/Y'))->with('tipo',2);
         
     
