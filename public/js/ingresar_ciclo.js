@@ -54,7 +54,10 @@ $(document).ready(function(){
         "Registrado con éxito!",
         'success'
       );
-    } else if($.urlParam("save") == 0) {
+    } else if($.urlParam("save") == 0 || $(".help-block").html() != "" && $(".help-block").html() != undefined) {
+
+      $("#nav-ingresar-ciclo-tab").tab("show");
+
       Swal.fire({
         position: 'top-end',
         type: 'error',
