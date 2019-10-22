@@ -11,7 +11,10 @@ class SemesterController extends Controller
     //
     public function create()
     {
-        return view('semester.ingresar');
+        $semesters = DB::table('semesters')
+            ->orderBy('fechaInicio', 'desc')
+            ->get();
+        return view('semester.ingresar', ['semesters' => $semesters]);
     }
 
     public function store(Request $request)
