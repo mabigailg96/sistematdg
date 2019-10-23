@@ -21,5 +21,10 @@ class MonthTableSeeder extends Seeder
             'tipo'=> 'Extensión de prórroga',
             'meses'=> '3',
         ]);
+
+        MonthExtension::create([
+            'tipo'=> 'Finalización',
+            'meses'=> '9',
+        ]);
     }
 }
