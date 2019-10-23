@@ -17,6 +17,6 @@ class RequestExtension extends Model
 
     
     protected $fillable = [
-        'fecha', 'aprobado','fecha_inicio','fecha_fin','justificacion','tdg_id','agreement_id','type_extension_id',
+        'fecha', 'aprobado','fecha_inicio','fecha_fin','justificacion','url_documento_solicitud','tdg_id','agreement_id','type_extension_id',
     ];
 }

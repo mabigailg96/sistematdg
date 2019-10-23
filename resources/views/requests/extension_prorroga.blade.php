@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
+<script src="{{ asset('js/ingresar_prorroga_extension_especial.js') }}" defer></script>
 
 <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 @endsection
@@ -67,7 +68,23 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div> 
+                            </div>
+
+
+                        <div class="row form-group{{ $errors->has('url_documento_solicitud') ? ' has-error' : '' }}">
+                            <label for="url_documento_solicitud" class="textlabel col-md-4 offset-1 control-label required">Archivo de solicitud de extensión de prórroga</label>
+
+                            <div class="col-md-6">
+                                <input id="url_documento_solicitud" type="file" class="form-control-file" name="url_documento_solicitud" required>
+
+                                @if ($errors->has('url_documento_solicitud'))
+                                    <span class="help-block row">
+                                        {{ $errors->first('url') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
 						
                         <div class="form-group{{ $errors->has('tdg_id') ? ' has-error' : '' }}">
                             <input type="hidden" name="tdg_id" value="{{$tdgs->id}}">

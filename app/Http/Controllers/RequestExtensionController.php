@@ -130,7 +130,6 @@ class RequestExtensionController extends Controller
     public function store(Request $request)
     {
         $request_extension = $request->validate([
-           
             'justificacion' => 'required',
         ]);
 
@@ -140,7 +139,7 @@ class RequestExtensionController extends Controller
         
         $guardado =0;
 
-          if($tipo==1)
+        if($tipo==1)
         {    
          
             $extension_1 = RequestExtension::create([
@@ -157,37 +156,101 @@ class RequestExtensionController extends Controller
         }
         else if ($tipo==2)
         {
-            $fechaInicioExtension =  Carbon::createFromFormat('d/m/Y',$fechaInicio);
-            $fechaFinExtension =  Carbon::createFromFormat('d/m/Y',$fechaFin);
-            $extension_2 = RequestExtension::create([
-                'fecha' => date("y-m-d"),
-                'fecha_inicio' => $fechaInicioExtension,
-                'fecha_fin' => $fechaFinExtension,
-                'justificacion'=> $request_extension['justificacion'],
-                'tdg_id' => $request['tdg_id'],
-                'type_extension_id'=>'2',
+            $request_extension = $request->validate([
+                'justificacion' => 'required',
+                'url_documento_solicitud'=>'required|unique:request_extensions',
             ]);
-            //Retornamos el mensaje y a la vista de listado
-            return redirect()->route('solicitudes.listar','&save=1&tipo=Extensión de prórroga');
+
+            $file = $request->file('url_documento_solicitud');
+
+            //obtenemos el nombre del archivo
+            $nombrearchivo = $file->getClientOriginalName();
+
+            $compnombre = RequestExtension::all();
+
+            //metodo que comprueba si el nombre del acuerdo
+            $nom = 0;
+            if ($compnombre)
+            {
+                foreach ($compnombre as $existe)
+                {
+                    if ($existe->url_documento_solicitud == $nombrearchivo)
+                    $nom = 1;
+                }
+            }
+
+            if ($nom == 0)
+            {
+                \Storage::disk('localexpro')->put($nombrearchivo,  \File::get($file));
+
+                $fechaInicioExtension =  Carbon::createFromFormat('d/m/Y',$fechaInicio);
+                $fechaFinExtension =  Carbon::createFromFormat('d/m/Y',$fechaFin);
+                $extension_2 = RequestExtension::create([
+                    'fecha' => date("y-m-d"),
+                    'fecha_inicio' => $fechaInicioExtension,
+                    'fecha_fin' => $fechaFinExtension,
+                    'justificacion'=> $request_extension['justificacion'],
+                    'url_documento_solicitud' => $nombrearchivo,
+                    'tdg_id' => $request['tdg_id'],
+                    'type_extension_id'=>'2',
+                ]);
+                //Retornamos el mensaje y a la vista de listado
+                return redirect()->route('solicitudes.listar','&save=1&tipo=Extensión de prórroga');
+            } else {
+                return redirect()->route('request_extension.ingresar', ['tipo_solicitud' => 'extension_de_prorroga', 'id' => $request['tdg_id'], 'save' => 0])
+                ->with('error','El nombre del archivo de la solicitud ya existe. Por favor cambie el nombre del archivo');
+            }
        
            
         }
         else if ($tipo==3)
         {
-            $meses = $fechaFin;
-            $fechaInicioEspecial =  Carbon::createFromFormat('d/m/Y',$fechaInicio);
-            
-            $fechaFinEspecial = $fechaInicioEspecial->copy()->addMonths($meses)->subDays(1);
-            $extension_2 = RequestExtension::create([
-                'fecha' => date("y-m-d"),
-                'fecha_inicio' => $fechaInicioEspecial,
-                'fecha_fin' => $fechaFinEspecial,
-                'justificacion'=> $request_extension['justificacion'],
-                'tdg_id' => $request['tdg_id'],
-                'type_extension_id'=>'3',
+            $request_extension = $request->validate([
+                'justificacion' => 'required',
+                'url_documento_solicitud'=>'required|unique:request_extensions',
             ]);
-            //Retornamos el mensaje y a la vista de listado
-            return redirect()->route('solicitudes.listar','&save=1&tipo=Prórroga especial');
+
+            $file = $request->file('url_documento_solicitud');
+
+            //obtenemos el nombre del archivo
+            $nombrearchivo = $file->getClientOriginalName();
+
+            $compnombre = RequestExtension::all();
+
+            //metodo que comprueba si el nombre del acuerdo
+            $nom = 0;
+            if ($compnombre)
+            {
+                foreach ($compnombre as $existe)
+                {
+                    if ($existe->url_documento_solicitud == $nombrearchivo)
+                    $nom = 1;
+                }
+            }
+
+            if ($nom == 0)
+            {
+                \Storage::disk('localproes')->put($nombrearchivo,  \File::get($file));
+
+                $meses = $fechaFin;
+                $fechaInicioEspecial =  Carbon::createFromFormat('d/m/Y',$fechaInicio);
+                
+                $fechaFinEspecial = $fechaInicioEspecial->copy()->addMonths($meses)->subDays(1);
+                $extension_2 = RequestExtension::create([
+                    'fecha' => date("y-m-d"),
+                    'fecha_inicio' => $fechaInicioEspecial,
+                    'fecha_fin' => $fechaFinEspecial,
+                    'justificacion'=> $request_extension['justificacion'],
+                    'url_documento_solicitud' => $nombrearchivo,
+                    'tdg_id' => $request['tdg_id'],
+                    'type_extension_id'=>'3',
+                ]);
+                //Retornamos el mensaje y a la vista de listado
+                return redirect()->route('solicitudes.listar','&save=1&tipo=Prórroga especial');
+            } else {
+                return redirect()->route('request_extension.ingresar', ['tipo_solicitud' => 'prorroga_especial', 'id' => $request['tdg_id'], 'save' => 0])
+                ->with('error','El nombre del archivo de la solicitud ya existe. Por favor cambie el nombre del archivo');
+            }
 
         }
         

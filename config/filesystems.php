@@ -58,6 +58,16 @@ return [
            'root' => public_path().'/acuerdos',
         ],
 
+        'localexpro' => [
+            'driver' => 'local',
+            'root' => public_path().'/prorroga/extension',
+         ],
+
+         'localproes' => [
+            'driver' => 'local',
+            'root' => public_path().'/prorroga/especial',
+         ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
