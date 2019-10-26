@@ -69,10 +69,6 @@ Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guarda
 Route::get('/ingresar/estudiantes', 'StudentController@create')->name('student.ingresar')->middleware('can:student.ingresar');
 Route::post('/guardar/estudiantes', 'StudentController@store')->name('student.guardar')->middleware('can:student.guardar');
 
-//Rutas para importar los maestros y el formulario de profesores.accordion
-Route::get('/ingresar/profesores', 'ProfessorController@create')->name('professor.ingresar')->middleware('can:professor.ingresar');
-Route::post('/guardar/profesores', 'ProfessorController@store')->name('professor.guardar')->middleware('can:professor.guardar');
-Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('professor.guardarexcel')->middleware('can:professor.guardarexcel');
 
 // Pantalla mostrar filtros de TDG para solicitudes
 Route::get('/listar/tdg/solicitudes', function () {
@@ -153,6 +149,13 @@ Route::get('/listar/prorroga', 'MonthExtensionController@allExtension')->name('m
 Route::get('/actualizar/prorroga/{id}', 'MonthExtensionController@edit')->name('month.edit');
 
 Route::post('/guardar/prorroga/{id}', 'MonthExtensionController@update')->name('month.update');
+
+//Rutas para el crud de profesores
+//Rutas para importar los maestros y el formulario de profesores.accordion
+Route::get('/ingresar/profesores', 'ProfessorController@create')->name('professor.ingresar')->middleware('can:professor.ingresar');
+Route::post('/guardar/profesores', 'ProfessorController@store')->name('professor.guardar')->middleware('can:professor.guardar');
+Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('professor.guardarexcel')->middleware('can:professor.guardarexcel');
+
 
 });
 
