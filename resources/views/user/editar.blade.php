@@ -12,6 +12,9 @@
             <div class="card">
                 <div class="card-header">
                     Modificacion de usuario.
+                  
+                        <a href="{{ route('user.index') }}" align="right" class="btn btn-primary btn-color offset-6" role="button">Regresar</a>
+                  
                   </div>
                   <div class="card-body">
                         @if (session('status'))
@@ -91,7 +94,7 @@
                         &nbsp;
 
 
-                        <a href="{{ route('user.index') }}"  class=" btn btn-primary btn-color" role="button">Regresar</a>
+                        
                     </div>
             </div>
 
