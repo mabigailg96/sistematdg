@@ -29,7 +29,7 @@
 
                     <br>
                     
-                    @include('select_estado_conbuscar')
+                    @include('select_estado_estudiante_conbuscar')
 
                     <table id="table-filtro-tdgs" class="table table-striped">
                         <thead>
