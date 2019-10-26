@@ -144,3 +144,5 @@ Route::get('users/{user}/edit', 'UserController@edit')->name('user.edit');
 
 /*Actualiza y guarda la informacion */
 Route::post('users/{user}', 'UserController@update')->name('user.update');
+/*Carga los datos de la busqueda */
+Route::get('/todos/users/ver', 'UserController@allUsers')->name('user.show');

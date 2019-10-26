@@ -10,6 +10,27 @@ use \DB;
 
 class UserController extends Controller
 {
+
+    public function allUsers(Request $request){
+
+        //Primero inicializamos las variables
+
+        $nombre_usuario =   '';
+        $nombre_usuario =   $request->nombre;
+
+
+
+        //Realizando la consulta a la base de datos para obtener los acuerdos
+        $usuarios = DB::table('users')
+        ->select('id', 'nombre', 'username')
+        ->where('nombre', 'like', '%'.$nombre_usuario.'%')
+        ->get();
+
+
+        return $usuarios;
+
+      }
+
     public function index()
     {
         $users = User::paginate();
