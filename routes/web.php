@@ -114,7 +114,6 @@ Route::get('/listar/tdg/gestionar/general', function () {
 // Ruta para todos los nombres de las escuelas
 Route::get('/todos/colleges', 'CollegeController@allNameColleges')->name('colllege.todos');
 
-});
 // Pantalla para mostrar los filtros y mostrar los acuerdos de JD
 Route::get('/listar/acuerdos/jd', function(){
     return view('agreement.listar_acuerdos');
@@ -146,3 +145,14 @@ Route::get('users/{user}/edit', 'UserController@edit')->name('user.edit');
 Route::post('users/{user}', 'UserController@update')->name('user.update');
 /*Carga los datos de la busqueda */
 Route::get('/todos/users/ver', 'UserController@allUsers')->name('user.show');
+
+//Rutas para manejar la tabla de parametros de las prorrogas
+
+Route::get('/listar/prorroga', 'MonthExtensionController@allExtension')->name('month.show');
+
+Route::get('/actualizar/prorroga/{id}', 'MonthExtensionController@edit')->name('month.edit');
+
+Route::post('/guardar/prorroga/{id}', 'MonthExtensionController@update')->name('month.update');
+
+});
+
