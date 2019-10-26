@@ -114,6 +114,11 @@
                   </div>
                   <div class="card-footer text-muted">
                         Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+
+                        <a href="{{ route('user.index') }}"  class=" btn btn-primary btn-color" role="button">Regresar</a>
                     </div>
             </div>
 
