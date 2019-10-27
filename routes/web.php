@@ -155,7 +155,9 @@ Route::post('/guardar/prorroga/{id}', 'MonthExtensionController@update')->name('
 Route::get('/ingresar/profesores', 'ProfessorController@create')->name('professor.ingresar')->middleware('can:professor.ingresar');
 Route::post('/guardar/profesores', 'ProfessorController@store')->name('professor.guardar')->middleware('can:professor.guardar');
 Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('professor.guardarexcel')->middleware('can:professor.guardarexcel');
-
-
+Route::get('/todos/profesores/sistema', 'ProfessorController@index')->name('professor.index');
+Route::get('/todos/profesores/ver', 'ProfessorController@allProfesores')->name('professor.show');
+Route::get('/profesores/{professor}/edit', 'ProfessorController@edit')->name('professor.edit');
+Route::post('/profesores/{professor}', 'ProfessorController@update')->name('professor.update');
 });
 

@@ -13,7 +13,8 @@
               <div class="card">
 
                 <div class="card-header">
-					Importación de docentes.
+                    Importación de docentes.
+                    <a href="{{ route('professor.index') }}" align="right" class="btn btn-primary btn-color offset-6" role="button">Regresar</a>
 				</div>
 
                 <div class="card-body">
@@ -22,7 +23,7 @@
                             {{ session('status') }}
                         </div>
 					@endif
-                        
+
                     <br>
                     <div class="row justify-content-center">
                         <button type="button" id="btn-formulario-excel" class="btn btn-primary btn-color">Importar docentes archivo excel</button>
@@ -54,7 +55,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                    
+
                             </form>
                         </div>
                     </div>
@@ -108,13 +109,14 @@
                                         </button>
                                     </div>
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-muted">
                     Todos los campos marcados con <span style="color:red">*</span> son obligatorios y deben ser llenados.
+
                 </div>
 
               </div>

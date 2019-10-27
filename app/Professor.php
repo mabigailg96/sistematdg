@@ -25,6 +25,6 @@ class Professor extends Model
 
 
     protected $fillable = [
-        'codigo', 'nombre','apellido','escuela_id',
+        'codigo', 'nombre','apellido','escuela_id','estado',
     ];
 }
