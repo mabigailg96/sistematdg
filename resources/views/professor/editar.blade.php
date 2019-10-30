@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     Modificacion de datos del  Profesor
-                    <a href="{{ route('professor.index') }}" align="right" class="btn btn-primary btn-color offset-6" role="button">Regresar</a>
+                    <a href="{{ route('professor.index') }}" align="right" class="btn btn-primary btn-color offset-5" role="button">Regresar</a>
                 </div>
                 <div class="card-body">
                         @if (session('status'))
