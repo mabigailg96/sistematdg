@@ -60,9 +60,17 @@
                                     <label class="textlabel col-md-3 offset-1 control-label required" for="estado">Estado del profesor</label>
                                     <div class="urlinput col-md-6">
                                         <select id="estado" class="form-control" name="estado" value="{{ old('estado' )}}"  class="form-control col-8" required>
-                                            <option value="{{ $professor->estado }}" selected>{{ $professor->estado }}</option >
 
-                                                    <option value="Inactivo" >Inactivo </option >
+
+                                         @if ($professor->estado == 1)
+                                         <option value="{{ $professor->estado }}" selected>Activo</option >
+                                            <option value="0" >Inactivo </option >
+                                         @else
+                                         <option value="{{ $professor->estado }}" selected>Inactivo</option >
+                                            <option value="1" >Activo </option >
+                                         @endif
+
+
 
                                         </select>
                                         @if ($errors->has('escuela_id'))

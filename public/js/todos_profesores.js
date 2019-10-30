@@ -93,7 +93,22 @@ var params = {
                 { 'data': 'codigo' },
                 { 'data': 'nombre'},
                 { 'data': 'apellido'},
-                { 'data': 'estado'},
+                {
+                    sortable: false,
+                    "render": function ( data, type, full, meta ) {
+
+                        // Id del TDG
+                        var estado = full.estado; //Cuando haga el filtro tengo que agregar [0]
+                        var respuesta = " ";
+                        if (estado == 1) {
+                            return respuesta = "Activo";
+                        } else {
+                            return  respuesta ="Inactivo";
+                        }
+
+
+                        }
+                },
                 {
                     sortable: false,
                     "render": function ( data, type, full, meta ) {
@@ -104,6 +119,7 @@ var params = {
                         // Concatenar ruta para el formulario
 
                         // Ruta que lleva como parametro el tipo de solicitud que se va ratificar y el id del tdg
+
                         var htmlButtons = `<a href="/profesores/${id}/edit"  class=" btn btn-primary btn-past btn-color btn-sm" role="button"><span class="oi oi-pencil"></span>  Editar</a>`;
 
                         return htmlButtons;
