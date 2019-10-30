@@ -96,6 +96,11 @@
                     <a class="nav-link" href="{{ url('/listar/tdg/asignar') }}"> Asignar grupo</a>
                   </li>
                   @endcan
+                  @can('month.show')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/prorroga') }}"> Editar prórrogas</a>
+                  </li>
+                  @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

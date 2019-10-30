@@ -194,5 +194,21 @@ class PermissionsTableSeeder extends Seeder
             'description' => 'Muestra los detalles de los tdgs',
         ]);
 
+        //*********RUTAS DE LAS PRORROGAS*****//
+        Permission::create([
+            'name' => 'Listar todas las prorrogas',
+            'slug' => 'month.show',
+            'description' => 'Muestra las prorrogas del sistema',
+        ]);
+        Permission::create([
+            'name' => 'Editar la prroga',
+            'slug' => 'month.edit',
+            'description' => 'Permite editar el parametro de una prorroga',
+        ]);
+        Permission::create([
+            'name' => 'Guarda el cambio de las prorrogas',
+            'slug' => 'month.update',
+            'description' => 'Guarda el cambio de las prorrogas en el sistema',
+        ]);
     }
 }
