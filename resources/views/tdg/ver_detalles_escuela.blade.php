@@ -53,7 +53,7 @@
                                 <!-- Espacio para mostrar los estudiantes -->
                                 <h3>Estudiantes</h3>
                                 <br>
-                                <table id="table-students" class="table table-striped table-responsive" width="100%">
+                                <table id="table-students" class="table table-striped" width="100%">
                                     <thead>
                                         <tr>
                                             <th scope="col">Carnet</th>
@@ -76,7 +76,7 @@
                                         <!-- Espacio para mostrar los asesores internos -->
                                         <h3>Docentes Asesores Internos</h3>
                                         <br>
-                                        <table id="table-advisers-internal" class="table table-striped table-responsive" width="100%">
+                                        <table id="table-advisers-internal" class="table table-striped" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Nombres</th>
@@ -97,7 +97,7 @@
                                         <!-- Espacio para mostrar los asesores externos -->
                                         <h3>Asesores Especialistas Externos</h3>
                                         <br>
-                                        <table id="table-advisers-external" class="table table-striped table-responsive"  width="100%">
+                                        <table id="table-advisers-external" class="table table-striped"  width="100%">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Nombres</th>
@@ -118,7 +118,7 @@
                                 <!-- Espacio para mostrar el historial de las solicitudes y el estado en que se encuentran -->
                                 <h3>Historial</h3>
                                 <br>
-                                <table id="table-historial" class="table table-striped table-responsive"  width="100%">
+                                <table id="table-historial" class="table table-striped"  width="100%">
                                     <thead>
                                         <tr>
                                             <th scope="col">Tipo de solicitud</th>
