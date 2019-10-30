@@ -101,6 +101,11 @@
                     <a class="nav-link" href="{{ url('/listar/prorroga') }}"> Editar prórrogas</a>
                   </li>
                   @endcan
+                  @can('user.index')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/todos/usuarios/sistema') }}"> Gestionar usuarios</a>
+                  </li>
+                  @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

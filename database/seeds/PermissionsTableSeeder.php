@@ -210,5 +210,38 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'month.update',
             'description' => 'Guarda el cambio de las prorrogas en el sistema',
         ]);
+
+        //***********RUTAS PARA MODIFICAR LOS USUARIOS******//
+        Permission::create([
+            'name' => 'Lista todos los usuarios',
+            'slug' => 'user.index',
+            'description' => 'Muestra los usuarios del sistema',
+        ]);
+        Permission::create([
+            'name' => 'Formulario para ingresar usuarios',
+            'slug' => 'ingresar.usuario',
+            'description' => 'Muestra el formulario para ingresar un usuario',
+        ]);
+        Permission::create([
+            'name' => 'Guardar usuarios',
+            'slug' => 'user.guardar',
+            'description' => 'Guarda el usuarios en el sistema',
+        ]);
+        Permission::create([
+            'name' => 'Formulario para editar usuarios',
+            'slug' => 'user.edit',
+            'description' => 'Muestra el formulario para editar usuarios en el sistema',
+        ]);
+        Permission::create([
+            'name' => 'Guarda la información de los usuarios',
+            'slug' => 'user.update',
+            'description' => 'Edita la información en la base',
+        ]);
+        Permission::create([
+            'name' => 'Ruta para la busqueda de usuarios',
+            'slug' => 'user.show',
+            'description' => 'Muestra la búsqueda de usuarios',
+        ]);
+
     }
 }

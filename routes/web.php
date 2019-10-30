@@ -130,21 +130,21 @@ Route::get('/todos/tdg/ver/ratificacion', 'TdgController@allTdgRatificacion')->n
 
 //Rutas para el modulo de usuarios del sistema
 /*Mostrar los Usuarios en el sistema*/
-Route::get('/todos/usuarios/sistema', 'UserController@index')->name('user.index');
+Route::get('/todos/usuarios/sistema', 'UserController@index')->name('user.index')->middleware('can:user.index');
 
 /*Nos lleva a la pantalla de ingresar nuevo usuario */
-Route::get('/ingresar/usuario/sistema', 'UserController@create')->name('ingresar.usuario');
+Route::get('/ingresar/usuario/sistema', 'UserController@create')->name('ingresar.usuario')->middleware('can:ingresar.usuario');
 
 /* Ruta que nos permite guardar un nuevo usuario*/
-Route::post('/guardar/usuario', 'UserController@store')->name('user.guardar');
+Route::post('/guardar/usuario', 'UserController@store')->name('user.guardar')->middleware('can:ingresar.usuario');
 
 /* Ruta para editar los usuarios*/
-Route::get('users/{user}/edit', 'UserController@edit')->name('user.edit');
+Route::get('users/{user}/edit', 'UserController@edit')->name('user.edit')->middleware('can:user.edit');
 
 /*Actualiza y guarda la informacion */
-Route::post('users/{user}', 'UserController@update')->name('user.update');
+Route::post('users/{user}', 'UserController@update')->name('user.update')->middleware('can:user.update');
 /*Carga los datos de la busqueda */
-Route::get('/todos/users/ver', 'UserController@allUsers')->name('user.show');
+Route::get('/todos/users/ver', 'UserController@allUsers')->name('user.show')->middleware('can:user.show');
 
 //Rutas para manejar la tabla de parametros de las prorrogas
 
