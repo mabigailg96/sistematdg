@@ -521,8 +521,15 @@ class TdgController extends Controller
         */
 
         //$ciclo = Ciclo::orderby('created_at','DESC')->take(1)->get();
-        $lastCiclo = DB::table('semesters')->orderBy('id', 'DESC')->first();
+        //$lastCiclo = DB::table('semesters')->orderBy('id', 'DESC')->first();
 
+        $ciclos = new SemesterController();
+        $ciclo = $ciclos->lastSemester();
+        
+        foreach ($ciclo as $last) {
+            $lastCiclo = $last;
+        }
+        
         for ($i=0; $i < sizeof($students); $i++) { 
             $tdg->students()->attach($students[$i], ['ciclo_id' => $lastCiclo->id]);
         }
@@ -868,6 +875,8 @@ else if($tipo_solicitud=='aprobado'){
         $codigo = $request->codigo;
         $nombre = '';
         $nombre = $request->nombre;
+        $estudiante = '';
+        $estudiante = $request->estudiante;
 
         // Realizar consultas a la base de datos
         if ($request->escuela_id == null && $request->estado_oficial == null) {
@@ -924,8 +933,35 @@ else if($tipo_solicitud=='aprobado'){
                 ->get();
                     
         }
+
+        $tdgs_final = array();
+
+        if ($estudiante == '') {
+            $tdgs_final = $tdgs;
+
+        } else {
+            $students = new StudentController();
+            $students_result = $students->allStudentNombreApellido($estudiante);
+
+            foreach ($students_result as $student) {
+                foreach ($tdgs as $tdg) {
+
+                    $tdg_query = DB::table('student_tdg')
+                        ->where('tdg_id', '=', $tdg->id)
+                        ->where('student_id', '=', $student->id)
+                        ->get();
+
+                    if (!$tdg_query->isEmpty()) {
+
+                        array_push($tdgs_final, $tdg);
+                        
+                    }
+                }
+            }
+        }
+        
     
-        return $tdgs;
+        return $tdgs_final;
     }
 
     // Función para mostrar la pantalla de detalles de tdg para coordinador general
@@ -1027,6 +1063,9 @@ else if($tipo_solicitud=='aprobado'){
         $codigo = $request->codigo;
         $nombre = '';
         $nombre = $request->nombre;
+        $estudiante = '';
+        $estudiante = $request->estudiante;
+
         // Realizar consultas a la base de datos
         if ($request->estado_oficial == null) {
             $tdgs = DB::table('tdgs')
@@ -1053,7 +1092,34 @@ else if($tipo_solicitud=='aprobado'){
                 ->get();
         }
         
-        return $tdgs;
+        $tdgs_final = array();
+
+        if ($estudiante == '') {
+            $tdgs_final = $tdgs;
+
+        } else {
+            $students = new StudentController();
+            $students_result = $students->allStudentNombreApellido($estudiante);
+
+            foreach ($students_result as $student) {
+                foreach ($tdgs as $tdg) {
+
+                    $tdg_query = DB::table('student_tdg')
+                        ->where('tdg_id', '=', $tdg->id)
+                        ->where('student_id', '=', $student->id)
+                        ->get();
+
+                    if (!$tdg_query->isEmpty()) {
+
+                        array_push($tdgs_final, $tdg);
+                        
+                    }
+                }
+            }
+        }
+        
+    
+        return $tdgs_final;
     }
 
     // Función para mostrar la pantalla de detalles de tdg para coordinador de escuela

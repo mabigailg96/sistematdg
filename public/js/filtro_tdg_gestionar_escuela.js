@@ -48,6 +48,7 @@ $(document).on("click", "#btn-filtro-limpiar-busqueda", function(){
     $("#select-filter-estado").val("null");
     cargarDatosTdg();
     $("#select-filter-estado").val("");
+    $("#txt-filtro-estudiante").val("");
 });
 
 
@@ -63,6 +64,7 @@ function cargarDatosTdg() {
     var txt_filter_nombre = $("#txt-filtro-nombre").val();
     var filter_escuela_id = $("#filtro-escuela_id").val();
     var filter_estado_oficial = $("#select-filter-estado").val();
+    var txt_filter_estudiante = $("#txt-filtro-estudiante").val();
 
     // Validar si los input no continen nada
     if(txt_filter_codigo != undefined || txt_filter_codigo != '') {
@@ -79,6 +81,7 @@ function cargarDatosTdg() {
         estado_oficial: filter_estado_oficial,
         codigo: codigo,
         nombre: nombre,
+        estudiante: txt_filter_estudiante,
     };
 
     //console.log(params);

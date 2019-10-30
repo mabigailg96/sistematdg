@@ -183,4 +183,40 @@ class StudentController extends Controller
 
         return $students;
     }
+
+    // Está función me devuelve las coincidencias para los estudiantes con respecto a su nombre y apellido
+    public function allStudentNombreApellido($estudiante){
+
+        $students = array();
+        
+        $arreglo = explode(' ', $estudiante);
+
+        for ($i=0; $i < sizeof($arreglo); $i++) { 
+
+            $students_query = DB::table('students')
+                ->select('id')
+                ->where(DB::raw('CONCAT(nombres, " ", apellidos)'), 'like', '%'.$arreglo[$i].'%')
+                ->get();
+
+            if (!$students_query->isEmpty()){
+
+                $existe = false;
+                
+                foreach ($students_query as $student_query) {
+                    
+                    foreach ($students as $student) {
+                        if ($student_query->id == $student->id) {
+                            $existe = true;
+                        }
+                    }
+
+                    if (!$existe) {
+                        array_push($students, $student_query);
+                    }
+                }
+            }
+        }
+
+        return $students;
+    }
 }

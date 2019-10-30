@@ -25,8 +25,9 @@
                     <br>
                     <br>
 
-                    @include('filtro_codigo_nombre_estado')
-
+                    @include('filtro_codigo_nombre_estado_sinbuscar')
+                    <br>
+                    @include('filtro_estudiante_conbuscar')
                     <br>
                     <table id="table-filtro-tdgs" class="table table-striped">
                         <thead>
