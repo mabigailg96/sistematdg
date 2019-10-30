@@ -521,8 +521,15 @@ class TdgController extends Controller
         */
 
         //$ciclo = Ciclo::orderby('created_at','DESC')->take(1)->get();
-        $lastCiclo = DB::table('semesters')->orderBy('id', 'DESC')->first();
+        //$lastCiclo = DB::table('semesters')->orderBy('id', 'DESC')->first();
 
+        $ciclos = new SemesterController();
+        $ciclo = $ciclos->lastSemester();
+        
+        foreach ($ciclo as $last) {
+            $lastCiclo = $last;
+        }
+        
         for ($i=0; $i < sizeof($students); $i++) { 
             $tdg->students()->attach($students[$i], ['ciclo_id' => $lastCiclo->id]);
         }

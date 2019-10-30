@@ -62,4 +62,31 @@ class SemesterController extends Controller
 
         return $ciclos;
     }
+
+    public function lastSemester()
+    {
+        $fechaActual = date('Y-m');
+        $anioActual = date('Y');
+
+        //Para el primer ciclo
+        if($fechaActual >= $anioActual.'-02' && $fechaActual <= $anioActual.'-07'){
+
+            $fechaMinima = $anioActual.'-02-01';
+            $fechaMaxima = $anioActual.'-03-31';
+            $ciclo = DB::table('semesters')
+            ->select('id', 'ciclo')
+            ->whereBetween('fechaInicio', [$fechaMinima, $fechaMaxima])->get(); 
+        }else{
+            //Para el segundo ciclo
+            $fechaMinima = $anioActual.'-08-01';
+            $fechaMaxima = $anioActual.'-09-30';
+
+            $ciclo = DB::table('semesters')
+            ->select('id', 'ciclo')
+            ->whereBetween('fechaInicio', [$fechaMinima, $fechaMaxima])->get();
+
+        }
+        return $ciclo;
+
+    }
 }
