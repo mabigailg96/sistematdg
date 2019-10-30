@@ -10,6 +10,32 @@ use \DB;
 
 class ProfessorController extends Controller
 {
+
+    public function allprofesores(Request $request){
+
+        //Primero inicializamos las variables
+
+        $nombre_profesor =   '';
+        $nombre_profesor =   $request->nombre;
+        $codigo_profesor =   '';
+        $codigo_profesor =   $request->codigo;
+        $escuela_profesor =   '';
+        $escuela_profesor =  auth()->user()->college_id;
+
+
+
+        //Realizando la consulta a la base de datos para obtener los acuerdos
+        $usuarios = DB::table('professors')
+        ->select('id','codigo', 'nombre', 'apellido','estado')
+        ->where('nombre', 'like', '%'.$nombre_profesor.'%')
+        ->where('codigo', 'like', '%'.$codigo_profesor.'%')
+        ->where('escuela_id', 'like', '%'.$escuela_profesor.'%')
+        ->get();
+
+
+        return $usuarios;
+
+      }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +43,8 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
+        $escuela = auth()->user()->college_id;
+        return view('professor.listar_profesores', compact('escuela'));
     }
 
     /**
@@ -53,7 +80,7 @@ class ProfessorController extends Controller
             'apellido'  => $data['apellido'],
             'escuela_id'=> $escuela,
         ]);
-        
+
         return redirect()->route('professor.ingresar','/?save=1')->with('info', 'Los profesores han sido guardados con exito');
     }
 
@@ -90,7 +117,7 @@ class ProfessorController extends Controller
      */
     public function edit(Professor $professor)
     {
-        //
+        return view('professor.editar',compact('professor'));
     }
 
     /**
@@ -102,7 +129,16 @@ class ProfessorController extends Controller
      */
     public function update(Request $request, Professor $professor)
     {
-        //
+
+        $data = $request->all();
+        $professor->update([
+            'nombre'=>$data['nombre'],
+            'apellido'=>$data['apellido'],
+            'codigo'=>$data['codigo'],
+            'estado'=>$data['estado'],
+        ]);
+        return redirect()->route('professor.index','save=2')
+        ->with('info','Profesor Actualizado con exito');
     }
 
     /**
@@ -118,7 +154,7 @@ class ProfessorController extends Controller
 
     // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para nombramiento de tribunal
     public function allProfessorNombramientoTribunal(Request $request){
-        
+
         // Inicializar variables
         $escuela_id = auth()->user()->college_id;
         $input = $request->input;
@@ -195,7 +231,7 @@ class ProfessorController extends Controller
 
     // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para asignar docentes, estudiantes y asesores
     public function allProfessorAsignaciones(Request $request){
-        
+
         // Inicializar variables
         $escuela_id = auth()->user()->college_id;
         $input = $request->input;

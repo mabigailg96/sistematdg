@@ -20,6 +20,7 @@ class CreateProfessorsTable extends Migration
             $table->string('apellido',100)->nonullable();
             $table->integer('escuela_id')->unsigned()->nonullable();
             $table->foreign('escuela_id')->references('id')->on('colleges')->onDelete('cascade')->nonullable();
+            $table->boolean('estado')->default(1);
             $table->timestamps();
         });
     }
