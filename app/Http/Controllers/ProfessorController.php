@@ -161,66 +161,31 @@ class ProfessorController extends Controller
 
         $professors = array();
 
-        if($input == '') {
+        $arreglo = explode(' ', $input);
 
-            $professors = DB::table('professors')
-            ->select('id', 'codigo', 'nombre', 'apellido')
-            ->where('escuela_id', '=', $escuela_id)
-            ->get();
+        for ($i=0; $i < sizeof($arreglo); $i++) { 
 
-        } else {
-
-            // Realizar consultas a la base de datos con las coindicencias del codigo de docente
-            $professors_codigo = DB::table('professors')
+            $professors_query = DB::table('professors')
                 ->select('id', 'codigo', 'nombre', 'apellido')
+                ->where(DB::raw('CONCAT(codigo, ", ", nombre, " ", apellido)'), 'like', '%'.$arreglo[$i].'%')
                 ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$input.'%')
+                ->where('estado', '=', '1')
                 ->get();
 
-            if(!$professors_codigo->isEmpty()){
-                foreach ($professors_codigo as $professor) {
-                    array_push($professors, $professor);
-                }
-            }
+            if (!$professors_query->isEmpty()){
 
-            $professors_nombre = DB::table('professors')
-                ->select('id', 'codigo', 'nombre', 'apellido')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('nombre', 'like', '%'.$input.'%')
-                ->get();
-
-            if(!$professors_nombre->isEmpty()){
-                foreach ($professors_nombre as $professor) {
-                    $existe = false;
-                    foreach ($professors as $professor_main) {
-                        if($professor_main->id == $professor->id) {
+                $existe = false;
+                
+                foreach ($professors_query as $professor_query) {
+                    
+                    foreach ($professors as $professor) {
+                        if ($professor_query->id == $professor->id) {
                             $existe = true;
                         }
                     }
 
-                    if(!$existe) {
-                        array_push($professors, $professor);
-                    }
-                }
-            }
-
-            $professors_apellido = DB::table('professors')
-                ->select('id', 'codigo', 'nombre', 'apellido')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('apellido', 'like', '%'.$input.'%')
-                ->get();
-
-            if(!$professors_apellido->isEmpty()){
-                foreach ($professors_apellido as $professor) {
-                    $existe = false;
-                    foreach ($professors as $professor_main) {
-                        if($professor_main->id == $professor->id) {
-                            $existe = true;
-                        }
-                    }
-
-                    if(!$existe) {
-                        array_push($professors, $professor);
+                    if (!$existe) {
+                        array_push($professors, $professor_query);
                     }
                 }
             }
@@ -238,66 +203,31 @@ class ProfessorController extends Controller
 
         $professors = array();
 
-        if($input == '') {
+        $arreglo = explode(' ', $input);
 
-            $professors = DB::table('professors')
-            ->select('id', 'codigo', 'nombre', 'apellido')
-            ->where('escuela_id', '=', $escuela_id)
-            ->get();
+        for ($i=0; $i < sizeof($arreglo); $i++) { 
 
-        } else {
-
-            // Realizar consultas a la base de datos con las coindicencias del codigo de docente
-            $professors_codigo = DB::table('professors')
+            $professors_query = DB::table('professors')
                 ->select('id', 'codigo', 'nombre', 'apellido')
+                ->where(DB::raw('CONCAT(codigo, ", ", nombre, " ", apellido)'), 'like', '%'.$arreglo[$i].'%')
                 ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$input.'%')
+                ->where('estado', '=', '1')
                 ->get();
 
-            if(!$professors_codigo->isEmpty()){
-                foreach ($professors_codigo as $professor) {
-                    array_push($professors, $professor);
-                }
-            }
+            if (!$professors_query->isEmpty()){
 
-            $professors_nombre = DB::table('professors')
-                ->select('id', 'codigo', 'nombre', 'apellido')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('nombre', 'like', '%'.$input.'%')
-                ->get();
-
-            if(!$professors_nombre->isEmpty()){
-                foreach ($professors_nombre as $professor) {
-                    $existe = false;
-                    foreach ($professors as $professor_main) {
-                        if($professor_main->id == $professor->id) {
+                $existe = false;
+                
+                foreach ($professors_query as $professor_query) {
+                    
+                    foreach ($professors as $professor) {
+                        if ($professor_query->id == $professor->id) {
                             $existe = true;
                         }
                     }
 
-                    if(!$existe) {
-                        array_push($professors, $professor);
-                    }
-                }
-            }
-
-            $professors_apellido = DB::table('professors')
-                ->select('id', 'codigo', 'nombre', 'apellido')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('apellido', 'like', '%'.$input.'%')
-                ->get();
-
-            if(!$professors_apellido->isEmpty()){
-                foreach ($professors_apellido as $professor) {
-                    $existe = false;
-                    foreach ($professors as $professor_main) {
-                        if($professor_main->id == $professor->id) {
-                            $existe = true;
-                        }
-                    }
-
-                    if(!$existe) {
-                        array_push($professors, $professor);
+                    if (!$existe) {
+                        array_push($professors, $professor_query);
                     }
                 }
             }

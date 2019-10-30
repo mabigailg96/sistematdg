@@ -108,74 +108,32 @@ class StudentController extends Controller
 
         $students = array();
 
-        if($input == '') {
+        $arreglo = explode(' ', $input);
 
-            $students = DB::table('students')
+        for ($i=0; $i < sizeof($arreglo); $i++) { 
+
+            $students_query = DB::table('students')
                 ->leftJoin('student_tdg', 'student_tdg.student_id', '=', 'students.id')
                 ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos')
+                ->where(DB::raw('CONCAT(students.carnet, ", ", students.nombres, " ", students.apellidos)'), 'like', '%'.$arreglo[$i].'%')
                 ->where('student_tdg.student_id', '=', NULL)
                 ->where('students.escuela_id', '=', $escuela_id)
                 ->get();
 
-        } else {
+            if (!$students_query->isEmpty()){
 
-            // Realizar consultas a la base de datos con las coindicencias del carnet del estudiante
-            $students_carnet = DB::table('students')
-                ->leftJoin('student_tdg', 'student_tdg.student_id', '=', 'students.id')
-                ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos')
-                ->where('student_tdg.student_id', '=', NULL)
-                ->where('students.escuela_id', '=', $escuela_id)
-                ->where('students.carnet', 'like', '%'.$input.'%')
-                ->get();
-
-            if(!$students_carnet->isEmpty()){
-                foreach ($students_carnet as $student) {
-                    array_push($students, $student);
-                }
-            }
-
-            $students_nombres = DB::table('students')
-                ->leftJoin('student_tdg', 'student_tdg.student_id', '=', 'students.id')
-                ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos')
-                ->where('student_tdg.student_id', '=', NULL)
-                ->where('students.escuela_id', '=', $escuela_id)
-                ->where('students.nombres', 'like', '%'.$input.'%')
-                ->get();
-
-            if(!$students_nombres->isEmpty()){
-                foreach ($students_nombres as $student) {
-                    $existe = false;
-                    foreach ($students as $student_main) {
-                        if($student_main->id == $student->id) {
+                $existe = false;
+                
+                foreach ($students_query as $student_query) {
+                    
+                    foreach ($students as $student) {
+                        if ($student_query->id == $student->id) {
                             $existe = true;
                         }
                     }
 
-                    if(!$existe) {
-                        array_push($students, $student);
-                    }
-                }
-            }
-
-            $students_apellidos = DB::table('students')
-                ->leftJoin('student_tdg', 'student_tdg.student_id', '=', 'students.id')
-                ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos')
-                ->where('student_tdg.student_id', '=', NULL)
-                ->where('students.escuela_id', '=', $escuela_id)
-                ->where('students.apellidos', 'like', '%'.$input.'%')
-                ->get();
-
-            if(!$students_apellidos->isEmpty()){
-                foreach ($students_apellidos as $student) {
-                    $existe = false;
-                    foreach ($students as $student_main) {
-                        if($student_main->id == $student->id) {
-                            $existe = true;
-                        }
-                    }
-
-                    if(!$existe) {
-                        array_push($students, $student);
+                    if (!$existe) {
+                        array_push($students, $student_query);
                     }
                 }
             }
