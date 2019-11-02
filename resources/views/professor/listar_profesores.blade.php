@@ -22,9 +22,6 @@
                     <br>
                     @include('filtro_nombre_codigo_profesores')
                     <br>
-                    <br>
-                    <br>
-                    <br>
                     <table id="table-filtro-nombres-codigo" class="table table-striped">
                         <thead>
                             <tr>

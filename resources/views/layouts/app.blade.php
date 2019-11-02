@@ -45,7 +45,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-                   
+
                     @can('tdg.ingresar')
                       <li class="nav-item navegacion-item">
                         <a class="nav-link" href="{{ url('/ingresar/tdg') }}"> Ingresar perfil</a>
@@ -58,12 +58,12 @@
                   @endcan
                   @can('student.ingresar')
                     <li class="nav-item navegacion-item">
-                      <a class="nav-link" href="{{ url('/ingresar/estudiantes') }}"> Ingresar estudiantes</a>
+                      <a class="nav-link" href="{{ url('/todos/estudiantes/sistema') }}"> Registro de estudiantes</a>
                     </li>
                   @endcan
                   @can('professor.ingresar')
                     <li class="nav-item navegacion-item">
-                      <a class="nav-link" href="{{ url('/ingresar/profesores') }}"> Ingresar profesores</a>
+                      <a class="nav-link" href="{{ url('/todos/profesores/sistema') }}"> Registro de profesores</a>
                     </li>
                   @endcan
                   @can('ratificar.listar')

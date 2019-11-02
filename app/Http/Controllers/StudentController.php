@@ -15,9 +15,34 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function allEstudiantes(Request $request){
+
+        //Primero inicializamos las variables
+        $carnet_estudiante =   '';
+        $carnet_estudiante =   $request->carnet;
+        $nombre_estudiante =   '';
+        $nombre_estudiante =   $request->nombre;
+        $escuela_estudiante =   '';
+        $escuela_estudiante =  $request->escuela;
+
+
+
+        //Realizando la consulta a la base de datos para obtener los acuerdos
+        $estudiantes = DB::table('students')
+        ->select('carnet','nombres', 'apellidos', 'escuela_id')
+        ->where('nombres', 'like', '%'.$nombre_estudiante.'%')
+        ->where('carnet', 'like', '%'.$carnet_estudiante.'%')
+        ->where('escuela_id', 'like', '%'.$escuela_estudiante.'%')
+        ->get();
+
+
+        return $estudiantes;
+
+      }
     public function index()
     {
-        //
+        return view('student.listar_estudiantes');
     }
 
     /**
@@ -44,7 +69,7 @@ class StudentController extends Controller
         ]);
 
         $idEscuela = $request['escuela_id'];
-        
+
         try {
             Excel::import(new StudentsImport($idEscuela), request()->file('file'));
         } catch (\Exception $ex) {
@@ -101,7 +126,7 @@ class StudentController extends Controller
 
     // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, carnet y nombre para asignar docentes, estudiantes y asesores
     public function allStudentAsignaciones(Request $request){
-        
+
         // Inicializar variables
         $escuela_id = auth()->user()->college_id;
         $input = $request->input;
@@ -110,7 +135,7 @@ class StudentController extends Controller
 
         $arreglo = explode(' ', $input);
 
-        for ($i=0; $i < sizeof($arreglo); $i++) { 
+        for ($i=0; $i < sizeof($arreglo); $i++) {
 
             $students_query = DB::table('students')
                 ->leftJoin('student_tdg', 'student_tdg.student_id', '=', 'students.id')
@@ -123,9 +148,9 @@ class StudentController extends Controller
             if (!$students_query->isEmpty()){
 
                 $existe = false;
-                
+
                 foreach ($students_query as $student_query) {
-                    
+
                     foreach ($students as $student) {
                         if ($student_query->id == $student->id) {
                             $existe = true;
@@ -146,10 +171,10 @@ class StudentController extends Controller
     public function allStudentNombreApellido($estudiante){
 
         $students = array();
-        
+
         $arreglo = explode(' ', $estudiante);
 
-        for ($i=0; $i < sizeof($arreglo); $i++) { 
+        for ($i=0; $i < sizeof($arreglo); $i++) {
 
             $students_query = DB::table('students')
                 ->select('id')
@@ -159,9 +184,9 @@ class StudentController extends Controller
             if (!$students_query->isEmpty()){
 
                 $existe = false;
-                
+
                 foreach ($students_query as $student_query) {
-                    
+
                     foreach ($students as $student) {
                         if ($student_query->id == $student->id) {
                             $existe = true;

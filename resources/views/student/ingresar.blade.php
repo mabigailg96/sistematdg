@@ -11,7 +11,8 @@
         <div class="col-md-8">
             <div class="card">
             <div class="card-header">
-					Importación de alumnos.
+                    Importación de alumnos.
+                    <a href="{{ route('student.index') }}" align="right" class="btn btn-primary btn-color offset-6" role="button">Regresar</a>
 				</div>
 
                 <div class="card-body">
@@ -20,7 +21,7 @@
                             {{ session('status') }}
                         </div>
 					@endif
-						
+
                     <form class="form-horizontal" method="POST" action="{{ route('student.guardar') }}" enctype="multipart/form-data">
                         @csrf
                     <br>
@@ -41,7 +42,7 @@
                             <div class="urlinput col-md-6">
                                 <select id="escuela_id" class="form-control" name="escuela_id" value="{{ old('escuela_id' )}}"  class="form-control col-8" required>
                                     <option value="" selected disabled>Seleccione la escuela:</option >
-                                    
+
                                 </select>
                                 @if ($errors->has('escuela_id'))
                                     <span class="help-block">
@@ -58,7 +59,7 @@
                                 </button>
                             </div>
 						</div>
-						
+
                     </form>
                     <br>
                 </div>

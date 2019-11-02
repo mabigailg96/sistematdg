@@ -159,5 +159,8 @@ Route::get('/todos/profesores/sistema', 'ProfessorController@index')->name('prof
 Route::get('/todos/profesores/ver', 'ProfessorController@allProfesores')->name('professor.show');
 Route::get('/profesores/{professor}/edit', 'ProfessorController@edit')->name('professor.edit');
 Route::post('/profesores/{professor}', 'ProfessorController@update')->name('professor.update');
+
+Route::get('/todos/estudiantes/sistema', 'StudentController@index')->name('student.index');
+Route::get('/todos/estudiantes/ver', 'StudentController@allEstudiantes')->name('student.show');
 });
 
