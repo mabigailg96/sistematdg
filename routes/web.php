@@ -161,3 +161,10 @@ Route::get('/profesores/{professor}/edit', 'ProfessorController@edit')->name('pr
 Route::post('/profesores/{professor}', 'ProfessorController@update')->name('professor.update');
 });
 
+// Pantalla mostrar filtros de TDG para el modulo de edición
+Route::get('/listar/tdg/editar', function () {
+    return view('tdg.filtro_editar');
+})->name('tdg.filtroTdgEditar');
+
+// Ruta para para enviar todos los datos del TDG para filtro de editar
+Route::get('/todos/tdg/editar', 'TdgController@allTdgEditar')->name('tdg.todosTdgEditar');
