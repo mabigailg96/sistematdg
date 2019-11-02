@@ -22,9 +22,6 @@
                         <br>
                         @include('filtro_nombre_carnet_escuela')
                         <br>
-                        <br>
-                        <br>
-                        <br>
                         <table id="table-filtro-nombres-carnet" class="table table-striped">
                                 <thead>
                                     <tr>
