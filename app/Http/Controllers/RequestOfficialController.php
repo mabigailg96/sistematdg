@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\RequestOfficial;
+use App\Tdg;
+use App\Professor;
+use App\Adviser;
 use Illuminate\Http\Request;
 
 class RequestOfficialController extends Controller
@@ -50,6 +53,24 @@ class RequestOfficialController extends Controller
             $request_Official->aprobado = $aprobado;
             $request_Official->agreement_id = $id_agreement;
             $request_Official->save();
+         }
+
+         if($aprobado == 0){
+
+            $tdgPivot = Tdg::find($id_tdg);
+
+            //Eliminando estudiantes
+            $tdgPivot->students()->detach();
+
+            //Elimnando asesores externos
+            $tdgPivot->advisers()->detach();
+
+            //Elimnando asesores internos
+            $tdgPivot->professors()->detach();
+
+            //Elimnando al director
+            $tdgPivot->profesor_id = null;
+            $tdgPivot->save();
          }
         return $requestOfficial;
 

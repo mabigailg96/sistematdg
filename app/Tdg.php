@@ -24,7 +24,7 @@ class Tdg extends Model
     }
 
     public function professors(){
-        return $this->belongsToMany(Professors::class);
+        return $this->belongsToMany(Professor::class);
     }
 
     public function request_tribunals(){
