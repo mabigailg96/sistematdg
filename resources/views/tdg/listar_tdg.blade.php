@@ -48,7 +48,8 @@
                             <tr>
                             <th scope="col">Código</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Solicitar</th>
+                            <th scope="col">Ratificar</th>
+                            <th scope="col">Ver</th>
                             </tr>
                         </thead>
                         <tbody>

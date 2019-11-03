@@ -109,7 +109,7 @@ function cargarDatosTdg() {
                 "data": response.data,
                 "ordering": false,
                 "pageLength": 10,
-                "columns": [
+                "columns": [  
                     { 'data': '0.codigo' },
                     { 'data': '0.nombre' },
                     { sortable: false,
@@ -121,9 +121,23 @@ function cargarDatosTdg() {
                         // Concatenar ruta para el formulario
                        
                         // Ruta que lleva como parametro el tipo de solicitud que se va ratificar y el id del tdg
-                        var htmlButtons = `<a href="/ratificar/solicitud/${tipo_solicitud}/${id}">Seleccionar</a>`;
+                        var htmlButtons = `<a href="/ratificar/solicitud/${tipo_solicitud}/${id}">Ratificar</a>`;
                        
                         return htmlButtons;
+                        }
+                    },
+                    { sortable: false,
+                        "render": function ( data, type, full, meta ) {
+                            var htmlButtons = '';
+                            // Id del TDG
+                            var id = full[0].id; //Cuando haga el filtro tengo que agregar [0]
+                            //console.log(id);
+                            // Concatenar ruta para el formulario
+                           
+                            // Ruta que lleva como parametro el tipo de solicitud que se va ratificar y el id del tdg
+                            var htmlButtons = `<a href="/ver/solicitud/${tipo_solicitud}/${id}">Ver</a>`;
+                           
+                            return htmlButtons;
                         }
                     },
                 ],
