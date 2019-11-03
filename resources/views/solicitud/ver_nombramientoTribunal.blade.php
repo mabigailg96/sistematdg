@@ -22,15 +22,30 @@
                         <div class="card-body bg-light">
                             <p><strong>Código: </strong>{{ $tdg->codigo }}</p>
                             <p><strong>Nombre: </strong>{{ $tdg->nombre }}</p>
-                            <p><strong>Tipo de solicitud: </strong>Solicitud de nombramiento de tribunal</p>
-                            <p><strong>Fecha de solicitud: </strong>{{ $solicitud->fecha }}</p>
-                            <p><strong>Tribunal: </strong><ul>
+                            <p><strong>Tipo de solicitud: </strong>Nombramiento de tribunal</p>
+                            <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
+                            <p><strong>Tribunal calificador: </strong><ul>
                                 @foreach ($tribunal as $docente)
                                     <li>
                                         {{ $docente }}
                                     </li>
                                 @endforeach
                                 </ul></p>
+                        </div>
+                    </div>
+
+                    <br>
+                    
+                    <div class="row">
+                        <div class="col-2 offset-8">
+                            <a class="btn btn-primary btn-color" href="/listar/tdg/ratificacion" role="button">
+                                <span class="oi oi-arrow-circle-left"></span> Regresar
+                            </a>
+                        </div>
+                        <div class="col-2 ">
+                        <a class="btn btn-primary btn-color" href="/ratificar/solicitud/{{ $tipoSolicitud . '/' . $solicitud->id }}" role="button">
+                                <span class="oi oi-document"></span> Ratificar
+                            </a>
                         </div>
                     </div>
                 </div>

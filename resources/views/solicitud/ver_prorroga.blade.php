@@ -20,13 +20,28 @@
                     
                     <div class="card">
                         <div class="card-body bg-light">
-                            <p><strong>Código del TDG: </strong>{{ $tdg->codigo }}</p>
-                            <p><strong>Nombre del TDG: </strong>{{ $tdg->nombre }}</p>
-                            <p><strong>Tipo de solicitud: </strong>Solicitud de nombramiento de tribunal</p>
-                            <p><strong>Fecha de solicitud: </strong>{{ $solicitud->fecha }}</p>
-                            <p><strong>Fecha de inicio: </strong>{{ $solicitud->fecha_inicio }}</p>
-                            <p><strong>Fecha de fin: </strong>{{ $solicitud->fecha_fin }}</p>
+                            <p><strong>Código: </strong>{{ $tdg->codigo }}</p>
+                            <p><strong>Nombre: </strong>{{ $tdg->nombre }}</p>
+                            <p><strong>Tipo de solicitud: </strong>{{ $tipoProrroga }}</p>
+                            <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
+                            <p><strong>Fecha de inicio: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha_inicio)) }}</p>
+                            <p><strong>Fecha de fin: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha_fin)) }}</p>
                             <p><strong>Justificación: </strong>{{ $solicitud->justificacion }}</p>
+                        </div>
+                    </div>
+
+                    <br>
+                    
+                    <div class="row">
+                        <div class="col-2 offset-8">
+                            <a class="btn btn-primary btn-color" href="/listar/tdg/ratificacion" role="button">
+                                <span class="oi oi-arrow-circle-left"></span> Regresar
+                            </a>
+                        </div>
+                        <div class="col-2 ">
+                        <a class="btn btn-primary btn-color" href="/ratificar/solicitud/{{ $tipoSolicitud . '/' . $solicitud->id }}" role="button">
+                                <span class="oi oi-document"></span> Ratificar
+                            </a>
                         </div>
                     </div>
                 </div>

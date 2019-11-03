@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Adviser;
 use App\Professor;
 use App\RequestApproved;
 use App\RequestExtension;
@@ -11,7 +12,6 @@ use App\RequestResult;
 use App\RequestTribunal;
 use App\Student;
 use App\Tdg;
-use App\TypeExtension;
 use Illuminate\Support\Facades\DB;
 
 class RequestController extends Controller
@@ -30,14 +30,17 @@ class RequestController extends Controller
             case 'aprobado':
                 $solicitud = RequestApproved::select('*')
                     ->where('id', $id)
-                    ->get();
+                    ->get()
+                    ->first();
                 $tdg = Tdg::select('*')
-                    ->where('id', $solicitud[0]->tdg_id)
-                    ->get();
+                    ->where('id', $solicitud->tdg_id)
+                    ->get()
+                    ->first();
             
                 return view('solicitud.ver_aprobado', [
-                    'tdg' => $tdg[0],
-                    'solicitud' => $solicitud[0],
+                    'tdg' => $tdg,
+                    'solicitud' => $solicitud,
+                    'tipoSolicitud' => $tipo_solicitud,
                 ]);
                 break;
 
@@ -45,13 +48,68 @@ class RequestController extends Controller
             case 'oficializacion':
                 $solicitud = RequestOfficial::select('*')
                     ->where('id', $id)
-                    ->get();
+                    ->get()
+                    ->first();
                 $tdg = Tdg::select('*')
-                    ->where('id', $solicitud[0]->tdg_id)
+                    ->where('id', $solicitud->tdg_id)
+                    ->get()
+                    ->first();
+                // Obteniendo Docente Director del TDG
+                $docenteDirector = Professor::select('*')
+                    ->where('id', $tdg->profesor_id)
+                    ->select()
+                    ->first();
+                // Obteniendo estudiantes del TDG
+                $estdudiantesTDG = DB::table('student_tdg')
+                    ->select('student_id')
+                    ->where('tdg_id',$tdg->id)
                     ->get();
+                foreach($estdudiantesTDG as $estudianteTDG){
+                    $estudiante = Student::select('*')
+                        ->where('id', $estudianteTDG->student_id)
+                        ->get()
+                        ->first();
+                    $estudiantes[] = (object) [
+                        'carnet' => $estudiante->carnet,
+                        'nombre' => $estudiante->nombres . ' ' . $estudiante->apellidos,
+                    ];
+                }
+                // Obteniendo asesores internos del TDG
+                $profesoresTDG = DB::table('professor_tdg')
+                    ->select('*')
+                    ->where('tdg_id', $tdg->id)
+                    ->get();
+                foreach($profesoresTDG as $profesorTDG){
+                    $profesor = Professor::select('*')
+                        ->where('id', $profesorTDG->professor_id)
+                        ->get()
+                        ->first();
+                    $asesoresInternos[] = (object) [
+                        'codigo' => $profesor->codigo,
+                        'nombre' => $profesor->nombre . ' ' . $profesor->apellido,
+                    ];
+                }
+                // Obteniendo asesores externos del TDG
+                $asesoresExternos = array();
+                $asesoresTDG = DB::table('adviser_tdg')
+                    ->select('adviser_id')
+                    ->where('tdg_id', $tdg->id)
+                    ->get();
+                foreach($asesoresTDG as $asesorTDG){
+                    $asesor = Adviser::select('*')
+                        ->where('id', $asesorTDG->adviser_id)
+                        ->get()
+                        ->first();
+                    $asesoresExternos[] = $asesor->nombre . ' ' . $asesor->apellido;
+                }
                 return view('solicitud.ver_oficializacion', [
-                    'tdg' => $tdg[0],
-                    'solicitud' => $solicitud[0],
+                    'tdg' => $tdg,
+                    'solicitud' => $solicitud,
+                    'tipoSolicitud' => $tipo_solicitud,
+                    'docenteDirector' => $docenteDirector->nombre . ' ' . $docenteDirector->apellido,
+                    'estudiantes' => $estudiantes,
+                    'asesoresInternos' => $asesoresInternos,
+                    'asesoresExternos' => $asesoresExternos,
                 ]);
                 break;
                 
@@ -59,13 +117,16 @@ class RequestController extends Controller
             case 'cambio_de_nombre':
                 $solicitud = RequestName::select('*')
                     ->where('id', $id)
-                    ->get();
+                    ->get()
+                    ->first();
                 $tdg = Tdg::select('*')
-                    ->where('id', $solicitud[0]->tdg_id)
-                    ->get();
+                    ->where('id', $solicitud->tdg_id)
+                    ->get()
+                    ->first();
                 return view('solicitud.ver_cambioNombre', [
-                    'tdg' => $tdg[0],
-                    'solicitud' => $solicitud[0],
+                    'tdg' => $tdg,
+                    'solicitud' => $solicitud,
+                    'tipoSolicitud' => $tipo_solicitud,
                 ]);
                 break;
 
@@ -75,18 +136,29 @@ class RequestController extends Controller
             case 'prorroga_especial':
                 $solicitud = RequestExtension::select('*')
                     ->where('id', $id)
-                    ->get();
-                $tdg = Tdg::select('*')
-                    ->where('id', $solicitud[0]->tdg_id)
-                    ->get();
-                $tipoProrroga = TypeExtension::select('tipo')
-                    ->where('id', $solicitud[0]->type_extension_id)
                     ->get()
-                    [0]->tipo;;
+                    ->first();
+                $tdg = Tdg::select('*')
+                    ->where('id', $solicitud->tdg_id)
+                    ->get()
+                    ->first();
+                switch($tipo_solicitud){
+                    case 'prorroga':
+                        $tipoProrroga = 'Prórroga';
+                        break;
+                    case 'extension_de_prorroga':
+                        $tipoProrroga = 'Extensión de Prórroga';
+                        break;
+                    case 'prorroga_especial':
+                        $tipoProrroga = 'Prórroga especial';
+                        break;
+                        
+                }
                 return view('solicitud.ver_prorroga', [
-                    'tdg' => $tdg[0],
-                    'solicitud' => $solicitud[0],
-                    'tipoProrroga' => $tipoProrroga
+                    'tdg' => $tdg,
+                    'solicitud' => $solicitud,
+                    'tipoSolicitud' => $tipo_solicitud,
+                    'tipoProrroga' => $tipoProrroga,
                 ]);
                 break;
 
@@ -94,10 +166,12 @@ class RequestController extends Controller
             case 'nombramiento_de_tribunal':
                 $solicitud = RequestTribunal::select('*')
                     ->where('id', $id)
-                    ->get();
+                    ->get()
+                    ->first();
                 $tdg = Tdg::select('*')
-                    ->where('id', $solicitud[0]->tdg_id)
-                    ->get();
+                    ->where('id', $solicitud->tdg_id)
+                    ->get()
+                    ->first();
                 $docentes = DB::table('professor_request_tribunal')
                     ->select('professor_id')
                     ->where('request_tribunal_id', $id)
@@ -107,8 +181,9 @@ class RequestController extends Controller
                    $tribunal [] = $profesor->codigo . ' ' . $profesor->nombre . ' ' . $profesor->apellido;
                 }
                 return view('solicitud.ver_nombramientoTribunal', [
-                    'tdg' => $tdg[0],
-                    'solicitud' => $solicitud[0],
+                    'tdg' => $tdg,
+                    'solicitud' => $solicitud,
+                    'tipoSolicitud' => $tipo_solicitud,
                     'tribunal' => $tribunal,
                 ]);
                 break;
@@ -131,11 +206,16 @@ class RequestController extends Controller
                             ->where('id', $estudianteTDG->student_id)
                             ->select()
                             ->first();
-                        $resultados[] = $estudiante->carnet . ' ' . $estudiante->nombres . ' ' . $estudiante->apellidos . ' ' . $estudianteTDG->nota;
+                        $resultados[] = (object)[
+                            'carnet' => $estudiante->carnet,
+                            'nombre' => $estudiante->nombres . ' ' . $estudiante->apellidos,
+                            'nota' => $estudianteTDG->nota,
+                        ];
                     }
                     return view('solicitud.ver_ratificacionResultados', [
                         'tdg' => $tdg,
                         'solicitud' => $solicitud,
+                        'tipoSolicitud' => $tipo_solicitud,
                         'resultados' => $resultados,
                     ]);
                     break;
