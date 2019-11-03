@@ -24,7 +24,7 @@
                             <p><strong>Nombre: </strong>{{ $tdg->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>Oficialización</p>
                             <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
-                            <p><strong>Docente director: </strong>{{ $docenteDirector }}</p>
+                            <p><strong>Docente asesor: </strong>{{ $docenteDirector }}</p>
                             <p><strong>Alumnos: </strong></p>
                             <div class="row"> <!-- Tabla de alumnos del tdg-->
                                 <div class="col-8 offset-2">
