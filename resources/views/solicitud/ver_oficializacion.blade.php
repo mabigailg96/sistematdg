@@ -24,7 +24,7 @@
                             <p><strong>Nombre: </strong>{{ $tdg->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>Oficialización</p>
                             <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
-                            <p><strong>Docente Director: </strong>{{ $docenteDirector }}</p>
+                            <p><strong>Docente director: </strong>{{ $docenteDirector }}</p>
                             <p><strong>Alumnos: </strong></p>
                             <div class="row"> <!-- Tabla de alumnos del tdg-->
                                 <div class="col-8 offset-2">
@@ -47,7 +47,7 @@
                                     <br>
                                 </div>
                             </div>
-                            <p><strong>Asesores Internos: </strong></p>
+                            <p><strong>Docentes asesores internos: </strong></p>
                             <div class="row"> <!-- Asesores Internos -->
                                 <div class="col-8 offset-2">
                                     <table class="table table-hover">
@@ -69,11 +69,11 @@
                                     <br>
                                 </div>
                             </div>
-                            <p><strong>Asesores Externos: </strong></p>
+                            <p><strong>Asesores especialistas externos: </strong></p>
                             <div class="row"> <!-- Asesores externos -->
                                 @if (empty($asesoresExternos))
                                     <div class="col-6 offset-2">
-                                        <h5>No Existen asesores externos</h5>
+                                        <h5>No existen asesores especialistas externos</h5>
                                     </div>
                                 @else
                                     <div class="col-8 offset-2">
