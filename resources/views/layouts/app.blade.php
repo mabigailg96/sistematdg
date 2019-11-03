@@ -46,16 +46,17 @@
                     <ul class="navbar-nav mr-auto">
 
 
-                    @can('tdg.ingresar')
-                      <li class="nav-item navegacion-item">
-                        <a class="nav-link" href="{{ url('/ingresar/tdg') }}"> Ingresar perfil</a>
-                      </li>
-                    @endcan
                     @can('semester.ingresar')
                     <li class="nav-item navegacion-item">
                       <a class="nav-link" href="{{ url('/ingresar/ciclo') }}"> Ciclos</a>
                     </li>
                   @endcan
+                    @can('tdg.ingresar')
+                      <li class="nav-item navegacion-item">
+                        <a class="nav-link" href="{{ url('/ingresar/tdg') }}"> Ingresar perfil</a>
+                      </li>
+                    @endcan
+                  
                   @can('student.ingresar')
                     <li class="nav-item navegacion-item">
                       <a class="nav-link" href="{{ url('/todos/estudiantes/sistema') }}"> Estudiantes</a>
@@ -76,9 +77,9 @@
                     <a class="nav-link" href="{{ url('/listar/tdg/solicitudes') }}"> Solicitudes</a>
                   </li>
                   @endcan
-                  @can('tdg.filtroGestionarGeneral')
+                  @can('assignments.filtro')
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/listar/tdg/gestionar/general') }}">  Ver detalles</a>
+                    <a class="nav-link" href="{{ url('/listar/tdg/asignar') }}"> Asignar grupo</a>
                   </li>
                   @endcan
                   @can('tdg.filtroGestionarEscuela')
@@ -86,16 +87,18 @@
                     <a class="nav-link" href="{{ url('/listar/tdg/gestionar/escuela') }}"> Gestionar TDG</a>
                   </li>
                   @endcan
+               
+                  @can('tdg.filtroGestionarGeneral')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/tdg/gestionar/general') }}">  Ver detalles</a>
+                  </li>
+                  @endcan
                   @can('agreement.listar_acuerdos')
                   <li class="nav-item navegacion-item">
                     <a class="nav-link" href="{{ url('/listar/acuerdos/jd') }}"> Ver acuerdos</a>
                   </li>
                   @endcan
-                  @can('assignments.filtro')
-                  <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/listar/tdg/asignar') }}"> Asignar grupo</a>
-                  </li>
-                  @endcan
+                  
                   @can('month.show')
                   <li class="nav-item navegacion-item">
                     <a class="nav-link" href="{{ url('/listar/prorroga') }}"> Editar prórrogas</a>
@@ -106,6 +109,7 @@
                     <a class="nav-link" href="{{ url('/todos/usuarios/sistema') }}"> Gestionar usuarios</a>
                   </li>
                   @endcan
+                 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
