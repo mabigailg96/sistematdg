@@ -18,8 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingresar');
-Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guardar');
+
 
 Route::middleware(['auth'])->group(function(){
 //Rutas para acuerdos
@@ -33,9 +32,9 @@ Route::post('/guardar/tdg', 'TdgController@store')->name('tdg.guardar')->middlew
 // Ruta para traer todos los docentes para asignación de tribunal
 Route::get('/todos/profesores/nombramiento/tribunal', 'ProfessorController@allProfessorNombramientoTribunal')->name('professor.todosProfesoresNombramientoTribunal');
 
-
 // Ruta para para enviar todos los datos del TDG para filtro de solicitudes
 Route::get('/todos/tdg/solicitudes', 'TdgController@allTdgSolicitudes')->name('tdg.todosTdgSolicitudes');
+
 // Ruta para para enviar todos los datos del TDG para filtro de asignaciones de docente, estudiantes y asesores
 Route::get('/todos/tdg/asignaciones', 'TdgController@allTdgAsignaciones')->name('tdg.todosTdgAsignaciones');
 
@@ -53,17 +52,17 @@ Route::get('/todos/tdg/gestionar/escuela', 'TdgController@allTdgGestionarEscuela
 Route::get('/todos/tdg/gestionar/general', 'TdgController@allTdgGestionarGeneral')->name('tdg.todosTdgGestionarGeneral')->middleware('can:tdg.todosTdgGestionarGeneral');
 
 // Ruta para mostrar detalle de tdg coordinador de escuela
-Route::get('/ver/detalle/tdg/escuela/{id}', 'TdgController@createDetalleTdgEscuela')->name('tdg.verDetalleTdgEscuela');
+Route::get('/ver/detalle/tdg/escuela/{id}', 'TdgController@createDetalleTdgEscuela')->name('tdg.verDetalleTdgEscuela')->middleware('can:tdg.verDetalleTdgEscuela');
 
 // Ruta para imprimir ver detalles para coordinador de escuela
 Route::get('/imprimir/detalle/tdg/{id}','TdgController@generatePdfDetallesTdg')->name('tdg.generatePdfDetallesTdg');
 
 // Ruta para mostrar detalle de tdg coordinador general
-Route::get('/ver/detalle/tdg/general/{id}', 'TdgController@createDetalleTdgGeneral')->name('tdg.verDetalleTdgGeneral');
+Route::get('/ver/detalle/tdg/general/{id}', 'TdgController@createDetalleTdgGeneral')->name('tdg.verDetalleTdgGeneral')->middleware('can:tdg.verDetalleTdgGeneral');
 
 //Ruta para la creacion del ciclo
 Route::get('/ingresar/ciclo', 'SemesterController@create')->name('semester.ingresar')->middleware('can:semester.ingresar');
-Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guardar')->middleware('can:semester.ingresar');
+Route::post('/guardar/ciclo', 'SemesterController@store')->name('semester.guardar')->middleware('can:semester.guardar');
 
 //Rutas para importar los estudiantes por medio de un excel
 Route::get('/ingresar/estudiantes', 'StudentController@create')->name('student.ingresar')->middleware('can:student.ingresar');
@@ -155,12 +154,12 @@ Route::post('/guardar/prorroga/{id}', 'MonthExtensionController@update')->name('
 Route::get('/ingresar/profesores', 'ProfessorController@create')->name('professor.ingresar')->middleware('can:professor.ingresar');
 Route::post('/guardar/profesores', 'ProfessorController@store')->name('professor.guardar')->middleware('can:professor.guardar');
 Route::post('/guardar/excel/profesores', 'ProfessorController@storexls')->name('professor.guardarexcel')->middleware('can:professor.guardarexcel');
-Route::get('/todos/profesores/sistema', 'ProfessorController@index')->name('professor.index');
-Route::get('/todos/profesores/ver', 'ProfessorController@allProfesores')->name('professor.show');
-Route::get('/profesores/{professor}/edit', 'ProfessorController@edit')->name('professor.edit');
-Route::post('/profesores/{professor}', 'ProfessorController@update')->name('professor.update');
+Route::get('/todos/profesores/sistema', 'ProfessorController@index')->name('professor.index')->middleware('can:professor.index');
+Route::get('/todos/profesores/ver', 'ProfessorController@allProfesores')->name('professor.show')->middleware('can:professor.show');
+Route::get('/profesores/{professor}/edit', 'ProfessorController@edit')->name('professor.edit')->middleware('can:professor.edit');
+Route::post('/profesores/{professor}', 'ProfessorController@update')->name('professor.update')->middleware('can:professor.update');
 
-Route::get('/todos/estudiantes/sistema', 'StudentController@index')->name('student.index');
-Route::get('/todos/estudiantes/ver', 'StudentController@allEstudiantes')->name('student.show');
+Route::get('/todos/estudiantes/sistema', 'StudentController@index')->name('student.index')->middleware('can:student.index');
+Route::get('/todos/estudiantes/ver', 'StudentController@allEstudiantes')->name('student.show')->middleware('can:student.show');
 });
 

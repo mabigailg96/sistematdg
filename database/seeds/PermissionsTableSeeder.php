@@ -243,5 +243,56 @@ class PermissionsTableSeeder extends Seeder
             'description' => 'Muestra la búsqueda de usuarios',
         ]);
 
+
+        //*****RUTAS FALTANTES DE VER DETALLES******//
+        Permission::create([
+            'name' => 'Ruta para ver detalles coordinador escuela',
+            'slug' => 'tdg.verDetalleTdgEscuela',
+            'description' => 'Ver detalles coordinador escuela',
+        ]);
+        Permission::create([
+            'name' => 'Ruta para ver detalles coordinador general',
+            'slug' => 'tdg.verDetalleTdgGeneral',
+            'description' => 'Ver detalles coordinador general',
+        ]);
+
+        //*******RUTAS FALTANTES PROFESORES****//
+        Permission::create([
+            'name' => 'Ruta para ver los profesores',
+            'slug' => 'professor.index',
+            'description' => 'Ver los profesores que estan en el sistema',
+        ]);
+        Permission::create([
+            'name' => 'Ver los profesores',
+            'slug' => 'professor.show',
+            'description' => 'Ver los profesores',
+        ]);
+        Permission::create([
+            'name' => 'Editar los profesores',
+            'slug' => 'professor.edit',
+            'description' => 'Editar los profesores del sistema',
+        ]);
+        Permission::create([
+            'name' => 'Actualizar datos de los profesores',
+            'slug' => 'professor.update',
+            'description' => 'Actualizar los datos de los profesores del sistema',
+        ]);
+
+        //********RUTAS PARA LISTAR ESTUDIANTES */
+        Permission::create([
+            'name' => 'Listar todos los estudiantes',
+            'slug' => 'student.index',
+            'description' => 'Listar los estudiantes ingresados',
+        ]);
+        Permission::create([
+            'name' => 'Ver todos los estudiantes',
+            'slug' => 'student.show',
+            'description' => 'Ver los estudiantes ingresados',
+        ]);
+
+
+
+
+
     }
 }

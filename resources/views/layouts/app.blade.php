@@ -53,17 +53,17 @@
                     @endcan
                     @can('semester.ingresar')
                     <li class="nav-item navegacion-item">
-                      <a class="nav-link" href="{{ url('/ingresar/ciclo') }}"> Ingresar ciclo</a>
+                      <a class="nav-link" href="{{ url('/ingresar/ciclo') }}"> Ciclos</a>
                     </li>
                   @endcan
                   @can('student.ingresar')
                     <li class="nav-item navegacion-item">
-                      <a class="nav-link" href="{{ url('/todos/estudiantes/sistema') }}"> Registro de estudiantes</a>
+                      <a class="nav-link" href="{{ url('/todos/estudiantes/sistema') }}"> Estudiantes</a>
                     </li>
                   @endcan
                   @can('professor.ingresar')
                     <li class="nav-item navegacion-item">
-                      <a class="nav-link" href="{{ url('/todos/profesores/sistema') }}"> Registro de profesores</a>
+                      <a class="nav-link" href="{{ url('/todos/profesores/sistema') }}"> Profesores</a>
                     </li>
                   @endcan
                   @can('ratificar.listar')

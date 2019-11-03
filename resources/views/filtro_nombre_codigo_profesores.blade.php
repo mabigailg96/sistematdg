@@ -2,7 +2,7 @@
         <div class="col-md-6">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Codigo del profesor</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default">Codigo:</span>
                     </div>
                     <input type="text" id="txt-filtro-codigo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Nombre del profesor</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Nombre:</span>
                 </div>
                 <input type="text" id="txt-filtro-nombre" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
             </div>
