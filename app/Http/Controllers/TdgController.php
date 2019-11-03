@@ -1613,7 +1613,7 @@ else if($tipo_solicitud=='aprobado'){
                     $request_tribunal_datos = DB::table('request_tribunals')
                         ->join('agreements', 'request_tribunals.agreement_id','=', 'agreements.id')
                         ->select('agreements.url')
-                        ->where('request_tribunals.id', '=', $request_prorroga->id)
+                        ->where('request_tribunals.id', '=', $request_tribunal->id)
                         ->get();
                     
                     if (!$request_tribunal_datos->isEmpty()) {

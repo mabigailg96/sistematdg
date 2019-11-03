@@ -25,7 +25,7 @@
                             <p><strong>Tipo de solicitud: </strong>Oficialización</p>
                             <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
                             <p><strong>Docente asesor: </strong>{{ $docenteDirector }}</p>
-                            <p><strong>Alumnos: </strong></p>
+                            <p><strong>Estudiantes: </strong></p>
                             <div class="row"> <!-- Tabla de alumnos del tdg-->
                                 <div class="col-8 offset-2">
                                     <table class="table table-hover">
@@ -47,7 +47,7 @@
                                     <br>
                                 </div>
                             </div>
-                            <p><strong>Docentes asesores internos: </strong></p>
+                            <p><strong>Docentes Asesores Internos: </strong></p>
                             <div class="row"> <!-- Asesores Internos -->
                                 <div class="col-8 offset-2">
                                     <table class="table table-hover">
@@ -69,7 +69,7 @@
                                     <br>
                                 </div>
                             </div>
-                            <p><strong>Asesores especialistas externos: </strong></p>
+                            <p><strong>Asesores Especialistas Externos: </strong></p>
                             <div class="row"> <!-- Asesores externos -->
                                 @if (empty($asesoresExternos))
                                     <div class="col-6 offset-2">

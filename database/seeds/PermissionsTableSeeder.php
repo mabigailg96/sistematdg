@@ -289,9 +289,13 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'student.show',
             'description' => 'Ver los estudiantes ingresados',
         ]);
-
-
-
+        
+        ///*****PERMISO PARA VER LAS VISTAS DE LAS SOLICITUDES**** */
+        Permission::create([
+            'name' => 'Ver el contenido de las solicitudes',
+            'slug' => 'request.show',
+            'description' => 'Información de las solicitudes',
+        ]);
 
 
     }

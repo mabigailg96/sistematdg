@@ -161,5 +161,9 @@ Route::post('/profesores/{professor}', 'ProfessorController@update')->name('prof
 
 Route::get('/todos/estudiantes/sistema', 'StudentController@index')->name('student.index')->middleware('can:student.index');
 Route::get('/todos/estudiantes/ver', 'StudentController@allEstudiantes')->name('student.show')->middleware('can:student.show');
+
+// Rutas para ver una solicitud
+Route::get('ver/solicitud/{tipo_solicitud}/{id}', 'RequestController@show')->name('request.show')->middleware('can:request.show');
+
 });
 
