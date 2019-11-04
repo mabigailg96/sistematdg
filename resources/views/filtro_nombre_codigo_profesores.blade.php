@@ -1,5 +1,5 @@
 <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Codigo:</span>
