@@ -166,4 +166,3 @@ Route::get('/todos/estudiantes/ver', 'StudentController@allEstudiantes')->name('
 Route::get('ver/solicitud/{tipo_solicitud}/{id}', 'RequestController@show')->name('request.show')->middleware('can:request.show');
 
 });
-

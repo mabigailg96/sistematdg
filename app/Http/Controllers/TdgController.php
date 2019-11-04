@@ -1689,4 +1689,32 @@ else if($tipo_solicitud=='aprobado'){
             return $historial;
     }
 
+    // Está función se consulta mediante ajax para traer los TDG filtrados por escuela, codigo y nombre para modulo de edicion
+    public function allTdgEditar(Request $request){
+
+        // Inicializar variables
+        $escuela_id = '';
+        $escuela_id = $request->escuela_id;
+        $codigo = '';
+        $codigo = $request->codigo;
+        $nombre = '';
+        $nombre = $request->nombre;
+
+        // Realizar consultas a la base de datos
+
+        
+
+        /*
+            De acá en adelante todas las validaciones y consultas a la bd
+        */
+        $tdgs = DB::table('tdgs')
+            ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+            ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+            ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
+            ->get();
+        
+
+        return $tdgs;
+    }
+
 }
