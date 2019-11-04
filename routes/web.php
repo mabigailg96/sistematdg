@@ -159,10 +159,18 @@ Route::get('/todos/profesores/ver', 'ProfessorController@allProfesores')->name('
 Route::get('/profesores/{professor}/edit', 'ProfessorController@edit')->name('professor.edit')->middleware('can:professor.edit');
 Route::post('/profesores/{professor}', 'ProfessorController@update')->name('professor.update')->middleware('can:professor.update');
 
+//Rutas para mostrar estudiantes.
 Route::get('/todos/estudiantes/sistema', 'StudentController@index')->name('student.index')->middleware('can:student.index');
 Route::get('/todos/estudiantes/ver', 'StudentController@allEstudiantes')->name('student.show')->middleware('can:student.show');
 
 // Rutas para ver una solicitud
 Route::get('ver/solicitud/{tipo_solicitud}/{id}', 'RequestController@show')->name('request.show')->middleware('can:request.show');
 
+// Pantalla mostrar filtros de TDG para el modulo de edición
+Route::get('/listar/tdg/editar', function () {
+    return view('tdg.filtro_editar');
+})->name('tdg.filtroTdgEditar');
+
+// Ruta para para enviar todos los datos del TDG para filtro de editar
+Route::get('/todos/tdg/editar', 'TdgController@allTdgEditar')->name('tdg.todosTdgEditar');
 });
