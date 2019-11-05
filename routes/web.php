@@ -169,12 +169,12 @@ Route::get('ver/solicitud/{tipo_solicitud}/{id}', 'RequestController@show')->nam
 // Pantalla para listar y filtrar las solicitudes realizadas para coordinador general
 Route::get('/listar/ver/solicitudes/general', function () {
     return view('requests.filtro_ver_solicitudes_general');
-})->name('request.filtroVerSolicitudesGeneral');
+})->name('request.filtroVerSolicitudesGeneral')->middleware('can:request.filtroVerSolicitudesGeneral');
 
 // Pantalla para listar y filtrar las solicitudes realizadas para coordinador de escuela
 Route::get('/listar/ver/solicitudes/escuela', function () {
     return view('requests.filtro_ver_solicitudes_escuela');
-})->name('request.filtroVerSolicitudesEscuela');
+})->name('request.filtroVerSolicitudesEscuela')->middleware('can:request.filtroVerSolicitudesEscuela');
 
 // Ruta para para enviar datos para filtro de ver solicitudes
 Route::get('/todos/ver/solicitudes/general', 'RequestController@allVerSolicitudesGeneral')->name('request.todosVerSolicitudesGeneral');

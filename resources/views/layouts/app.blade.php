@@ -93,12 +93,21 @@
                     <a class="nav-link" href="{{ url('/listar/tdg/gestionar/general') }}">  Ver detalles</a>
                   </li>
                   @endcan
+                                  @can('request.filtroVerSolicitudesGeneral')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/ver/solicitudes/general') }}"> Ver solicitudes</a>
+                  </li>
+                  @endcan
+                  @can('request.filtroVerSolicitudesEscuela')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/ver/solicitudes/escuela') }}"> Ver solicitudes</a>
+                  </li>
+                  @endcan
                   @can('agreement.listar_acuerdos')
                   <li class="nav-item navegacion-item">
                     <a class="nav-link" href="{{ url('/listar/acuerdos/jd') }}"> Ver acuerdos</a>
                   </li>
                   @endcan
-                  
                   @can('month.show')
                   <li class="nav-item navegacion-item">
                     <a class="nav-link" href="{{ url('/listar/prorroga') }}"> Editar prórrogas</a>

@@ -297,6 +297,17 @@ class PermissionsTableSeeder extends Seeder
             'description' => 'Información de las solicitudes',
         ]);
 
+        //**RUTAS PARA VER LAS SOLICITUDES ******//
+        Permission::create([
+            'name' => 'Ver solicitudes coordinador general',
+            'slug' => 'request.filtroVerSolicitudesGeneral',
+            'description' => 'Pantalla para ver solicitudes coordinador general',
+        ]);
+        Permission::create([
+            'name' => 'Ver solicitudes coordinador escuela',
+            'slug' => 'request.filtroVerSolicitudesEscuela',
+            'description' => 'Pantalla para ver solicitudes coordinador escuela',
+        ]);
 
     }
 }
