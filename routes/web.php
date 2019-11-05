@@ -166,10 +166,15 @@ Route::get('/todos/estudiantes/ver', 'StudentController@allEstudiantes')->name('
 // Rutas para ver una solicitud
 Route::get('ver/solicitud/{tipo_solicitud}/{id}', 'RequestController@show')->name('request.show')->middleware('can:request.show');
 
-// Pantalla para listar y filtrar las solicitudes realizadas
+// Pantalla para listar y filtrar las solicitudes realizadas para coordinador general
 Route::get('/listar/ver/solicitudes/general', function () {
     return view('requests.filtro_ver_solicitudes_general');
 })->name('request.filtroVerSolicitudesGeneral');
+
+// Pantalla para listar y filtrar las solicitudes realizadas para coordinador de escuela
+Route::get('/listar/ver/solicitudes/escuela', function () {
+    return view('requests.filtro_ver_solicitudes_escuela');
+})->name('request.filtroVerSolicitudesEscuela');
 
 // Ruta para para enviar datos para filtro de ver solicitudes
 Route::get('/todos/ver/solicitudes/general', 'RequestController@allVerSolicitudesGeneral')->name('request.todosVerSolicitudesGeneral');
