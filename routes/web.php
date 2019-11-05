@@ -166,6 +166,14 @@ Route::get('/todos/estudiantes/ver', 'StudentController@allEstudiantes')->name('
 // Rutas para ver una solicitud
 Route::get('ver/solicitud/{tipo_solicitud}/{id}', 'RequestController@show')->name('request.show')->middleware('can:request.show');
 
+// Pantalla para listar y filtrar las solicitudes realizadas
+Route::get('/listar/ver/solicitudes/general', function () {
+    return view('requests.filtro_ver_solicitudes_general');
+})->name('request.filtroVerSolicitudesGeneral');
+
+// Ruta para para enviar datos para filtro de ver solicitudes
+Route::get('/todos/ver/solicitudes/general', 'RequestController@allVerSolicitudesGeneral')->name('request.todosVerSolicitudesGeneral');
+
 // Pantalla mostrar filtros de TDG para el modulo de edición
 Route::get('/listar/tdg/editar', function () {
     return view('tdg.filtro_editar');

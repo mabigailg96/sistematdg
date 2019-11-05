@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Adviser;
 use App\Professor;
 use App\RequestApproved;
@@ -222,6 +223,151 @@ class RequestController extends Controller
      
         }
 
+    }
+
+    // Consulta mediante AJAX para devolver todas las solicitudes de todos los TDG para el coordinador general
+    public function allVerSolicitudesGeneral(Request $request) {
+
+        // Inicializar variables
+        $escuela_id = '';
+        $escuela_id = $request->escuela_id;
+        $codigo = '';
+        $codigo = $request->codigo;
+        $nombre = '';
+        $nombre = $request->nombre;
+        $tipos_solicitudes = json_decode($request->tipo_solicitud);
+
+
+        $solicitudes = array();
+
+        $requests = array(['request_approveds', 'aprobado', 'Aprobado'], ['request_officials', 'oficializacion', 'Oficialización'], ['request_names', 'cambio_de_nombre', 'Cambio de nombre'], ['request_extensions', 'prorroga', 'Prórroga', '1'], ['request_extensions', 'extension_de_prorroga', 'Extensión de prórroga', '2'], ['request_extensions', 'prorroga_especial', 'Prórroga especial', '3'], ['request_tribunals', 'nombramiento_de_tribunal', 'Nombramiento de tribunal'], ['request_results', 'ratificacion_de_resultados', 'Ratificación de resultados']);
+
+        for ($i=0; $i < sizeof($tipos_solicitudes); $i++) {
+
+            foreach ($requests as $request) {
+
+                if ($tipos_solicitudes[$i] == 'prorroga' || $tipos_solicitudes[$i] == 'extension_de_prorroga' || $tipos_solicitudes[$i] == 'prorroga_especial') {
+
+                    if ($tipos_solicitudes[$i] == $request[1]) {
+
+                        if (is_null($escuela_id)) {
+
+                            $requests_data = DB::table($request[0])
+                                ->join('tdgs', $request[0].'.tdg_id','=', 'tdgs.id')
+                                ->select($request[0].'.id', 'tdgs.codigo', 'tdgs.nombre', $request[0].'.aprobado')
+                                ->where('type_extension_id', '=', $request[3])
+                                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                                ->get();
+    
+                        } else {
+    
+                            $requests_data = DB::table($request[0])
+                                ->join('tdgs', $request[0].'.tdg_id','=', 'tdgs.id')
+                                ->select($request[0].'.id', 'tdgs.codigo', 'tdgs.nombre', $request[0].'.aprobado')
+                                ->where('type_extension_id', '=', $request[3])
+                                ->where('tdgs.escuela_id', '=', $escuela_id)
+                                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                                ->get();
+    
+                        }
+
+                        if (!$requests_data->isEmpty()) {
+            
+                            foreach ($requests_data as $request_data) {
+                                
+                                $request_data->tipo_solicitud_url = $request[1];
+                                $request_data->tipo_solicitud_nombre = $request[2];
+    
+                                $existe = false;
+    
+                                foreach ($solicitudes as $solicitud) {
+                                    if ($request_data->id == $solicitud->id && $request_data->tipo_solicitud_url == $solicitud->tipo_solicitud_url) {
+                                        $existe = true;
+                                    }
+                                }
+    
+                                if (!$existe) {
+
+                                    if (is_null($request_data->aprobado)) {
+                                        $request_data->aprobado = 'En trámite';
+                                    } else if (empty($request_data->aprobado)) {
+                                        $request_data->aprobado = 'Rechazado';
+                                    } else if ($request_data->aprobado == 1) {
+                                        $request_data->aprobado = 'Aprobado';
+                                    }
+                    
+                                    array_push($solicitudes, $request_data);
+                                }
+                            }
+            
+                        }
+                        
+                    }                    
+
+                } else {
+
+                    if ($tipos_solicitudes[$i] == $request[1]) {
+                        if (is_null($escuela_id)) {
+    
+                            $requests_data = DB::table($request[0])
+                                ->join('tdgs', $request[0].'.tdg_id','=', 'tdgs.id')
+                                ->select($request[0].'.id', 'tdgs.codigo', 'tdgs.nombre', $request[0].'.aprobado')
+                                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                                ->get();
+    
+                        } else {
+    
+                            $requests_data = DB::table($request[0])
+                                ->join('tdgs', $request[0].'.tdg_id','=', 'tdgs.id')
+                                ->select($request[0].'.id', 'tdgs.codigo', 'tdgs.nombre', $request[0].'.aprobado')
+                                ->where('tdgs.escuela_id', '=', $escuela_id)
+                                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                                ->get();
+    
+                        }
+    
+
+                        if (!$requests_data->isEmpty()) {
+            
+                            foreach ($requests_data as $request_data) {
+
+                                $request_data->tipo_solicitud_url = $request[1];
+                                $request_data->tipo_solicitud_nombre = $request[2];
+    
+                                $existe = false;
+    
+                                foreach ($solicitudes as $solicitud) {
+                                    if ($request_data->id == $solicitud->id && $request_data->tipo_solicitud_url == $solicitud->tipo_solicitud_url) {
+                                        $existe = true;
+                                    }
+                                }
+    
+                                if (!$existe) {
+                    
+                                    if (is_null($request_data->aprobado)) {
+                                        $request_data->aprobado = 'En trámite';
+                                    } else if (empty($request_data->aprobado)) {
+                                        $request_data->aprobado = 'Rechazado';
+                                    } else if ($request_data->aprobado == 1) {
+                                        $request_data->aprobado = 'Aprobado';
+                                    }
+                    
+                                    array_push($solicitudes, $request_data);
+                                }
+                            }
+            
+                        }
+
+                    }
+                }
+            }
+        }
+
+        return json_encode($solicitudes);
     }
 
 }
