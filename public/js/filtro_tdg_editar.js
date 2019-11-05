@@ -32,6 +32,10 @@ $(document).ready(function(){
       
 
     // Cargar datos a la tabla
+    //cargarDatosTdg();
+});
+
+$(document).on("change", "#select-filter-accion", function(){
     cargarDatosTdg();
 });
 
@@ -45,7 +49,8 @@ $(document).on("click", "#btn-filtro-limpiar-busqueda", function(){
     $("#txt-filtro-codigo").val("");
     $("#txt-filtro-nombre").val("");
     $("#select-filtro-escuela").val(0);
-    cargarDatosTdg();
+    $("#select-filter-accion").val(0);
+    cargarDataTable();
 });
 
 // Función para llenar la tabla TDG
@@ -59,6 +64,7 @@ function cargarDatosTdg() {
     var txt_filter_codigo = $("#txt-filtro-codigo").val();
     var txt_filter_nombre = $("#txt-filtro-nombre").val();
     var filter_escuela_id = $("#select-filtro-escuela").val();
+    var filter_accion = $("#select-filter-accion").val();
 
     // Validar si los input no continen nada
     if(txt_filter_codigo != undefined || txt_filter_codigo != '') {
@@ -109,25 +115,16 @@ function cargarDatosTdg() {
                             //console.log(id);
                             // Concatenar ruta para el formulario
 
-                            var htmlButton = `<a class="btn btn-danger" href="#" role="button" val="${id}"><span class="oi oi-trash"></span>Eliminar</a>`
+                            var htmlButton = '';
+
+                            if (filter_accion == 'deshabilitar') {
+                                htmlButton = `<a class="btn btn-danger" href="#" role="button" val="${id}"><span class="oi oi-trash"></span>Eliminar</a>`;
+                            } else if (filter_accion == 'deshabilitar') {
+
+                            }
+                            
 
                             return htmlButton;
-                        }
-                    },
-
-                    { sortable: false,
-                        "render": function ( data, type, full, meta ) {
-                            // Id del TDG
-                            var id = full.id;
-                            console.log(id);
-                            // Concatenar ruta para el formulario
-
-                            /*
-                                Acá irá un select de editar nombre 
-                            */
-
-                            
-                            return id;
                         }
                     },
 

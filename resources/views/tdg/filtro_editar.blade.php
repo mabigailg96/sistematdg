@@ -22,6 +22,20 @@
 					@endif
                     <button type="button" id="btn-filtro-limpiar-busqueda" class="btn btn-primary btn-color float-right"><span class="oi oi-loop-circular"></span>&nbsp;Limpiar</button>
                     <br>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">Accion</label>
+                        </div>
+                        <div>
+                        <select id="select-filter-accion" class="form-control" class="custom-select">
+                            <option value="0" selected disabled>Seleccione la accion:</option>
+                            <option value="deshabilitar">Deshabilitar perfiles</option>
+                            <option value="editar_grupo">Editar asignacion de grupo</option>
+                            <option value="editar_nombre">Editar nombre</option>
+                        </select>
+                        </div>
+                    </div>
                     
                     @include('filtro_codigo_nombre_escuela')
 
@@ -32,8 +46,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Ciclo</th>
                             <th scope="col">Escuela</th>
-                            <th scope="col">Eliminar</th>
-                            <th scope="col">Edición</th>
+                            <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
