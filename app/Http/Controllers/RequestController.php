@@ -370,4 +370,160 @@ class RequestController extends Controller
         return json_encode($solicitudes);
     }
 
+    // Método para ver el detalle de una solicitud
+    public function showVerSolicitud($tipo_solicitud, $id)
+    {    
+
+
+        // Comprobar si es usuario logueado es coordinador general o de escuela
+
+        //$requests = array(['request_approveds', 'aprobado', 'Aprobado'], ['request_officials', 'oficializacion', 'Oficialización'], ['request_names', 'cambio_de_nombre', 'Cambio de nombre'], ['request_extensions', 'prorroga', 'Prórroga', '1'], ['request_extensions', 'extension_de_prorroga', 'Extensión de prórroga', '2'], ['request_extensions', 'prorroga_especial', 'Prórroga especial', '3'], ['request_tribunals', 'nombramiento_de_tribunal', 'Nombramiento de tribunal'], ['request_results', 'ratificacion_de_resultados', 'Ratificación de resultados']);
+        $requests = array(['request_approveds', 'aprobado', 'Aprobado'], ['request_officials', 'oficializacion', 'Oficialización'], ['request_names', 'cambio_de_nombre', 'Cambio de nombre'], ['request_extensions', 'prorroga', 'Prórroga', '1'], ['request_extensions', 'extension_de_prorroga', 'Extensión de prórroga', '2'], ['request_extensions', 'prorroga_especial', 'Prórroga especial', '3'], ['request_tribunals', 'nombramiento_de_tribunal', 'Nombramiento de tribunal'], ['request_results', 'ratificacion_de_resultados', 'Ratificación de resultados']);
+        
+        foreach ($requests as $request) {
+
+            if ($tipo_solicitud == 'prorroga' || $tipo_solicitud == 'extension_de_prorroga' || $tipo_solicitud == 'prorroga_especial') {
+
+                if ($request[1] == $tipo_solicitud) {
+                    $requests_data = DB::table($request[0])
+                        ->join('tdgs', $request[0].'.tdg_id','=', 'tdgs.id')
+                        ->select($request[0].'.tdg_id', 'tdgs.codigo', 'tdgs.nombre', $request[0].'.aprobado', $request[0].'.fecha', $request[0].'.fecha_inicio', $request[0].'.fecha_fin', $request[0].'.justificacion', $request[0].'.url_documento_solicitud')
+                        ->where($request[0].'.type_extension_id', '=', $request[3])
+                        ->where($request[0].'.id', '=', $request[3])
+                        ->get();
+                    
+                    return view('solicitudesVer.ver_prorrogas', [
+                        'solicitud' => $requests_data[0],
+                        'tipoProrroga' => $request[2],
+                        'tipoSolicitud' => $tipo_solicitud,
+                    ]);
+                }
+
+            } else {
+
+                if ($request[1] == $tipo_solicitud) {
+
+                    $requests_data = DB::table($request[0])
+                        ->join('tdgs', $request[0].'.tdg_id','=', 'tdgs.id')
+                        ->select($request[0].'.tdg_id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.profesor_id', $request[0].'.fecha')
+                        ->where($request[0].'.id', '=', $id)
+                        ->get();
+
+                    if (!$requests_data->isEmpty()) {
+                        
+                        if ($tipo_solicitud == 'aprobado') {
+
+                            return view('solicitudesVer.ver_aprobados', [
+                                'solicitud' => $requests_data[0],
+                                'tipoSolicitud' => $tipo_solicitud,
+                            ]);
+
+                        } elseif ($tipo_solicitud == 'oficializacion') {
+
+                            // Obtener datos del docente director
+                            $docente_director = DB::table('tdgs')
+                                ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
+                                ->select('professors.nombre', 'professors.apellido')
+                                ->where('tdgs.id', '=', $requests_data[0]->tdg_id)
+                                ->get();
+                            
+                            // Obtener estudiantes
+                            $estudiantes = DB::table('student_tdg')
+                                ->join('students', 'student_tdg.student_id', '=', 'students.id')
+                                ->select('student_tdg.id as student_tdg_id', 'students.id', 'students.carnet', 'students.nombres', 'students.apellidos', 'student_tdg.activo')
+                                ->where('student_tdg.tdg_id', '=', $requests_data[0]->tdg_id)
+                                ->get();
+                            
+                            // Obtener asesores internos
+                            $asesores_internal = DB::table('professor_tdg')
+                                ->join('professors', 'professor_tdg.professor_id', '=', 'professors.id')
+                                ->select('professors.id', 'professors.codigo', 'professors.nombre', 'professors.apellido')
+                                ->where('professor_tdg.tdg_id', '=', $requests_data[0]->tdg_id)
+                                ->get();
+
+                            // Obtener asesores externos
+                            $asesores_external = DB::table('adviser_tdg')
+                                ->join('advisers', 'adviser_tdg.adviser_id', '=', 'advisers.id')
+                                ->select('advisers.id', 'advisers.nombre', 'advisers.apellido')
+                                ->where('adviser_tdg.tdg_id', '=', $requests_data[0]->tdg_id)
+                                ->get();
+
+
+                            return view('solicitudesVer.ver_oficializaciones', [
+                                'solicitud' => $requests_data[0],
+                                'tipoSolicitud' => $tipo_solicitud,
+                                'docenteDirector' => $docente_director[0]->nombre . ' ' . $docente_director[0]->apellido,
+                                'estudiantes' => $estudiantes,
+                                'asesoresInternos' => $asesores_internal,
+                                'asesoresExternos' => $asesores_external,
+                            ]);
+
+                        } elseif ($tipo_solicitud == 'cambio_de_nombre') {
+
+                            $requests_data = DB::table($request[0])
+                                ->join('tdgs', $request[0].'.tdg_id','=', 'tdgs.id')
+                                ->select($request[0].'.tdg_id', 'tdgs.codigo', 'tdgs.nombre', $request[0].'.fecha', $request[0].'.nuevo_nombre', $request[0].'.justificacion')
+                                ->where($request[0].'.id', '=', $id)
+                                ->get();
+                            
+                            return view('solicitudesVer.ver_cambio_nombre', [
+                                'solicitud' => $requests_data[0],
+                                'tipoSolicitud' => $tipo_solicitud,
+                            ]);
+
+                        } elseif ($tipo_solicitud == 'nombramiento_de_tribunal') {
+
+                            $professors_requests_tribunals = DB::table('professor_request_tribunal')
+                                ->join($request[0], 'professor_request_tribunal.request_tribunal_id', '=', $request[0].'.id')
+                                ->select('professor_request_tribunal.professor_id')
+                                ->where('professor_request_tribunal.request_tribunal_id', '=', $id)
+                                ->get();
+
+                            $tribunal = array();
+
+                            foreach ($professors_requests_tribunals as $professor_request_tribunal) {
+
+                                $professor = DB::table('professors')
+                                    ->select('id', 'codigo', 'nombre', 'apellido')
+                                    ->where('id', '=', $professor_request_tribunal->professor_id)
+                                    ->get();
+
+                                array_push($tribunal, $professor[0]);
+                            }
+
+                            return view('solicitudesVer.ver_nombramiento_tribunal', [
+                                'solicitud' => $requests_data[0],
+                                'tipoSolicitud' => $tipo_solicitud,
+                                'tribunal' => $tribunal,
+                            ]);
+
+                        } elseif ($tipo_solicitud == 'ratificacion_de_resultados') {
+
+                            $resultados = DB::table('student_tdg')
+                                ->join('students', 'student_tdg.student_id', '=', 'students.id')
+                                ->select('students.id', 'students.carnet', 'students.nombres', 'students.apellidos', 'student_tdg.nota')
+                                ->where('student_tdg.tdg_id', '=', $requests_data[0]->tdg_id)
+                                ->get();
+
+                            return view('solicitudesVer.ver_ratificacion_resultados', [
+                                'solicitud' => $requests_data[0],
+                                'tipoSolicitud' => $tipo_solicitud,
+                                'resultados' => $resultados,
+                            ]);
+
+                        }
+                        
+
+                    } else {
+                        return redirect()->route('login');
+                    }
+
+                }
+
+            }
+        }
+
+        //return redirect()->route('login');
+    }
+
 }

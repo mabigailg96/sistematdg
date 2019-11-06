@@ -20,8 +20,8 @@
                     
                     <div class="card">
                         <div class="card-body bg-light">
-                            <p><strong>Código: </strong>{{ $tdg->codigo }}</p>
-                            <p><strong>Nombre: </strong>{{ $tdg->nombre }}</p>
+                            <p><strong>Código: </strong>{{ $solicitud->codigo }}</p>
+                            <p><strong>Nombre: </strong>{{ $solicitud->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>Oficialización</p>
                             <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
                             <p><strong>Docente asesor: </strong>{{ $docenteDirector }}</p>
@@ -39,7 +39,7 @@
                                             @foreach ($estudiantes as $estudiante)
                                                 <tr>
                                                     <td>{{ $estudiante->carnet }}</td>
-                                                    <td>{{ $estudiante->nombre }}</td>
+                                                    <td>{{ $estudiante->nombres }} {{ $estudiante->apellidos }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -61,7 +61,7 @@
                                             @foreach ($asesoresInternos as $asesor)
                                                 <tr>
                                                     <td> {{ $asesor->codigo }} </td>
-                                                    <td> {{ $asesor->nombre }} </td>
+                                                    <td> {{ $asesor->nombre }} {{ $asesor->apellido }} </td>
                                                 </tr>      
                                             @endforeach
                                         </tbody>
@@ -86,7 +86,7 @@
                                             <tbody>
                                                 @foreach ($asesoresExternos as $asesor)
                                                     <tr>
-                                                        <td> {{ $asesor }} </td>
+                                                        <td> {{ $asesor->nombre }} {{ $asesor->apellido }} </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

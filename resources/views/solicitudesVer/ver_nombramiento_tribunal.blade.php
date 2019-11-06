@@ -20,14 +20,14 @@
                     
                     <div class="card">
                         <div class="card-body bg-light">
-                            <p><strong>Código: </strong>{{ $tdg->codigo }}</p>
-                            <p><strong>Nombre: </strong>{{ $tdg->nombre }}</p>
+                            <p><strong>Código: </strong>{{ $solicitud->codigo }}</p>
+                            <p><strong>Nombre: </strong>{{ $solicitud->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>Nombramiento de tribunal</p>
                             <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
                             <p><strong>Tribunal calificador: </strong><ul>
                                 @foreach ($tribunal as $docente)
                                     <li>
-                                        {{ $docente }}
+                                        {{ $docente->nombre }} {{ $docente->apellido }}
                                     </li>
                                 @endforeach
                                 </ul></p>

@@ -20,13 +20,21 @@
                     
                     <div class="card">
                         <div class="card-body bg-light">
-                            <p><strong>Código: </strong>{{ $tdg->codigo }}</p>
-                            <p><strong>Nombre: </strong>{{ $tdg->nombre }}</p>
+                            <p><strong>Código: </strong>{{ $solicitud->codigo }}</p>
+                            <p><strong>Nombre: </strong>{{ $solicitud->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>{{ $tipoProrroga }}</p>
                             <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
                             <p><strong>Fecha de inicio: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha_inicio)) }}</p>
                             <p><strong>Fecha de fin: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha_fin)) }}</p>
                             <p><strong>Justificación: </strong>{{ $solicitud->justificacion }}</p>
+
+                            @if ($tipoSolicitud == 'extension_de_prorroga')
+                                <p><strong>Documento de la solicitud: </strong><a href="/prorroga/extension/{{ $solicitud->url_documento_solicitud }}">Ver documento</a></p>
+                            @endif
+
+                            @if ($tipoSolicitud == 'prorroga_especial')
+                                <p><strong>Documento de la solicitud: </strong><a href="/prorroga/especial/{{ $solicitud->url_documento_solicitud }}">Ver documento</a></p>
+                            @endif
                         </div>
                     </div>
 

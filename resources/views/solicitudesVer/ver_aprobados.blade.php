@@ -20,8 +20,8 @@
                     
                     <div class="card">
                         <div class="card-body bg-light">
-                            <p><strong>Código: </strong>{{ $tdg->codigo }}</p>
-                            <p><strong>Nombre: </strong>{{ $tdg->nombre }}</p>
+                            <p><strong>Código: </strong>{{ $solicitud->codigo }}</p>
+                            <p><strong>Nombre: </strong>{{ $solicitud->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>Aprobado</p>
                             <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
                         </div>

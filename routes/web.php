@@ -179,6 +179,9 @@ Route::get('/listar/ver/solicitudes/escuela', function () {
 // Ruta para para enviar datos para filtro de ver solicitudes
 Route::get('/todos/ver/solicitudes/general', 'RequestController@allVerSolicitudesGeneral')->name('request.todosVerSolicitudesGeneral');
 
+// Rutas para ver el detalle de una solicitud 
+Route::get('/ver/detalle/solicitud/{tipo_solicitud}/{id}', 'RequestController@showVerSolicitud')->name('request.showVerSolicitud');
+
 // Pantalla mostrar filtros de TDG para el modulo de edición
 Route::get('/listar/tdg/editar', function () {
     return view('tdg.filtro_editar');
