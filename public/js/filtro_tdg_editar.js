@@ -80,6 +80,7 @@ function cargarDatosTdg() {
         escuela_id: filter_escuela_id,
         codigo: codigo,
         nombre: nombre,
+        accion: filter_accion,
     };
 
     //console.log(params);
@@ -101,10 +102,10 @@ function cargarDatosTdg() {
                 "pageLength": 10,
                 "columns": [
 
-                    { 'data': 'codigo' },
-                    { 'data': 'nombre' },
-                    { 'data': 'ciclo' },
-                    { 'data': 'escuela' },
+                    { 'data': '0.codigo' },
+                    { 'data': '0.nombre' },
+                    { 'data': '0.ciclo' },
+                    { 'data': '0.escuela' },
                     //{ 'data': 'escuela' },
                     //{ 'data': 'escuela' },
 
@@ -118,9 +119,11 @@ function cargarDatosTdg() {
                             var htmlButton = '';
 
                             if (filter_accion == 'deshabilitar') {
-                                htmlButton = `<a class="btn btn-danger" href="#" role="button" val="${id}"><span class="oi oi-trash"></span>Eliminar</a>`;
-                            } else if (filter_accion == 'deshabilitar') {
-
+                                htmlButton = `<a  href="#" role="button" val="${id}">Deshabilitar</a>`;
+                            } else if (filter_accion == 'editar_grupo') {
+                                htmlButton = `<a  href="#" role="button" val="${id}">Editar grupo</a>`;
+                            }else if (filter_accion == 'editar_nombre'){
+                                htmlButton = `<a  href="#" role="button" val="${id}">Editar nombre</a>`;
                             }
                             
 

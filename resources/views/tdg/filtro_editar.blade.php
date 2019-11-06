@@ -25,7 +25,7 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text">Accion</label>
+                            <label class="input-group-text">Escoja la opción que desee:</label>
                         </div>
                         <div>
                         <select id="select-filter-accion" class="form-control" class="custom-select">
@@ -46,7 +46,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Ciclo</th>
                             <th scope="col">Escuela</th>
-                            <th scope="col"></th>
+                            <th scope="col">Acción</th>
                             </tr>
                         </thead>
                         <tbody>

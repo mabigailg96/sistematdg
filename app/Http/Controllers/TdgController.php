@@ -1699,19 +1699,185 @@ else if($tipo_solicitud=='aprobado'){
         $codigo = $request->codigo;
         $nombre = '';
         $nombre = $request->nombre;
+        $accion = '';
+        $accion = $request->accion;
 
-        // Realizar consultas a la base de datos
+        //Condiciones para ver listado de TDG
+        $tdgs = '';
 
+        if($accion == 'deshabilitar'){
+            $request_approved = RequestApproved::get();
+            $request_officials = RequestOfficial::get();
+
+            $tdgs = array();
+            
+             //Validacion para que existan oficializados
+             if($request_approved->isEmpty()){
+
+            }else{
+                //Si existen las recorremos
+                foreach($request_approved as $re1){
+                    $enable_approved[]= $re1->tdg_id;
+                }
+
+                //Validamos que existan cambios de nombres que esten aprobadas
+                if(!$request_officials->isEmpty()){
+                    foreach($request_officials as $re2){
+                        $enable_officials[]= $re2->tdg_id;
+                    }
+
+                    //Hacemos una diferencia para que quitar datos repetidos.
+                      $enable_request = array_diff($enable_approved, $enable_officials);
+
+                }else{
+                    //Sino, los tdgs disponibles seran por defecto solo los que sea oficializados aprobados
+                    $enable_request = $enable_approved;
+                }
+
+                foreach($enable_request as $enable){
+                    //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+                   $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                   ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                   ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
+                   ->where('tdgs.escuela_id', 'like', '%'.$escuela_id.'%')
+                   ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                   ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                   ->where('tdgs.id','=',$enable)
+                   ->get();
+   
+                   if(!$consulta->isEmpty()){
+                       array_push($tdgs, $consulta);
+                   }
+               }
+           }
+        }
+        else if($accion == 'editar_grupo'){
+            
+            $request_officials = RequestOfficial::where('aprobado',null)->get();
+
+            $tdgs = array();
+            
+                //Para solicitudes de oficializacion que no han sido aprobadas.
+             if($request_officials->isEmpty()){
+
+            }else{
+                
+                foreach($request_officials as $re1){
+                    $enable_officials[]= $re1->tdg_id;
+                }
+                    $enable_request = $enable_officials;
+
+                    foreach($enable_request as $enable){
+                        //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+                       $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                       ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                       ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
+                       ->where('tdgs.escuela_id', 'like', '%'.$escuela_id.'%')
+                       ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                       ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                       ->where('tdgs.id','=',$enable)
+                       ->get();
+       
+                       if(!$consulta->isEmpty()){
+                           array_push($tdgs, $consulta);
+                       }
+                   }
+                }
+
+                
+           }
+        else{
+            $request_notApproved = RequestApproved::where('aprobado', null)->get();
+            $request_notName = RequestName::where('aprobado',null)->get();
+
+            $tdgs = array();
+
+            if(!($request_notApproved->isEmpty())){
+                foreach($request_notApproved as $re1){
+                    $enable_notApproved[]= $re1->tdg_id;
+                }
+
+                if(!($request_notName->isEmpty())){
+                    foreach($request_notName as $re1){
+                        $enable_notName[]= $re1->tdg_id;
+                    }
+                    $enable_request = array_merge($enable_notApproved, $enable_notName);
+                    foreach($enable_request as $enable){
+                        //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+                       $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                       ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                       ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
+                       ->where('tdgs.escuela_id', 'like', '%'.$escuela_id.'%')
+                       ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                       ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                       ->where('tdgs.id','=',$enable)
+                       ->get();
+        
+                       if(!$consulta->isEmpty()){
+                           array_push($tdgs, $consulta);
+                       }
+                   }
+
+                }
+                    else{
+                        $enable_request = $enable_notApproved;
+                        foreach($enable_request as $enable){
+                            //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+                           $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                           ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                           ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
+                           ->where('tdgs.escuela_id', 'like', '%'.$escuela_id.'%')
+                           ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                           ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                           ->where('tdgs.id','=',$enable)
+                           ->get();
+            
+                           if(!$consulta->isEmpty()){
+                               array_push($tdgs, $consulta);
+                           }
+                       }
+
+                    }
+                }
+                
+            else{
+                if(!($request_notName->isEmpty())){
+                    foreach($request_notName as $re1){
+                        $enable_notName[]= $re1->tdg_id;
+                    }
+                    $enable_request =  $enable_notName;
+                    foreach($enable_request as $enable){
+                        //Tdg::where('id',$enable)->where('nombre', 'like', '%WP%')->get();
+                       $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                       ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                       ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
+                       ->where('tdgs.escuela_id', 'like', '%'.$escuela_id.'%')
+                       ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                       ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                       ->where('tdgs.id','=',$enable)
+                       ->get();
+        
+                       if(!$consulta->isEmpty()){
+                           array_push($tdgs, $consulta);
+                       }
+                   }
+
+                }
+  
+        }
+
+           
+        }
         
 
         /*
             De acá en adelante todas las validaciones y consultas a la bd
         */
-        $tdgs = DB::table('tdgs')
+        /*$tdgs = DB::table('tdgs')
             ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
             ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
             ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
-            ->get();
+            ->get();*/
         
 
         return $tdgs;
