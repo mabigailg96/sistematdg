@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\RequestName;
+use App\Tdg;
 use Illuminate\Http\Request;
 use \DB;
 class RequestNameController extends Controller
@@ -72,6 +73,25 @@ class RequestNameController extends Controller
        return $request_name;
     }
 
+    public function editarNombre($id){
+        $tdg = DB::table('tdgs')->find($id);
+
+        return view('tdg.editar_tdg_nombre')->with('tdgs', $tdg);
+    }
+
+    public function guardarNombre(Request $request){
+        $request_name = $request->validate([
+            'nombre_nuevo' => 'required',
+        ]);
+        $tdg_id = $request->tdg_id;
+        
+        $tdgUpdate = Tdg::find($tdg_id);
+        $tdgUpdate->nombre = $request_name['nombre_nuevo'];
+        $tdgUpdate->save(); 
+        
+        return redirect()->route('tdg.filtroTdgEditar','&save=1&tipo=Nombre');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -92,6 +112,7 @@ class RequestNameController extends Controller
     public function edit(RequestName $requestName)
     {
         //
+
     }
 
     /**

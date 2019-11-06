@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
+<script src="{{ asset('js/editarTdg.js') }}" defer></script>
 <script src="{{ asset('js/filtro_tdg_editar.js') }}" defer></script>
 
 @endsection

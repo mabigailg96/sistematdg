@@ -186,4 +186,9 @@ Route::get('/listar/tdg/editar', function () {
 
 // Ruta para para enviar todos los datos del TDG para filtro de editar
 Route::get('/todos/tdg/editar', 'TdgController@allTdgEditar')->name('tdg.todosTdgEditar');
+
+// Rutas para editar nombre del TDG
+Route::get('/editar/nombre/{id}', 'RequestNameController@editarNombre')->name('tdg.editarNombre');
+Route::post('/editar/nombre/tdg', 'RequestNameController@guardarNombre')->name('tdg.guardarNombre');
+
 });

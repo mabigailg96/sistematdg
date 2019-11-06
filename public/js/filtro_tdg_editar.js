@@ -112,7 +112,7 @@ function cargarDatosTdg() {
                     { sortable: false,
                         "render": function ( data, type, full, meta ) {
                             // Id del TDG
-                            var id = full.id;
+                            var id = full[0].id;
                             //console.log(id);
                             // Concatenar ruta para el formulario
 
@@ -123,7 +123,7 @@ function cargarDatosTdg() {
                             } else if (filter_accion == 'editar_grupo') {
                                 htmlButton = `<a  href="#" role="button" val="${id}">Editar grupo</a>`;
                             }else if (filter_accion == 'editar_nombre'){
-                                htmlButton = `<a  href="#" role="button" val="${id}">Editar nombre</a>`;
+                                htmlButton = `<a  href="/editar/nombre/${id}" role="button" val="${id}">Editar nombre</a>`;
                             }
                             
 
