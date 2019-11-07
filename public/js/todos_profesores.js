@@ -51,6 +51,8 @@ $(document).on("click", "#btn-filtro-buscar", function() {
 $(document).on("click", "#btn-filtro-limpiar-busqueda", function() {
 
     $("#txt-filtro-nombre").val("");
+    $("#txt-filtro-apellido").val("");
+    $("#txt-filtro-codigo").val("");
     cargarDatosProfesores();
 });
 
@@ -58,22 +60,29 @@ function cargarDatosProfesores() {
 // Inicializamos las variables a utilizar
 var nombre = '';
 var codigo = '';
+var apellido = '';
 //Obtenemos los datos
 var txt_filter_nombre = $("#txt-filtro-nombre").val();
 console.log(txt_filter_nombre);
 var txt_filter_codigo = $("#txt-filtro-codigo").val();
 console.log(txt_filter_nombre);
+var txt_filter_apellido = $("#txt-filtro-apellido").val();
+console.log(txt_filter_apellido);
 // Validamos que los imputs contengan o no informacion
 if (txt_filter_nombre != undefined || txt_filter_nombre != '') {
     nombre = txt_filter_nombre;
 }
 if (txt_filter_codigo != undefined || txt_filter_codigo != '') {
     codigo = txt_filter_codigo;
+}if (txt_filter_apellido != undefined || txt_filter_apellido != '') {
+    apellido = txt_filter_apellido;
 }
+
 // Parametros que se enviaran a la peticion de los datos.
 var params = {
     nombre: nombre,
     codigo: codigo,
+    apellido: apellido,
 }
 
   //ahora ejecutamos la peticion AJAX
