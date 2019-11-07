@@ -24,7 +24,8 @@
                     <!-- Boton para generar el pdf a imprimir del tdg -->
                     <div class="d-flex flex-row-reverse bd-highlight">
                         <div class="p-2 bd-highlight">
-                            <a class="btn  btn-primary btn-color" href="/listar/tdg/gestionar/general" role="button">Regresar</a>
+                            <a class="btn  btn-primary btn-color" href="/listar/tdg/gestionar/general" role="button"><span class="oi oi-arrow-circle-left"></span> Regresar</a>
+                            
                             &nbsp;
                             <button type="button" id="printButton" class="btn btn-primary btn-color" ><span class="oi oi-print"></span>&nbsp;Imprimir</button>
                         </div>

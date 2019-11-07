@@ -12,7 +12,6 @@
             <div class="card">
             <div class="card-header">
                     Importación de alumnos.
-                    <a href="{{ route('student.index') }}" align="right" class="btn btn-primary btn-color offset-6" role="button">Regresar</a>
 				</div>
 
                 <div class="card-body">
@@ -52,8 +51,12 @@
                             </div>
                         </div>
 
+                        <br>
                         <div class="row form-group">
-                            <div class="col-md-2 offset-4">
+                            <div class="col-2 offset-4">
+                                    <a href="{{ route('student.index') }}" align="right" class="btn btn-danger" role="button">Cancelar</a>
+                            </div>
+                            <div class="col-2">
                                 <button type="submit" class="btn btn-primary btn-color">
                                     Guardar alumnos
                                 </button>

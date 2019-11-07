@@ -22,42 +22,39 @@
                         @csrf
 
                         <div class="row form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
-                                <label for="tipo" class="textlabel col-md-3 offset-1 control-label required">Tipo</label>
-                                    <div class="col-md-6">
-                                        <input id="tipo" type="text" class="form-control" name="tipo" value="{{ $month->tipo }}" required>
-                                        @if ($errors->has('tipo'))
-                                            <span class="help-block">
-                                            {{ $errors->first('tipo') }}
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
+                            <label for="tipo" class="textlabel col-md-3 offset-1 control-label required">Tipo</label>
+                            <div class="col-md-6">
+                                <input id="tipo" type="text" class="form-control" name="tipo" value="{{ $month->tipo }}" required>
+                                @if ($errors->has('tipo'))
+                                    <span class="help-block">
+                                    {{ $errors->first('tipo') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
-                                <div class="row form-group{{ $errors->has('meses') ? ' has-error' : '' }}">
-                                        <label for="meses" class="textlabel col-md-3 offset-1 control-label required">Meses</label>
-                                            <div class="col-md-6">
-                                                <input id="meses" type="text" class="form-control" name="meses" value="{{ $month->meses }}" required>
-                                                @if ($errors->has('meses'))
-                                                    <span class="help-block">
-                                                    {{ $errors->first('meses') }}
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
+                        <div class="row form-group{{ $errors->has('meses') ? ' has-error' : '' }}">
+                            <label for="meses" class="textlabel col-md-3 offset-1 control-label required">Meses</label>
+                            <div class="col-md-6">
+                                <input id="meses" type="text" class="form-control" name="meses" value="{{ $month->meses }}" required>
+                                @if ($errors->has('meses'))
+                                    <span class="help-block">
+                                    {{ $errors->first('meses') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
-
-                                        
-                                                                <div class="row form-group">
-                                                                        <div class="col-md-2 offset-4">
-                                                                            <button type="submit" class="btn btn-primary btn-color" id="guardar">
-                                                                                Actualizar prórroga
-                                                                            </button>
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                   
-
-
+                        <div class="row form-group">
+                            <div class="col-2 offset-4">
+                                <a  class="btn btn-danger" href="{{ route('month.show') }}" role="button">Cancelar</a>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-color" id="guardar">
+                                    Actualizar prórroga
+                                </button>
+                            </div>
+                        </div>
                     </form>
                     <br>
                   </div>
