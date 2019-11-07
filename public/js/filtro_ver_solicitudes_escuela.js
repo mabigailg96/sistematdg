@@ -116,7 +116,7 @@ function cargarDatosTdg() {
                         var tipo_solicitud_url = full.tipo_solicitud_url;
 
                         // Acá se le va a concatenar dependiendo de que tipo de solicitud es
-                        var htmlButtons = `<a href="/ver/solicitud/${tipo_solicitud_url}/${id}">Ver</a>`;
+                        var htmlButtons = `<a href="/ver/detalle/solicitud/${tipo_solicitud_url}/${id}">Ver</a>`;
 
                         return htmlButtons;
                     }

@@ -56,9 +56,17 @@
                     
                     <div class="row">
                         <div class="col-2 offset-8">
-                            <a class="btn btn-primary btn-color" href=" " role="button">
-                                <span class="oi oi-arrow-circle-left"></span> Regresar
-                            </a>
+                            @if ($rol == 'coorgen')
+                                <a class="btn btn-primary btn-color" href="/listar/ver/solicitudes/general" role="button">
+                                    <span class="oi oi-arrow-circle-left"></span> Regresar
+                                </a>
+                            @endif
+
+                            @if ($rol == 'cooresc')
+                                <a class="btn btn-primary btn-color" href="/listar/ver/solicitudes/escuela" role="button">
+                                    <span class="oi oi-arrow-circle-left"></span> Regresar
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>

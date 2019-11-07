@@ -13,6 +13,7 @@ use App\RequestResult;
 use App\RequestTribunal;
 use App\Student;
 use App\Tdg;
+use Caffeinated\Shinobi\Models\Role;
 use Illuminate\Support\Facades\DB;
 
 class RequestController extends Controller
@@ -374,10 +375,18 @@ class RequestController extends Controller
     public function showVerSolicitud($tipo_solicitud, $id)
     {    
 
-
         // Comprobar si es usuario logueado es coordinador general o de escuela
 
-        //$requests = array(['request_approveds', 'aprobado', 'Aprobado'], ['request_officials', 'oficializacion', 'Oficialización'], ['request_names', 'cambio_de_nombre', 'Cambio de nombre'], ['request_extensions', 'prorroga', 'Prórroga', '1'], ['request_extensions', 'extension_de_prorroga', 'Extensión de prórroga', '2'], ['request_extensions', 'prorroga_especial', 'Prórroga especial', '3'], ['request_tribunals', 'nombramiento_de_tribunal', 'Nombramiento de tribunal'], ['request_results', 'ratificacion_de_resultados', 'Ratificación de resultados']);
+        $user_id = auth()->user()->id;
+
+        $consulta_datos = DB::table('role_user')
+            ->join('roles', 'role_user.role_id', '=', 'roles.id')
+            ->select('role_user.role_id', 'roles.name', 'roles.slug')
+            ->where('role_user.user_id', '=', $user_id)
+            ->get();
+
+        $rol = $consulta_datos[0]->slug;
+
         $requests = array(['request_approveds', 'aprobado', 'Aprobado'], ['request_officials', 'oficializacion', 'Oficialización'], ['request_names', 'cambio_de_nombre', 'Cambio de nombre'], ['request_extensions', 'prorroga', 'Prórroga', '1'], ['request_extensions', 'extension_de_prorroga', 'Extensión de prórroga', '2'], ['request_extensions', 'prorroga_especial', 'Prórroga especial', '3'], ['request_tribunals', 'nombramiento_de_tribunal', 'Nombramiento de tribunal'], ['request_results', 'ratificacion_de_resultados', 'Ratificación de resultados']);
         
         foreach ($requests as $request) {
@@ -396,6 +405,7 @@ class RequestController extends Controller
                         'solicitud' => $requests_data[0],
                         'tipoProrroga' => $request[2],
                         'tipoSolicitud' => $tipo_solicitud,
+                        'rol' => $rol,
                     ]);
                 }
 
@@ -416,6 +426,7 @@ class RequestController extends Controller
                             return view('solicitudesVer.ver_aprobados', [
                                 'solicitud' => $requests_data[0],
                                 'tipoSolicitud' => $tipo_solicitud,
+                                'rol' => $rol,
                             ]);
 
                         } elseif ($tipo_solicitud == 'oficializacion') {
@@ -456,6 +467,7 @@ class RequestController extends Controller
                                 'estudiantes' => $estudiantes,
                                 'asesoresInternos' => $asesores_internal,
                                 'asesoresExternos' => $asesores_external,
+                                'rol' => $rol,
                             ]);
 
                         } elseif ($tipo_solicitud == 'cambio_de_nombre') {
@@ -469,6 +481,7 @@ class RequestController extends Controller
                             return view('solicitudesVer.ver_cambio_nombre', [
                                 'solicitud' => $requests_data[0],
                                 'tipoSolicitud' => $tipo_solicitud,
+                                'rol' => $rol,
                             ]);
 
                         } elseif ($tipo_solicitud == 'nombramiento_de_tribunal') {
@@ -495,6 +508,7 @@ class RequestController extends Controller
                                 'solicitud' => $requests_data[0],
                                 'tipoSolicitud' => $tipo_solicitud,
                                 'tribunal' => $tribunal,
+                                'rol' => $rol,
                             ]);
 
                         } elseif ($tipo_solicitud == 'ratificacion_de_resultados') {
@@ -509,21 +523,17 @@ class RequestController extends Controller
                                 'solicitud' => $requests_data[0],
                                 'tipoSolicitud' => $tipo_solicitud,
                                 'resultados' => $resultados,
+                                'rol' => $rol,
                             ]);
 
                         }
                         
 
-                    } else {
-                        return redirect()->route('login');
                     }
-
                 }
 
             }
         }
-
-        //return redirect()->route('login');
     }
 
 }
