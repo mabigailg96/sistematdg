@@ -12,7 +12,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-					Enviar solicitud
+					Módulo de edición
 				</div>
 
                 <div class="card-body">
@@ -32,7 +32,7 @@
                         <select id="select-filter-accion" class="form-control" class="custom-select">
                             <option value="0" selected disabled>Seleccione la accion:</option>
                             <option value="deshabilitar">Deshabilitar perfiles</option>
-                            <option value="editar_grupo">Editar asignacion de grupo</option>
+                            <option value="editar_grupo">Editar asignación de grupo</option>
                             <option value="editar_nombre">Editar nombre</option>
                         </select>
                         </div>

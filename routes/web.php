@@ -185,17 +185,17 @@ Route::get('/ver/detalle/solicitud/{tipo_solicitud}/{id}', 'RequestController@sh
 // Pantalla mostrar filtros de TDG para el modulo de edición
 Route::get('/listar/tdg/editar', function () {
     return view('tdg.filtro_editar');
-})->name('tdg.filtroTdgEditar');
+})->name('tdg.filtroTdgEditar')->middleware('can:tdg.filtroTdgEditar');
 
 // Ruta para para enviar todos los datos del TDG para filtro de editar
-Route::get('/todos/tdg/editar', 'TdgController@allTdgEditar')->name('tdg.todosTdgEditar');
+Route::get('/todos/tdg/editar', 'TdgController@allTdgEditar')->name('tdg.todosTdgEditar')->middleware('can:tdg.todosTdgEditar');
 
 // Rutas para editar nombre del TDG
-Route::get('/editar/nombre/{id}', 'RequestNameController@editarNombre')->name('tdg.editarNombre');
-Route::post('/editar/nombre/tdg', 'RequestNameController@guardarNombre')->name('tdg.guardarNombre');
+Route::get('/editar/nombre/{id}', 'RequestNameController@editarNombre')->name('tdg.editarNombre')->middleware('can:tdg.editarNombre');
+Route::post('/editar/nombre/tdg', 'RequestNameController@guardarNombre')->name('tdg.guardarNombre')->middleware('can:tdg.guardarNombre');
 
 //Rutas para deshabilitar el TDG
-Route::get('/deshabilitar/tdg/{id}', 'TdgController@deshabilitarTdg')->name('tdg.deshabilitar');
+Route::get('/deshabilitar/tdg/{id}', 'TdgController@deshabilitarTdg')->name('tdg.deshabilitar')->middleware('can:tdg.deshabilitar');
 
 // Ruta para mostrar pantalla de editar grupo de TDG
 Route::get('/editar/grupo/tdg/{id}', 'TdgController@updateGrupoTdg')->name('tdg.updateGrupoTdg');

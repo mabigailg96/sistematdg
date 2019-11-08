@@ -309,5 +309,34 @@ class PermissionsTableSeeder extends Seeder
             'description' => 'Pantalla para ver solicitudes coordinador escuela',
         ]);
 
+        ///***RUTAS DEL MÓDULO DE EDICIÓN*****//
+        Permission::create([
+            'name' => 'Ver listado de tdgs para editar',
+            'slug' => 'tdg.filtroTdgEditar',
+            'description' => 'Pantalla donde se listan los tdg y se filtra',
+        ]);
+        Permission::create([
+            'name' => 'Ruta para enviar los tdgs para editar',
+            'slug' => 'tdg.todosTdgEditar',
+            'description' => 'Ruta para enviar todos los datos del TDG para filtro de editar',
+        ]);
+        Permission::create([
+            'name' => 'Formulario para editar el nombre',
+            'slug' => 'tdg.editarNombre',
+            'description' => 'Pantalla que muestra el formulario para la edición del nombre',
+        ]);
+        Permission::create([
+            'name' => 'Ruta para guardar el guardar el nombre',
+            'slug' => 'tdg.guardarNombre',
+            'description' => 'Ruta para guardar el cambio de nombre que se esta editando',
+        ]);
+        Permission::create([
+            'name' => 'Ruta para deshabilitar un tdg o perfil',
+            'slug' => 'tdg.deshabilitar',
+            'description' => 'Ruta que permite deshabilitar un tdg o perfil del sistema',
+        ]);
+        
+
+
     }
 }

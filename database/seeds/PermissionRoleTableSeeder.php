@@ -32,6 +32,11 @@ class PermissionRoleTableSeeder extends Seeder
         DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [39, 1]);
         DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [46, 1]);
         DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [47, 1]);
+        DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [49, 1]);
+        DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [50, 1]);
+        DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [51, 1]);
+        DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [52, 1]);
+        DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [53, 1]);
 
         //Coordinador de escuela
         DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [1, 2]);

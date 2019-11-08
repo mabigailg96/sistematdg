@@ -108,6 +108,11 @@
                     <a class="nav-link" href="{{ url('/listar/acuerdos/jd') }}"> Ver acuerdos</a>
                   </li>
                   @endcan
+                  @can('tdg.filtroTdgEditar')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/listar/tdg/editar') }}"> Módulo de edición</a>
+                  </li>
+                  @endcan
                   @can('month.show')
                   <li class="nav-item navegacion-item">
                     <a class="nav-link" href="{{ url('/listar/prorroga') }}"> Editar prórrogas</a>
