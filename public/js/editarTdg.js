@@ -11,12 +11,12 @@ $(document).ready(function(){
       Swal.fire({
         position: 'top-end',
         type: 'error',
-        title: 'Ya rebaso los límites para la prórroga',
+        title: 'Error al actualizar los datos',
         showConfirmButton: false,
         timer: 2000
       });
     }
-    history.pushState({data:true}, 'Titulo', '/listar/tdg/solicitudes');
+    history.pushState({data:true}, 'Titulo', '/listar/tdg/editar');
   });
   
   $.urlParam = function(name){

@@ -194,4 +194,7 @@ Route::get('/todos/tdg/editar', 'TdgController@allTdgEditar')->name('tdg.todosTd
 Route::get('/editar/nombre/{id}', 'RequestNameController@editarNombre')->name('tdg.editarNombre');
 Route::post('/editar/nombre/tdg', 'RequestNameController@guardarNombre')->name('tdg.guardarNombre');
 
+//Rutas para deshabilitar el TDG
+Route::get('/deshabilitar/tdg/{id}', 'TdgController@deshabilitarTdg')->name('tdg.deshabilitar');
+
 });

@@ -1882,5 +1882,12 @@ else if($tipo_solicitud=='aprobado'){
 
         return $tdgs;
     }
+    //Metodo que permitira deshabilitar un trabajo de graduación para que ya no pueda ser aprobado ni oficializado
+    public function deshabilitarTdg($id){
+
+        $tdg=Tdg::find($id);
+        dd($tdg);
+        
+    }
 
 }

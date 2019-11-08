@@ -119,7 +119,7 @@ function cargarDatosTdg() {
                             var htmlButton = '';
 
                             if (filter_accion == 'deshabilitar') {
-                                htmlButton = `<a  href="#" role="button" val="${id}">Deshabilitar</a>`;
+                                htmlButton = `<a  class="btn btn-danger" onclick="eliminar()" role="button" val="${id}">Deshabilitar</a>`;
                             } else if (filter_accion == 'editar_grupo') {
                                 htmlButton = `<a  href="#" role="button" val="${id}">Editar grupo</a>`;
                             }else if (filter_accion == 'editar_nombre'){
@@ -209,7 +209,31 @@ function cargarDataTable(){
         .clear()
         .draw();
 }
+function eliminar(id) {
 
+         
+      Swal.fire({
+        title: '¿Está seguro de deshabilitarlo?',
+        text: "No se puede revertir está opción!",
+        type:'warning',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmado',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+           
+           
+                window.location.href="/deshabilitar/tdg/1";
+          Swal.fire(
+            'Deshabilitado',
+            'Fue deshabilitado con éxito',
+            'success')
+         
+        } 
+      })
+}
 // Función para llenar el select con los nombres de escuela
 function cargarSelectEscuela() {
     // Función de axios para hacer la consulta
