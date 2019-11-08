@@ -10,7 +10,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Ingresar acuerdo. 
+                    Ingresar acuerdo.
                 </div>
 
                 <div class="card-body">
@@ -20,13 +20,16 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" method="POST" action="{{ route('agreement.guardar') }}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="{{ route('agreement.guardar') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <br>
                         <div class="row form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                            <label for="nombre" class="textlabel col-md-2 control-label offset-2 required">Nombre</label>
+                            <label for="nombre"
+                                class="textlabel col-md-2 control-label offset-2 required">Nombre</label>
                             <div class="col-md-6">
-                            <input id="nombre" name="nombre" type="text" class="form-control required" value="{{old('nombre')}}" required autofocus>
+                                <input id="nombre" name="nombre" type="text" class="form-control required"
+                                    value="{{old('nombre')}}" required autofocus>
 
                                 @if ($errors->has('nombre'))
                                     <span class="help-block">
@@ -37,9 +40,11 @@
                         </div>
 
                         <div class="row form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
-                            <label for="fecha" class="textlabel col-md-3 control-label offset-1 required">Fecha de acuerdo</label>
+                            <label for="fecha" class="textlabel col-md-3 control-label offset-1 required">Fecha de
+                                acuerdo</label>
                             <div class="col-md-6">
-                                <input type="date" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}" required>
+                                <input type="date" name="fecha" id="fecha" class="form-control" value="{{old('fecha')}}"
+                                    required>
                                 @if ($errors->has('fecha'))
                                     <span class="help-block">
                                         {{ $errors->first('fecha') }}
@@ -49,38 +54,41 @@
                         </div>
 
                         <div class="row form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                            <label for="url" class="textlabel col-md-3 control-label offset-1 required">Archivo de acuerdo</label>
+                            <label for="url" class="textlabel col-md-3 control-label offset-1 required">Archivo de
+                                acuerdo</label>
 
                             <div class="urlinput col-md-6">
                                 <input id="url" type="file" class="form-control-file" name="url" required>
 
                                 @if ($errors->has('url'))
-                                    <span class="help-block row">
-                                        {{ $errors->first('url') }}
-                                    </span>
+                                <span class="help-block row">
+                                    {{ $errors->first('url') }}
+                                </span>
                                 @endif
                             </div>
                         </div>
 
-                 <div class="row form-group col-md-12 offset-2">
-                        <label for="url" class="textlabel control-label required">Resolución</label>
-                
-                        <div class="form-check form-check-inline offset-1" >
-                            <input class="form-check-input" type="radio" name="resolución" id="inlineRadio1" value="1" >
-                            <label class="form-check-label" for="inlineRadio1">Aceptar</label>
-                          </div>
-                      
-                          <div class="form-check form-check-inline offset-1">
-                            <input class="form-check-input" type="radio" name="resolución" id="inlineRadio1" value="0">
-                            <label class="form-check-label" for="inlineRadio1">Rechazar</label>
-                          </div>
-                          <div class="urlinput col-md-6">
-                          @if ($errors->has('resolución'))
+                        <div class="row form-group col-md-12 offset-2">
+                            <label for="url" class="textlabel control-label required">Resolución</label>
+
+                            <div class="form-check form-check-inline offset-1">
+                                <input class="form-check-input" type="radio" name="resolución" id="inlineRadio1"
+                                    value="1">
+                                <label class="form-check-label" for="inlineRadio1">Aceptar</label>
+                            </div>
+
+                            <div class="form-check form-check-inline offset-1">
+                                <input class="form-check-input" type="radio" name="resolución" id="inlineRadio1"
+                                    value="0">
+                                <label class="form-check-label" for="inlineRadio1">Rechazar</label>
+                            </div>
+                            <div class="urlinput col-md-6">
+                                @if ($errors->has('resolución'))
                                     <span class="help-block row">
                                         {{ $errors->first('resolución') }}
                                     </span>
                                 @endif
-                                </div>
+                            </div>
                         </div>
 
 
@@ -95,7 +103,12 @@
                         <div class="form-group"></div>
                         <br>
                         <div class="row form-group">
-                            <div class="col-md-2 offset-4">
+                            <div class="col-2 offset-4">
+                                <a class="btn btn-danger" href="{{ route('ratificar.listar') }}" role="button">
+                                    Cancelar
+                                </a>
+                            </div>
+                            <div class="col-md-2 ">
                                 <button type="submit" class="btn btn-primary btn-color">
                                     Guardar acuerdo
                                 </button>
