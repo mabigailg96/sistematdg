@@ -197,4 +197,6 @@ Route::post('/editar/nombre/tdg', 'RequestNameController@guardarNombre')->name('
 //Rutas para deshabilitar el TDG
 Route::get('/deshabilitar/tdg/{id}', 'TdgController@deshabilitarTdg')->name('tdg.deshabilitar');
 
+// Ruta para mostrar pantalla de editar grupo de TDG
+Route::get('/editar/grupo/tdg/{id}', 'TdgController@updateGrupoTdg')->name('tdg.updateGrupoTdg');
 });
