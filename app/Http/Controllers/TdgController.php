@@ -1886,7 +1886,11 @@ else if($tipo_solicitud=='aprobado'){
     public function deshabilitarTdg($id){
 
         $tdg=Tdg::find($id);
-        dd($tdg);
+        $tdg->habilitado=0;
+        $tdg->estado_oficial="Deshabilitado";
+        $tdg->save();
+
+        //dd($tdg);
         
     }
 

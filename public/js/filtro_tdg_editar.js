@@ -211,7 +211,7 @@ function cargarDataTable(){
 }
 function eliminar(id) {
 
-         
+         var id=id;
       Swal.fire({
         title: '¿Está seguro de deshabilitarlo?',
         text: "No se puede revertir está opción!",
@@ -225,7 +225,7 @@ function eliminar(id) {
         if (result.value) {
            
            
-                window.location.href="/deshabilitar/tdg/1";
+                window.location.href="/deshabilitar/tdg/${id}";
           Swal.fire(
             'Deshabilitado',
             'Fue deshabilitado con éxito',
