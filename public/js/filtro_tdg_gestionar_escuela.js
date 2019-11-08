@@ -102,6 +102,7 @@ function cargarDatosTdg() {
                 "columns": [
                     { 'data': 'codigo' },
                     { 'data': 'nombre' },
+                    { 'data': 'ciclo' },
                     { sortable: false,
                         "render": function ( data, type, full, meta ) {
                             // En caso de que traiga un valor null
@@ -123,9 +124,10 @@ function cargarDatosTdg() {
                 ],
                 "columnDefs": [
                     { "width": "10%", "targets": 0 },
-                    { "width": "65%", "targets": 1 },
+                    { "width": "50%", "targets": 1 },
                     { "width": "15%", "targets": 2 },
-                    { "width": "10%", "targets": 2 },
+                    { "width": "15%", "targets": 3 },
+                    { "width": "10%", "targets": 4 },
                   ],
                 "info": false,
                 "searching": false,

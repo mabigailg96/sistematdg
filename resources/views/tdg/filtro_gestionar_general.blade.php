@@ -36,6 +36,8 @@
                             <tr>
                             <th  scope="col">Código</th>
                             <th  scope="col">Nombre</th>
+                            <th  scope="col">Ciclo</th>
+                            <th  scope="col">Escuela</th>
                             <th  scope="col">Estado</th>
                             <th  scope="col">Seleccionar</th>
                             </tr>

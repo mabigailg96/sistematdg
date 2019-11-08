@@ -882,54 +882,68 @@ else if($tipo_solicitud=='aprobado'){
         if ($request->escuela_id == null && $request->estado_oficial == null) {
 
             $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre', 'estado_oficial')
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.ciclo', 'colleges.nombre_completo')
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                 ->get();
 
         } else if ($request->escuela_id == null && $request->estado_oficial == 'Recien ingresado') {
 
             $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre', 'estado_oficial')
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
-                ->whereNull('estado_oficial')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.ciclo', 'colleges.nombre_completo')
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->whereNull('tdgs.estado_oficial')
                 ->get();
 
         } else if ($request->escuela_id != null && $request->estado_oficial == null) {
 
             $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre', 'estado_oficial')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.ciclo', 'colleges.nombre_completo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                 ->get();
 
         } else if ($request->escuela_id != null && $request->estado_oficial == 'Recien ingresado') {
 
             $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre', 'estado_oficial')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
-                ->whereNull('estado_oficial')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.ciclo', 'colleges.nombre_completo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->whereNull('tdgs.estado_oficial')
                 ->get();
 
         } else if ($request->escuela_id == null && $request->estado_oficial != 'Recien ingresado' || $request->estado_oficial != null) {
 
             $tdgs = DB::table('tdgs')
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
-                ->where('estado_oficial', '=', $estado_oficial)
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.ciclo', 'colleges.nombre_completo')
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.estado_oficial', '=', $estado_oficial)
                 ->get();
 
         } else if ($request->escuela_id != null && $request->estado_oficial != 'Recien ingresado' || $request->estado_oficial != null) {
 
             $tdgs = DB::table('tdgs')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
-                ->where('estado_oficial', '=', $estado_oficial)
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.ciclo', 'colleges.nombre_completo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.estado_oficial', '=', $estado_oficial)
                 ->get();
                     
         }
@@ -1069,26 +1083,29 @@ else if($tipo_solicitud=='aprobado'){
         // Realizar consultas a la base de datos
         if ($request->estado_oficial == null) {
             $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre', 'estado_oficial')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.ciclo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                 ->get();
         } else if ($request->estado_oficial == 'Recien ingresado') {
             $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre', 'estado_oficial')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
-                ->whereNull('estado_oficial')
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.ciclo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->whereNull('tdgs.estado_oficial')
                 ->get();
         } else if ($request->estado_oficial != 'Recien ingresado' && $request->estado_oficial != null) {
             $tdgs = DB::table('tdgs')
-                ->select('id', 'codigo', 'nombre', 'estado_oficial')
-                ->where('escuela_id', '=', $escuela_id)
-                ->where('codigo', 'like', '%'.$codigo.'%')
-                ->where('nombre', 'like', '%'.$nombre.'%')
-                ->where('estado_oficial', '=', $estado_oficial)
+                ->join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'semesters.ciclo')
+                ->where('tdgs.escuela_id', '=', $escuela_id)
+                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
+                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
+                ->where('tdgs.estado_oficial', '=', $estado_oficial)
                 ->get();
         }
         
@@ -1891,3 +1908,4 @@ else if($tipo_solicitud=='aprobado'){
     }
 
 }
+
