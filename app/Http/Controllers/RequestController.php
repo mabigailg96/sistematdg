@@ -31,11 +31,12 @@ class RequestController extends Controller
             // Solicitud de aprobado
             case 'aprobado':
                 $solicitud = RequestApproved::select('*')
-                    ->where('id', $id)
+                    ->where('tdg_id', $id)
+                    ->where('aprobado', null)
                     ->get()
                     ->first();
                 $tdg = Tdg::select('*')
-                    ->where('id', $solicitud->tdg_id)
+                    ->where('id', $id)
                     ->get()
                     ->first();
             
@@ -49,11 +50,12 @@ class RequestController extends Controller
             // Solicitud de oficializacion
             case 'oficializacion':
                 $solicitud = RequestOfficial::select('*')
-                    ->where('id', $id)
+                    ->where('tdg_id', $id)
+                    ->where('aprobado', null)
                     ->get()
                     ->first();
                 $tdg = Tdg::select('*')
-                    ->where('id', $solicitud->tdg_id)
+                    ->where('id', $id)
                     ->get()
                     ->first();
                 // Obteniendo Docente Director del TDG
@@ -64,7 +66,7 @@ class RequestController extends Controller
                 // Obteniendo estudiantes del TDG
                 $estdudiantesTDG = DB::table('student_tdg')
                     ->select('student_id')
-                    ->where('tdg_id',$tdg->id)
+                    ->where('tdg_id',$id)
                     ->get();
                 foreach($estdudiantesTDG as $estudianteTDG){
                     $estudiante = Student::select('*')
@@ -79,7 +81,7 @@ class RequestController extends Controller
                 // Obteniendo asesores internos del TDG
                 $profesoresTDG = DB::table('professor_tdg')
                     ->select('*')
-                    ->where('tdg_id', $tdg->id)
+                    ->where('tdg_id', $id)
                     ->get();
                 foreach($profesoresTDG as $profesorTDG){
                     $profesor = Professor::select('*')
@@ -95,7 +97,7 @@ class RequestController extends Controller
                 $asesoresExternos = array();
                 $asesoresTDG = DB::table('adviser_tdg')
                     ->select('adviser_id')
-                    ->where('tdg_id', $tdg->id)
+                    ->where('tdg_id', $id)
                     ->get();
                 foreach($asesoresTDG as $asesorTDG){
                     $asesor = Adviser::select('*')
@@ -118,11 +120,12 @@ class RequestController extends Controller
             // Solicitud de cambio de nombre
             case 'cambio_de_nombre':
                 $solicitud = RequestName::select('*')
-                    ->where('id', $id)
+                    ->where('tdg_id', $id)
+                    ->where('aprobado', null)
                     ->get()
                     ->first();
                 $tdg = Tdg::select('*')
-                    ->where('id', $solicitud->tdg_id)
+                    ->where('id', $id)
                     ->get()
                     ->first();
                 return view('solicitud.ver_cambioNombre', [
@@ -137,11 +140,12 @@ class RequestController extends Controller
             case 'extension_de_prorroga':
             case 'prorroga_especial':
                 $solicitud = RequestExtension::select('*')
-                    ->where('id', $id)
+                    ->where('tdg_id', $id)
+                    ->where('aprobado', null)
                     ->get()
                     ->first();
                 $tdg = Tdg::select('*')
-                    ->where('id', $solicitud->tdg_id)
+                    ->where('id', $id)
                     ->get()
                     ->first();
                 switch($tipo_solicitud){
@@ -167,16 +171,17 @@ class RequestController extends Controller
             // Solicitud de nombramiento de tribunal
             case 'nombramiento_de_tribunal':
                 $solicitud = RequestTribunal::select('*')
-                    ->where('id', $id)
+                    ->where('tdg_id', $id)
+                    ->where('aprobado', null)
                     ->get()
                     ->first();
                 $tdg = Tdg::select('*')
-                    ->where('id', $solicitud->tdg_id)
+                    ->where('id', $id)
                     ->get()
                     ->first();
                 $docentes = DB::table('professor_request_tribunal')
                     ->select('professor_id')
-                    ->where('request_tribunal_id', $id)
+                    ->where('request_tribunal_id', $solicitud->id)
                     ->get();
                 foreach($docentes as $docente){
                    $profesor = Professor::select('*')->where('id', $docente->professor_id)->get()->first();
@@ -190,37 +195,39 @@ class RequestController extends Controller
                 ]);
                 break;
 
-                case 'ratificacion_de_resultados':
-                    $solicitud = RequestResult::select('*')
-                        ->where('id', $id)
-                        ->get()
+            // Solicitud de ratificacion de resultados
+            case 'ratificacion_de_resultados':
+                $solicitud = RequestResult::select('*')
+                    ->where('tdg_id', $id)
+                    ->where('aprobado', null)
+                    ->get()
+                    ->first();
+                $tdg = Tdg::select('*')
+                    ->where('id', $id)
+                    ->get()
+                    ->first();
+                $estudiantesTDG = DB::table('student_tdg')
+                    ->select('*')
+                    ->where('tdg_id', $id)
+                    ->get();
+                foreach ($estudiantesTDG as $estudianteTDG){
+                    $estudiante = Student::select('*')
+                        ->where('id', $estudianteTDG->student_id)
+                        ->select()
                         ->first();
-                    $tdg = Tdg::select('*')
-                        ->where('id', $solicitud->tdg_id)
-                        ->get()
-                        ->first();
-                    $estudiantesTDG = DB::table('student_tdg')
-                        ->select('*')
-                        ->where('tdg_id', $tdg->id)
-                        ->get();
-                    foreach ($estudiantesTDG as $estudianteTDG){
-                        $estudiante = Student::select('*')
-                            ->where('id', $estudianteTDG->student_id)
-                            ->select()
-                            ->first();
-                        $resultados[] = (object)[
-                            'carnet' => $estudiante->carnet,
-                            'nombre' => $estudiante->nombres . ' ' . $estudiante->apellidos,
-                            'nota' => $estudianteTDG->nota,
-                        ];
-                    }
-                    return view('solicitud.ver_ratificacionResultados', [
-                        'tdg' => $tdg,
-                        'solicitud' => $solicitud,
-                        'tipoSolicitud' => $tipo_solicitud,
-                        'resultados' => $resultados,
-                    ]);
-                    break;
+                    $resultados[] = (object)[
+                        'carnet' => $estudiante->carnet,
+                        'nombre' => $estudiante->nombres . ' ' . $estudiante->apellidos,
+                        'nota' => $estudianteTDG->nota,
+                    ];
+                }
+                return view('solicitud.ver_ratificacionResultados', [
+                    'tdg' => $tdg,
+                    'solicitud' => $solicitud,
+                    'tipoSolicitud' => $tipo_solicitud,
+                    'resultados' => $resultados,
+                ]);
+                break;
      
         }
 

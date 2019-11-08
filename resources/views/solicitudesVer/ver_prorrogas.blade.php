@@ -7,7 +7,7 @@
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-					    Detalle de Solicitud
+					    Detalle de solicitud
                 </div>
                 
                 <!-- Card Body -->
@@ -23,9 +23,9 @@
                             <p><strong>Código: </strong>{{ $solicitud->codigo }}</p>
                             <p><strong>Nombre: </strong>{{ $solicitud->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>{{ $tipoProrroga }}</p>
-                            <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
-                            <p><strong>Fecha de inicio: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha_inicio)) }}</p>
-                            <p><strong>Fecha de fin: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha_fin)) }}</p>
+                            <p><strong>Fecha de solicitud: </strong>{{ date("d/m/Y", strtotime($solicitud->fecha)) }}</p>
+                            <p><strong>Fecha de inicio: </strong>{{ date("d/m/Y", strtotime($solicitud->fecha_inicio)) }}</p>
+                            <p><strong>Fecha de fin: </strong>{{ date("d/m/Y", strtotime($solicitud->fecha_fin)) }}</p>
                             <p><strong>Justificación: </strong>{{ $solicitud->justificacion }}</p>
 
                             @if ($tipoSolicitud == 'extension_de_prorroga')

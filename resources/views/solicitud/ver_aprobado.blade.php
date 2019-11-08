@@ -7,7 +7,7 @@
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-					    Detalle de Solicitud
+					    Detalle de solicitud
                 </div>
                 
                 <!-- Card Body -->
@@ -23,7 +23,7 @@
                             <p><strong>Código: </strong>{{ $tdg->codigo }}</p>
                             <p><strong>Nombre: </strong>{{ $tdg->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>Aprobado</p>
-                            <p><strong>Fecha de solicitud: </strong>{{ date("d-m-Y", strtotime($solicitud->fecha)) }}</p>
+                            <p><strong>Fecha de solicitud: </strong>{{ date("d/m/Y", strtotime($solicitud->fecha)) }}</p>
                         </div>
                     </div>
 
@@ -36,7 +36,7 @@
                             </a>
                         </div>
                         <div class="col-2 ">
-                        <a class="btn btn-primary btn-color" href="/ratificar/solicitud/{{ $tipoSolicitud . '/' . $solicitud->id }}" role="button">
+                        <a class="btn btn-primary btn-color" href="/ratificar/solicitud/{{ $tipoSolicitud . '/' . $tdg->id }}" role="button">
                                 <span class="oi oi-document"></span> Ratificar
                             </a>
                         </div>
