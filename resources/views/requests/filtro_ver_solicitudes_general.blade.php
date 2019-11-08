@@ -59,7 +59,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Tipo de solicitud</th>
                             <th scope="col">Estado</th>
-                            <th scope="col"></th>
+                            <th scope="col">Ver</th>
                             </tr>
                         </thead>
                         <tbody>
