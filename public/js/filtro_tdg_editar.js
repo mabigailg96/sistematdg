@@ -119,7 +119,7 @@ function cargarDatosTdg() {
                             var htmlButton = '';
 
                             if (filter_accion == 'deshabilitar') {
-                                htmlButton = `<a  class="btn btn-danger" onclick="eliminar()" role="button" val="${id}">Deshabilitar</a>`;
+                                htmlButton = `<a  class="btn btn-danger" onclick="eliminar(${id})" role="button" val="${id}">Deshabilitar</a>`;
                             } else if (filter_accion == 'editar_grupo') {
                                 htmlButton = `<a  href="#" role="button" val="${id}">Editar grupo</a>`;
                             }else if (filter_accion == 'editar_nombre'){
@@ -223,14 +223,7 @@ function eliminar(id) {
         reverseButtons: true
       }).then((result) => {
         if (result.value) {
-           
-           
-                window.location.href="/deshabilitar/tdg/${id}";
-          Swal.fire(
-            'Deshabilitado',
-            'Fue deshabilitado con éxito',
-            'success')
-         
+                window.location.href="/deshabilitar/tdg/"+id+"";
         } 
       })
 }

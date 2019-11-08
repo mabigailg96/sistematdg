@@ -460,6 +460,7 @@ class TdgController extends Controller
                $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo')
                ->where('tdgs.escuela_id', '=', $escuela_id)
+               ->where('habilitado', '=', '1')
                ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                ->where('tdgs.id','=',$enable)
@@ -817,6 +818,7 @@ else if($tipo_solicitud=='aprobado'){
          $consulta = DB::table('tdgs')
          ->select('id', 'codigo', 'nombre')
          ->where('escuela_id', 'like', '%'.$escuela_id.'%')
+         ->where('habilitado', '=', '1')
          ->where('codigo', 'like', '%'.$codigo.'%')
          ->where('nombre', 'like', '%'.$nombre.'%')
          ->where('tdgs.id','=',$enable)
@@ -1757,6 +1759,7 @@ else if($tipo_solicitud=='aprobado'){
                    ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
                    ->where('tdgs.escuela_id', 'like', '%'.$escuela_id.'%')
+                   ->where('habilitado', '=', '1')
                    ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                    ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                    ->where('tdgs.id','=',$enable)
@@ -1790,6 +1793,7 @@ else if($tipo_solicitud=='aprobado'){
                        ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
                        ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
                        ->where('tdgs.escuela_id', 'like', '%'.$escuela_id.'%')
+                       ->where('habilitado', '=', '1')
                        ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                        ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                        ->where('tdgs.id','=',$enable)
@@ -1825,6 +1829,7 @@ else if($tipo_solicitud=='aprobado'){
                        ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
                        ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
                        ->where('tdgs.escuela_id', 'like', '%'.$escuela_id.'%')
+                       ->where('habilitado', '=', '1')
                        ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                        ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                        ->where('tdgs.id','=',$enable)
@@ -1844,6 +1849,7 @@ else if($tipo_solicitud=='aprobado'){
                            ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
                            ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
                            ->where('tdgs.escuela_id', 'like', '%'.$escuela_id.'%')
+                           ->where('habilitado', '=', '1')
                            ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                            ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                            ->where('tdgs.id','=',$enable)
@@ -1869,6 +1875,7 @@ else if($tipo_solicitud=='aprobado'){
                        ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
                        ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
                        ->where('tdgs.escuela_id', 'like', '%'.$escuela_id.'%')
+                       ->where('habilitado', '=', '1')
                        ->where('tdgs.codigo', 'like', '%'.$codigo.'%')
                        ->where('tdgs.nombre', 'like', '%'.$nombre.'%')
                        ->where('tdgs.id','=',$enable)
@@ -1907,6 +1914,7 @@ else if($tipo_solicitud=='aprobado'){
         $tdg->estado_oficial="Deshabilitado";
         $tdg->save();
 
+        return redirect()->route('tdg.filtroTdgEditar','&save=1&tipo=Estado');
         //dd($tdg);
         
     }
