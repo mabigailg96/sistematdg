@@ -104,7 +104,7 @@
 
                         <div class="row form-group">
                             <div class="col-2 offset-4">
-                                <a href="{{ route('user.index') }}"  class=" btn btn-danger" role="button">Regresar</a>
+                                <a href="{{ route('user.index') }}"  class=" btn btn-danger" role="button">Cancelar</a>
                             </div>
                             <div class="col-md-2 ">
                                 <button type="submit" class="btn btn-primary btn-color">
