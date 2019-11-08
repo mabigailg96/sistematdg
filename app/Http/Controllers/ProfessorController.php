@@ -17,6 +17,8 @@ class ProfessorController extends Controller
 
         $nombre_profesor =   '';
         $nombre_profesor =   $request->nombre;
+        $apellido_profesor =   '';
+        $apellido_profesor =   $request->apellido;
         $codigo_profesor =   '';
         $codigo_profesor =   $request->codigo;
         $escuela_profesor =   '';
@@ -28,6 +30,7 @@ class ProfessorController extends Controller
         $usuarios = DB::table('professors')
         ->select('id','codigo', 'nombre', 'apellido','estado')
         ->where('nombre', 'like', '%'.$nombre_profesor.'%')
+        ->where('apellido', 'like', '%'.$apellido_profesor.'%')
         ->where('codigo', 'like', '%'.$codigo_profesor.'%')
         ->where('escuela_id', 'like', '%'.$escuela_profesor.'%')
         ->get();
@@ -163,7 +166,7 @@ class ProfessorController extends Controller
 
         $arreglo = explode(' ', $input);
 
-        for ($i=0; $i < sizeof($arreglo); $i++) { 
+        for ($i=0; $i < sizeof($arreglo); $i++) {
 
             $professors_query = DB::table('professors')
                 ->select('id', 'codigo', 'nombre', 'apellido')
@@ -175,9 +178,9 @@ class ProfessorController extends Controller
             if (!$professors_query->isEmpty()){
 
                 $existe = false;
-                
+
                 foreach ($professors_query as $professor_query) {
-                    
+
                     foreach ($professors as $professor) {
                         if ($professor_query->id == $professor->id) {
                             $existe = true;
@@ -205,7 +208,7 @@ class ProfessorController extends Controller
 
         $arreglo = explode(' ', $input);
 
-        for ($i=0; $i < sizeof($arreglo); $i++) { 
+        for ($i=0; $i < sizeof($arreglo); $i++) {
 
             $professors_query = DB::table('professors')
                 ->select('id', 'codigo', 'nombre', 'apellido')
@@ -217,9 +220,9 @@ class ProfessorController extends Controller
             if (!$professors_query->isEmpty()){
 
                 $existe = false;
-                
+
                 foreach ($professors_query as $professor_query) {
-                    
+
                     foreach ($professors as $professor) {
                         if ($professor_query->id == $professor->id) {
                             $existe = true;
