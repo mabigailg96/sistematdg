@@ -1929,29 +1929,29 @@ else if($tipo_solicitud=='aprobado'){
             // Obtener datos del docente director
             $docente_director = DB::table('tdgs')
                 ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
-                ->select('professors.nombre', 'professors.apellido')
-                ->where('tdgs.id', '=', $requests_data[0]->tdg_id)
+                ->select('professors.id', 'professors.codigo', 'professors.nombre', 'professors.apellido')
+                ->where('tdgs.id', '=', $tdg[0]->id)
                 ->get();
             
             // Obtener estudiantes
             $estudiantes = DB::table('student_tdg')
                 ->join('students', 'student_tdg.student_id', '=', 'students.id')
                 ->select('student_tdg.id as student_tdg_id', 'students.id', 'students.carnet', 'students.nombres', 'students.apellidos', 'student_tdg.activo')
-                ->where('student_tdg.tdg_id', '=', $requests_data[0]->tdg_id)
+                ->where('student_tdg.tdg_id', '=', $tdg[0]->id)
                 ->get();
             
             // Obtener asesores internos
             $asesores_internal = DB::table('professor_tdg')
                 ->join('professors', 'professor_tdg.professor_id', '=', 'professors.id')
                 ->select('professors.id', 'professors.codigo', 'professors.nombre', 'professors.apellido')
-                ->where('professor_tdg.tdg_id', '=', $requests_data[0]->tdg_id)
+                ->where('professor_tdg.tdg_id', '=', $tdg[0]->id)
                 ->get();
             
             // Obtener asesores externos
             $asesores_external = DB::table('adviser_tdg')
                 ->join('advisers', 'adviser_tdg.adviser_id', '=', 'advisers.id')
                 ->select('advisers.id', 'advisers.nombre', 'advisers.apellido')
-                ->where('adviser_tdg.tdg_id', '=', $requests_data[0]->tdg_id)
+                ->where('adviser_tdg.tdg_id', '=', $tdg[0]->id)
                 ->get();
 
         return view('assignments.editar', [
