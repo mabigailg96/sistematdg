@@ -49,8 +49,8 @@
 
                         <div class="row form-group">
                         <div class="col-2 offset-4">
-                            <a class="btn btn-primary btn-color" href="/listar/tdg/editar" role="button">
-                                <span class="oi oi-arrow-circle-left"></span> Regresar
+                            <a class="btn btn-danger" href="/listar/tdg/editar" role="button">
+                                Cancelar
                             </a>
                         </div>
                         <div class="col-2 ">
