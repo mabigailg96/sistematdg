@@ -10,7 +10,8 @@ $(document).ready(function(){
 $("#txt-buscar-docente_director").autocomplete({
     source: function(request, respond) {
         var params = {
-            input: $('#txt-buscar-docente_director').val()
+            input: $('#txt-buscar-docente_director').val(),
+            escuela_id: $('#escuela-id').html()
         };
 
         var lista = [];
@@ -50,7 +51,8 @@ $(document).on("click", "#btn-agregar-docente_director", function(){
 
     if (valor_recoger != "" && codigo_subcadena[0].length > 1) {
         var params = {
-            input: codigo_subcadena[0]
+            input: codigo_subcadena[0],
+            escuela_id: $('#escuela-id').html()
         };
 
         //console.log(params);
@@ -126,7 +128,8 @@ $(document).on("click", "#btn-quitar-docente_director", function(){
 $("#txt-buscar-estudiante").autocomplete({
     source: function(request, respond) {
         var params = {
-            input: $('#txt-buscar-estudiante').val()
+            input: $('#txt-buscar-estudiante').val(),
+            escuela_id: $('#escuela-id').html()
         };
 
         var lista = [];
@@ -168,7 +171,8 @@ $(document).on("click", "#btn-agregar-estudiante", function(){
     
         if (valor_recoger != "" && codigo_subcadena[0].length > 1) {
             var params = {
-                input: codigo_subcadena[0]
+                input: codigo_subcadena[0],
+                escuela_id: $('#escuela-id').html()
             };
     
             //console.log(params);
@@ -264,7 +268,8 @@ $(document).on("click", ".btn-quitar-estudiante", function(){
 $("#txt-buscar-asesor_interno").autocomplete({
     source: function(request, respond) {
         var params = {
-            input: $('#txt-buscar-asesor_interno').val()
+            input: $('#txt-buscar-asesor_interno').val(),
+            escuela_id: $('#escuela-id').html()
         };
 
         var lista = [];
@@ -305,7 +310,8 @@ $(document).on("click", "#btn-agregar-asesor_interno", function(){
     
         if (valor_recoger != "" && codigo_subcadena[0].length > 1) {
             var params = {
-                input: codigo_subcadena[0]
+                input: codigo_subcadena[0],
+                escuela_id: $('#escuela-id').html()
             };
     
             //console.log(params);

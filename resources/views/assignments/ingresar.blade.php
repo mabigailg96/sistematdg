@@ -23,6 +23,7 @@
                     <!-- Mostrar datos generales del TDG -->
                     <div class="card">
                         <div class="card-body bg-light">
+                            <p id="escuela-id" class="oculto">{{$tdg->escuela_id}}</p>
                             <p id="tdg-id" class="oculto">{{$tdg->id}}</p>
                             <p><strong>Código:</strong> {{$tdg->codigo}}</p>
                             <p><strong>Nombre:</strong> {{$tdg->nombre}}</p>

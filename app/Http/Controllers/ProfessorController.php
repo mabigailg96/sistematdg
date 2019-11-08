@@ -201,7 +201,8 @@ class ProfessorController extends Controller
     public function allProfessorAsignaciones(Request $request){
 
         // Inicializar variables
-        $escuela_id = auth()->user()->college_id;
+        //$escuela_id = auth()->user()->college_id;
+        $escuela_id = $request->escuela_id;
         $input = $request->input;
 
         $professors = array();

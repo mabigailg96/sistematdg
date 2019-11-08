@@ -481,7 +481,7 @@ class TdgController extends Controller
 
         $tdg = DB::table('tdgs')
             ->join('request_approveds', 'tdgs.id', '=', 'request_approveds.tdg_id')
-            ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre')
+            ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.escuela_id')
             ->where('request_approveds.aprobado', '=', '1')
             ->where('tdgs.escuela_id', '=', $escuela_id)
             ->where('tdgs.id', '=', $id)
@@ -1922,7 +1922,7 @@ else if($tipo_solicitud=='aprobado'){
     public function updateGrupoTdg($id) {
         
         $tdg = DB::table('tdgs')
-            ->select('id', 'codigo', 'nombre')
+            ->select('id', 'codigo', 'nombre', 'escuela_id')
             ->where('id', '=', $id)
             ->get();
         
@@ -1953,6 +1953,13 @@ else if($tipo_solicitud=='aprobado'){
                 ->select('advisers.id', 'advisers.nombre', 'advisers.apellido')
                 ->where('adviser_tdg.tdg_id', '=', $tdg[0]->id)
                 ->get();
+            
+            // Cantidad de cada uno
+            /*$cantidad = array(
+                'estudiantes_length' => count($estudiantes),
+                'asesores_internos_length' => count($asesores_internal),
+                'asesores_externos_length' => count($asesores_external),
+            );*/
 
         return view('assignments.editar', [
             'tdg' => $tdg[0],
@@ -1960,6 +1967,7 @@ else if($tipo_solicitud=='aprobado'){
             'estudiantes' => $estudiantes,
             'asesoresInternos' => $asesores_internal,
             'asesoresExternos' => $asesores_external,
+            //'cantidad' => $cantidad,
         ]);
     }
 }

@@ -128,7 +128,8 @@ class StudentController extends Controller
     public function allStudentAsignaciones(Request $request){
 
         // Inicializar variables
-        $escuela_id = auth()->user()->college_id;
+        //$escuela_id = auth()->user()->college_id;
+        $escuela_id = $request->escuela_id;
         $input = $request->input;
 
         $students = array();

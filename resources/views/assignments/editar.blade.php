@@ -23,6 +23,12 @@
                     <!-- Mostrar datos generales del TDG -->
                     <div class="card">
                         <div class="card-body bg-light">
+                            <p id="estudiantes_length" class="">{{ count($estudiantes) }}</p>
+                            <p id="asesores_internos_length" class="">{{ count($asesoresInternos) }}</p>
+                            <p id="asesores_externos_length" class="">{{ count($asesoresExternos) }}</p>
+                            <p id="lbl-docente_director_concatenar" class="">{{ $docenteDirector->codigo }}, {{ $docenteDirector->nombre }} {{ $docenteDirector->apellido }}</p>
+
+                            <p id="escuela-id" class="oculto">{{$tdg->escuela_id}}</p>
                             <p id="tdg-id" class="oculto">{{$tdg->id}}</p>
                             <p><strong>Código:</strong> {{$tdg->codigo}}</p>
                             <p><strong>Nombre:</strong> {{$tdg->nombre}}</p>
