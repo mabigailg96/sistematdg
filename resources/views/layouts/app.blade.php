@@ -113,16 +113,32 @@
                     <a class="nav-link" href="{{ url('/listar/tdg/editar') }}"> Módulo de edición</a>
                   </li>
                   @endcan
-                  @can('month.show')
-                  <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/listar/prorroga') }}"> Editar prórrogas</a>
+
+                   <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/todos/usuarios/sistema') }}"> Correo</a>
                   </li>
-                  @endcan
-                  @can('user.index')
+                  
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/todos/usuarios/sistema') }}"> Gestionar usuarios</a>
+                    <a class="nav-link" href="{{ url('/todos/usuarios/sistema') }}"> Reportes</a>
                   </li>
-                  @endcan
+
+                  @can('menu')
+                  <li class="nav-item dropdown ">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle navegacion-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <span class="caret">  Administración</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        @can('month.show')
+                        <a class="dropdown-item cerrar-sesion-color" href="{{ url('/listar/prorroga') }}">Editar prórrogas</a>
+                        @endcan
+                        @can('user.index')
+                        <a class="dropdown-item cerrar-sesion-color" href="{{ url('/todos/usuarios/sistema') }}">Gestionar usuarios</a>
+                        @endcan
+
+                    </div>
+                </li>
+                @endcan
                  
                     </ul>
 

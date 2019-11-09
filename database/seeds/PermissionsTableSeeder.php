@@ -335,6 +335,12 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'tdg.deshabilitar',
             'description' => 'Ruta que permite deshabilitar un tdg o perfil del sistema',
         ]);
+
+        Permission::create([
+            'name' => 'Para validar el menu',
+            'slug' => 'menu',
+            'description' => 'Permite validar quien puede visualizar el área de administración en el sistema',
+        ]);
         
 
 
