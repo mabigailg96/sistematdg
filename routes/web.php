@@ -199,4 +199,7 @@ Route::get('/deshabilitar/tdg/{id}', 'TdgController@deshabilitarTdg')->name('tdg
 
 // Ruta para mostrar pantalla de editar grupo de TDG
 Route::get('/editar/grupo/tdg/{id}', 'TdgController@updateGrupoTdg')->name('tdg.updateGrupoTdg');
+
+//Rutas para los reportes
+Route::get('/reporte/principal', 'ReportController@principal_estados')->name('reporte.principal');
 });
