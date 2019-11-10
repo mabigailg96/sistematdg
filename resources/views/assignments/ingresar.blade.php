@@ -10,7 +10,7 @@
         <div class="col-lg-10">
             <div class="card">
                 <div class="card-header">
-					Asignar grupo a Trabajo de Graduación
+					Asignar grupo al Trabajo de Graduación.
 				</div>
 
                 <div class="card-body">
@@ -65,7 +65,7 @@
                     <br>
 
                     <!-- Espacio para buscar Asesores internos -->
-                    <h3>Asesores internos</h3>
+                    <h3>Docentes Asesores Internos</h3>
                     <div class="row">
                         <div class="col-md-10">
                             <div class="input-group">
@@ -82,7 +82,7 @@
                     <br>
 
                     <!-- Espacio para buscar Asesores externos -->
-                    <h3>Asesores externos</h3>
+                    <h3>Asesores Especialistas Externos</h3>
                     <div class="row">
                         <div class="col-md-5">
                             <div class="input-group">
@@ -116,11 +116,11 @@
                             <p id="lbl-estudiantes">
                                 
                             </p>
-                            <p><strong>Asesores internos:</strong></p>
+                            <p><strong>Docentes Asesores Internos:</strong></p>
                             <p id="lbl-asesores_internos">
                                 
                             </p>
-                            <p><strong>Asesores externos:</strong></p>
+                            <p><strong>Asesores Especialistas Externos:</strong></p>
                             <p id="lbl-asesores_externos">
                                 
                             </p>

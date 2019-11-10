@@ -11,7 +11,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-					Ver solicitudes de TDG
+					Ver solicitudes de de Trabajos de Graduación.
 				</div>
 
                 <div class="card-body">

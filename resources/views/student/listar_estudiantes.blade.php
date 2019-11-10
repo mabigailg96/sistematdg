@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">Estudiantes Registrados. </div>
+                <div class="card-header">Estudiantes registrados. </div>
                     <div class="card-body">
                             @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -27,7 +27,7 @@
                                     <tr>
                                             <th scope="col">Carnet </th>
                                             <th scope="col">Nombre </th>
-                                            <th scope="col">Apellidos </th>
+                                            <th scope="col">Apellido </th>
                                             <th scope="col">Escuela </th>
                                     </tr>
                                 </thead>

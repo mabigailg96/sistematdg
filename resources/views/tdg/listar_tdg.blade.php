@@ -24,7 +24,7 @@
                         <div class="col-md-6">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text">Escoga la solicitud que desea</label>
+                                    <label class="input-group-text">Escoja la solicitud que desea</label>
                                 </div>
                                 <select id="select-filtro-solicitud" class="custom-select">
                                     <option value="0" selected disabled>Seleccionar solicitud de:</option>

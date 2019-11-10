@@ -35,8 +35,8 @@
                             <thead>
                                 <tr class="text d-flex row">
 
-                                    <th class="d-inline-block col-5" scope="col">Apellidos</th>
-                                    <th class="d-inline-block col-5" scope="col">Nombres</th>
+                                    <th class="d-inline-block col-5" scope="col">Apellido</th>
+                                    <th class="d-inline-block col-5" scope="col">Nombre</th>
                                     <th class="d-inline-block col-2 required text-center" scope="col">Nota</th>
                                 </tr>
                             </thead>

@@ -11,7 +11,7 @@
         <div class="col-md-8">
             <div class="card">
             <div class="card-header">
-                    Importación de alumnos.
+                    Importación de estudiantes.
 				</div>
 
                 <div class="card-body">
@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-2">
                                 <button type="submit" class="btn btn-primary btn-color">
-                                    Guardar alumnos
+                                    Guardar estudiantes
                                 </button>
                             </div>
 						</div>
