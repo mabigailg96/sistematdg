@@ -23,6 +23,25 @@
                     <!-- Mostrar datos generales del TDG -->
                     <div class="card">
                         <div class="card-body bg-light">
+
+                            <!-- Id del docente director -->
+                            <p id="id_docente_director" class="">{{ $docenteDirector->id }}</p>
+
+                            <!-- Id de los estudiantes -->
+                            @foreach ($estudiantes as $estudiante)
+                                <p class="id_estudiante">{{ $estudiante->id }}</p>
+                            @endforeach
+
+                            <!-- Id de los asesores internos -->
+                            @foreach ($asesoresInternos as $asesorInterno)
+                                <p class="id_asesor_interno">{{ $asesorInterno->id }}</p>
+                            @endforeach
+
+                            <!-- Id de los asesores externos -->
+                            @foreach ($asesoresExternos as $asesorExterno)
+                                <p class="id_asesor_externo">{{ $asesorExterno->id }}</p>
+                            @endforeach
+
                             <p id="estudiantes_length" class="">{{ count($estudiantes) }}</p>
                             <p id="asesores_internos_length" class="">{{ count($asesoresInternos) }}</p>
                             <p id="asesores_externos_length" class="">{{ count($asesoresExternos) }}</p>
@@ -146,10 +165,10 @@
                     <!-- Botones para guardar o cancelar la asignacion de grupo de TDG -->
                     <div class="d-flex flex-row-reverse bd-highlight">
                         <div class="p-2 bd-highlight">
-                            <button type="button" id="btn-guardar-asignacion" class="btn btn-primary btn-color">Guardar grupo de trabajo</button>
+                            <button type="button" id="btn-guardar-asignacion" class="btn btn-primary btn-color">Guardar cambios de grupo</button>
                         </div>
                         <div class="p-2 bd-highlight">
-                            <button type="button" id="btn-cancelar-asignacion" class="btn btn-danger">Cancelar asignación</button>
+                            <button type="button" id="btn-cancelar-asignacion" class="btn btn-danger">Cancelar</button>
                         </div>
                     </div>
                     

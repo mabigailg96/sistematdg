@@ -502,39 +502,123 @@ $(document).on("click", "#btn-guardar-asignacion", function() {
     }
 
     //console.log(mensaje_error != "");
+    mensaje_error = "";
 
     // En caso de que no haya ningún error se registra todo
     if (mensaje_error == "") {
         
         /*
-            agrupar id de studiantes en un arreglo
+            agrupar id de studiantes a eliminar en un arreglo
         */
-        var students_array = new Array();
+        var students_delete_array = new Array();
 
-        for (var i = 0; i < $(".lbl-estudiante").toArray().length; i++){
-            students_array.push($(".lbl-estudiante:eq("+i+")").attr("value"));
+        for (var i = 0; i < $(".id_estudiante").toArray().length; i++){
+            var coincidencia = false;
+
+            for (var x = 0; x < $(".lbl-estudiante").toArray().length; x++){
+
+                if ($(".id_estudiante:eq("+i+")").html() == $(".lbl-estudiante:eq("+x+")").attr("value")){
+                    coincidencia = true;
+                }
+            }
+
+            if (!coincidencia) {
+                students_delete_array.push($(".id_estudiante:eq("+i+")").html());
+            }
         }
+
+        //console.log(students_delete_array);
 
         /*
-            agrupar id de asesores internos en un arreglo
+            agrupar id de studiantes que son nuevos en un arreglo
         */
 
-        var adviser_internal_array = new Array();
+        var students_new_array = new Array();
 
-        for (var i = 0; i < $(".lbl-asesor_interno").toArray().length; i++){
-            adviser_internal_array.push($(".lbl-asesor_interno:eq("+i+")").attr("value"));
+        for (var x = 0; x < $(".lbl-estudiante").toArray().length; x++){
+            var coincidencia = false;
+
+            for (var i = 0; i < $(".id_estudiante").toArray().length; i++){
+            
+                if ($(".lbl-estudiante:eq("+x+")").attr("value") == $(".id_estudiante:eq("+i+")").html()){
+                    coincidencia = true;
+                }
+            }
+
+            if (!coincidencia) {
+                students_new_array.push($(".lbl-estudiante:eq("+x+")").attr("value"));
+            }
+
         }
+        
+        //console.log(students_new_array);
 
-        var adviser_external_array = new Array();
+        /*
+            agrupar id de asesor interno a eliminar en un arreglo
+        */
+       var adviser_internal_delete_array = new Array();
+
+       for (var i = 0; i < $(".id_asesor_interno").toArray().length; i++){
+           var coincidencia = false;
+
+           for (var x = 0; x < $(".lbl-asesor_interno").toArray().length; x++){
+
+               if ($(".id_asesor_interno:eq("+i+")").html() == $(".lbl-asesor_interno:eq("+x+")").attr("value")){
+                   coincidencia = true;
+               }
+           }
+
+           if (!coincidencia) {
+            adviser_internal_delete_array.push($(".id_asesor_interno:eq("+i+")").html());
+           }
+       }
+
+       //console.log(adviser_internal_delete_array);
+
+       /*
+           agrupar id de studiantes que son nuevos en un arreglo
+       */
+
+       var adviser_internal_new_array = new Array();
+
+       for (var x = 0; x < $(".lbl-asesor_interno").toArray().length; x++){
+           var coincidencia = false;
+
+           for (var i = 0; i < $(".id_asesor_interno").toArray().length; i++){
+           
+               if ($(".lbl-asesor_interno:eq("+x+")").attr("value") == $(".id_asesor_interno:eq("+i+")").html()){
+                   coincidencia = true;
+               }
+           }
+
+           if (!coincidencia) {
+                adviser_internal_new_array.push($(".lbl-estudiante:eq("+x+")").attr("value"));
+           }
+       }
+       
+       //console.log(adviser_internal_new_array);
+
+        /*
+            agrupar id de asesores internos a eliminar y los nuevos asesores en un arreglo
+        */
+
+        var adviser_external_delete_array = new Array();
+        var adviser_external_new_array = new Array();
 
         for (var i = 0; i < $(".lbl-asesor_externo").toArray().length; i++){
+
+            //console.log( $(".lbl-asesor_externo:eq("+i+")").attr("value") );
+
+            //if ()
+            /*
             var adviser_external = new Array();
             adviser_external.push($(".lbl-asesor_externo:eq("+i+")").children(".nombre").html()),
             adviser_external.push($(".lbl-asesor_externo:eq("+i+")").children(".apellido").html()),
             adviser_external_array.push(JSON.stringify(adviser_external));
+            */
         }
 
-        var params = {
+        /*var params = {
             tdg_id: tdg_id,
             professor_id: profesor_id,
             students: JSON.stringify(students_array),
@@ -542,9 +626,9 @@ $(document).on("click", "#btn-guardar-asignacion", function() {
             advisers_external: JSON.stringify(adviser_external_array),
         };
 
-        console.log(params);
+        console.log(params);*/
 
-        axios.get("/guardar/tdg/asignacion", {
+        /*axios.get("/guardar/tdg/asignacion", {
 
             params: params
 
@@ -585,7 +669,7 @@ $(document).on("click", "#btn-guardar-asignacion", function() {
                 title: 'Oops...',
                 text: '¡Algo ha salido mal!, por favor intente más tarde.',
             });
-        });
+        });*/
 
     } else {
         // Mensaje para indicar que faltan selecionar docente u integrantes
@@ -611,4 +695,25 @@ function validacionesIniciales() {
     $(this).attr("disabled", true); 
     var concatenar = $("#lbl-docente_director_concatenar").html();
     $("#txt-buscar-docente_director").val(concatenar); 
+
+    // Validar cantidad de estudiantes
+
+    if ($("#estudiantes_length").html() >= 5) {
+        $("#txt-buscar-estudiante").attr("disabled", true); 
+        $("#btn-agregar-estudiante").attr("disabled", true); 
+    }
+
+    // Validar cantidad de asesores internos
+
+    if ($("#asesores_internos_length").html() >= 7) {
+        $("#txt-buscar-asesor_interno").attr("disabled", true);
+        $("#btn-agregar-asesor_interno").attr("disabled", true);
+    }
+
+    // Validar cantidad de asesores externos
+
+    if ($("#asesores_externos_length").html() >= 6) {
+        $("#txt-nombre-asesor_externo").attr("disabled", true);
+        $("#txt-apellido-asesor_externo").attr("disabled", true);
+    }
 }
