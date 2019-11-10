@@ -119,7 +119,7 @@ function cargarDatosTdg() {
                             var htmlButton = '';
 
                             if (filter_accion == 'deshabilitar') {
-                                htmlButton = `<a  class="btn btn-danger" onclick="eliminar(${id})" role="button" val="${id}">Deshabilitar</a>`;
+                                htmlButton = `<a  class="btn btn-danger" onclick="eliminar(${id})" role="button" val="${id}"><div style="color:white">Deshabilitar</div></a>`;
                             } else if (filter_accion == 'editar_grupo') {
                                 htmlButton = `<a  href="#" role="button" val="${id}">Editar grupo</a>`;
                             }else if (filter_accion == 'editar_nombre'){
@@ -203,6 +203,13 @@ function cargarDataTable(){
         "ordering": false,
         "lengthChange": false,
         "language": lenguaje_datatable,
+        "columnDefs": [
+            { "width": "10%", "targets": 0 },
+            { "width": "50%", "targets": 1 },
+            { "width": "20%", "targets": 2 },
+            { "width": "10%", "targets": 3 },
+            { "width": "10%", "targets": 4 },
+        ],
     });
 
     table
