@@ -79,6 +79,7 @@ class RequestController extends Controller
                     ];
                 }
                 // Obteniendo asesores internos del TDG
+                $asesoresInternos = array();
                 $profesoresTDG = DB::table('professor_tdg')
                     ->select('*')
                     ->where('tdg_id', $id)

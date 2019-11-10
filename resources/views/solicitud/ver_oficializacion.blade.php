@@ -47,33 +47,41 @@
                                     <br>
                                 </div>
                             </div>
-                            <p><strong>Docentes Asesores Internos: </strong></p>
-                            <div class="row"> <!-- Asesores Internos -->
-                                <div class="col-8 offset-2">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Código</th>
-                                                <th scope="col">Nombre</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($asesoresInternos as $asesor)
+                            <p><strong>Docentes asesores internos: </strong></p>
+                            <div class="row"> <!-- Asesores internos -->
+                                @if (empty($asesoresInternos))
+                                    <div class="col-6 offset-2">
+                                        <h5>No existen docentes asesores internos</h5>
+                                        <br>
+                                    </div>
+                                @else
+                                    <div class="col-8 offset-2">
+                                        <table class="table table-hover">
+                                            <thead>
                                                 <tr>
-                                                    <td> {{ $asesor->codigo }} </td>
-                                                    <td> {{ $asesor->nombre }} </td>
-                                                </tr>      
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    <br>
-                                </div>
+                                                    <th scope="col">Código</th>
+                                                    <th scope="col">Nombre</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($asesoresInternos as $asesor)
+                                                    <tr>
+                                                        <td> {{ $asesor->codigo }} </td>
+                                                        <td> {{ $asesor->nombre }} </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @endif
                             </div>
-                            <p><strong>Asesores Especialistas Externos: </strong></p>
+                            
+                            <p><strong>Asesores especialistas externos: </strong></p>
                             <div class="row"> <!-- Asesores externos -->
                                 @if (empty($asesoresExternos))
                                     <div class="col-6 offset-2">
                                         <h5>No existen asesores especialistas externos</h5>
+                                        <br>
                                     </div>
                                 @else
                                     <div class="col-8 offset-2">
@@ -93,7 +101,6 @@
                                         </table>
                                     </div>
                                 @endif
-
                             </div>
                             
 
