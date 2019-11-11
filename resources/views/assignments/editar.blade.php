@@ -25,27 +25,30 @@
                         <div class="card-body bg-light">
 
                             <!-- Id del docente director -->
-                            <p id="id_docente_director" class="">{{ $docenteDirector->id }}</p>
+                            <p id="id_docente_director" class="oculto">{{ $docenteDirector->id }}</p>
 
                             <!-- Id de los estudiantes -->
                             @foreach ($estudiantes as $estudiante)
-                                <p class="id_estudiante">{{ $estudiante->id }}</p>
+                                <p class="id_estudiante oculto">{{ $estudiante->id }}</p>
                             @endforeach
+
+                            <!-- Id del ciclo para estudiantes nuevos -->
+                            <p id="ciclo_id" class="oculto">{{ $estudiantes[0]->ciclo_id }}</p>
 
                             <!-- Id de los asesores internos -->
                             @foreach ($asesoresInternos as $asesorInterno)
-                                <p class="id_asesor_interno">{{ $asesorInterno->id }}</p>
+                                <p class="id_asesor_interno oculto">{{ $asesorInterno->id }}</p>
                             @endforeach
 
                             <!-- Id de los asesores externos -->
                             @foreach ($asesoresExternos as $asesorExterno)
-                                <p class="id_asesor_externo">{{ $asesorExterno->id }}</p>
+                                <p class="id_asesor_externo oculto">{{ $asesorExterno->id }}</p>
                             @endforeach
 
-                            <p id="estudiantes_length" class="">{{ count($estudiantes) }}</p>
-                            <p id="asesores_internos_length" class="">{{ count($asesoresInternos) }}</p>
-                            <p id="asesores_externos_length" class="">{{ count($asesoresExternos) }}</p>
-                            <p id="lbl-docente_director_concatenar" class="">{{ $docenteDirector->codigo }}, {{ $docenteDirector->nombre }} {{ $docenteDirector->apellido }}</p>
+                            <p id="estudiantes_length" class="oculto">{{ count($estudiantes) }}</p>
+                            <p id="asesores_internos_length" class="oculto">{{ count($asesoresInternos) }}</p>
+                            <p id="asesores_externos_length" class="oculto">{{ count($asesoresExternos) }}</p>
+                            <p id="lbl-docente_director_concatenar" class="oculto">{{ $docenteDirector->codigo }}, {{ $docenteDirector->nombre }} {{ $docenteDirector->apellido }}</p>
 
                             <p id="escuela-id" class="oculto">{{$tdg->escuela_id}}</p>
                             <p id="tdg-id" class="oculto">{{$tdg->id}}</p>

@@ -1919,7 +1919,7 @@ else if($tipo_solicitud=='aprobado'){
         
     }
 
-    public function updateGrupoTdg($id) {
+    public function editarGrupoTdg($id) {
         
         $tdg = DB::table('tdgs')
             ->select('id', 'codigo', 'nombre', 'escuela_id')
@@ -1936,7 +1936,7 @@ else if($tipo_solicitud=='aprobado'){
             // Obtener estudiantes
             $estudiantes = DB::table('student_tdg')
                 ->join('students', 'student_tdg.student_id', '=', 'students.id')
-                ->select('student_tdg.id as student_tdg_id', 'students.id', 'students.carnet', 'students.nombres', 'students.apellidos', 'student_tdg.activo')
+                ->select('student_tdg.id as student_tdg_id', 'students.id', 'students.carnet', 'students.nombres', 'students.apellidos', 'student_tdg.activo', 'student_tdg.ciclo_id')
                 ->where('student_tdg.tdg_id', '=', $tdg[0]->id)
                 ->get();
             
@@ -1968,6 +1968,107 @@ else if($tipo_solicitud=='aprobado'){
             'asesoresInternos' => $asesores_internal,
             'asesoresExternos' => $asesores_external,
             //'cantidad' => $cantidad,
+        ]);
+    }
+
+    // Hacer las respectivas ediciones al grupo de TDG
+    public function updateAsignaciones(Request $request) {
+        // Inicializar variables
+        $tdg_id = $request->tdg_id;
+        $ciclo_id = $request->ciclo_id;
+        $professor_id = $request->professor_id;
+        $students_delete = json_decode($request->students_delete);
+        $students_news = json_decode($request->students_news);
+        $advisers_internal_delete = json_decode($request->advisers_internal_delete);
+        $advisers_internal_news = json_decode($request->advisers_internal_news);
+        $advisers_external_delete = json_decode($request->advisers_external_delete);
+        $advisers_external_news = json_decode($request->advisers_external_news);
+        
+        //$escuela_id = auth()->user()->college_id;
+        
+        //$oficializacion = new RequestOfficial();
+        $retornar = true;
+        
+
+        /*
+            Actualizar campo profesor_id para asignar el docente director
+        */
+            
+        $tdg = Tdg::find($tdg_id);
+        $tdg->profesor_id = $professor_id;
+        $tdg->save();
+            
+        /*
+            Asignar integrates
+        */        
+        
+        for ($i=0; $i < sizeof($students_news); $i++) { 
+            $tdg->students()->attach($students_news[$i], ['ciclo_id' => $ciclo_id]);
+        }
+
+        /*
+            Eliminar integrantes
+        */
+
+        for ($i=0; $i < sizeof($students_delete); $i++) { 
+            DB::table('student_tdg')
+                ->where('student_id', '=', $students_delete[$i])
+                ->where('tdg_id', '=', $tdg_id)
+                ->where('ciclo_id', '=', $ciclo_id)
+                ->delete();
+        }
+
+        /*
+            Asignar asesores internos
+        */
+            
+        for ($i=0; $i < sizeof($advisers_internal_news); $i++) { 
+            DB::table('professor_tdg')->insert(['tdg_id' => $tdg_id, 'professor_id' => $advisers_internal_news[$i]]);
+        }
+
+        /*
+            Eliminar asesores internos
+        */
+
+        for ($i=0; $i < sizeof($advisers_internal_delete); $i++) { 
+            DB::table('professor_tdg')
+                ->where('professor_id', '=', $advisers_internal_delete[$i])
+                ->where('tdg_id', '=', $tdg_id)
+                ->delete();
+        }
+
+        /*
+            Asignar asesores externos
+        */
+ 
+        for ($i=0; $i < sizeof($advisers_external_news); $i++) {
+            $adviser_ex = json_decode($advisers_external_news[$i]);
+            $adviser = new Adviser();
+
+            $adviser->nombre = $adviser_ex[0];
+            $adviser->apellido = $adviser_ex[1];
+            $adviser->save();
+
+            $tdg->advisers()->attach($adviser->id);
+        }
+
+        /*
+            Eliminar asesores externos
+        */
+
+        for ($i=0; $i < sizeof($advisers_external_delete); $i++) { 
+            DB::table('adviser_tdg')
+                ->where('adviser_id', '=', $advisers_external_delete[$i])
+                ->where('tdg_id', '=', $tdg_id)
+                ->delete();
+            
+            DB::table('advisers')
+                ->where('id', '=', $advisers_external_delete[$i])
+                ->delete();
+        }
+
+        return response()->json([
+            'mensaje' => 'Todo bien',
         ]);
     }
 }

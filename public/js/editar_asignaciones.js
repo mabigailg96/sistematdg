@@ -487,6 +487,7 @@ $(document).on("click", ".btn-quitar-asesor_externo", function(){
 $(document).on("click", "#btn-guardar-asignacion", function() {
     // Inicializar variables
     var tdg_id = $("#tdg-id").html();
+    var ciclo_id = $("#ciclo_id").html();
     var profesor_id = $("#lbl-docente_director").attr("value");
     var estudiantes = $("#lbl-estudiantes").html();
     var asesores_internos = $("#lbl-asesores_internos").html();
@@ -592,7 +593,7 @@ $(document).on("click", "#btn-guardar-asignacion", function() {
            }
 
            if (!coincidencia) {
-                adviser_internal_new_array.push($(".lbl-estudiante:eq("+x+")").attr("value"));
+                adviser_internal_new_array.push($(".lbl-asesor_interno:eq("+x+")").attr("value"));
            }
        }
        
@@ -609,26 +610,47 @@ $(document).on("click", "#btn-guardar-asignacion", function() {
 
             //console.log( $(".lbl-asesor_externo:eq("+i+")").attr("value") );
 
-            //if ()
-            /*
-            var adviser_external = new Array();
-            adviser_external.push($(".lbl-asesor_externo:eq("+i+")").children(".nombre").html()),
-            adviser_external.push($(".lbl-asesor_externo:eq("+i+")").children(".apellido").html()),
-            adviser_external_array.push(JSON.stringify(adviser_external));
-            */
+            if ( $(".lbl-asesor_externo:eq("+i+")").attr("value") == undefined ) {
+
+                var adviser_external = new Array();
+                adviser_external.push($(".lbl-asesor_externo:eq("+i+")").children(".nombre").html()),
+                adviser_external.push($(".lbl-asesor_externo:eq("+i+")").children(".apellido").html()),
+                adviser_external_new_array.push(JSON.stringify(adviser_external));
+
+            } else {
+                var coincidencia = false;
+
+                for (var x = 0; x < $(".lbl-asesor_externo").toArray().length; x++){
+
+                    if ($(".id_asesor_externo:eq("+i+")").html() == $(".lbl-asesor_externo:eq("+x+")").attr("value")){
+                        coincidencia = true;
+                    }
+                }
+
+                if (!coincidencia) {
+                    adviser_external_delete_array.push($(".id_asesor_externo:eq("+i+")").html());
+                }
+            }
         }
 
-        /*var params = {
+        //console.log(adviser_external_delete_array);
+        //console.log(adviser_external_new_array);
+
+        var params = {
             tdg_id: tdg_id,
+            ciclo_id: ciclo_id,
             professor_id: profesor_id,
-            students: JSON.stringify(students_array),
-            advisers_internal: JSON.stringify(adviser_internal_array),
-            advisers_external: JSON.stringify(adviser_external_array),
+            students_delete: JSON.stringify(students_delete_array),
+            students_news: JSON.stringify(students_new_array),
+            advisers_internal_delete: JSON.stringify(adviser_internal_delete_array),
+            advisers_internal_news: JSON.stringify(adviser_internal_new_array),
+            advisers_external_delete: JSON.stringify(adviser_external_delete_array),
+            advisers_external_news: JSON.stringify(adviser_external_new_array),
         };
 
-        console.log(params);*/
+        console.log(params);
 
-        /*axios.get("/guardar/tdg/asignacion", {
+        axios.get("/update/tdg/asignacion", {
 
             params: params
 
@@ -636,29 +658,16 @@ $(document).on("click", "#btn-guardar-asignacion", function() {
 
             console.log(response);
 
-            if (response.data.mensaje == 'registrado') {
-                // Mostrar mensaje de éxito de que todo ha sido registrado
-                Swal.fire({
-                    type: 'success',
-                    title: 'Asignación:',
-                    text: 'Registrado con éxito!:',
-                })
-                .then(function(){
-                    window.location.href = "/listar/tdg/asignar";
-                });
+            // Mostrar mensaje de éxito de que todo ha sido registrado
+            Swal.fire({
+                type: 'success',
+                title: 'Edición:',
+                text: 'Relizada con éxito!:',
+            })
+            .then(function(){
+                window.location.href = "/listar/tdg/editar";
+            });
 
-            } else if (response.data.mensaje == 'ya existe') {
-                // Mostrar mensaje de error en caso de que ya exista en la bd
-                Swal.fire({
-                    type: 'error',
-                    title: '¡Alto!',
-                    text: 'Ya tiene un grupo asignado anteriormente.',
-                })
-                .then(function(){
-                    window.location.href = "/listar/tdg/asignar";
-                });
-                
-            }
         }).catch(e => {
             // Imprimir error en consola
             console.log(e);
@@ -669,7 +678,7 @@ $(document).on("click", "#btn-guardar-asignacion", function() {
                 title: 'Oops...',
                 text: '¡Algo ha salido mal!, por favor intente más tarde.',
             });
-        });*/
+        });
 
     } else {
         // Mensaje para indicar que faltan selecionar docente u integrantes

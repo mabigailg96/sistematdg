@@ -121,7 +121,7 @@ function cargarDatosTdg() {
                             if (filter_accion == 'deshabilitar') {
                                 htmlButton = `<a  class="btn btn-danger" onclick="eliminar(${id})" role="button" val="${id}"><div style="color:white">Deshabilitar</div></a>`;
                             } else if (filter_accion == 'editar_grupo') {
-                                htmlButton = `<a  href="#" role="button" val="${id}">Editar grupo</a>`;
+                                htmlButton = `<a  href="/editar/grupo/tdg/${id}" role="button" val="${id}">Editar grupo</a>`;
                             }else if (filter_accion == 'editar_nombre'){
                                 htmlButton = `<a  href="/editar/nombre/${id}" role="button" val="${id}">Editar nombre</a>`;
                             }

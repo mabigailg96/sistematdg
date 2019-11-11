@@ -198,8 +198,11 @@ Route::post('/editar/nombre/tdg', 'RequestNameController@guardarNombre')->name('
 Route::get('/deshabilitar/tdg/{id}', 'TdgController@deshabilitarTdg')->name('tdg.deshabilitar')->middleware('can:tdg.deshabilitar');
 
 // Ruta para mostrar pantalla de editar grupo de TDG
-Route::get('/editar/grupo/tdg/{id}', 'TdgController@updateGrupoTdg')->name('tdg.updateGrupoTdg');
+Route::get('/editar/grupo/tdg/{id}', 'TdgController@editarGrupoTdg')->name('tdg.editarGrupoTdg');
 
 //Rutas para los reportes
 Route::get('/reporte/principal', 'ReportController@principal_estados')->name('reporte.principal');
+
+// Ruta para actualizar el grupo
+Route::get('/update/tdg/asignacion', 'TdgController@updateAsignaciones')->name('tdg.updateTdgAsignaciones');
 });
