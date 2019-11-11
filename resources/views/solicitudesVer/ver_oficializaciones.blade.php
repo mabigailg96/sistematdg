@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('javascript')
+<script src="{{ asset('js/ver_solicitud_oficializacion.js') }}" defer></script>
+
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
