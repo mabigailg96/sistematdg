@@ -179,7 +179,7 @@ Route::get('/listar/ver/solicitudes/escuela', function () {
 // Ruta para para enviar datos para filtro de ver solicitudes
 Route::get('/todos/ver/solicitudes/general', 'RequestController@allVerSolicitudesGeneral')->name('request.todosVerSolicitudesGeneral');
 
-// Rutas para ver el detalle de una solicitud 
+// Rutas para ver el detalle de una solicitud
 Route::get('/ver/detalle/solicitud/{tipo_solicitud}/{id}', 'RequestController@showVerSolicitud')->name('request.showVerSolicitud');
 
 // Pantalla mostrar filtros de TDG para el modulo de edición
@@ -202,4 +202,7 @@ Route::get('/editar/grupo/tdg/{id}', 'TdgController@updateGrupoTdg')->name('tdg.
 
 //Rutas para los reportes
 Route::get('/reporte/principal', 'ReportController@principal_estados')->name('reporte.principal');
+
+Route::get('/correo/crear', 'MailController@createMail')->name('mail.create');
+Route::post('/correo/enviar', 'MailController@mandarCorreoEscuela')->name('mail.send');
 });
