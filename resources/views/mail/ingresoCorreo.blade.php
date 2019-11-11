@@ -26,7 +26,7 @@
                                                     <label class="input-group-text">Destinatario</label>
                                                 </div>
                                                 <select id="destinatario" name="destinatario" class="form-control" class="custom-select">
-                                                    <option value="" selected disabled>Seleccionar escuela</option>
+                                                    <option value="" selected disabled>Seleccione el usuario que desee:</option>
                                                     @foreach ($correos as $correo)
                                                     <option value="{{ $correo->email }}" >{{ $correo->nombre }}</option>
 
@@ -44,7 +44,7 @@
 
                                     <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-default">Contenido del correo</span>
+                                                <span class="input-group-text" id="inputGroup-sizing-default">Mensaje</span>
                                             </div>
                                             <textarea  id="contenido" name="contenido" class="form-control" rows="15" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"></textarea>
                                         </div>
@@ -57,7 +57,7 @@
 
                             <div class="row justify-content-center">
                                     <button type="submit" class="btn btn-primary btn-color" id="enviar">
-                                        Enviar Correo
+                                        Enviar correo
                                     </button>
                                 </div>
                         </form>

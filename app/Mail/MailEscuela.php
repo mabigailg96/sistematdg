@@ -24,6 +24,6 @@ class MailEscuela extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mensaje del Coordiandor de TDG')->view('mail.mensajeEscuela');
+        return $this->subject('Mensaje de Director General de Procesos de Graduación de la FIA')->view('mail.mensajeEscuela');
     }
 }
