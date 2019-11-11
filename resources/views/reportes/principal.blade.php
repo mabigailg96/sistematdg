@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-<script src="{{ asset('js/reporte_estado.js') }}" defer></script>
+<script src="{{ asset('js/reporte_principal.js') }}" defer></script>
 
 @endsection
 
@@ -23,11 +23,22 @@
                     <button type="button" id="btn-filtro-limpiar-busqueda" class="btn btn-primary btn-color float-right"><span class="oi oi-loop-circular"></span>&nbsp;Limpiar</button>
                     <div class="row">
                         <div class="col-md-5">
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Seleccione escuela:</label>
+                                </div>
+                                <select id="select-filtro-escuela" class="custom-select">
+                                    <option value="0" selected disabled>Seleccionar escuela:</option>
+                                    <option value="todas">Todas las escuelas</option>
+                                </select>
+                            </div>
+        
                         <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text">Seleccione el estado.</label>
                                 </div>
-                                <select id="select-filtro-solicitud" class="custom-select">
+                                <select id="select-filtro-estado" class="custom-select">
                                     <option value="0" selected disabled>Seleccionar estado:</option>
                                     <option value="recien_ingresado">Recien ingresado</option>
                                     <option value="aprobado">Aprobado</option>
@@ -42,12 +53,13 @@
                                 </select>
                             </div>
 
+                          
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text">¿Qué período desea?</label>
                                 </div>
                                 <select id="select-filtro-periodo" class="custom-select" onChange="periodoOnChange(this)">
-                                    <option value="0" selected disabled>Seleccionar período:</option>
+                                    <option value="0" selected disabled>Seleccione un período</option>
                                     <option value="un_ciclo">Un ciclo</option>
                                     <option value="mas_ciclo">Más de un ciclo</option>
                                 </select>
@@ -57,13 +69,13 @@
 
 
                     <div class="col-md-5" id="select-un-ciclo" style="display:none;">
-                    Seleccione periodo.
+                    
                         <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text">Ciclo.</label>
+                                    <label class="input-group-text">Ciclo:</label>
                                 </div>
-                                <select id="select-filtro-solicitud" class="custom-select">
-                                    <option value="0" selected disabled>Listado de ciclos:</option>
+                                <select id="select-filtro-ciclo" class="custom-select">
+                                    <option value="0" selected disabled>Seleccione un ciclo</option>
                                 </select>
                         </div>
                     </div>
@@ -72,18 +84,18 @@
                     Seleccione periodo.
                         <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text">Ciclo inicio.</label>
+                                    <label class="input-group-text">Ciclo inicio:</label>
                                 </div>
-                                <select id="select-filtro-solicitud" class="custom-select">
-                                    <option value="0" selected disabled>Listado de ciclos:</option>
+                                <select id="select-filtro-cicloInicio" class="custom-select">
+                                    <option value="0" selected disabled>Seleccione un ciclo</option>
                                 </select>
                         </div>
                         <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text">Ciclo fin.</label>
+                                    <label class="input-group-text">Ciclo fin:</label>
                                 </div>
-                                <select id="select-filtro-solicitud" class="custom-select">
-                                    <option value="0" selected disabled>Listado de ciclos:</option>
+                                <select id="select-filtro-cicloFin" class="custom-select">
+                                    <option value="0" selected disabled>Seleccione un ciclo</option>
                                 </select>
                         </div>
 

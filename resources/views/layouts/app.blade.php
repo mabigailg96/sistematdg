@@ -46,11 +46,7 @@
                     <ul class="navbar-nav mr-auto">
 
 
-                    @can('semester.ingresar')
-                    <li class="nav-item navegacion-item">
-                      <a class="nav-link" href="{{ url('/ingresar/ciclo') }}"> Ciclos</a>
-                    </li>
-                  @endcan
+                   
                     @can('tdg.ingresar')
                       <li class="nav-item navegacion-item">
                         <a class="nav-link" href="{{ url('/ingresar/tdg') }}"> Ingresar perfil</a>
@@ -125,7 +121,7 @@
                   @can('menu')
                   <li class="nav-item dropdown ">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle navegacion-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        <span class="caret">  Administración</span>
+                        <span class="caret"> Administración</span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -134,6 +130,9 @@
                         @endcan
                         @can('user.index')
                         <a class="dropdown-item cerrar-sesion-color" href="{{ url('/todos/usuarios/sistema') }}">Gestionar usuarios</a>
+                        @endcan
+                        @can('semester.ingresar')
+                        <a class="dropdown-item cerrar-sesion-color" href="{{ url('/ingresar/ciclo') }}">Ciclos</a>
                         @endcan
 
                     </div>
