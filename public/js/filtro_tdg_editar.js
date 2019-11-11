@@ -205,8 +205,8 @@ function cargarDataTable(){
         "language": lenguaje_datatable,
         "columnDefs": [
             { "width": "10%", "targets": 0 },
-            { "width": "50%", "targets": 1 },
-            { "width": "20%", "targets": 2 },
+            { "width": "60%", "targets": 1 },
+            { "width": "10%", "targets": 2 },
             { "width": "10%", "targets": 3 },
             { "width": "10%", "targets": 4 },
         ],

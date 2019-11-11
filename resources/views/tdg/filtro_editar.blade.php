@@ -47,7 +47,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Ciclo</th>
                             <th scope="col">Escuela</th>
-                            <th scope="col">Acción</th>
+                            <th scope="col">&emsp;&ensp;Acción</th>
                             </tr>
                         </thead>
                         <tbody>
