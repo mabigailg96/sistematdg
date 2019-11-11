@@ -13,6 +13,7 @@ class MailController extends Controller
     public function createMail(){
         $correos = DB::table('users')
         ->select('nombre', 'email')
+        ->where('id', '>', 1)
         ->get();
 
         return view('mail.ingresoCorreo', compact('correos') );
