@@ -48,7 +48,11 @@
                                     @else
                                         <p><strong>Fecha de inicio:</strong> {{$ciclo->fechaInicio}}</p>
                                     @endif
-                                    <p><strong>Docente asesor:</strong> {{$tdg->profesor_nombre}} {{$tdg->profesor_apellido}}</p>
+                                    @if ($tdg->profesor_nombre == '')
+                                    <p><strong>Docente asesor:</strong> No se ha asignado aún.</p>
+                                    @else
+                                        <p><strong>Docente asesor:</strong> {{$tdg->profesor_nombre}} {{$tdg->profesor_apellido}}</p>
+                                    @endif
                                 </div>
                             </div>
                             <br>
