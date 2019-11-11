@@ -32,7 +32,6 @@ function cargarSelectEscuela() {
     });
 }
 
-
 function periodoOnChange(sel) {
     if (sel.value=="un_ciclo"){
          divC = document.getElementById("select-un-ciclo");
@@ -50,3 +49,28 @@ function periodoOnChange(sel) {
          divT.style.display = "none";
     }
 }
+
+$(document).on("click", "#generar-reporte", function() {
+    // Inicializar variables
+    var ciclo = '';
+    var cicloInicio = '';
+    var cicloFin = '';
+    var escuela = $("#select-filtro-escuela").val();
+    var estado = $("#select-filtro-estado").val();
+    var periodo = $("#select-filtro-periodo").val();
+
+    if(periodo == 'un_ciclo'){
+        var ciclo = $("#select-filtro-ciclo").val();
+        console.log(ciclo);
+    }
+    if(periodo == 'mas_ciclo'){
+       var cicloInicio = $("#select-filtro-cicloInicio").val();
+       var cicloFin = $("#select-filtro-cicloFin").val();
+       console.log(cicloInicio, cicloFin);
+    }
+    console.log(estado, escuela, periodo);
+
+    //Comparar fechas. 
+    
+
+});

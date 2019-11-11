@@ -76,18 +76,24 @@
                                 </div>
                                 <select id="select-filtro-ciclo" class="custom-select">
                                     <option value="0" selected disabled>Seleccione un ciclo</option>
+                                    @foreach ($ciclos as $ciclo)
+                                    <option value="{{ $ciclo->id}}">{{ $ciclo->ciclo}}</option>
+                                    @endforeach
                                 </select>
                         </div>
                     </div>
 
                     <div class="col-md-5" id="select-mas-ciclo" style="display:none;">
-                    Seleccione periodo.
+                    Seleccione período.
                         <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text">Ciclo inicio:</label>
                                 </div>
-                                <select id="select-filtro-cicloInicio" class="custom-select">
+                                <select id="select-filtro-cicloInicio" class="custom-select"> 
                                     <option value="0" selected disabled>Seleccione un ciclo</option>
+                                    @foreach ($ciclos as $ciclo)
+                                    <option value="{{ $ciclo->id}}">{{ $ciclo->ciclo}}</option>
+                                    @endforeach
                                 </select>
                         </div>
                         <div class="input-group mb-3">
@@ -96,9 +102,18 @@
                                 </div>
                                 <select id="select-filtro-cicloFin" class="custom-select">
                                     <option value="0" selected disabled>Seleccione un ciclo</option>
+                                    @foreach ($ciclos as $ciclo)
+                                    <option value="{{ $ciclo->id}}">{{ $ciclo->ciclo}}</option>
+                                    @endforeach
                                 </select>
                         </div>
 
+                    </div>
+
+                    <div class="col-2 ">
+                            <button class="btn btn-primary btn-color" id="generar-reporte" type="submit" role="button">
+                                    <span class="oi oi-document"></span> Generar reporte
+                                </button>
                     </div>
 
 

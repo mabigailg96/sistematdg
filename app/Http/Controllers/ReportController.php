@@ -8,6 +8,9 @@ class ReportController extends Controller
 {
     //
     public function principal_estados(){
-        return view('reportes.principal');
+
+        $semesterController = new SemesterController();
+
+        return view('reportes.principal',  ['ciclos' => $semesterController->viewSemesters()]);
     }
 }
