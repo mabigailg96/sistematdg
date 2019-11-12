@@ -53,6 +53,7 @@
                                     @else
                                         <p><strong>Docente asesor:</strong> {{$tdg->profesor_nombre}} {{$tdg->profesor_apellido}}</p>
                                     @endif
+                                    <p><strong>Documento del perfil:</strong> <a href="/perfiles/{{ $tdg->perfil }}">Ver documento</a></p>
                                 </div>
                             </div>
                             <br>

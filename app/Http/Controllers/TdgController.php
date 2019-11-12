@@ -996,7 +996,7 @@ else if($tipo_solicitud=='aprobado'){
     
             if ($tdg_prueba[0]->profesor_id == NULL) {
                 $tdg = DB::table('tdgs')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial')
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'tdgs.perfil')
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
                     
@@ -1005,7 +1005,7 @@ else if($tipo_solicitud=='aprobado'){
             } else {
                 $tdg = DB::table('tdgs')
                     ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido')
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', 'tdgs.perfil')
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
             }
@@ -1157,7 +1157,7 @@ else if($tipo_solicitud=='aprobado'){
 
             if ($tdg_prueba[0]->profesor_id == NULL) {
                 $tdg = DB::table('tdgs')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial')
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'tdgs.perfil')
                     ->where('tdgs.escuela_id', '=', $escuela_id)
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
@@ -1167,7 +1167,7 @@ else if($tipo_solicitud=='aprobado'){
             } else {
                 $tdg = DB::table('tdgs')
                     ->join('professors', 'tdgs.profesor_id', '=', 'professors.id')
-                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido')
+                    ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'tdgs.estado_oficial', 'professors.nombre as profesor_nombre', 'professors.apellido as profesor_apellido', 'tdgs.perfil')
                     ->where('tdgs.escuela_id', '=', $escuela_id)
                     ->where('tdgs.id', '=', $tdg_id)
                     ->get();
