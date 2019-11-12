@@ -203,6 +203,10 @@ Route::get('/editar/grupo/tdg/{id}', 'TdgController@editarGrupoTdg')->name('tdg.
 //Rutas para los reportes
 Route::get('/reporte/principal', 'ReportController@principal_estados')->name('reporte.principal');
 
+// Ruta para actualizar el grupo
+Route::get('/update/tdg/asignacion', 'TdgController@updateAsignaciones')->name('tdg.updateTdgAsignaciones');
+
+//Rutas para los correos
 Route::get('/correo/crear', 'MailController@createMail')->name('mail.create');
 Route::post('/correo/enviar', 'MailController@mandarCorreoEscuela')->name('mail.send');
 });

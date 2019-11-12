@@ -45,8 +45,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-
-                   
                     @can('tdg.ingresar')
                       <li class="nav-item navegacion-item">
                         <a class="nav-link" href="{{ url('/ingresar/tdg') }}"> Ingresar perfil</a>
@@ -65,7 +63,7 @@
                   @endcan
                   @can('ratificar.listar')
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/listar/tdg/ratificacion') }}"> Resolución de solicitudes</a>
+                    <a class="nav-link" href="{{ url('/listar/tdg/ratificacion') }}">Resolución de solicitudes</a>
                   </li>
                   @endcan
                   @can('solicitudes.listar')
@@ -86,12 +84,12 @@
 
                   @can('tdg.filtroGestionarGeneral')
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/listar/tdg/gestionar/general') }}">  Ver detalles</a>
+                    <a class="nav-link" href="{{ url('/listar/tdg/gestionar/general') }}">Ver detalles</a>
                   </li>
                   @endcan
-                                  @can('request.filtroVerSolicitudesGeneral')
+                   @can('request.filtroVerSolicitudesGeneral')
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/listar/ver/solicitudes/general') }}"> Ver solicitudes</a>
+                    <a class="nav-link" href="{{ url('/listar/ver/solicitudes/general') }}">Ver solicitudes</a>
                   </li>
                   @endcan
                   @can('request.filtroVerSolicitudesEscuela')
@@ -106,7 +104,7 @@
                   @endcan
                   @can('tdg.filtroTdgEditar')
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/listar/tdg/editar') }}"> Módulo de edición</a>
+                    <a class="nav-link" href="{{ url('/listar/tdg/editar') }}"> Edición</a>
                   </li>
                   @endcan
 
