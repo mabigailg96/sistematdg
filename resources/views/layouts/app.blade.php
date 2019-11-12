@@ -52,7 +52,7 @@
                         <a class="nav-link" href="{{ url('/ingresar/tdg') }}"> Ingresar perfil</a>
                       </li>
                     @endcan
-                  
+
                   @can('student.ingresar')
                     <li class="nav-item navegacion-item">
                       <a class="nav-link" href="{{ url('/todos/estudiantes/sistema') }}"> Estudiantes</a>
@@ -83,7 +83,7 @@
                     <a class="nav-link" href="{{ url('/listar/tdg/gestionar/escuela') }}"> Gestionar TDG</a>
                   </li>
                   @endcan
-               
+
                   @can('tdg.filtroGestionarGeneral')
                   <li class="nav-item navegacion-item">
                     <a class="nav-link" href="{{ url('/listar/tdg/gestionar/general') }}">  Ver detalles</a>
@@ -111,9 +111,9 @@
                   @endcan
 
                    <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/todos/usuarios/sistema') }}"> Correo</a>
+                    <a class="nav-link" href="{{ url('/correo/crear') }}"> Correo</a>
                   </li>
-                  
+
                   <li class="nav-item navegacion-item">
                     <a class="nav-link" href="{{ url('/todos/usuarios/sistema') }}"> Reportes</a>
                   </li>
@@ -138,7 +138,7 @@
                     </div>
                 </li>
                 @endcan
-                 
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

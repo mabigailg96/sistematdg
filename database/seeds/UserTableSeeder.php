@@ -13,14 +13,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //
-        
-       
+
+
 
 
         User::create([
             'nombre'=> 'Admin',
             'username'=> 'admin',
-            'email' => 'admin@admin.com',
+            'email' => 'guillermobrs@gmail.com',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -28,7 +28,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Civil',
             'username'=> 'civil',
             'college_id'=>'1',
-            'email' => '1@hotmail.com',
+            'email' => 'vd16006@ues.edu.sv',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -36,7 +36,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Industrial',
             'username'=> 'industrial',
             'college_id'=>'2',
-            'email' => '2@hotmail.com',
+            'email' => 'cv16003@ues.edu.sv',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -44,7 +44,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Mecanica',
             'username'=> 'mecanica',
             'college_id'=>'3',
-            'email' => '3@hotmail.com',
+            'email' => 'mabigailg@hotmail.com',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -52,7 +52,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Electrica',
             'username'=> 'electrica',
             'college_id'=>'4',
-            'email' => '4@hotmail.com',
+            'email' => 'gc16001@ues.edu.sv',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -60,7 +60,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Quimica',
             'username'=> 'quimica',
             'college_id'=>'5',
-            'email' => '5@hotmail.com',
+            'email' => 'chesterven7@gmail.com',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -176,6 +176,6 @@ class UserTableSeeder extends Seeder
 
         ]);
 
-        
+
     }
 }
