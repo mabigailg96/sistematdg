@@ -75,7 +75,7 @@
                                         <td>{{$student->carnet}}</td>
                                         <td>{{$student->nombres}} {{$student->apellidos}}</td>
                                         @if ($student->activo == 1)
-                                            <td><button type="button" class="btn btn-danger btn-sm abandonar-tdg-estudiante" value="{{$student->student_tdg_id}}">Notificar abandonó</button></td>
+                                            <td>Cursando TDG</td>
                                         @else
                                             <td>Abandonó el TDG</td>
                                         @endif
