@@ -152,3 +152,75 @@ $(document).ready(function(){
     });
 });
 
+
+// Función para preguntar si está seguro de notificar el abandonar el TDG de un estudiante
+$(document).on("click", ".abandonar-tdg-estudiante", function() {
+
+    Swal.fire({
+        title: '¿Está seguro de notificar abandonó?',
+        text: "No se puede revertir está opción!",
+        type:'warning',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmado',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+            
+            // Hace la petición AJAX para que se reporte el abandonó
+
+            var student_tdg_id = $(this).attr("value");
+
+            var params = {
+                student_tdg_id: student_tdg_id,
+            };
+    
+            console.log(params);
+    
+            axios.get("/update/activo/student/tdg", {
+    
+                params: params
+    
+            }).then(response => {
+    
+                console.log(response);
+    
+                if (response.data.mensaje == 'Éxito') {
+                    var nombre_estudiante = $(this).parents("tr").find("td")[1].innerHTML;
+
+                    // Mostrar mensaje de éxito de que todo ha sido registrado
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Abandonó con éxito!',
+                        text: 'El alumno '+ nombre_estudiante +' ya no está activo en el trabajo de graduación.',
+                    })
+                    .then(function(){
+                        location.reload();
+                    });
+    
+                } else {
+                    // Mostrar mensaje de error en caso de que ya exista en la bd
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: '¡Algo ha salido mal!, por favor intente más tarde.',
+                    });
+                    
+                }
+            }).catch(e => {
+                // Imprimir error en consola
+                console.log(e);
+        
+                // Mostrar mensaje de error en caso de que algo haya salido mal con la consulta
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: '¡Algo ha salido mal!, por favor intente más tarde.',
+                });
+            });
+
+        } 
+      });
+
+});

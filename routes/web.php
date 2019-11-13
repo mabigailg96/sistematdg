@@ -209,4 +209,7 @@ Route::get('/update/tdg/asignacion', 'TdgController@updateAsignaciones')->name('
 //Rutas para los correos
 Route::get('/correo/crear', 'MailController@createMail')->name('mail.create');
 Route::post('/correo/enviar', 'MailController@mandarCorreoEscuela')->name('mail.send');
+
+// Ruta para actualizar el estado activo en student_tdg y notificar abandonó de estudiante
+Route::get('/update/activo/student/tdg', 'TdgController@updateActivoStudentTdg')->name('tdg.updateActivoStudentTdg');
 });

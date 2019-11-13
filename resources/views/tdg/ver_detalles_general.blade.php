@@ -66,6 +66,7 @@
                                     <tr>
                                         <th scope="col">Carnet</th>
                                         <th scope="col">Nombre</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,6 +74,11 @@
                                     <tr>
                                         <td>{{$student->carnet}}</td>
                                         <td>{{$student->nombres}} {{$student->apellidos}}</td>
+                                        @if ($student->activo == 1)
+                                            <td>Cursando TDG</td>
+                                        @else
+                                            <td>Abandonó el TDG</td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                 </tbody>

@@ -2071,5 +2071,20 @@ else if($tipo_solicitud=='aprobado'){
             'mensaje' => 'Todo bien',
         ]);
     }
+
+    // Cambiar el estado de activo a student_tdg para ver si el estudiante abandonó el TDG
+    public function updateActivoStudentTdg(Request $request) {
+
+        $student_tdg_id = $request->student_tdg_id;
+
+        DB::table('student_tdg')
+            ->where('id', '=', $student_tdg_id)
+            ->update(['activo' => 0]);
+
+        return response()->json([
+            'mensaje' => 'Éxito',
+        ]);
+
+    }
 }
 

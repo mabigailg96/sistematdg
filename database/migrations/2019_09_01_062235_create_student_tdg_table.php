@@ -22,7 +22,7 @@ class CreateStudentTdgTable extends Migration
             $table->integer('ciclo_id')->unsigned()->nonullable();
             $table->foreign('ciclo_id')->references('id')->on('semesters')->onDelete('cascade')->nonullable();
             $table->double('nota',4,2)->nullable();
-            $table->boolean('activo')->nullable();
+            $table->boolean('activo')->nullable()->default(1);
             $table->timestamps();
         });
     }
