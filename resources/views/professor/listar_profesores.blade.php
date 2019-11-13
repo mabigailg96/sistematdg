@@ -17,7 +17,7 @@
                         </div>
                     @endif
                     <button type="button" id="btn-filtro-limpiar-busqueda" class="btn btn-primary btn-color float-right"><span class="oi oi-loop-circular"></span>&nbsp;Limpiar</button>
-                    <a href="{{ route('professor.ingresar') }}"  class=" btn btn-primary btn-color" role="button"><span class="oi oi-person"></span>Ingresar Profesores</a>
+                    <a href="{{ route('professor.ingresar') }}"  class=" btn btn-primary btn-color" role="button"><span class="oi oi-person"></span>Ingresar docentes</a>
                     <br>
                     <br>
                     @include('filtro_nombre_codigo_profesores')
