@@ -58,7 +58,7 @@
                   @endcan
                   @can('professor.ingresar')
                     <li class="nav-item navegacion-item">
-                      <a class="nav-link" href="{{ url('/todos/profesores/sistema') }}"> Profesores</a>
+                      <a class="nav-link" href="{{ url('/todos/profesores/sistema') }}"> Docentes</a>
                     </li>
                   @endcan
                   @can('ratificar.listar')

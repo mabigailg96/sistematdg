@@ -28,7 +28,7 @@
                     <div class="row justify-content-center">
                         <button type="button" id="btn-formulario-excel" class="btn btn-primary btn-color">Importar docentes archivo excel</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="button" id="btn-formulario-individual" class="btn btn-primary btn-color">Registrar Individualmente</button>
+                        <button type="button" id="btn-formulario-individual" class="btn btn-primary btn-color">Registrar individualmente</button>
                     </div>
                     <br>
                     <br>

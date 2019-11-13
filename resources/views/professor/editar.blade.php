@@ -84,7 +84,7 @@
                             </div>
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-color" id="guardar">
-                                    Guardar Docente
+                                    Guardar docente
                                 </button>
                             </div>
                         </div>

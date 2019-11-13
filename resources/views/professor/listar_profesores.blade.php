@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">Profesores Registrados</div>
+                <div class="card-header">Docentes registrados</div>
                  <div class="card-body">
                         @if (session('status'))
                         <div class="alert alert-success" role="alert">
