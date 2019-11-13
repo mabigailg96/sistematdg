@@ -17,7 +17,7 @@
                             </div>
                         @endif
                         <button type="button" id="btn-filtro-limpiar-busqueda" class="btn btn-primary btn-color float-right"><span class="oi oi-loop-circular"></span>&nbsp;Limpiar</button>
-                        <a href="{{ route('student.ingresar') }}"  class=" btn btn-primary btn-color" role="button"><span class="oi oi-person"></span>Ingresar Estudiantes</a>
+                        <a href="{{ route('student.ingresar') }}"  class=" btn btn-primary btn-color" role="button"><span class="oi oi-person"></span>Ingresar estudiantes</a>
                         <br>
                         <br>
                         @include('filtro_nombre_carnet_escuela')
