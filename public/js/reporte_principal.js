@@ -91,9 +91,20 @@ $(document).on("click", "#generar-reporte", function() {
         console.log(response.data.mensaje);
 
         if(response.data.mensaje=='Error_ciclo'){
-
+            Swal.fire({
+                type: 'error',
+                title: '¡Alto!',
+                text: 'El ciclo de inicio tiene que ser menor que el ciclo fin.',
+            })
         }else{
-
+            Swal.fire({
+                type: 'success',
+                title: 'Reporte:',
+                text: 'Generado con éxito!:',
+            })
+          
+            window.location.href = "/reporte/generar/estadosPdf?escuela="+escuela+"&estado="+estado+"&periodo="+periodo+"&ciclo="+ciclo+"&cicloInicio="+cicloInicio+"&cicloFin="+cicloFin;
+        
         }
     
 
