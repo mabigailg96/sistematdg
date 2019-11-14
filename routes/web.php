@@ -202,6 +202,7 @@ Route::get('/editar/grupo/tdg/{id}', 'TdgController@editarGrupoTdg')->name('tdg.
 
 //Rutas para los reportes
 Route::get('/reporte/principal', 'ReportController@principal_estados')->name('reporte.principal');
+Route::get('/reporte/generar/estados', 'ReportController@generar_reporteEstados')->name('reporte.estados');
 
 // Ruta para actualizar el grupo
 Route::get('/update/tdg/asignacion', 'TdgController@updateAsignaciones')->name('tdg.updateTdgAsignaciones');

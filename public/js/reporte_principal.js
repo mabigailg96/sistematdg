@@ -71,6 +71,31 @@ $(document).on("click", "#generar-reporte", function() {
     console.log(estado, escuela, periodo);
 
     //Comparar fechas. 
+    var params = {
+        escuela: escuela,
+        estado: estado,
+        periodo: periodo,
+        ciclo: ciclo,
+        cicloInicio: cicloInicio,
+        cicloFin: cicloFin,
+    };
+
+    console.log(params);
+
+    axios.get("/reporte/generar/estados", {
+
+        params: params
+
+    }).then(response => {
+
+        console.log(response.data.mensaje);
+
+        if(response.data.mensaje=='Error_ciclo'){
+
+        }else{
+
+        }
     
 
 });
+})

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Semester;
+use App\Tdg;
 
 class ReportController extends Controller
 {
@@ -12,5 +14,96 @@ class ReportController extends Controller
         $semesterController = new SemesterController();
 
         return view('reportes.principal',  ['ciclos' => $semesterController->viewSemesters()]);
+    }
+
+    public function generar_reporteEstados(Request $request){
+
+        //Obteniendo variables request
+        $escuela = $request['escuela'];
+        $estado = $request['estado'];
+        $periodo = $request['periodo'];
+
+        //Verificar si el reporte sera para todas las escuelas.
+        if($estado=='Ingresado'){
+            $estado=null;
+        }
+        $inicio = '';
+        $fin = '';
+        $ciclo = '';
+
+        $mensaje='';
+        $consulta='';
+
+       
+        //Dos ciclos
+        if($periodo == 'mas_ciclo'){
+             $inicio = $request['cicloInicio'];
+            $fin = $request['cicloFin'];
+
+            $cicloInicio = Semester::find($inicio);
+            $cicloFin = Semester::find($fin);
+
+            //Validamos que el ciclo fin sea mayor que el ciclo inicio.
+            if($cicloInicio->fechaInicio > $cicloFin->fechaInicio){
+                return response()->json([
+                    'mensaje' => 'Error_ciclo',
+                ]);
+               }
+            
+               //Si las fechas estan bien
+               $fechaInicio = date($cicloInicio->fechaInicio);
+               $fechaFin = date($cicloFin->fechaInicio);
+               if($escuela=='todas'){
+                $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                           ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                           ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
+                           ->where('semesters.fechaInicio','>=',$fechaInicio)
+                           ->where('semesters.fechaInicio', '<=', $fechaFin)
+                           ->where('tdgs.estado_oficial', '=',$estado)
+                           ->get();
+               }else{
+                $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                           ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                           ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
+                           ->where('colleges.id', '=',$escuela)
+                           ->where('semesters.fechaInicio','>=',$fechaInicio)
+                           ->where('semesters.fechaInicio', '<=', $fechaFin)
+                           ->where('tdgs.estado_oficial', '=',$estado)
+                           ->get();
+               }
+               
+
+            }else{
+
+                //Un ciclo
+                $id_ciclo = $request['ciclo'];
+                $ciclo = Semester::find($id_ciclo);
+
+                $fechaCiclo = date($ciclo->fechaInicio);
+
+                if($escuela=='todas'){
+                    $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                               ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                               ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
+                               ->where('semesters.fechaInicio','=',$fechaCiclo)
+                               ->where('tdgs.estado_oficial', '=',$estado)
+                               ->get();
+                   }else{
+                    $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
+                               ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
+                               ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
+                               ->where('colleges.id', '=',$escuela)
+                               ->where('semesters.fechaInicio','=',$fechaCiclo)  
+                               ->where('tdgs.estado_oficial', '=',$estado)
+                               ->get();
+                   }
+                
+
+            }
+        
+        
+        return response()->json([
+            'mensaje' => $consulta,
+         ]);
     }
 }

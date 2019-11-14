@@ -40,15 +40,15 @@
                                 </div>
                                 <select id="select-filtro-estado" class="custom-select">
                                     <option value="0" selected disabled>Seleccionar estado:</option>
-                                    <option value="recien_ingresado">Recien ingresado</option>
-                                    <option value="aprobado">Aprobado</option>
-                                    <option value="oficializado">Oficializado</option>
-                                    <option value="prorrogado">Prórrogado</option>
-                                    <option value="extension_de_prorroga">Extensión de prórroga</option>
-                                    <option value="prorroga_especial">Prórroga especial</option>
-                                    <option value="abandonado">Abandonado</option>
-                                    <option value="finalizado">Finalizado</option>
-                                    <option value="deshabilitado">Deshabilitado</option>
+                                    <option value="Ingresado">Recien ingresado</option>
+                                    <option value="Aprobado">Aprobado</option>
+                                    <option value="Oficializado">Oficializado</option>
+                                    <option value="Prórroga">Prórrogado</option>
+                                    <option value="Extensión de prórroga">Extensión de prórroga</option>
+                                    <option value="Prórroga especial">Prórroga especial</option>
+                                    <option value="Abandonado">Abandonado</option>
+                                    <option value="Finalizado">Finalizado</option>
+                                    <option value="Deshabilitado">Deshabilitado</option>
                                    
                                 </select>
                             </div>
