@@ -147,6 +147,12 @@ function cargarDataTable(){
         "ordering": false,
         "lengthChange": false,
         "language": lenguaje_datatable,
+        "columnDefs": [
+            { "width": "10%", "targets": 0 },
+            { "width": "65%", "targets": 1 },
+            { "width": "15%", "targets": 2 },
+
+        ],  
     });
 
     table

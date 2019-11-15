@@ -119,11 +119,11 @@ function cargarDatosTdg() {
                             var htmlButton = '';
 
                             if (filter_accion == 'deshabilitar') {
-                                htmlButton = `<a  class="btn btn-danger" onclick="eliminar(${id})" role="button" val="${id}"><div style="color:white">Deshabilitar</div></a>`;
+                                htmlButton = `<a  class="btn btn-danger btn-sm" onclick="eliminar(${id})" role="button" val="${id}"><div style="color:white">Deshabilitar</div></a>`;
                             } else if (filter_accion == 'editar_grupo') {
-                                htmlButton = `<a  href="/editar/grupo/tdg/${id}" role="button" val="${id}">Editar</a>`;
+                                htmlButton = `<a  href="/editar/grupo/tdg/${id}" class="btn btn-primary btn-past btn-color btn-sm" role="button" val="${id}"><span class="oi oi-pencil"></span> Editar</a>`;
                             }else if (filter_accion == 'editar_nombre'){
-                                htmlButton = `<a  href="/editar/nombre/${id}" role="button" val="${id}">Editar</a>`;
+                                htmlButton = `<a  href="/editar/nombre/${id}" class="btn btn-primary btn-past btn-color btn-sm" role="button" val="${id}"><span class="oi oi-pencil"></span> Editar</a>`;
                             }
                             
 
@@ -205,9 +205,9 @@ function cargarDataTable(){
         "language": lenguaje_datatable,
         "columnDefs": [
             { "width": "10%", "targets": 0 },
-            { "width": "60%", "targets": 1 },
+            { "width": "53%", "targets": 1 },
             { "width": "10%", "targets": 2 },
-            { "width": "10%", "targets": 3 },
+            { "width": "17%", "targets": 3 },
             { "width": "10%", "targets": 4 },
         ],
     });
