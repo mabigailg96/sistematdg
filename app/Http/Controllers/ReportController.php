@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Semester;
 use App\Tdg;
+use App\College;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -82,6 +84,7 @@ class ReportController extends Controller
 
         $mensaje='';
         $consulta='';
+        $college='';
 
          //Dos ciclos
          if($periodo == 'mas_ciclo'){
@@ -104,6 +107,7 @@ class ReportController extends Controller
                           ->where('tdgs.estado_oficial', '=',$estado)
                           //->orderBy('colleges.id')
                           ->get();
+                          $college = 'Todas las escuelas';
               }else{
                $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                           ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
@@ -113,6 +117,8 @@ class ReportController extends Controller
                           ->where('semesters.fechaInicio', '<=', $fechaFin)
                           ->where('tdgs.estado_oficial', '=',$estado)
                           ->get();
+
+                          $college = College::find($escuela);
               }
               
 
@@ -131,6 +137,8 @@ class ReportController extends Controller
                               ->where('semesters.fechaInicio','=',$fechaCiclo)
                               ->where('tdgs.estado_oficial', '=',$estado)
                               ->get();
+
+                              $college = 'Todas las escuelas';
                   }else{
                    $consulta =Tdg::join('semesters', 'tdgs.ciclo_id', '=', 'semesters.id')
                               ->join('colleges', 'tdgs.escuela_id', '=', 'colleges.id')
@@ -139,15 +147,27 @@ class ReportController extends Controller
                               ->where('semesters.fechaInicio','=',$fechaCiclo)  
                               ->where('tdgs.estado_oficial', '=',$estado)
                               ->get();
+
+                              $college = College::find($escuela);
                   }
                
 
            }
            
-           //dd($consulta);
-           $pdf = PDF::loadView('reportes.estadosPdf', compact('consulta'));
+           if($estado==null){
+               $estado = 'Recién ingresado';
+           }
+          
+            $titulo = 'Reporte de estado '.$estado;
+           
+           $date = Carbon::now();
+           $fecha = $date->toFormattedDateString(); 
 
-        return $pdf->download('listado.pdf');
+
+        
+           $pdf = PDF::loadView('reportes.estadosPdf', compact('consulta','titulo','college','fecha','estado'));
+
+        return $pdf->download('Reporte_'.$fecha.'.pdf');
 
 
         //dd($escuela, $estado, $periodo);
