@@ -335,13 +335,41 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'tdg.deshabilitar',
             'description' => 'Ruta que permite deshabilitar un tdg o perfil del sistema',
         ]);
-
+            //***RUTA PARA VALIDAR EL MENU***//
         Permission::create([
             'name' => 'Para validar el menu',
             'slug' => 'menu',
             'description' => 'Permite validar quien puede visualizar el área de administración en el sistema',
         ]);
-        
+        //***RUTAS PARA EL CORREO ELECTRONICO****//
+        Permission::create([
+            'name' => 'Pantalla para crear un correo electronico',
+            'slug' => 'mail.create',
+            'description' => 'Permite crear la estructura del correo electronico',
+        ]);
+        Permission::create([
+            'name' => 'Ruta que manda el correo electronico',
+            'slug' => 'mail.send',
+            'description' => 'Esta ruta permite mandar el cooreo electronico a los coordinadores de escuela',
+        ]);
+        //****RUTAS PARA LA EDICION DEL GRUPO***//
+        Permission::create([
+            'name' => 'Pantalla para realizar la edicion del grupo',
+            'slug' => 'tdg.editarGrupoTdg',
+            'description' => 'Esta ruta permite ver la pantalla en la cual se puede editar un grupo',
+        ]);
+        Permission::create([
+            'name' => 'Ruta para realizar la actualizacion de la asignacion de un grupo ',
+            'slug' => 'tdg.updateTdgAsignaciones',
+            'description' => 'Realiza la actualizacion de la asignacion de un grupo en la base de datos.',
+        ]);
+        //*****RUTAS PARA REGISTAR EL ABANDONO A UN ALUMNO DE UN TDG *****//
+        Permission::create([
+            'name' => 'Ruta para notificar el abandono de un alumno de un TDG ',
+            'slug' => 'tdg.updateActivoStudentTdg',
+            'description' => 'Realiza la notificacion de abandono de un alumno de un TDG',
+        ]);
+
 
 
     }

@@ -198,7 +198,7 @@ Route::post('/editar/nombre/tdg', 'RequestNameController@guardarNombre')->name('
 Route::get('/deshabilitar/tdg/{id}', 'TdgController@deshabilitarTdg')->name('tdg.deshabilitar')->middleware('can:tdg.deshabilitar');
 
 // Ruta para mostrar pantalla de editar grupo de TDG
-Route::get('/editar/grupo/tdg/{id}', 'TdgController@editarGrupoTdg')->name('tdg.editarGrupoTdg');
+Route::get('/editar/grupo/tdg/{id}', 'TdgController@editarGrupoTdg')->name('tdg.editarGrupoTdg')->middleware('can:tdg.editarGrupoTdg');
 
 //Rutas para los reportes
 Route::get('/reporte/principal', 'ReportController@principal_estados')->name('reporte.principal');
@@ -206,12 +206,12 @@ Route::get('/reporte/generar/estados', 'ReportController@generar_reporteEstados'
 Route::get('/reporte/generar/estadosPdf', 'ReportController@pdfEstados')->name('reporte.estadosPdf');
 
 // Ruta para actualizar el grupo
-Route::get('/update/tdg/asignacion', 'TdgController@updateAsignaciones')->name('tdg.updateTdgAsignaciones');
+Route::get('/update/tdg/asignacion', 'TdgController@updateAsignaciones')->name('tdg.updateTdgAsignaciones')->middleware('can:tdg.updateTdgAsignaciones');
 
 //Rutas para los correos
-Route::get('/correo/crear', 'MailController@createMail')->name('mail.create');
-Route::post('/correo/enviar', 'MailController@mandarCorreoEscuela')->name('mail.send');
+Route::get('/correo/crear', 'MailController@createMail')->name('mail.create')->middleware('can:mail.create');
+Route::post('/correo/enviar', 'MailController@mandarCorreoEscuela')->name('mail.send')->middleware('can:mail.send');
 
 // Ruta para actualizar el estado activo en student_tdg y notificar abandonó de estudiante
-Route::get('/update/activo/student/tdg', 'TdgController@updateActivoStudentTdg')->name('tdg.updateActivoStudentTdg');
+Route::get('/update/activo/student/tdg', 'TdgController@updateActivoStudentTdg')->name('tdg.updateActivoStudentTdg')->middleware('can:tdg.updateActivoStudentTdg');
 });

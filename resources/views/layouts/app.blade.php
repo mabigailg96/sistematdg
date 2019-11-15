@@ -107,11 +107,11 @@
                     <a class="nav-link" href="{{ url('/listar/tdg/editar') }}"> Edición</a>
                   </li>
                   @endcan
-
+                  @can('mail.create')
                    <li class="nav-item navegacion-item">
                     <a class="nav-link" href="{{ url('/correo/crear') }}"> Correo</a>
                   </li>
-
+                  @endcan
                   <li class="nav-item navegacion-item">
                     <a class="nav-link" href="{{ url('/todos/usuarios/sistema') }}"> Reportes</a>
                   </li>
