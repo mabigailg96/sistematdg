@@ -7,21 +7,23 @@
   </head>
   <body>
     <header class="clearfix">
+      
+      <h1>
       <div id="logo">
         <img src="img/minerva.png">
       </div>
-      <h1>{{$titulo}}</h1>
-      <div id="company" class="clearfix">
-        <div>Company Name</div>
-        <div>455 Foggy Heights,<br /> AZ 85004, US</div>
-        <div>(602) 519-0450</div>
-        <div><a href="mailto:company@example.com">company@example.com</a></div>
-      </div>
-      <div id="project">
-        <div><span>Reporte</span> Reporte de Trabajos de Graduación {{$estado}}</div>
-        <div><span>Escuela</span>{{$college->nombre_completo}} </div>
-        <div><span>Fecha</span> {{$fecha}}</div>
-      </div>
+      Universidad de El Salvador
+      <br>
+      Facultad de Ingeniería y Arquitectura
+      <br>
+      Reporte de trabajos de graduación con estado de: {{$estado}}
+      <br>
+      @if($college=='Todas las escuelas')
+      Todas las escuelas
+      @else
+      Escuela de: {{$college->nombre_completo}}
+      @endif
+      </h1>
     </header>
     <main>
       <table>
@@ -44,13 +46,7 @@
             
           </tr>
           @endforeach
-          <tr>
-            <td colspan="4">SUBTOTAL</td>
-            <td class="total">$5,200.00</td>
-          </tr>
-         
-         
-         
+
         </tbody>
       </table>
     </main>

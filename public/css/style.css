@@ -16,7 +16,7 @@
     margin: 0 auto; 
     color: #001028;
     background: #FFFFFF; 
-    font-family: Arial, sans-serif; 
+    font-family: Arial, Arial; 
     font-size: 12px; 
     font-family: Arial;
   }
@@ -27,8 +27,9 @@
   }
   
   #logo {
-    text-align: center;
+    text-align: left;
     margin-bottom: 10px;
+    position: absolute;
   }
   
   #logo img {
@@ -38,13 +39,14 @@
   h1 {
     border-top: 1px solid  #5D6975;
     border-bottom: 1px solid  #5D6975;
-    color: #5D6975;
-    font-size: 2.4em;
-    line-height: 1.4em;
+    color: #070707;
+    font-size: 1.45em;
+    line-height: 1.45em;
     font-weight: normal;
     text-align: center;
     margin: 0 0 20px 0;
     background: url(dimension.png);
+    position: relative;
   }
   
   #project {
@@ -52,12 +54,12 @@
   }
   
   #project span {
-    color: #5D6975;
+    color: #070707;
     text-align: right;
     width: 52px;
     margin-right: 10px;
     display: inline-block;
-    font-size: 0.8em;
+    font-size: 1.0em;
   }
   
   #company {
@@ -71,7 +73,7 @@
   }
   
   table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     border-spacing: 0;
     margin-bottom: 20px;
@@ -88,10 +90,11 @@
   
   table th {
     padding: 5px 20px;
-    color: #5D6975;
+    color: #070707;
     border-bottom: 1px solid #C1CED9;
     white-space: nowrap;        
     font-weight: normal;
+    font-size: 1.2em;
   }
   
   table .service,

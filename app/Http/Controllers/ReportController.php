@@ -159,11 +159,12 @@ class ReportController extends Controller
            }
           
             $titulo = 'Reporte de estado '.$estado;
-           
+            
            $date = Carbon::now();
            $fecha = $date->toFormattedDateString(); 
 
-
+           $estadom = strtolower($estado);
+           
         
            $pdf = PDF::loadView('reportes.estadosPdf', compact('consulta','titulo','college','fecha','estado'));
 
