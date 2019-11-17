@@ -110,7 +110,7 @@
                                     Cancelar
                                 </a>
                             </div>
-                            <div class="col-md-2 offset-5">
+                            <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-color">
                                     Guardar solicitud
                                 </button>
