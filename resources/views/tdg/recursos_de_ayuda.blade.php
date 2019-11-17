@@ -17,23 +17,23 @@
                     @endif
                     <div class="media border p-3">
                             <div class="media-body">
-                                    <a  href="/ayudaDocs/Reglamento_Específico_de_Procesos_de_Graduacion_FIA.pdf"><h4>Reglamento Específico de Procesos de Graduación  FIA</h4></a>
+                                    <a  href="/ayudaDocs/Reglamento_Específico_de_Procesos_de_Graduacion_FIA.pdf"><h4>Reglamento Específico de Procesos de Graduación  FIA   <span class="oi oi-cloud-download"></h4></a>
 
                               <div class="media p-3">
                                     <ul class="list-group">
-                                        <a href="/ayudaDocs/Anexo_A_Formato_para_presentacion_de_perfil.docx"><h4><small><i>Formato para presentación de perfil</i></small></h4></a>
-                                        <a href="/ayudaDocs/Anexo_B_Formato_resumen_del_perfil.docx"><h4><small><i>Formato de resumen del perfil</i></small></h4></a>
-                                        <a href="/ayudaDocs/Anexo_C_Formatos_para_Bitacora.docx"><h4><small><i>Formatos para bitácoras</i></small></h4></a>
-                                        <a href="/ayudaDocs/Anexo_D_Formato_para_presentacion_informe_seguimiento.docx"><h4><small><i>Formato de informe de seguimiento del Trabajo de Graduación</i></small></h4></a>
-                                        <a href="/ayudaDocs/Anexo_E_Formato_de_solicitud_de_cambio_de_nombre.docx"><h4><small><i>Formato de Solicitud de cambio de nombre del Trabajo de Graduación.</i></small></h4></a>
-                                        <a href="/ayudaDocs/Anexo_F_Formato_de_solicitud_de_prorroga_de_TDG.docx"><h4><small><i>Formato de solicitud de prórroga y extensión de prórroga para finalizar el trabajo de graduación.</i></small></h4></a>
-                                        <a href="/ayudaDocs/Anexo_G_Formato_de_solicitud_de_defensa_final.docx"><h4><small><i>Formato de solicitud de defensa final ante Tribunal Calificador.</i></small></h4></a>
-                                        <a href="/ayudaDocs/Anexo_H_Formato_de_acta_de_registro_de_calificacion_etapa_III.docx"><h4><small><i>Formato de acta de registro de resultados de defensa final por el Tribunal Calificador.</i></small></h4></a>
-                                        <a href="/ayudaDocs/Anexo_I_Formato_de_solicitud_de_ratificación_de_notas.docx"><h4><small><i>Formato de solicitud de ratificación de calificaciones del Trabajo de Graduación.</i></small></h4></a>
-                                        <a href="/ayudaDocs/Anexo_J_Indicaciones_para_formato_de_portada_de_TDG.doc"><h4><small><i>Indicaciones para formato de portada de TDG</i></small></h4></a>
-                                        <a href="/ayudaDocs/Anexo_K_Instrucciones_para_redacción_de_artículos_tecnicos.docx"><h4><small><i>Instrucciones para redacción de artículos tecnicos</i></small></h4></a>
-                                        <a href="/ayudaDocs/Guia_de_estilo_para_edicion_de_TDG.docx"><h4><small><i>Guia de estilo para edición de TDG</i></small></h4></a>
-                                        <a href="/ayudaDocs/Procedimiento_entrega_de_ejemplares.docx"><h4><small><i>Procedimiento entrega de ejemplares</i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_A_Formato_para_presentacion_de_perfil.docx"><h4><small><i>Formato para presentación de perfil  <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_B_Formato_resumen_del_perfil.docx"><h4><small><i>Formato de resumen del perfil  <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_C_Formatos_para_Bitacora.docx"><h4><small><i>Formatos para bitácoras   <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_D_Formato_para_presentacion_informe_seguimiento.docx"><h4><small><i>Formato de informe de seguimiento del Trabajo de Graduación   <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_E_Formato_de_solicitud_de_cambio_de_nombre.docx"><h4><small><i>Formato de Solicitud de cambio de nombre del Trabajo de Graduación   <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_F_Formato_de_solicitud_de_prorroga_de_TDG.docx"><h4><small><i>Formato de solicitud de prórroga y extensión de prórroga para finalizar el trabajo de graduación   <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_G_Formato_de_solicitud_de_defensa_final.docx"><h4><small><i>Formato de solicitud de defensa final ante Tribunal Calificador   <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_H_Formato_de_acta_de_registro_de_calificacion_etapa_III.docx"><h4><small><i>Formato de acta de registro de resultados de defensa final por el Tribunal Calificador   <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_I_Formato_de_solicitud_de_ratificación_de_notas.docx"><h4><small><i>Formato de solicitud de ratificación de calificaciones del Trabajo de Graduación   <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_J_Indicaciones_para_formato_de_portada_de_TDG.doc"><h4><small><i>Indicaciones para formato de portada de TDG   <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Anexo_K_Instrucciones_para_redacción_de_artículos_tecnicos.docx"><h4><small><i>Instrucciones para redacción de artículos tecnicos   <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Guia_de_estilo_para_edicion_de_TDG.docx"><h4><small><i>Guia de estilo para edición de TDG   <span class="oi oi-cloud-download"></i></small></h4></a>
+                                        <a href="/ayudaDocs/Procedimiento_entrega_de_ejemplares.docx"><h4><small><i>Procedimiento entrega de ejemplares   <span class="oi oi-cloud-download"></i></small></h4></a>
 
                                     </ul>
                                     </div>
