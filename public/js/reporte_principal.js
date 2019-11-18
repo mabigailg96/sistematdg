@@ -56,16 +56,50 @@ $(document).on("click", "#generar-reporte", function() {
     var cicloInicio = '';
     var cicloFin = '';
     var escuela = $("#select-filtro-escuela").val();
+    indiceEscuela = document.getElementById("select-filtro-escuela").selectedIndex;
     var estado = $("#select-filtro-estado").val();
+    indiceEstado = document.getElementById("select-filtro-estado").selectedIndex;
     var periodo = $("#select-filtro-periodo").val();
-
+    indicePeriodo = document.getElementById("select-filtro-periodo").selectedIndex;
+    console.log(indiceEscuela);
+    if((indiceEscuela==null || indiceEscuela==0) || (indiceEstado==null || indiceEstado==0) || (indicePeriodo==null || indicePeriodo==0)){
+        Swal.fire({
+            type: 'error',
+            title: '¡Alto!',
+            text: 'Seleccione todos los parametros necesarios.',
+        })
+        window.location.href = "/reporte/principal";
+    }
+  
     if(periodo == 'un_ciclo'){
         var ciclo = $("#select-filtro-ciclo").val();
+        indiceCiclo = document.getElementById("select-filtro-ciclo").selectedIndex;
+        if(indiceCiclo==null || indiceCiclo==0){
+            Swal.fire({
+                type: 'error',
+                title: '¡Alto!',
+                text: 'Seleccione todos los parametros necesarios.',
+            })
+            window.location.href = "/reporte/principal";
+        }
+        
+            
         console.log(ciclo);
     }
     if(periodo == 'mas_ciclo'){
        var cicloInicio = $("#select-filtro-cicloInicio").val();
+       indiceCicloInicio = document.getElementById("select-filtro-cicloInicio").selectedIndex;
        var cicloFin = $("#select-filtro-cicloFin").val();
+       indiceCicloFin = document.getElementById("select-filtro-cicloFin").selectedIndex;
+       if((indiceCicloInicio==null || indiceCicloInicio==0) || (indiceCicloFin==null || indiceCicloFin==0)){
+        Swal.fire({
+            type: 'error',
+            title: '¡Alto!',
+            text: 'Seleccione todos los parametros necesarios.',
+        })
+        window.location.href = "/reporte/principal";
+       }
+
        console.log(cicloInicio, cicloFin);
     }
     console.log(estado, escuela, periodo);
@@ -106,6 +140,7 @@ $(document).on("click", "#generar-reporte", function() {
             window.location.href = "/reporte/generar/estadosPdf?escuela="+escuela+"&estado="+estado+"&periodo="+periodo+"&ciclo="+ciclo+"&cicloInicio="+cicloInicio+"&cicloFin="+cicloFin;
         
         }
+    
     
 
 });

@@ -29,11 +29,11 @@
                             <p><strong>Justificación: </strong>{{ $solicitud->justificacion }}</p>
 
                             @if ($tipoSolicitud == 'extension_de_prorroga')
-                                <p><strong>Documento de la solicitud: </strong><a href="/prorroga/extension/{{ $solicitud->url_documento_solicitud }}">Ver documento</a></p>
+                                <p><strong>Documento anexo: </strong><a href="/prorroga/extension/{{ $solicitud->url_documento_solicitud }}">Ver documento</a></p>
                             @endif
 
                             @if ($tipoSolicitud == 'prorroga_especial')
-                                <p><strong>Documento de la solicitud: </strong><a href="/prorroga/especial/{{ $solicitud->url_documento_solicitud }}">Ver documento</a></p>
+                                <p><strong>Documento anexo: </strong><a href="/prorroga/especial/{{ $solicitud->url_documento_solicitud }}">Ver documento</a></p>
                             @endif
                         </div>
                     </div>

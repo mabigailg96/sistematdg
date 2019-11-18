@@ -28,8 +28,8 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text">Seleccione escuela:</label>
                                 </div>
-                                <select id="select-filtro-escuela" class="custom-select">
-                                    <option value="0" selected disabled>Seleccionar escuela:</option>
+                                <select id="select-filtro-escuela" class="custom-select" required>
+                                    <option value="" selected disabled>Seleccionar escuela:</option>
                                     <option value="todas">Todas las escuelas</option>
                                 </select>
                             </div>
@@ -38,8 +38,8 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text">Seleccione el estado.</label>
                                 </div>
-                                <select id="select-filtro-estado" class="custom-select">
-                                    <option value="0" selected disabled>Seleccionar estado:</option>
+                                <select id="select-filtro-estado" class="custom-select" required>
+                                    <option value="" selected disabled>Seleccionar estado:</option>
                                     <option value="Ingresado">Recien ingresado</option>
                                     <option value="Aprobado">Aprobado</option>
                                     <option value="Oficializado">Oficializado</option>
@@ -58,8 +58,8 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text">¿Qué período desea?</label>
                                 </div>
-                                <select id="select-filtro-periodo" class="custom-select" onChange="periodoOnChange(this)">
-                                    <option value="0" selected disabled>Seleccione un período</option>
+                                <select id="select-filtro-periodo" class="custom-select" onChange="periodoOnChange(this)" required>
+                                    <option value="" selected disabled>Seleccione un período</option>
                                     <option value="un_ciclo">Un ciclo</option>
                                     <option value="mas_ciclo">Más de un ciclo</option>
                                 </select>
@@ -74,7 +74,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text">Ciclo:</label>
                                 </div>
-                                <select id="select-filtro-ciclo" class="custom-select">
+                                <select id="select-filtro-ciclo" class="custom-select" required>
                                     <option value="0" selected disabled>Seleccione un ciclo</option>
                                     @foreach ($ciclos as $ciclo)
                                     <option value="{{ $ciclo->id}}">{{ $ciclo->ciclo}}</option>
@@ -89,7 +89,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text">Ciclo inicio:</label>
                                 </div>
-                                <select id="select-filtro-cicloInicio" class="custom-select"> 
+                                <select id="select-filtro-cicloInicio" class="custom-select" required> 
                                     <option value="0" selected disabled>Seleccione un ciclo</option>
                                     @foreach ($ciclos as $ciclo)
                                     <option value="{{ $ciclo->id}}">{{ $ciclo->ciclo}}</option>
@@ -100,7 +100,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text">Ciclo fin:</label>
                                 </div>
-                                <select id="select-filtro-cicloFin" class="custom-select">
+                                <select id="select-filtro-cicloFin" class="custom-select" required>
                                     <option value="0" selected disabled>Seleccione un ciclo</option>
                                     @foreach ($ciclos as $ciclo)
                                     <option value="{{ $ciclo->id}}">{{ $ciclo->ciclo}}</option>

@@ -27,6 +27,13 @@
                             <p><strong>Fecha de inicio: </strong>{{ date("d/m/Y", strtotime($solicitud->fecha_inicio)) }}</p>
                             <p><strong>Fecha de fin: </strong>{{ date("d/m/Y", strtotime($solicitud->fecha_fin)) }}</p>
                             <p><strong>Justificación: </strong>{{ $solicitud->justificacion }}</p>
+                            @if ($tipoSolicitud == 'extension_de_prorroga')
+                                <p><strong>Documento anexo: </strong><a href="/prorroga/extension/{{ $solicitud->url_documento_solicitud }}">Ver documento</a></p>
+                            @endif
+
+                            @if ($tipoSolicitud == 'prorroga_especial')
+                                <p><strong>Documento anexo: </strong><a href="/prorroga/especial/{{ $solicitud->url_documento_solicitud }}">Ver documento</a></p>
+                            @endif
                         </div>
                     </div>
 
