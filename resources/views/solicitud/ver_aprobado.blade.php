@@ -24,6 +24,7 @@
                             <p><strong>Nombre: </strong>{{ $tdg->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>Aprobado</p>
                             <p><strong>Fecha de solicitud: </strong>{{ date("d/m/Y", strtotime($solicitud->fecha)) }}</p>
+                            <p><strong>Documento anexo: </strong><a href="/perfiles/{{ $tdg->perfil }}">Ver documento</a></p>
                         </div>
                     </div>
 
