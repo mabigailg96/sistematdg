@@ -1218,7 +1218,32 @@ else if($tipo_solicitud=='aprobado'){
             $historial = array();
             $historial = $this->historialSolicitudes($tdg_id);
 
-            return view('tdg.ver_detalles_escuela', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial, 'ciclo' => $ciclo[0]]);
+            $request_tribunals = DB::table('request_tribunals')
+                ->select('aprobado')
+                ->where('tdg_id', '=', $tdg_id)
+                ->get();
+            
+            $resultado_tribunal = "";
+
+            if ($request_tribunals->isEmpty()) {
+                $resultado_tribunal = 'Ningun registro';
+            } else {
+
+                foreach ($request_tribunals as $request_tribunal) {
+
+                    if (is_null($request_tribunal->aprobado)) {
+                        $resultado_tribunal = 'En trámite';
+                    } else if (empty($request_tribunal->aprobado)) {
+                        $resultado_tribunal = 'Rechazado';
+                    } else if ($request_tribunal->aprobado == 1) {
+                        $resultado_tribunal = 'Aprobado';
+                    }
+
+                }
+
+            }
+
+            return view('tdg.ver_detalles_escuela', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial, 'ciclo' => $ciclo[0], 'tribunal' => $resultado_tribunal]);
         } else {
             return redirect()->route('tdg.filtroGestionarEscuela');
         }

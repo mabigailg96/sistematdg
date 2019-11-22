@@ -27,7 +27,7 @@
                             <p><strong>Tribunal calificador: </strong><ul>
                                 @foreach ($tribunal as $docente)
                                     <li>
-                                        {{ $docente->nombre }} {{ $docente->apellido }}
+                                        {{ $docente->codigo }} {{ $docente->nombre }} {{ $docente->apellido }}
                                     </li>
                                 @endforeach
                                 </ul></p>

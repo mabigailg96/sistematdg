@@ -11,7 +11,7 @@
         <div class="col-lg-10">
             <div class="card">
                 <div class="card-header">
-					Detalle del Trabajo de Graduación
+					Detalle del Trabajo de Graduación {{ $tribunal }}
 				</div>
 
                 <div class="card-body">
@@ -161,9 +161,9 @@
                     <!-- Botones para abandonar el tdg -->
                     <div class="d-flex flex-row-reverse bd-highlight">
                         <div class="p-2 bd-highlight">
-                            @if ($tdg->estado_oficial == 'Oficializado' || $tdg->estado_oficial == 'Prórroga' || $tdg->estado_oficial == 'Extensión de prórroga' || $tdg->estado_oficial == 'Prórroga especial')
+                            @if ($tdg->estado_oficial == 'Oficializado' && $tribunal != 'Aprobado')
                                 <button type="button" id="btn-abandonar-tdg" class="btn btn-danger">Abandonar TDG</button>
-                            @elseif ($tdg->estado_oficial == NULL || $tdg->estado_oficial == 'Aprobado' || $tdg->estado_oficial == 'Finalizado' || $tdg->estado_oficial == 'Abandonado')
+                            @elseif (is_null($tdg->estado_oficial) || empty($tdg->estado_oficial) || $tdg->estado_oficial == 'Aprobado' || $tdg->estado_oficial == 'Finalizado' || $tdg->estado_oficial == 'Abandonado' || $tribunal == 'Aprobado')
                                 <button type="button" id="btn-abandonar-tdg" class="btn btn-secundary" disabled>Abandonar TDG</button>
                             @endif
                         </div>
