@@ -16,6 +16,7 @@ class CreateTypeExtensionsTable extends Migration
         Schema::create('type_extensions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo');
+            $table->integer('meses')->nonullable();
             $table->timestamps();
         });
     }

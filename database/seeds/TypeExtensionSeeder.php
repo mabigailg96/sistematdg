@@ -16,14 +16,22 @@ class TypeExtensionSeeder extends Seeder
         //
         TypeExtension::create([
             'tipo'=> 'Prórroga',
+            'meses'=> '6',
         ]);
 
         TypeExtension::create([
-            'tipo'=> 'Extensión',
+            'tipo'=> 'Extensión de prórroga',
+            'meses'=> '3',
         ]);
 
         TypeExtension::create([
-            'tipo'=> 'Especial',
+            'tipo'=> 'Prórroga especial',
+            'meses'=> '3',
+        ]);
+
+        TypeExtension::create([
+            'tipo'=> 'Finalización',
+            'meses'=> '9',
         ]);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use \DB;
 use App\Tdg;
 use Carbon\Carbon;
-use App\MonthExtension;
+use App\TypeExtension;
 
 class RequestExtensionController extends Controller
 {
@@ -34,7 +34,7 @@ class RequestExtensionController extends Controller
         
         $tdg = Tdg::find($id);
     
-        $ciclo = DB::table('semesters')->find($tdg->ciclo_id);
+        //$ciclo = DB::table('semesters')->find($tdg->ciclo_id);
         //Rescatar el ciclo del tdg que esta en curso.
         $ciclo_id = $tdg->students()->where('tdg_id', $tdg->id)->first()->pivot->ciclo_id;
         $ciclo = DB::table('semesters')->find($ciclo_id);
@@ -43,12 +43,12 @@ class RequestExtensionController extends Controller
       
        if($tipo_solicitud=='prorroga')
         {
-            $monthExtension = MonthExtension::where('tipo', 'Prórroga')->get();
+            $monthExtension = TypeExtension::where('tipo', 'Prórroga')->get();
             foreach($monthExtension as $month){
                 $prorroga = $month;
             }
 
-            $finalizacion  = MonthExtension::where('tipo', 'Finalización')->get();
+            $finalizacion  = TypeExtension::where('tipo', 'Finalización')->get();
             foreach($finalizacion as $fin){
                 $mesesFin = $fin;
             }
@@ -66,7 +66,7 @@ class RequestExtensionController extends Controller
             //Rescatamos la solicitud de prorroga aprobada para rescatar la fecha de finalizacion de esa prorroga.
             $prorroga = $tdg->request_extensions()->where('aprobado',1)->where('type_extension_id',1)->first();
 
-            $monthExtension = MonthExtension::where('tipo', 'Extension de prórroga')->get();
+            $monthExtension = TypeExtension::where('tipo', 'Extension de prórroga')->get();
             foreach($monthExtension as $month){
                 $prorrogaExtension = $month;
             }

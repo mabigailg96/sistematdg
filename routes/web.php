@@ -143,11 +143,11 @@ Route::get('/todos/users/ver', 'UserController@allUsers')->name('user.show')->mi
 
 //Rutas para manejar la tabla de parametros de las prorrogas
 
-Route::get('/listar/prorroga', 'MonthExtensionController@allExtension')->name('month.show')->middleware('can:month.show');
+Route::get('/listar/prorroga', 'TypeExtensionController@allExtension')->name('month.show')->middleware('can:month.show');
 
-Route::get('/actualizar/prorroga/{id}', 'MonthExtensionController@edit')->name('month.edit')->middleware('can:month.edit');
+Route::get('/actualizar/prorroga/{id}', 'TypeExtensionController@edit')->name('month.edit')->middleware('can:month.edit');
 
-Route::post('/guardar/prorroga/{id}', 'MonthExtensionController@update')->name('month.update')->middleware('can:month.update');
+Route::post('/guardar/prorroga/{id}', 'TypeExtensionController@update')->name('month.update')->middleware('can:month.update');
 
 //Rutas para el crud de profesores
 //Rutas para importar los maestros y el formulario de profesores.accordion

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\MonthExtension;
+use App\TypeExtension;
 
-class MonthExtensionController extends Controller
+class TypeExtensionController extends Controller
 {
     
     public function allExtension(){
 
-        $months = MonthExtension::paginate();
+        $months = TypeExtension::paginate();
 
         return view('monthExtension.listar_extension')->with('months', $months);
     }
@@ -18,7 +18,7 @@ class MonthExtensionController extends Controller
     public function edit($id) 
     {
         //dd($id);
-        $month = MonthExtension::find($id);
+        $month = TypeExtension::find($id);
         //dd($month);
         return view('monthExtension.actualizar',compact('month'));
     }
@@ -31,7 +31,7 @@ class MonthExtensionController extends Controller
         ]);
 
         //dd($newMonth['tipo'], $id);
-        $updateMonth = MonthExtension::find($id);
+        $updateMonth = TypeExtension::find($id);
         //Primero que se actualice el usario
         $updateMonth->update([
             'tipo' => $newMonth['tipo'],
