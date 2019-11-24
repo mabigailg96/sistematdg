@@ -502,9 +502,6 @@ $(document).on("click", "#btn-guardar-asignacion", function() {
         mensaje_error += `Necesita seleccionar al menos un estudiante.\n`;
     }
 
-    //console.log(mensaje_error != "");
-    mensaje_error = "";
-
     // En caso de que no haya ningún error se registra todo
     if (mensaje_error == "") {
         
