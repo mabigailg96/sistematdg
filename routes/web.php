@@ -216,7 +216,7 @@ Route::get('/correo/crear', 'MailController@createMail')->name('mail.create')->m
 Route::post('/correo/enviar', 'MailController@mandarCorreoEscuela')->name('mail.send')->middleware('can:mail.send');
 
 // Ruta para actualizar el estado activo en student_tdg y notificar abandonó de estudiante
-Route::get('/update/activo/student/tdg', 'TdgController@updateActivoStudentTdg')->name('tdg.updateActivoStudentTdg')->middleware('can:tdg.updateActivoStudentTdg');
+Route::get('/update/activo/student/tdg', 'TdgController@updateActivoStudentTdg')->name('tdg.updateActivoStudentTdg');
 Route::get('/ayuda', function () {
     return view('tdg.recursos_de_ayuda');
 })->name('tdg.ayuda');

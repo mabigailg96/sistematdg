@@ -1218,6 +1218,33 @@ else if($tipo_solicitud=='aprobado'){
             $historial = array();
             $historial = $this->historialSolicitudes($tdg_id);
 
+            // Consulta para solicitud de oficializacion
+            $request_officials = DB::table('request_officials')
+                ->select('aprobado')
+                ->where('tdg_id', '=', $tdg_id)
+                ->get();
+            
+            $resultado_officials = "";
+
+            if ($request_officials->isEmpty()) {
+                $resultado_officials = 'Ningun registro';
+            } else {
+
+                foreach ($request_officials as $request_official) {
+
+                    if (is_null($request_official->aprobado)) {
+                        $resultado_officials = 'En trámite';
+                    } else if (empty($request_official->aprobado)) {
+                        $resultado_officials = 'Rechazado';
+                    } else if ($request_official->aprobado == 1) {
+                        $resultado_officials = 'Aprobado';
+                    }
+
+                }
+
+            }
+
+            // Consulta para solicitud de nombramiento de tribunal
             $request_tribunals = DB::table('request_tribunals')
                 ->select('aprobado')
                 ->where('tdg_id', '=', $tdg_id)
@@ -1243,7 +1270,7 @@ else if($tipo_solicitud=='aprobado'){
 
             }
 
-            return view('tdg.ver_detalles_escuela', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial, 'ciclo' => $ciclo[0], 'tribunal' => $resultado_tribunal]);
+            return view('tdg.ver_detalles_escuela', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial, 'ciclo' => $ciclo[0], 'tribunal' => $resultado_tribunal, 'oficializado' => $resultado_officials]);
         } else {
             return redirect()->route('tdg.filtroGestionarEscuela');
         }

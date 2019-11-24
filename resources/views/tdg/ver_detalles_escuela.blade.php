@@ -11,7 +11,7 @@
         <div class="col-lg-10">
             <div class="card">
                 <div class="card-header">
-					Detalle del Trabajo de Graduación {{ $tribunal }}
+					Detalle del Trabajo de Graduación
 				</div>
 
                 <div class="card-body">
@@ -65,7 +65,9 @@
                                         <tr>
                                             <th scope="col">Carnet</th>
                                             <th scope="col">Nombre</th>
-                                            <th scope="col"></th>
+                                            @if ($oficializado == 'Aprobado')
+                                                <th scope="col"></th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -73,10 +75,13 @@
                                         <tr>
                                             <td>{{$student->carnet}}</td>
                                             <td>{{$student->nombres}} {{$student->apellidos}}</td>
-                                            @if ($student->activo == 1)
-                                                <td><button type="button" class="btn btn-danger btn-sm abandonar-tdg-estudiante" value="{{$student->student_tdg_id}}">Notificar abandonó</button></td>
-                                            @else
-                                                <td>Abandonó el TDG</td>
+                                            
+                                            @if ($oficializado == 'Aprobado')
+                                                @if ($student->activo == 1)
+                                                    <td><button type="button" class="btn btn-danger btn-sm abandonar-tdg-estudiante" value="{{$student->student_tdg_id}}">Notificar abandonó</button></td>
+                                                @else
+                                                    <td>Abandonó el TDG</td>
+                                                @endif
                                             @endif
                                         </tr>
                                         @endforeach
