@@ -201,11 +201,11 @@ Route::get('/deshabilitar/tdg/{id}', 'TdgController@deshabilitarTdg')->name('tdg
 Route::get('/editar/grupo/tdg/{id}', 'TdgController@editarGrupoTdg')->name('tdg.editarGrupoTdg')->middleware('can:tdg.editarGrupoTdg');
 
 //Rutas para los reportes
-Route::get('/reporte/principal', 'ReportController@principal_estados')->name('reporte.principal');
-Route::get('/reporte/principal/escuela', 'ReportController@principal_estados_escuela')->name('reporte.principal_escuela');
-Route::get('/reporte/generar/estados', 'ReportController@generar_reporteEstados')->name('reporte.estados');
-Route::get('/reporte/generar/estadosPdf', 'ReportController@pdfEstados')->name('reporte.estadosPdf');
-Route::get('/reporte/generar/escuela', 'ReportController@pdfEstadoEscuela')->name('reporte.escuela');
+Route::get('/reporte/principal', 'ReportController@principal_estados')->name('reporte.principal')->middleware('can:reporte.principal');
+Route::get('/reporte/principal/escuela', 'ReportController@principal_estados_escuela')->name('reporte.principal_escuela')->middleware('can:reporte.principal_escuela');
+Route::get('/reporte/generar/estados', 'ReportController@generar_reporteEstados')->name('reporte.estados')->middleware('can:reporte.estados'); //ambos
+Route::get('/reporte/generar/estadosPdf', 'ReportController@pdfEstados')->name('reporte.estadosPdf')->middleware('can:reporte.estadosPdf');
+Route::get('/reporte/generar/escuela', 'ReportController@pdfEstadoEscuela')->name('reporte.escuela')->middleware('can:reporte.escuela');
 
 
 // Ruta para actualizar el grupo
@@ -216,8 +216,10 @@ Route::get('/correo/crear', 'MailController@createMail')->name('mail.create')->m
 Route::post('/correo/enviar', 'MailController@mandarCorreoEscuela')->name('mail.send')->middleware('can:mail.send');
 
 // Ruta para actualizar el estado activo en student_tdg y notificar abandonó de estudiante
-Route::get('/update/activo/student/tdg', 'TdgController@updateActivoStudentTdg')->name('tdg.updateActivoStudentTdg');
+Route::get('/update/activo/student/tdg', 'TdgController@updateActivoStudentTdg')->name('tdg.updateActivoStudentTdg')->middleware('can:tdg.updateActivoStudentTdg');
+
+//Ruta para el area de ayuda
 Route::get('/ayuda', function () {
     return view('tdg.recursos_de_ayuda');
-})->name('tdg.ayuda');
+})->name('tdg.ayuda')->middleware('can:tdg.ayuda');
 });

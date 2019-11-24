@@ -112,9 +112,17 @@
                     <a class="nav-link" href="{{ url('/correo/crear') }}"> Correo</a>
                   </li>
                   @endcan
+                  @can('reporte.principal')
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/todos/usuarios/sistema') }}"> Reportes</a>
+                    <a class="nav-link" href="{{ url('/reporte/principal') }}"> Reportes</a>
                   </li>
+                  @endcan
+
+                  @can('reporte.principal_escuela')
+                  <li class="nav-item navegacion-item">
+                    <a class="nav-link" href="{{ url('/reporte/principal/escuela') }}"> Reportes</a>
+                  </li>
+                  @endcan
 
                   @can('menu')
                   <li class="nav-item dropdown ">

@@ -370,6 +370,42 @@ class PermissionsTableSeeder extends Seeder
             'description' => 'Realiza la notificacion de abandono de un alumno de un TDG',
         ]);
 
+        //****RUTAS PARA REPORTE DE COORDINADOR GENERAL*****//
+        Permission::create([
+            'name' => 'Ruta principal del reporte para coor general',
+            'slug' => 'reporte.principal',
+            'description' => 'Ruta donde se muestran parametros para el reporte',
+        ]);
+        Permission::create([
+            'name' => 'Ruta del reporte para coor general',
+            'slug' => 'reporte.estadosPdf',
+            'description' => 'Ruta para generar el reporte',
+        ]);
+         //****RUTAS PARA REPORTE DE COORDINADOR DE ESCUELA*****//
+         Permission::create([
+            'name' => 'Ruta principal del reporte para coor escuela',
+            'slug' => 'reporte.principal_escuela',
+            'description' => 'Ruta donde se muestran parametros para el reporte',
+        ]);
+        Permission::create([
+            'name' => 'Ruta del reporte para coor escuela',
+            'slug' => 'reporte.escuela',
+            'description' => 'Ruta para generar el reporte',
+        ]);
+
+        //***RUTAS DE REPORTE PARA AMBOS COORDINADORES****//
+        Permission::create([
+            'name' => 'Ruta del reporte para coor escuela y coordinador general',
+            'slug' => 'reporte.estados',
+            'description' => 'Ruta para generar el reporte',
+        ]);
+        //***RUTA PARA ÁREA DE AYUDA*****//
+        Permission::create([
+            'name' => 'Ruta para área de ayuda',
+            'slug' => 'tdg.ayuda',
+            'description' => 'Ruta donde se encuentra todo el material de ayuda al usuario',
+        ]);
+
 
 
     }
