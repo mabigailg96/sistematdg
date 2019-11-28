@@ -66,7 +66,7 @@
                                             <th scope="col">Carnet</th>
                                             <th scope="col">Nombre</th>
                                             @if ($oficializado == 'Aprobado')
-                                                <th scope="col"></th>
+                                                <th scope="col">Estado</th>
                                             @endif
                                         </tr>
                                     </thead>
@@ -77,11 +77,27 @@
                                             <td>{{$student->nombres}} {{$student->apellidos}}</td>
                                             
                                             @if ($oficializado == 'Aprobado')
-                                                @if ($student->activo == 1)
-                                                    <td><button type="button" class="btn btn-danger btn-sm abandonar-tdg-estudiante" value="{{$student->student_tdg_id}}">Notificar abandonó</button></td>
+                                                @if ($tribunal == 'Aprobado')
+
+                                                    @if ($student->activo == 1)
+                                                       @if ($tdg->estado_oficial == 'Finalizado')
+                                                            <td>Finalizado</td>
+                                                       @else
+                                                            <td>Cursando TDG</td>
+                                                       @endif
+                                                    @else
+                                                        <td>Abandonó el TDG</td>
+                                                    @endif
                                                 @else
-                                                    <td>Abandonó el TDG</td>
+
+                                                    @if ($student->activo == 1)
+                                                        <td><button type="button" class="btn btn-danger btn-sm abandonar-tdg-estudiante" value="{{$student->student_tdg_id}}">Notificar abandonó</button></td>
+                                                    @else
+                                                        <td>Abandonó el TDG</td>
+                                                    @endif
+
                                                 @endif
+                                                
                                             @endif
                                         </tr>
                                         @endforeach

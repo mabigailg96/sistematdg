@@ -66,7 +66,9 @@
                                     <tr>
                                         <th scope="col">Carnet</th>
                                         <th scope="col">Nombre</th>
-                                        <th scope="col"></th>
+                                        @if ($oficializado == 'Aprobado')
+                                            <th scope="col">Estado</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,10 +76,17 @@
                                     <tr>
                                         <td>{{$student->carnet}}</td>
                                         <td>{{$student->nombres}} {{$student->apellidos}}</td>
-                                        @if ($student->activo == 1)
-                                            <td>Cursando TDG</td>
-                                        @else
-                                            <td>Abandonó el TDG</td>
+
+                                        @if ($oficializado == 'Aprobado')
+                                            @if ($student->activo == 1)
+                                                @if ($tdg->estado_oficial == 'Finalizado')
+                                                    <td>Finalizado</td>
+                                                @else
+                                                    <td>Cursando TDG</td>
+                                                @endif
+                                            @else
+                                                <td>Abandonó el TDG</td>
+                                            @endif
                                         @endif
                                     </tr>
                                     @endforeach

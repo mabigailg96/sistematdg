@@ -1060,8 +1060,34 @@ else if($tipo_solicitud=='aprobado'){
             // Historial de solicitudes
             $historial = array();
             $historial = $this->historialSolicitudes($tdg_id);
+
+                        // Consulta para solicitud de oficializacion
+            $request_officials = DB::table('request_officials')
+                ->select('aprobado')
+                ->where('tdg_id', '=', $tdg_id)
+                ->get();
+            
+            $resultado_officials = "";
+
+            if ($request_officials->isEmpty()) {
+                $resultado_officials = 'Ningun registro';
+            } else {
+
+                foreach ($request_officials as $request_official) {
+
+                    if (is_null($request_official->aprobado)) {
+                        $resultado_officials = 'En trámite';
+                    } else if (empty($request_official->aprobado)) {
+                        $resultado_officials = 'Rechazado';
+                    } else if ($request_official->aprobado == 1) {
+                        $resultado_officials = 'Aprobado';
+                    }
+
+                }
+
+            }
     
-            return view('tdg.ver_detalles_general', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial, 'ciclo' => $ciclo[0]]);
+            return view('tdg.ver_detalles_general', ['tdg' => $tdg[0], 'students' => $students, 'advisers_internal' => $advisers_internal, 'advisers_external' => $advisers_external, 'historial' => $historial, 'ciclo' => $ciclo[0], 'oficializado' => $resultado_officials]);
         } else {
             return redirect()->route('tdg.filtroGestionarGeneral');
         }
