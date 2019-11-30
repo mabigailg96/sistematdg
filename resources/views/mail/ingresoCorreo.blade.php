@@ -39,14 +39,24 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Asunto</span>
                                         </div>
-                                        <input type="text" id="asunto" name="asunto" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                        <input type="text" id="asunto" name="asunto" class="form-control @error('asunto') is-invalid @enderror" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                        @error('asunto')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     </div>
 
                                     <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default">Mensaje</span>
                                             </div>
-                                            <textarea  id="contenido" name="contenido" class="form-control" rows="15" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required></textarea>
+                                            <textarea  id="contenido" name="contenido" class="form-control @error('contenido') is-invalid @enderror" rows="15" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required></textarea>
+                                            @error('contenido')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                         </div>
                                 </div>
 

@@ -20,6 +20,11 @@ class MailController extends Controller
     }
 
     public function mandarCorreoEscuela(Request $request){
+
+        $correo = $request->validate([
+            'asunto'  => 'required',
+            'contenido' => 'required',
+        ]);
         Mail::to($request->destinatario)->send(new MailEscuela($request));
         return redirect()->route('mail.create','save=1')->with('info', 'el correo se ha enviado con exito');
     }
