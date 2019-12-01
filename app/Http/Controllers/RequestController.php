@@ -406,7 +406,7 @@ class RequestController extends Controller
                         ->join('tdgs', $request[0].'.tdg_id','=', 'tdgs.id')
                         ->select($request[0].'.tdg_id', 'tdgs.codigo', 'tdgs.nombre', $request[0].'.aprobado', $request[0].'.fecha', $request[0].'.fecha_inicio', $request[0].'.fecha_fin', $request[0].'.justificacion', $request[0].'.url_documento_solicitud')
                         ->where($request[0].'.type_extension_id', '=', $request[3])
-                        ->where($request[0].'.id', '=', $request[3])
+                        ->where($request[0].'.id', '=', $id)
                         ->get();
                     
                     return view('solicitudesVer.ver_prorrogas', [
