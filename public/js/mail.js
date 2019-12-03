@@ -13,7 +13,7 @@ $(document).ready(function() {
         Swal.fire({
             position: 'top-end',
             type: 'error',
-            title: 'Error al enviar correo',
+            title: 'Error al enviar correo no hay conexion ',
             showConfirmButton: false,
             timer: 2000
         });

@@ -48,7 +48,8 @@ class UserController extends Controller
             'nombre'    => 'required',
             'username'  => 'required|unique:users',
             'email'     => 'required|unique:users',
-            'password'  =>  'required'
+            'password'  =>  'required',
+            'escuela_id'=> 'required',
         ]);
         $data = $request->all();
         User::create([

@@ -47,9 +47,9 @@
                         </div>
 
                         <div class="row form-group{{ $errors->has('escuela_id') ? ' has-error' : '' }}">
-                            <label class="textlabel col-md-3 offset-1 control-label " for="escuela_id">Seleccione la escuela</label>
+                            <label class="textlabel col-md-3 offset-1 control-label required " for="escuela_id">Seleccione la escuela</label>
                             <div class="urlinput col-md-6">
-                                <select id="escuela_id" class="form-control" name="escuela_id" value=" "  class="form-control col-8">
+                                <select id="escuela_id" class="form-control" name="escuela_id" value=" "  class="form-control col-8 required" required>
                                     <option value="" selected disabled>Seleccione la escuela:</option >
 
                                 </select>
@@ -94,9 +94,9 @@
                                         <option value={{$rol->id}}>{{ $rol->name }}</option >
                                         @endforeach
                                 </select>
-                                @if ($errors->has('escuela_id'))
+                                @if ($errors->has('role_id'))
                                     <span class="help-block">
-                                        {{ $errors->first('escuela_id') }}
+                                        {{ $errors->first('role_id') }}
                                     </span>
                                 @endif
                             </div>

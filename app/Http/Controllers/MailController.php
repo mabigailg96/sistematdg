@@ -25,7 +25,12 @@ class MailController extends Controller
             'asunto'  => 'required',
             'contenido' => 'required',
         ]);
-        Mail::to($request->destinatario)->send(new MailEscuela($request));
+        try {
+            Mail::to($request->destinatario)->send(new MailEscuela($request));
+        } catch (\Throwable $th) {
+            return redirect()->route('mail.create','save=0')->with('info', 'el correo no se envio, fallo la conexion');
+        }
+
         return redirect()->route('mail.create','save=1')->with('info', 'el correo se ha enviado con exito');
     }
 }
