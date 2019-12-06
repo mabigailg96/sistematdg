@@ -31,10 +31,6 @@
           <tr>
             <th class="service">Código</th>
             <th class="desc">Nombre</th>
-            @if($college=='Todas las escuelas')
-            <th>Escuela</th>
-            @else
-            @endif
             <th>Ciclo</th>
             
           </tr>
@@ -44,10 +40,6 @@
           <tr>
             <td class="service">{{$tdg->codigo}}</td>
             <td class="desc">{{$tdg->nombre}}</td>
-            @if($college=='Todas las escuelas')
-            <td class="unit">{{$tdg->escuela}}</td>
-            @else
-            @endif
             <td class="qty">{{$tdg->ciclo}}</td>
             
           </tr>

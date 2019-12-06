@@ -104,7 +104,8 @@ class ReportController extends Controller
                           ->where('semesters.fechaInicio','>=',$fechaInicio)
                           ->where('semesters.fechaInicio', '<=', $fechaFin)
                           ->where('tdgs.estado_oficial', '=',$estado)
-                          //->orderBy('colleges.id')
+                          ->orderBy('colleges.id')
+                          ->orderBy('semesters.id')
                           ->get();
                           $college = 'Todas las escuelas';
               }else{
@@ -115,6 +116,7 @@ class ReportController extends Controller
                           ->where('semesters.fechaInicio','>=',$fechaInicio)
                           ->where('semesters.fechaInicio', '<=', $fechaFin)
                           ->where('tdgs.estado_oficial', '=',$estado)
+                          ->orderBy('semesters.id')
                           ->get();
 
                           $college = College::find($escuela);
@@ -135,6 +137,7 @@ class ReportController extends Controller
                               ->select('tdgs.id', 'tdgs.codigo', 'tdgs.nombre', 'semesters.ciclo', 'colleges.nombre_completo as escuela')
                               ->where('semesters.fechaInicio','=',$fechaCiclo)
                               ->where('tdgs.estado_oficial', '=',$estado)
+                              ->orderBy('colleges.id')
                               ->get();
 
                               $college = 'Todas las escuelas';
@@ -224,6 +227,7 @@ class ReportController extends Controller
                           ->where('semesters.fechaInicio','>=',$fechaInicio)
                           ->where('semesters.fechaInicio', '<=', $fechaFin)
                           ->where('tdgs.estado_oficial', '=',$estado)
+                          ->orderBy('semesters.id')
                           ->get();
 
                           $college = College::find($escuela);
@@ -265,7 +269,7 @@ class ReportController extends Controller
            $estadom = strtolower($estado);
            
         
-           $pdf = PDF::loadView('reportes.estadosPdf', compact('consulta','titulo','college','fecha','estado'));
+           $pdf = PDF::loadView('reportes.estadosPdfEscuela', compact('consulta','titulo','college','fecha','estado'));
 
         return $pdf->download('Reporte_'.$fecha.'.pdf');
     }
