@@ -1,6 +1,12 @@
+
 $(document).ready(function(){
 
+    
+
 });
+
+
+
 
 
 
@@ -39,8 +45,8 @@ $(document).on("click", "#generar-reporte", function() {
         })
         window.location.href = "/reporte/principal/escuela";
     }
-  
-    if(periodo == 'un_ciclo'){
+    
+    else if(periodo == 'un_ciclo'){
         var ciclo = $("#select-filtro-ciclo").val();
         indiceCiclo = document.getElementById("select-filtro-ciclo").selectedIndex;
         if(indiceCiclo==null || indiceCiclo==0){
@@ -50,16 +56,58 @@ $(document).on("click", "#generar-reporte", function() {
                 text: 'Seleccione todos los parametros necesarios.',
             })
             window.location.href = "/reporte/principal/escuela";
+        }else{
+            //Comparar fechas. 
+    var params = {
+        estado: estado,
+        periodo: periodo,
+        ciclo: ciclo,
+        cicloInicio: cicloInicio,
+        cicloFin: cicloFin,
+    };
+
+    console.log(params);
+
+    axios.get("/reporte/generar/estados", {
+
+        params: params
+
+    }).then(response => {
+
+        console.log(response.data.mensaje);
+
+        if(response.data.mensaje=='Error_ciclo'){
+            Swal.fire({
+                type: 'error',
+                title: '¡Alto!',
+                text: 'El ciclo de inicio tiene que ser menor que el ciclo fin.',
+            })
+        }else{
+            Swal.fire({
+                type: 'success',
+                title: 'Reporte:',
+                text: 'Generado con éxito!:',
+            })
+          
+            window.location.href = "/reporte/generar/escuela?estado="+estado+"&periodo="+periodo+"&ciclo="+ciclo+"&cicloInicio="+cicloInicio+"&cicloFin="+cicloFin;
+        
+        }
+    
+    
+
+});
+
         }
         
             
         console.log(ciclo);
     }
-    if(periodo == 'mas_ciclo'){
+    else{
        var cicloInicio = $("#select-filtro-cicloInicio").val();
        indiceCicloInicio = document.getElementById("select-filtro-cicloInicio").selectedIndex;
        var cicloFin = $("#select-filtro-cicloFin").val();
        indiceCicloFin = document.getElementById("select-filtro-cicloFin").selectedIndex;
+    }
        if((indiceCicloInicio==null || indiceCicloInicio==0) || (indiceCicloFin==null || indiceCicloFin==0)){
         Swal.fire({
             type: 'error',
@@ -68,10 +116,11 @@ $(document).on("click", "#generar-reporte", function() {
         })
         window.location.href = "/reporte/principal/escuela";
        }
+       else{
 
-       console.log(cicloInicio, cicloFin);
-    }
-    console.log(estado, periodo);
+      
+    
+    
 
     //Comparar fechas. 
     var params = {
@@ -112,6 +161,8 @@ $(document).on("click", "#generar-reporte", function() {
     
 
 });
+
+       }
 })
 
 $(document).on("click", "#btn-filtro-limpiar-busqueda", function() {
@@ -120,6 +171,5 @@ $(document).on("click", "#btn-filtro-limpiar-busqueda", function() {
     $("#select-filtro-ciclo").val(0);
     $("#select-filtro-cicloInicio").val(0);
     $("#select-filtro-cicloFin").val(0);
-
 
 });
