@@ -28,7 +28,7 @@ class RoleTableSeeder extends Seeder
         ]);
 
         Role::create([
-            'name'=> 'Administracion academica',
+            'name'=> 'Administracion Académica',
             'slug'=> 'academica',
         ]);
 

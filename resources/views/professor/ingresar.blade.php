@@ -14,7 +14,7 @@
 
                 <div class="card-header">
                     Importación de docentes.
-                    <a href="{{ route('professor.index') }}" align="right" class="btn btn-primary btn-color offset-6" role="button">Regresar</a>
+                   
 				</div>
 
                 <div class="card-body">
@@ -23,6 +23,15 @@
                             {{ session('status') }}
                         </div>
 					@endif
+
+                    <div class="d-flex flex-row-reverse bd-highlight">
+                        <div class="p-2 bd-highlight">
+                            <a class="btn  btn-primary btn-color" href="{{ route('professor.index') }}" role="button"><span class="oi oi-arrow-circle-left"></span> Regresar</a>
+                            
+                           
+                        </div>
+                    </div>
+
 
                     <br>
                     <div class="row justify-content-center">
