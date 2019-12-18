@@ -24,7 +24,7 @@
                         <div class="row form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
                             <label for="tipo" class="textlabel col-md-3 offset-1 control-label required">Tipo</label>
                             <div class="col-md-6">
-                                <input id="tipo" type="text" class="form-control" name="tipo" value="{{ $month->tipo }}" required>
+                                <input id="tipo" type="text" class="form-control" name="tipo" value="{{ $month->tipo }}" disabled>
                                 @if ($errors->has('tipo'))
                                     <span class="help-block">
                                     {{ $errors->first('tipo') }}
@@ -36,13 +36,17 @@
                         <div class="row form-group{{ $errors->has('meses') ? ' has-error' : '' }}">
                             <label for="meses" class="textlabel col-md-3 offset-1 control-label required">Meses</label>
                             <div class="col-md-6">
-                                <input id="meses" type="text" class="form-control" name="meses" value="{{ $month->meses }}" required>
+                                <input id="meses" type="number" class="form-control" name="meses" value="{{ $month->meses }}" required>
                                 @if ($errors->has('meses'))
                                     <span class="help-block">
                                     {{ $errors->first('meses') }}
                                     </span>
                                 @endif
                             </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
+                            <input type="hidden" name="tipo" value="{{ $month->tipo}}">
                         </div>
 
                         <div class="row form-group">
