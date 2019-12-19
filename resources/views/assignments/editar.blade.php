@@ -92,7 +92,7 @@
                     <br>
 
                     <!-- Espacio para buscar Asesores internos -->
-                    <h3>Asesores internos</h3>
+                    <h3>Docentes Asesores Internos</h3>
                     <div class="row">
                         <div class="col-md-10">
                             <div class="input-group">
@@ -109,7 +109,7 @@
                     <br>
 
                     <!-- Espacio para buscar Asesores externos -->
-                    <h3>Asesores externos</h3>
+                    <h3>Asesores Especialistas Externos</h3>
                     <div class="row">
                         <div class="col-md-5">
                             <div class="input-group">
@@ -150,13 +150,13 @@
                                     <p class="lbl-estudiante" value="{{ $estudiante->id }}">• {{ $estudiante->carnet }}, {{ $estudiante->nombres }} {{ $estudiante->apellidos }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" value="{{ $estudiante->id }}" class="close float-none btn-quitar-estudiante"><span class="oi oi-circle-x" title="Quitar integrante" aria-hidden="true" style="color:red"></span></button></p>
                                 @endforeach
                             </p>
-                            <p><strong>Asesores internos:</strong></p>
+                            <p><strong>Docentes Asesores Internos:</strong></p>
                             <p id="lbl-asesores_internos">
                                 @foreach ($asesoresInternos as $asesorInterno)
                                     <p class="lbl-asesor_interno" value="{{ $asesorInterno->id }}">• {{ $asesorInterno->codigo }}, {{ $asesorInterno->nombre }} {{ $asesorInterno->apellido }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" value="{{ $asesorInterno->id }}" class="close float-none btn-quitar-asesor_interno"><span class="oi oi-circle-x" title="Quitar asesor interno" aria-hidden="true" style="color:red"></span></button></p>
                                 @endforeach
                             </p>
-                            <p><strong>Asesores externos:</strong></p>
+                            <p><strong>Asesores Especialistas Externos:</strong></p>
                             <p id="lbl-asesores_externos">
                                 @foreach ($asesoresExternos as $asesorExterno)
                                     <p class="lbl-asesor_externo" value="{{ $asesorExterno->id }}">• <span class="nombre">{{ $asesorExterno->nombre }}</span>&nbsp;<span class="apellido">{{ $asesorExterno->apellido }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" value="{{ $asesorExterno->id }}" class="close float-none btn-quitar-asesor_externo"><span class="oi oi-circle-x" title="Quitar asesor interno" aria-hidden="true" style="color:red"></span></button></p>

@@ -7,7 +7,7 @@
         <div class="col-md-11">
             <div class="card">
                 <div class="card-header">
-                    Ayuda y docmuentos de apoyo.
+                    Ayuda y documentos de apoyo.
                 </div>
                 <div class="card-body">
                         @if (session('status'))
