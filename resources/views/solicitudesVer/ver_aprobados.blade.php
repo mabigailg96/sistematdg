@@ -7,7 +7,7 @@
             <div class="card">
                 <!-- Card Header -->
                 <div class="card-header">
-					    Detalle de solicitud {{ $rol }}
+					    Detalle de solicitud
                 </div>
                 
                 <!-- Card Body -->

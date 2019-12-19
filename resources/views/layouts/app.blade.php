@@ -33,9 +33,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                   FIA
-                </a>
+                <a class="navbar-brand" href="{{ url('/home') }}">FIA</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -99,35 +97,35 @@
                   @endcan
                   @can('agreement.listar_acuerdos')
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/listar/acuerdos/jd') }}"> Ver acuerdos</a>
+                    <a class="nav-link" href="{{ url('/listar/acuerdos/jd') }}">Acuerdos</a>
                   </li>
                   @endcan
                   @can('tdg.filtroTdgEditar')
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/listar/tdg/editar') }}"> Edición</a>
+                    <a class="nav-link" href="{{ url('/listar/tdg/editar') }}">Edición</a>
                   </li>
                   @endcan
                   @can('mail.create')
                    <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/correo/crear') }}"> Correo</a>
+                    <a class="nav-link" href="{{ url('/correo/crear') }}">Correo</a>
                   </li>
                   @endcan
                   @can('reporte.principal')
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/reporte/principal') }}"> Reportes</a>
+                    <a class="nav-link" href="{{ url('/reporte/principal') }}">Reportes</a>
                   </li>
                   @endcan
 
                   @can('reporte.principal_escuela')
                   <li class="nav-item navegacion-item">
-                    <a class="nav-link" href="{{ url('/reporte/principal/escuela') }}"> Reportes</a>
+                    <a class="nav-link" href="{{ url('/reporte/principal/escuela') }}">Reportes</a>
                   </li>
                   @endcan
 
                   @can('menu')
                   <li class="nav-item dropdown ">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle navegacion-item" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        <span class="caret"> Administración</span>
+                        <span class="caret">Administración</span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
