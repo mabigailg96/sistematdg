@@ -91,7 +91,7 @@
                                                 @else
 
                                                     @if ($student->activo == 1)
-                                                        <td><button type="button" class="btn btn-danger btn-sm abandonar-tdg-estudiante" value="{{$student->student_tdg_id}}">Notificar abandonó</button></td>
+                                                        <td><button type="button" class="btn btn-danger btn-sm abandonar-tdg-estudiante" value="{{$student->student_tdg_id}}">Notificar abandono</button></td>
                                                     @else
                                                         <td>Abandonó el TDG</td>
                                                     @endif
