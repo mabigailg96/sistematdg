@@ -689,7 +689,7 @@ $(document).on("click", "#btn-guardar-asignacion", function() {
 
 // Funcion que cancela la asignacion y retorna a la lista de TDGs
 $(document).on("click", "#btn-cancelar-asignacion", function() {
-    window.location.href = "/listar/tdg/asignar";
+    window.location.href = "/listar/tdg/editar";
 });
 
 // Función para validar los campos de ingresar
