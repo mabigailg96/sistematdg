@@ -23,6 +23,15 @@
                             <p><strong>Código: </strong>{{ $solicitud->codigo }}</p>
                             <p><strong>Nombre: </strong>{{ $solicitud->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>Cambio de nombre</p>
+
+                            @if (is_null($solicitud->aprobado))
+                            <p><strong>Estado: </strong>En trámite</p>
+                            @elseif ($solicitud->aprobado == 0)
+                            <p><strong>Estado: </strong>Rechazado</p>
+                            @elseif ($solicitud->aprobado == 1)
+                            <p><strong>Estado: </strong>Aprobado</p>
+                            @endif
+
                             <p><strong>Fecha de solicitud: </strong>{{ date("d/m/Y", strtotime($solicitud->fecha)) }}</p>
                             <p><strong>Nuevo nombre: </strong>{{ $solicitud->nuevo_nombre }}</p>
                             <p><strong>Justificación: </strong>{{ $solicitud->justificacion }}</p>

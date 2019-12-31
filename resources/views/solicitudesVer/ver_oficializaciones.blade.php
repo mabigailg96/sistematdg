@@ -28,6 +28,15 @@
                             <p><strong>Código: </strong>{{ $solicitud->codigo }}</p>
                             <p><strong>Nombre: </strong>{{ $solicitud->nombre }}</p>
                             <p><strong>Tipo de solicitud: </strong>Oficialización</p>
+                            
+                            @if (is_null($solicitud->aprobado))
+                            <p><strong>Estado: </strong>En trámite</p>
+                            @elseif ($solicitud->aprobado == 0)
+                            <p><strong>Estado: </strong>Rechazado</p>
+                            @elseif ($solicitud->aprobado == 1)
+                            <p><strong>Estado: </strong>Aprobado</p>
+                            @endif
+
                             <p><strong>Fecha de solicitud: </strong>{{ date("d/m/Y", strtotime($solicitud->fecha)) }}</p>
                             <p><strong>Docente asesor: </strong>{{ $docenteDirector }}</p>
                             <p><strong>Estudiantes: </strong></p>
