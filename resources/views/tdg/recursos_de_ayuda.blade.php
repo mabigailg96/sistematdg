@@ -49,12 +49,15 @@
                                 <div class="media-body">
                                         <h4>Video Tutoriales sobre el uso del sistema.</h4>
 
-                                  <div class="media p-3">
-                                        <ul class="list-group">
-                                            <a href=""><h4><small><i>Video pendiente</i></small></h4></a>
+                                    <div id="accordion">
+                                        <div class="card">
+                                            <div class="card-header">
 
-                                        </ul>
+                                            </div>
+
                                         </div>
+
+                                    </div>
 
 
 
