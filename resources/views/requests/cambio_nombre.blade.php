@@ -64,6 +64,9 @@
                         <div class="form-group{{ $errors->has('tdg_id') ? ' has-error' : '' }}">
                             <input type="hidden" name="tdg_id" value="{{$tdgs->id}}">
                         </div>
+                        <div class="form-group{{ $errors->has('tdg_id') ? ' has-error' : '' }}">
+                            <input type="hidden" name="nombre_anterior" value="{{$tdgs->nombre}}">
+                        </div>
 
                         <div class="row form-group">
                             <div class="col-2 offset-4">

@@ -51,6 +51,7 @@ class RequestNameController extends Controller
             'fecha' => date("y-m-d"),
             'nuevo_nombre' => $request_name['nombre_nuevo'],
             'justificacion' => $request_name['justificacion'],
+            'nombre_anterior'=> $request['nombre_anterior'],
             'tdg_id' => $request['tdg_id'],
         ]);
 

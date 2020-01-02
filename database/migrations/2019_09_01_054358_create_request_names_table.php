@@ -19,6 +19,7 @@ class CreateRequestNamesTable extends Migration
             $table->boolean('aprobado')->nullable();
             $table->string('nuevo_nombre',500)->nonullable();
             $table->string('justificacion',500)->nonullable();
+            $table->string('nombre_anterior',500)->nonullable();
             $table->integer('tdg_id')->unsigned()->nonullable();
             $table->foreign('tdg_id')->references('id')->on('tdgs')->onDelete('cascade')->nonullable();
             $table->integer('agreement_id')->unsigned()->nullable();

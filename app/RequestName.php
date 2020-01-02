@@ -15,5 +15,5 @@ class RequestName extends Model
         return $this->belongsTo(Agreement::class);
     }
 
-    protected $fillable = ['nuevo_nombre', 'justificacion','tdg_id','fecha'];
+    protected $fillable = ['nuevo_nombre', 'justificacion','nombre_anterior','tdg_id','fecha'];
 }
