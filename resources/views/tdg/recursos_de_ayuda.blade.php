@@ -48,411 +48,417 @@
                           <div class="media border p-3">
                                 <div class="media-body">
                                         <h4>Video Tutoriales.</h4>
-
-                                    <div id="accordion">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <a class="card-link" data-toggle="collapse" href="#collapseAcademica">
-                                                    Académica  <span class="oi oi-info">
-                                                  </a>
+                                @can('student.ingresar')
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="card-link" data-toggle="collapse" href="#collapseAcademica">
+                                                Académica  <span class="oi oi-info">
+                                            </a>
+                                        </div>
+                                        <div id="collapseAcademica" class="collapse" data-parent="#accordion">
+                                            <div class="card-body">
+                                            
+                                                <div id="1">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse1">
+                                                        Ingreso de estudiantes al sistema   <span class="oi oi-play-circle">
+                                                    </a>
+                                                    <div id="collapse1" class="collapse" >
+                                                        <center>
+                                                            <video width="640" height="380" controls>
+                                                                <source src="/videos/Academica/Ingresar estudiantes por archivo de excel.mp4" type="video/mp4">
+                                                            </video>
+                                                        </center>
+                                                        
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
-                                            <div id="collapseAcademica" class="collapse" data-parent="#accordion">
-                                                <div class="card-body">
-                                                   
-                                                    <div id="1">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse1">
-                                                            Ingreso de estudiantes al sistema   <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse1" class="collapse" >
-                                                               <center>
-                                                                <video width="640" height="380" controls>
-                                                                    <source src="/videos/Academica/Ingresar estudiantes por archivo de excel.mp4" type="video/mp4">
-                                                                </video>
-                                                               </center>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                @endcan
+
+                                   @can('tdg.ingresar')
+                                   <div id="accordion2">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="card-link" data-toggle="collapse" href="#collapseCoordinadorEscuela">
+                                                Coordinador de escuela  <span class="oi oi-info">
+                                              </a>
+                                        </div>
+                                        <div id="collapseCoordinadorEscuela" class="collapse" data-parent="#accordion2">
+                                            <div class="card-body">
+                                               
+                                                <div id="2">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse2">
+                                                        Asignar grupo  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse2" class="collapse" >
+                                                           <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Asignar grupo.mp4" type="video/mp4">
                                                             
-                                                          </div>
-                                                    </div>
-                                                    
+                                                          </video>
+                                                           </center>
+                                                      </div>
                                                 </div>
-                                              </div>
 
-                                        </div>
+                                                <div id="3">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse3">
+                                                        Generar reportes  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse3" class="collapse" >
+                                                           <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Generar reportes.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                           </center>
+                                                      </div>
+                                                </div>
 
-                                    </div>
+                                                <div id="4">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse4">
+                                                        Gestionar TDG - Introducción a Gestionar TDG e imprimir TDG  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse4" class="collapse" >
+                                                           <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Gestionar TDG - Introducción a Gestionar TDG e imprimir TDG.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                           </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="5">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse5">
+                                                        Gestionar TDG - Notificar abandono de estudiante de tdg  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse5" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Gestionar TDG - Notificar abandonó de estudiante de tdg.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="6">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse6">
+                                                        Gestionar TDG - Notificar abandonó de tdg  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse6" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Gestionar TDG - Notificar abandonó de tdg.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="7">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse7">
+                                                        Ingresar perfil  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse7" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Ingresar perfil.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="8">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse8">
+                                                        Solicitud de cambio de nombre  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse8" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Solicitud de cambio de nombre.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="9">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse9">
+                                                        Solicitud de extensión de prórroga  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse9" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Solicitud de extensión de prórroga.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="10">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse10">
+                                                        Solicitud de nombramiento de tribunal  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse10" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Solicitud de nombramiento de tribunal.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="11">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse11">
+                                                        Solicitud de prórroga especial  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse11" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Solicitud de prórroga especial.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+                                                
+                                                <div id="12">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse12">
+                                                        Solicitud de prórroga  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse12" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Solicitud de prórroga.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+                                                
+                                                <div id="13">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse13">
+                                                        Solicitud de ratificación de resultados  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse13" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Solicitud de ratificación de resultados.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="14">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse14">
+                                                        Ver las solicitudes  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse14" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador de escuela/Ver solicitudes (falta terminar).mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
 
 
-                                    <div id="accordion2">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <a class="card-link" data-toggle="collapse" href="#collapseCoordinadorEscuela">
-                                                    Coordinador de escuela  <span class="oi oi-info">
-                                                  </a>
+
                                             </div>
-                                            <div id="collapseCoordinadorEscuela" class="collapse" data-parent="#accordion2">
-                                                <div class="card-body">
-                                                   
-                                                    <div id="2">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse2">
-                                                            Asignar grupo  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse2" class="collapse" >
-                                                               <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Asignar grupo.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                               </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="3">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse3">
-                                                            Generar reportes  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse3" class="collapse" >
-                                                               <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Generar reportes.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                               </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="4">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse4">
-                                                            Gestionar TDG - Introducción a Gestionar TDG e imprimir TDG  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse4" class="collapse" >
-                                                               <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Gestionar TDG - Introducción a Gestionar TDG e imprimir TDG.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                               </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="5">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse5">
-                                                            Gestionar TDG - Notificar abandono de estudiante de tdg  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse5" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Gestionar TDG - Notificar abandonó de estudiante de tdg.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="6">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse6">
-                                                            Gestionar TDG - Notificar abandonó de tdg  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse6" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Gestionar TDG - Notificar abandonó de tdg.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="7">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse7">
-                                                            Ingresar perfil  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse7" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Ingresar perfil.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="8">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse8">
-                                                            Solicitud de cambio de nombre  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse8" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Solicitud de cambio de nombre.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="9">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse9">
-                                                            Solicitud de extensión de prórroga  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse9" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Solicitud de extensión de prórroga.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="10">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse10">
-                                                            Solicitud de nombramiento de tribunal  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse10" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Solicitud de nombramiento de tribunal.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="11">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse11">
-                                                            Solicitud de prórroga especial  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse11" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Solicitud de prórroga especial.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-                                                    
-                                                    <div id="12">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse12">
-                                                            Solicitud de prórroga  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse12" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Solicitud de prórroga.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-                                                    
-                                                    <div id="13">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse13">
-                                                            Solicitud de ratificación de resultados  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse13" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Solicitud de ratificación de resultados.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="14">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse14">
-                                                            Ver las solicitudes  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse14" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador de escuela/Ver solicitudes (falta terminar).mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-
-
-                                                </div>
-                                              </div>
-
-                                        </div>
+                                          </div>
 
                                     </div>
 
-                                    <div id="accordion3">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <a class="card-link" data-toggle="collapse" href="#collapseCoordinadorGeneral">
-                                                    Coordinador general  <span class="oi oi-info">
-                                                  </a>
+                                   </div>
+                                   @endcan
+
+                                   @can('agreement.ingresar')
+                                   <div id="accordion3">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="card-link" data-toggle="collapse" href="#collapseCoordinadorGeneral">
+                                                Coordinador general  <span class="oi oi-info">
+                                              </a>
+                                        </div>
+                                        <div id="collapseCoordinadorGeneral" class="collapse" data-parent="#accordion3">
+                                            <div class="card-body">
+                                               
+                                                <div id="15">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse15">
+                                                         Administracion - Editar tiempo de prórrogas  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse15" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Administrar - Editar prórrogas.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="16">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse16">
+                                                        Administracion - Gestion de usuarios  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse16" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Administrar - gestionar usuarios.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="17">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse17">
+                                                        Administracion - Ingreso de inicio de ciclo  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse17" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Administrar - Ingresar inicio de ciclo.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="18">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse18">
+                                                        Edición - Cambiar nombre de perfil  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse18" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Edición - Cambiar nombre.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="19">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse19">
+                                                        Edición - Deshabilitar perfiles  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse19" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Edición - Deshabilitar perfiles.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="20">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse20">
+                                                        Edición - Editar asignación de grupo  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse20" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Edición - Editar asignación de grupo.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="21">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse21">
+                                                        Envio de correo electronico  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse21" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Enviar correo.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="22">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse22">
+                                                        Generaciom de reportes  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse22" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Generar reportes.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="23">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse23">
+                                                        Ratificación de solicitudes  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse23" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Ratificación de solicitudes.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="24">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse24">
+                                                        Ver detalles e imprimir un TDG  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse24" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Ver detalles e imprimir un TDG.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="25">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse25">
+                                                        Ver solicitudes  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse25" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Coordinador general/Ver solicitudes (falta solicitud de cambio de nombre).mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+                                                
                                             </div>
-                                            <div id="collapseCoordinadorGeneral" class="collapse" data-parent="#accordion3">
-                                                <div class="card-body">
-                                                   
-                                                    <div id="15">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse15">
-                                                             Administracion - Editar tiempo de prórrogas  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse15" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Administrar - Editar prórrogas.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="16">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse16">
-                                                            Administracion - Gestion de usuarios  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse16" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Administrar - gestionar usuarios.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="17">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse17">
-                                                            Administracion - Ingreso de inicio de ciclo  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse17" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Administrar - Ingresar inicio de ciclo.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="18">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse18">
-                                                            Edición - Cambiar nombre de perfil  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse18" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Edición - Cambiar nombre.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="19">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse19">
-                                                            Edición - Deshabilitar perfiles  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse19" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Edición - Deshabilitar perfiles.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="20">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse20">
-                                                            Edición - Editar asignación de grupo  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse20" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Edición - Editar asignación de grupo.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="21">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse21">
-                                                            Envio de correo electronico  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse21" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Enviar correo.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="22">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse22">
-                                                            Generaciom de reportes  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse22" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Generar reportes.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="23">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse23">
-                                                            Ratificación de solicitudes  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse23" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Ratificación de solicitudes.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="24">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse24">
-                                                            Ver detalles e imprimir un TDG  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse24" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Ver detalles e imprimir un TDG.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="25">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse25">
-                                                            Ver solicitudes  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse25" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general/Ver solicitudes (falta solicitud de cambio de nombre).mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                              </div>
-
-                                        </div>
+                                          </div>
 
                                     </div>
 
+                                   </div>
+                                   @endcan
+
+                                   @can('agreement.listar_acuerdos')
+                                       
                                     <div id="accordion4">
                                         <div class="card">
                                             <div class="card-header">
@@ -483,83 +489,98 @@
                                         </div>
     
                                     </div>
+                                   @endcan
 
-                                    <div id="accordion5">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <a class="card-link" data-toggle="collapse" href="#collapseGenerales">
-                                                    Videos Generales  <span class="oi oi-info">
-                                                  </a>
-                                            </div>
-                                            <div id="collapseGenerales" class="collapse" data-parent="#accordion5">
-                                                <div class="card-body">
-                                                   
-                                                    <div id="27">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse27">
-                                                            Área de ayuda  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse27" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Generales/Área de ayuda.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-
-                                                    <div id="28">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse28">
-                                                            Iniciar y cerrar sesión  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse28" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Generales/Iniciar y cerrar sesión.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                              </div>
-    
+                                
+                                   <div id="accordion5">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="card-link" data-toggle="collapse" href="#collapseGenerales">
+                                                Videos Generales  <span class="oi oi-info">
+                                              </a>
                                         </div>
-    
+                                        <div id="collapseGenerales" class="collapse" data-parent="#accordion5">
+                                            <div class="card-body">
+                                               
+                                                <div id="27">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse27">
+                                                        Área de ayuda  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse27" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Generales/Área de ayuda.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                <div id="28">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse28">
+                                                        Iniciar y cerrar sesión  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse28" class="collapse" >
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Generales/Iniciar y cerrar sesión.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+                                                
+                                            </div>
+                                          </div>
+
                                     </div>
 
-                                    <div id="accordion6">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <a class="card-link" data-toggle="collapse" href="#collapseSecre">
-                                                    Secretaria de escuela  <span class="oi oi-info">
-                                                  </a>
-                                            </div>
-                                            <div id="collapseSecre" class="collapse" data-parent="#accordion6">
-                                                <div class="card-body">
-                                                   
-                                                    <div id="29">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse29">
-                                                            Administracion de docentes  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse29" class="collapse">
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Secretaria de escuela/Administrar docentes.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
+                                   </div>
+                                   
 
-                                                    
-                                                </div>
-                                              </div>
-    
+                                   @can('professor.ingresar')
+                                   <div id="accordion6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="card-link" data-toggle="collapse" href="#collapseSecre">
+                                                Secretaria de escuela  <span class="oi oi-info">
+                                              </a>
                                         </div>
-    
+                                        <div id="collapseSecre" class="collapse" data-parent="#accordion6">
+                                            <div class="card-body">
+                                               
+                                                <div id="29">
+                                                    <a class="card-link" data-toggle="collapse" href="#collapse29">
+                                                        Administracion de docentes  <span class="oi oi-play-circle">
+                                                      </a>
+                                                       <div id="collapse29" class="collapse">
+                                                        <center>
+                                                        <video width="640" height="380" controls>
+                                                            <source src="/videos/Secretaria de escuela/Administrar docentes.mp4" type="video/mp4">
+                                                            
+                                                          </video>
+                                                        </center>
+                                                      </div>
+                                                </div>
+
+                                                
+                                            </div>
+                                          </div>
+
                                     </div>
+
+                                   </div>
+                                   @endcan
+
+
+                                  
+
+                                   
+
+
+                                    
+
+                                   
 
 
                                 </div>
