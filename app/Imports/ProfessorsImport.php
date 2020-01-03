@@ -15,6 +15,9 @@ class ProfessorsImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        if (!isset($row['codigo'])) {
+        return null;
+    }
         //Se obtiene el id de la escuela por medio de las
         //variables de session del usuario loggeado.
         $escuela = auth()->user()->college_id;

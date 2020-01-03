@@ -20,6 +20,9 @@ class StudentsImport implements ToModel, WithHeadingRow
     }
     public function model(array $row)
     {
+        if (!isset($row['carnet'])) {
+            return null;
+        }
         return new Student([
             'carnet'     => $row['carnet'],
             'nombres'    => $row['nombres'],
