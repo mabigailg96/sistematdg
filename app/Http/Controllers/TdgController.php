@@ -522,11 +522,11 @@ class TdgController extends Controller
         */
 
         //$ciclo = Ciclo::orderby('created_at','DESC')->take(1)->get();
-        //$lastCiclo = DB::table('semesters')->orderBy('id', 'DESC')->first();
+        $lastCiclo = DB::table('semesters')->select('id', 'ciclo')->orderBy('fechaInicio', 'DESC')->first();
 
         $ciclos = new SemesterController();
         $ciclo = $ciclos->lastSemester();
-        
+
         foreach ($ciclo as $last) {
             $lastCiclo = $last;
         }
