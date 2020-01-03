@@ -12,5 +12,6 @@
                 <option value="Extensión de prórroga">Extensión de prórroga</option>
                 <option value="Prórroga especial">Prórroga especial</option>
                 <option value="Finalizado">Finalizado</option>
+                <option value="Deshabilitado">Deshabilitado</option>
             </select>
         </div>
