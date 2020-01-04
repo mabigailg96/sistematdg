@@ -48,17 +48,22 @@
                           <div class="media border p-3">
                                 <div class="media-body">
                                         <h4>Video Tutoriales.</h4>
-                                  //Videos para el rol Coordinador de escuela 
+                                 
                                 @can('student.ingresar')
-                                <div id="accordion">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <a class="card-link" data-toggle="collapse" href="#collapseAcademica">
-                                                Académica  <span class="oi oi-info">
-                                            </a>
-                                        </div>
-                                        <div id="collapseAcademica" class="collapse" data-parent="#accordion">
-                                            <div class="card-body">
+                                
+                                            <div id="26">
+                                                <a class="card-link" data-toggle="collapse" href="#collapse26">
+                                                    Ver Acuerdos  <span class="oi oi-play-circle">
+                                                  </a>
+                                                   <div id="collapse26" class="collapse" >
+                                                    <center>
+                                                    <video width="640" height="380" controls>
+                                                        <source src="/videos/Coordinador general y de escuela/Ver acuerdos.mp4" type="video/mp4">
+                                                        
+                                                      </video>
+                                                    </center>
+                                                  </div>
+                                            </div>
                                             
                                                 <div id="1">
                                                     <a class="card-link" data-toggle="collapse" href="#collapse1">
@@ -74,24 +79,11 @@
                                                     </div>
                                                 </div>
                                                 
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
                                 @endcan
-                                      //Videos para el rol de Academica
+                                      
                                    @can('tdg.ingresar')
-                                   <div id="accordion2">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <a class="card-link" data-toggle="collapse" href="#collapseCoordinadorEscuela">
-                                                Coordinador de escuela  <span class="oi oi-info">
-                                              </a>
-                                        </div>
-                                        <div id="collapseCoordinadorEscuela" class="collapse" data-parent="#accordion2">
-                                            <div class="card-body">
+                                  
+                                    
                                                
                                                 <div id="2">
                                                     <a class="card-link" data-toggle="collapse" href="#collapse2">
@@ -276,25 +268,12 @@
                                                 </div>
 
 
-
-                                            </div>
-                                          </div>
-
-                                    </div>
-
-                                   </div>
+                                   
                                    @endcan
-                                      //Videos para el rol de Coordinador general
+                                     
                                    @can('agreement.ingresar')
-                                   <div id="accordion3">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <a class="card-link" data-toggle="collapse" href="#collapseCoordinadorGeneral">
-                                                Coordinador general  <span class="oi oi-info">
-                                              </a>
-                                        </div>
-                                        <div id="collapseCoordinadorGeneral" class="collapse" data-parent="#accordion3">
-                                            <div class="card-body">
+                                   
+                                    
                                                
                                                 <div id="15">
                                                     <a class="card-link" data-toggle="collapse" href="#collapse15">
@@ -396,7 +375,7 @@
 
                                                 <div id="22">
                                                     <a class="card-link" data-toggle="collapse" href="#collapse22">
-                                                        Generaciom de reportes  <span class="oi oi-play-circle">
+                                                        Generacion de reportes  <span class="oi oi-play-circle">
                                                       </a>
                                                        <div id="collapse22" class="collapse" >
                                                         <center>
@@ -435,6 +414,19 @@
                                                         </center>
                                                       </div>
                                                 </div>
+                                                <div id="26">
+                                                  <a class="card-link" data-toggle="collapse" href="#collapse26">
+                                                      Ver Acuerdos  <span class="oi oi-play-circle">
+                                                    </a>
+                                                     <div id="collapse26" class="collapse" >
+                                                      <center>
+                                                      <video width="640" height="380" controls>
+                                                          <source src="/videos/Coordinador general y de escuela/Ver acuerdos.mp4" type="video/mp4">
+                                                          
+                                                        </video>
+                                                      </center>
+                                                    </div>
+                                              </div>
 
                                                 <div id="25">
                                                     <a class="card-link" data-toggle="collapse" href="#collapse25">
@@ -450,59 +442,14 @@
                                                       </div>
                                                 </div>
                                                 
-                                            </div>
-                                          </div>
+                                         
 
-                                    </div>
-
-                                   </div>
-                                   @endcan
-                                   //Videos para el rol de Coordinador general y escuela 
-                                   @can('agreement.listar_acuerdos')
-                                       
-                                    <div id="accordion4">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <a class="card-link" data-toggle="collapse" href="#collapseCoordinadorGyE">
-                                                    Coordinador general y de escuela  <span class="oi oi-info">
-                                                  </a>
-                                            </div>
-                                            <div id="collapseCoordinadorGyE" class="collapse" data-parent="#accordion4">
-                                                <div class="card-body">
-                                                   
-                                                    <div id="26">
-                                                        <a class="card-link" data-toggle="collapse" href="#collapse26">
-                                                            Ver Acuerdos  <span class="oi oi-play-circle">
-                                                          </a>
-                                                           <div id="collapse26" class="collapse" >
-                                                            <center>
-                                                            <video width="640" height="380" controls>
-                                                                <source src="/videos/Coordinador general y de escuela/Ver acuerdos.mp4" type="video/mp4">
-                                                                
-                                                              </video>
-                                                            </center>
-                                                          </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                              </div>
-    
-                                        </div>
-    
-                                    </div>
+                                   
                                    @endcan
 
-                                    // videos para todos los usuarios
-                                   <div id="accordion5">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <a class="card-link" data-toggle="collapse" href="#collapseGenerales">
-                                                Videos Generales  <span class="oi oi-info">
-                                              </a>
-                                        </div>
-                                        <div id="collapseGenerales" class="collapse" data-parent="#accordion5">
-                                            <div class="card-body">
-                                               
+                                    
+                                
+                                   
                                                 <div id="27">
                                                     <a class="card-link" data-toggle="collapse" href="#collapse27">
                                                         Área de ayuda  <span class="oi oi-play-circle">
@@ -530,25 +477,12 @@
                                                         </center>
                                                       </div>
                                                 </div>
-                                                
-                                            </div>
-                                          </div>
 
-                                    </div>
-
-                                   </div>
                                    
-                                   // videos para el rol secretaria
+                                   
+                                   
                                    @can('professor.ingresar')
-                                   <div id="accordion6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <a class="card-link" data-toggle="collapse" href="#collapseSecre">
-                                                Secretaria de escuela  <span class="oi oi-info">
-                                              </a>
-                                        </div>
-                                        <div id="collapseSecre" class="collapse" data-parent="#accordion6">
-                                            <div class="card-body">
+                                   
                                                
                                                 <div id="29">
                                                     <a class="card-link" data-toggle="collapse" href="#collapse29">
@@ -565,12 +499,7 @@
                                                 </div>
 
                                                 
-                                            </div>
-                                          </div>
-
-                                    </div>
-
-                                   </div>
+                                      
                                    @endcan
 
 
