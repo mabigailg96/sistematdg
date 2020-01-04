@@ -20,7 +20,7 @@
                                     <a  href="/ayudaDocs/Reglamento_Específico_de_Procesos_de_Graduacion_FIA.pdf"><h4>Reglamento Específico de Procesos de Graduación  FIA <span class="oi oi-cloud-download"> </h4></a>
 
                               <div class="media p-3">
-                                    <ul class="list-group">
+                                    <ul class="list-group" id= "recursosAyuda">
                                         <a href="/ayudaDocs/Anexo_A_Formato_para_presentacion_de_perfil.docx"><h4><small><i>Formato para presentación de perfil  <span class="oi oi-cloud-download"></i></small></h4></a>
                                         <a href="/ayudaDocs/Anexo_B_Formato_resumen_del_perfil.docx"><h4><small><i>Formato de resumen del perfil <span class="oi oi-cloud-download"> </i></small></h4></a>
                                         <a href="/ayudaDocs/Anexo_C_Formatos_para_Bitacora.docx"><h4><small><i>Formatos para bitácoras  <span class="oi oi-cloud-download"></i></small></h4></a>
@@ -48,6 +48,7 @@
                           <div class="media border p-3">
                                 <div class="media-body">
                                         <h4>Video Tutoriales.</h4>
+                                  //Videos para el rol Coordinador de escuela 
                                 @can('student.ingresar')
                                 <div id="accordion">
                                     <div class="card">
@@ -80,7 +81,7 @@
 
                                 </div>
                                 @endcan
-
+                                      //Videos para el rol de Academica
                                    @can('tdg.ingresar')
                                    <div id="accordion2">
                                     <div class="card">
@@ -283,7 +284,7 @@
 
                                    </div>
                                    @endcan
-
+                                      //Videos para el rol de Coordinador general
                                    @can('agreement.ingresar')
                                    <div id="accordion3">
                                     <div class="card">
@@ -456,7 +457,7 @@
 
                                    </div>
                                    @endcan
-
+                                   //Videos para el rol de Coordinador general y escuela 
                                    @can('agreement.listar_acuerdos')
                                        
                                     <div id="accordion4">
@@ -491,7 +492,7 @@
                                     </div>
                                    @endcan
 
-                                
+                                    // videos para todos los usuarios
                                    <div id="accordion5">
                                     <div class="card">
                                         <div class="card-header">
@@ -537,7 +538,7 @@
 
                                    </div>
                                    
-
+                                   // videos para el rol secretaria
                                    @can('professor.ingresar')
                                    <div id="accordion6">
                                     <div class="card">
