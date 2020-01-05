@@ -482,7 +482,7 @@ class RequestController extends Controller
 
                             $requests_data = DB::table($request[0])
                                 ->join('tdgs', $request[0].'.tdg_id','=', 'tdgs.id')
-                                ->select($request[0].'.tdg_id', 'tdgs.codigo', 'tdgs.nombre', $request[0].'.aprobado', $request[0].'.fecha', $request[0].'.nuevo_nombre', $request[0].'.justificacion')
+                                ->select($request[0].'.tdg_id', 'tdgs.codigo', 'tdgs.nombre', $request[0].'.aprobado', $request[0].'.nombre_anterior', $request[0].'.fecha', $request[0].'.nuevo_nombre', $request[0].'.justificacion')
                                 ->where($request[0].'.id', '=', $id)
                                 ->get();
                             
