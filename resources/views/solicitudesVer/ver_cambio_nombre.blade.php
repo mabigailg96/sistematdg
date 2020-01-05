@@ -21,7 +21,15 @@
                     <div class="card">
                         <div class="card-body bg-light">
                             <p><strong>Código: </strong>{{ $solicitud->codigo }}</p>
-                            <p><strong>Nombre: </strong>{{ $solicitud->nombre }}</p>
+                            
+                            @if (is_null($solicitud->aprobado))
+                            <p><strong>Nombre actual: </strong>{{ $solicitud->nombre_anterior }}</p>
+                            @elseif ($solicitud->aprobado == 0)
+                            <p><strong>Nombre actual: </strong>{{ $solicitud->nombre_anterior }}</p>
+                            @elseif ($solicitud->aprobado == 1)
+                            <p><strong>Nuevo nombre: </strong>{{ $solicitud->nuevo_nombre }}</p>
+                            @endif
+
                             <p><strong>Tipo de solicitud: </strong>Cambio de nombre</p>
 
                             @if (is_null($solicitud->aprobado))
@@ -33,7 +41,15 @@
                             @endif
 
                             <p><strong>Fecha de solicitud: </strong>{{ date("d/m/Y", strtotime($solicitud->fecha)) }}</p>
+
+                            @if (is_null($solicitud->aprobado))
                             <p><strong>Nuevo nombre: </strong>{{ $solicitud->nuevo_nombre }}</p>
+                            @elseif ($solicitud->aprobado == 0)
+                            <p><strong>Nombre propuesto: </strong>{{ $solicitud->nuevo_nombre }}</p>
+                            @elseif ($solicitud->aprobado == 1)
+                            <p><strong>Nombre anterior: </strong>{{ $solicitud->nombre_anterior }}</p>
+                            @endif
+                            
                             <p><strong>Justificación: </strong>{{ $solicitud->justificacion }}</p>
                         </div>
                     </div>
@@ -59,7 +75,7 @@
 
                 <!-- Card Footer -->
                 <div class="card-footer text-muted">
-
+                    <span style="color:red">*</span> <strong>Nota: </strong> El nombre actual hace referencia al que tenía el Trabajo de graduación al momento de realizar la solicitud.
                 </div>
             </div>
         </div>
