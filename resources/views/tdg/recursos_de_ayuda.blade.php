@@ -260,7 +260,7 @@
                                                        <div id="collapse14" class="collapse" >
                                                         <center>
                                                         <video width="640" height="380" controls>
-                                                            <source src="/videos/Coordinador de escuela/Ver solicitudes (falta terminar).mp4" type="video/mp4">
+                                                            <source src="/videos/Coordinador de escuela/Ver solicitudes.mp4" type="video/mp4">
                                                             
                                                           </video>
                                                         </center>
@@ -435,7 +435,7 @@
                                                        <div id="collapse25" class="collapse" >
                                                         <center>
                                                         <video width="640" height="380" controls>
-                                                            <source src="/videos/Coordinador general/Ver solicitudes (falta solicitud de cambio de nombre).mp4" type="video/mp4">
+                                                            <source src="/videos/Coordinador general/Ver solicitudes.mp4" type="video/mp4">
                                                             
                                                           </video>
                                                         </center>
