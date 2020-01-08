@@ -51,6 +51,7 @@
                                  
                                 @can('student.ingresar')
                                 
+                                           
                                                 <div id="1">
                                                     <a class="card-link" data-toggle="collapse" href="#collapse1">
                                                         Ingreso de estudiantes al sistema   <span class="oi oi-play-circle">
@@ -252,7 +253,20 @@
                                                         </center>
                                                       </div>
                                                 </div>
-
+                                                <div id="26">
+                                                  <a class="card-link" data-toggle="collapse" href="#collapse26">
+                                                      Ver Acuerdos  <span class="oi oi-play-circle">
+                                                    </a>
+                                                     <div id="collapse26" class="collapse" >
+                                                      <center>
+                                                      <video width="640" height="380" controls>
+                                                          <source src="/videos/Coordinador general y de escuela/Ver acuerdos.mp4" type="video/mp4">
+                                                          
+                                                        </video>
+                                                      </center>
+                                                    </div>
+                                              </div>
+                                              
 
                                    
                                    @endcan
