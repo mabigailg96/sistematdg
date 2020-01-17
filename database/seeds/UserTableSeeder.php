@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
         User::create([
             'nombre'=> 'Admin',
             'username'=> 'admin',
-            'email' => 'guilrmobrs@gmail.com',
+            'email' => '1@gmail.com',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -28,7 +28,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Civil',
             'username'=> 'civil',
             'college_id'=>'1',
-            'email' => 'vd16006@ues.edu.sv',
+            'email' => '2@gmail.com',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -36,7 +36,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Industrial',
             'username'=> 'industrial',
             'college_id'=>'2',
-            'email' => 'cv16003@ues.edu.sv',
+            'email' => '3@gmail.com',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -44,7 +44,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Mecanica',
             'username'=> 'mecanica',
             'college_id'=>'3',
-            'email' => 'mabigailg@hotmail.com',
+            'email' => '3@hotmail.com',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -52,7 +52,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Electrica',
             'username'=> 'electrica',
             'college_id'=>'4',
-            'email' => 'gc16001@ues.edu.sv',
+            'email' => '4@gmail.com',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -60,7 +60,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Quimica',
             'username'=> 'quimica',
             'college_id'=>'5',
-            'email' => 'chesterven7@gmail.com',
+            'email' => '5@gmail.com',
             'password'=> bcrypt('1234'),
 
         ]);
@@ -68,7 +68,7 @@ class UserTableSeeder extends Seeder
             'nombre'=> 'Ing. Alimentos',
             'username'=> 'alimentos',
             'college_id'=>'6',
-            'email' => 'guillermobrs@gmail.com',
+            'email' => '6@gmail.com',
             'password'=> bcrypt('1234'),
 
         ]);
